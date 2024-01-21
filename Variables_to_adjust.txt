@@ -1,0 +1,16 @@
+Variables to adjust:
+
+IMPULSE MACD and PSAR
+1. Renko Brick Size
+2. 15 min chart or Renko chart
+3. Renko and just PSAR? or Renko, PSAR, and Impulse? 
+4. When to exit? 
+    a. Vu's strategy (one renko brick in same direction, take half, set SL to 0, then exit on Renko bar reversal)
+    b. one renko brick in same direction, take half, set SL to 0, then exit at n fib levels above entry (optimize n)
+5. When to Enter?
+    a. PSAR and Impulse
+    b. PSAR only
+    c. Impulse only
+5. Optimize inputs into PSAR and Impulse
+
+

@@ -17,6 +17,7 @@ Things to investigate
 1. Weekend holds
 2. Max daily drawdown
 3. Losses in a row
+4. Swap rates
 
 
 Next Steps:

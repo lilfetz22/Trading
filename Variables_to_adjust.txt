@@ -13,4 +13,12 @@ IMPULSE MACD and PSAR
     c. Impulse only
 5. Optimize inputs into PSAR and Impulse
 
+Things to investigate
+1. Weekend holds
+2. Max daily drawdown
+3. Losses in a row
 
+
+Next Steps:
+1. See if I can connect to MetaTrader 4 and run this strategy on a demo account
+2. If that doesn't work, then see if I can translate this strategy to create a Expert Advisor in MetaTrader 5

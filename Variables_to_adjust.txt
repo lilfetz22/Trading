@@ -20,5 +20,5 @@ Things to investigate
 
 
 Next Steps:
-1. See if I can connect to MetaTrader 4 and run this strategy on a demo account
+1. See if I can connect to MetaTrader 5 and run this strategy on a demo account
 2. If that doesn't work, then see if I can translate this strategy to create a Expert Advisor in MetaTrader 5

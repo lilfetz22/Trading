@@ -14,9 +14,10 @@ IMPULSE MACD and PSAR
 5. Optimize inputs into PSAR and Impulse
 
 Things to investigate
-1. Weekend holds
-2. Max daily drawdown
+1. Weekend holds - DONE
+2. Max daily drawdown = -$2,300 -> start Nova at 5 lot size, Msolutions is good for 10 lot size
 3. Losses in a row
+4. Swap rates
 
 
 Next Steps:

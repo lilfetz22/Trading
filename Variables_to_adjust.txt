@@ -14,7 +14,7 @@ IMPULSE MACD and PSAR
 5. Optimize inputs into PSAR and Impulse
 
 Things to investigate
-1. Weekend holds
+1. Weekend holds - DONE
 2. Max daily drawdown
 3. Losses in a row
 4. Swap rates

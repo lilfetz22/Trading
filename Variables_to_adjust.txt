@@ -29,9 +29,10 @@
 ## EA in MetaTrader 4
 1. Get Renko bars on the chart and then be able to extract their values
      - determine how far back the indicator stores values that can be accessed by the EA for PSAR and Impulse
-2. replicate the PSAR function
-3. replicate the Impulse MACD function
-4. Define Entry Conditions
-5. Define Exit Conditions
-6. Define S/L
-7. Define primary and secondary T/P
+2. replicate the PSAR function - DONE found an indicator that does this
+3. replicate the Impulse MACD function - DONE found an indicator that does this
+4. figure out how to test EA on historical data
+5. Define Entry Conditions
+6. Define Exit Conditions
+7. Define S/L
+8. Define primary and secondary T/P

@@ -1,0 +1,6 @@
+My Entry Conditions:
+1. PSAR & impulse & bar color have same direction
+
+exit Conditions
+1. stoploss
+2. bar color changes to opposite direction

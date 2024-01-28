@@ -33,6 +33,6 @@
 3. replicate the Impulse MACD function - DONE found an indicator that does this
 4. figure out how to test EA on historical data - DONE
 5. Define Entry Conditions - DONE
-6. Define Exit Conditions
-7. Define S/L
-8. Define primary and secondary T/P
+6. Define Exit Conditions - DONE
+7. Define S/L - DONE
+8. Define primary and secondary T/P - DONE

@@ -36,3 +36,6 @@
 6. Define Exit Conditions - DONE
 7. Define S/L - DONE
 8. Define primary and secondary T/P - DONE
+
+## Debugging:
+1. there is still an error with some of the tickets opening when others are still open. 

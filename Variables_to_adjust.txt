@@ -20,7 +20,8 @@
 2. Max daily drawdown = -$4,500 -> start Nova at 5 lot size, Msolutions is good for 10 lot size
 3. Swap rates - DONE
 4. Rejoin with original data to see if high's and low's are correct - DONE
-5. find out how often the input data skips minutes
+5. find out how often the input data skips minutes - 0.5% of the time, there are 98 instances of 121 min gaps, then several 60 min gaps, 1814 gaps in total that are greater than 1 min - DONE
+
 
 
 ## Next Steps:

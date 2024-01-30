@@ -38,4 +38,4 @@
 8. Define primary and secondary T/P - DONE
 
 ## Debugging:
-1. there is still an error with some of the tickets opening when others are still open. 
+1. there is still an error with some of the tickets opening when others are still open.  - fixed

@@ -1,6 +1,6 @@
-Variables to adjust:
+# Variables to adjust:
 
-IMPULSE MACD and PSAR
+## IMPULSE MACD and PSAR
 1. Renko Brick Size
 2. 15 min chart or Renko chart
 3. Renko and just PSAR? or Renko, PSAR, and Impulse? 
@@ -12,13 +12,35 @@ IMPULSE MACD and PSAR
     b. PSAR only
     c. Impulse only
 5. Optimize inputs into PSAR and Impulse
+6. What would happen if I didn't take half after one renko brick in same direction? 
+    
 
-Things to investigate
+## Things to investigate
 1. Weekend holds - DONE
 2. Max daily drawdown = -$4,500 -> start Nova at 5 lot size, Msolutions is good for 10 lot size
 3. Swap rates - DONE
+4. Rejoin with original data to see if high's and low's are correct - DONE
+5. find out how often the input data skips minutes - 0.5% of the time, there are 98 instances of 121 min gaps, then several 60 min gaps, 1814 gaps in total that are greater than 1 min - DONE
 
 
-Next Steps:
-1. See if I can connect to MetaTrader 5 and run this strategy on a demo account
-2. If that doesn't work, then see if I can translate this strategy to create a Expert Advisor in MetaTrader 5
+
+## Next Steps:
+1. See if I can connect to MetaTrader 5 and run this strategy on a demo account - NOT POSSIBLE
+      - after I get the impulse_psar working on MT4, then I can only choose brokers who offer MT5 (Nova) and transition over in the future
+2. If that doesn't work, then see if I can translate this strategy to create a Expert Advisor in MetaTrader 4
+
+## EA in MetaTrader 4
+1. Get Renko bars on the chart and then be able to extract their values
+     - determine how far back the indicator stores values that can be accessed by the EA for PSAR and Impulse
+2. replicate the PSAR function - DONE found an indicator that does this
+3. replicate the Impulse MACD function - DONE found an indicator that does this
+4. figure out how to test EA on historical data - DONE
+5. Define Entry Conditions - DONE
+6. Define Exit Conditions - DONE
+7. Define S/L - DONE
+8. Define primary and secondary T/P - DONE
+
+## Debugging:
+1. there is still an error with some of the tickets opening when others are still open.  - fixed
+2. I need to either protect against errors in Impulse MACD when the Impulse was Null and the Signal was 0.0088 because that will cause the EA to open shorts even though it shouldn't - this is fine
+

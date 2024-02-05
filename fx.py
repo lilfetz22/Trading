@@ -1,4 +1,11 @@
 import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd
+from collections import deque
+import datetime as dt
+import mplfinance 
+from renkodf import Renko
+from scipy.signal import lfilter
 
 def test_fx(x):
     x = x + 1

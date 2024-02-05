@@ -1,0 +1,5 @@
+matplotlib
+mplfinance
+renkodf
+commitizen
+MetaTrader5

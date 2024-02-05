@@ -45,3 +45,12 @@
 1. there is still an error with some of the tickets opening when others are still open.  - fixed
 2. I need to either protect against errors in Impulse MACD when the Impulse was Null and the Signal was 0.0088 because that will cause the EA to open shorts even though it shouldn't - this is fine
 
+# Steps to add the EA to the chart
+1. Open EURUSD 1 min chart
+2. Drag Renko EA onto the chart
+3. Make sure that live trading is enabled
+4. Open offline EURUSD 2 chart
+5. Uncheck "offline chart" in the properties
+6. Drag the Parabolic SAR and Impulse MACD indicators onto the chart
+7. Drag Impulse_PSAR EA onto the chart
+8. Make sure that live trading is enabled

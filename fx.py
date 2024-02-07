@@ -178,10 +178,13 @@ def add_swap_rates(df, qcr, bcr, lots):
     return df
 
 ## Data prep
-def prep_data(df):
-    df['datetime'] = pd.to_datetime(df['datetime'], format='%Y%m%d%H%M')
-
+def prep_data(df, year):
+    # find the year of df.datetime
+    df['year'] = df['datetime'].dt.year
+    # filter the df to just the year
+    df_year = df[df['year'] == year]
+    
     # drop the volume column
-    df = df.drop(columns=['volume'])
-    df = df.set_index('datetime')
-    return df
+    df_year = df_year.drop(columns=['volume'])
+    df_year = df_year.set_index('datetime')
+    return df_year

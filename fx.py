@@ -174,7 +174,7 @@ def add_swap_rates(df, qcr, bcr, lots):
     df.drop(columns=['entry_time_t', 'exit_time_t', 'entry_time_str', 'exit_time_str', 'entry_time_hr', 'exit_time_hr'], inplace=True)
     df['swap_rate'] = np.where((df['direction'].str.strip() == 'buy') & (df['swap'] == 1), 
                                       (lots*100000*(qcr-bcr))/(365 * df['exit_price']),
-                                    np.where((df['direction'].str.strip() == 'short')  & (df['swap'] == 1), 
+                                    np.where((df['direction'].str.strip() == 'sell')  & (df['swap'] == 1), 
                                              (lots*100000*(bcr-qcr))/(365 * df['exit_price']), 0))
     
     return df

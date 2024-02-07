@@ -33,7 +33,9 @@ def calc_impulse_macd(df, lengthMA=34, lengthSignal=9):
     df['md'] = np.where(df['mi'] > df['hi'], df['mi'] - df['hi'], np.where(df['mi'] < df['lo'], df['mi'] - df['lo'], 0))
     df['sb'] = df['md'].rolling(window=lengthSignal).mean()
     df['sh'] = df['md'] - df['sb']
+    # find the sign of sh
     df['sh_sign'] = np.sign(df['sh'])
+    # indicate the trade signal for Impulse
     df['impulse_signal'] = np.where(df['sh_sign'] == 1, 'buy', np.where(df['sh_sign'] == -1, 'sell', 'none'))
     return df
 

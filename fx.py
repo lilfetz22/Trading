@@ -151,11 +151,12 @@ def psar_from_data(df, increment, maximum):
     psar = np.empty_like(high)
     for i in range(len(high)):
         psar[i] = psar_obj.calcPSAR(high[i], low[i])
-
     # Determine direction
-    dir = np.where(psar < close, 1, -1)
+    dir = np.where(psar < close, 'buy', 'sell')
+    df['psar'] = psar
+    df['psar_signal'] = dir
 
-    return close, psar, dir
+    return df
 
 def add_swap_rates(df, qcr, bcr, lots):
     # find the positions where the period in between the entry_time and exit_time include 5:00 pm 

@@ -141,12 +141,13 @@ class PSAR:
 
        return psar
 
-def psar_from_data(df, start, increment, maximum):
+def psar_from_data(df, increment, maximum):
     # Calculate PSAR
     high = np.array(df['high']) # replace with actual high prices
     low = np.array(df['low']) # replace with actual low prices
     close = np.array(df['close']) # replace with actual closing prices
-    psar_obj = PSAR(start, increment, maximum)
+    # I don't have start in the indicator I'm using in mt4 so increment will be used for start as well
+    psar_obj = PSAR(increment, increment, maximum) 
     psar = np.empty_like(high)
     for i in range(len(high)):
         psar[i] = psar_obj.calcPSAR(high[i], low[i])

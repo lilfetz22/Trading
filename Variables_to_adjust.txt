@@ -21,7 +21,9 @@
 3. Swap rates - DONE
 4. Rejoin with original data to see if high's and low's are correct - DONE
 5. find out how often the input data skips minutes - 0.5% of the time, there are 98 instances of 121 min gaps, then several 60 min gaps, 1814 gaps in total that are greater than 1 min - DONE
-6. Check how well the hours for turning off IP extend to new data
+6. Create an optimization function for each of the parameters
+    a. Check how well the hours for turning off IP extend to new data
+
 
 
 

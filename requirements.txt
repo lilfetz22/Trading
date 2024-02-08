@@ -3,3 +3,4 @@ mplfinance
 renkodf
 commitizen
 MetaTrader5
+deap

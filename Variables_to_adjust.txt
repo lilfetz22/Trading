@@ -27,6 +27,7 @@
     c. calculate win rate
     d. how often do the parameters need to be refreshed? 
         - say I optimized the parameters on the last 4 months of data, then applied them to the next week, did it perform significantly better than just using the full year's parameters? 
+    e. make sure the optimization function negatively imposes constraints for any value outside of the original bounds of each list and will ask for a new sample if the value is impossible and will throw an error in the making_calculations function.
 7. figure out how to add in the Max payout to the notebook
 8. integrate news events to not take any trades in the bot 5 minutes before and after the news event
 

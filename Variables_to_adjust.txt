@@ -23,11 +23,10 @@
 5. find out how often the input data skips minutes - 0.5% of the time, there are 98 instances of 121 min gaps, then several 60 min gaps, 1814 gaps in total that are greater than 1 min - DONE
 6. Create an optimization function for each of the parameters
     a. Check how well the hours for turning off IP extend to new data
-    b. calculate RR
-    c. calculate win rate
-    d. how often do the parameters need to be refreshed? 
+    b. calculate win rate - DONE
+    c. how often do the parameters need to be refreshed? 
         - say I optimized the parameters on the last 4 months of data, then applied them to the next week, did it perform significantly better than just using the full year's parameters? 
-    e. make sure the optimization function negatively imposes constraints for any value outside of the original bounds of each list and will ask for a new sample if the value is impossible and will throw an error in the making_calculations function.
+    d. make sure the optimization function negatively imposes constraints for any value outside of the original bounds of each list and will ask for a new sample if the value is impossible and will throw an error in the making_calculations function. - DONE
 7. figure out how to add in the Max payout to the notebook
 8. integrate news events to not take any trades in the bot 5 minutes before and after the news event
 
@@ -49,6 +48,7 @@
 6. Define Exit Conditions - DONE
 7. Define S/L - DONE
 8. Define primary and secondary T/P - DONE
+9. Add in calculations for the psar and impulse MACD
 
 ## Debugging:
 1. there is still an error with some of the tickets opening when others are still open.  - fixed

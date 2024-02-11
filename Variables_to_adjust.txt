@@ -48,7 +48,8 @@
 6. Define Exit Conditions - DONE
 7. Define S/L - DONE
 8. Define primary and secondary T/P - DONE
-9. Add in calculations for the psar and impulse MACD
+9. Add in calculations for the psar and impulse MACD so I'm not depending on the indicators
+10. integrate news events to not take any trades in the bot 5 minutes before and after the news event
 
 ## Debugging:
 1. there is still an error with some of the tickets opening when others are still open.  - fixed

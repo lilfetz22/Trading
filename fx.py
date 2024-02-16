@@ -33,8 +33,10 @@ def calc_impulse_macd(df, lengthMA=34, lengthSignal=9):
     df['md'] = np.where(df['mi'] > df['hi'], df['mi'] - df['hi'], np.where(df['mi'] < df['lo'], df['mi'] - df['lo'], 0))
     df['sb'] = df['md'].rolling(window=lengthSignal).mean()
     df['sh'] = df['md'] - df['sb']
-    df['mdc'] = np.where(df['close'] > df['mi'], np.where(df['close'] > df['hi'], 'lime', 'green'), 
-                         np.where(df['close'] < df['lo'], 'red', 'orange'))
+    # find the sign of sh
+    df['sh_sign'] = np.sign(df['sh'])
+    # indicate the trade signal for Impulse
+    df['impulse_signal'] = np.where(df['sh_sign'] == 1, 'buy', np.where(df['sh_sign'] == -1, 'sell', 'none'))
     return df
 
 class PSAR:
@@ -141,20 +143,22 @@ class PSAR:
 
        return psar
 
-def psar_from_data(df, start, increment, maximum):
+def psar_from_data(df, increment, maximum):
     # Calculate PSAR
     high = np.array(df['high']) # replace with actual high prices
     low = np.array(df['low']) # replace with actual low prices
     close = np.array(df['close']) # replace with actual closing prices
-    psar_obj = PSAR(start, increment, maximum)
+    # I don't have start in the indicator I'm using in mt4 so increment will be used for start as well
+    psar_obj = PSAR(increment, increment, maximum) 
     psar = np.empty_like(high)
     for i in range(len(high)):
         psar[i] = psar_obj.calcPSAR(high[i], low[i])
-
     # Determine direction
-    dir = np.where(psar < close, 1, -1)
+    dir = np.where(psar < close, 'buy', 'sell')
+    df['psar'] = psar
+    df['psar_signal'] = dir
 
-    return close, psar, dir
+    return df
 
 def add_swap_rates(df, qcr, bcr, lots):
     # find the positions where the period in between the entry_time and exit_time include 5:00 pm 
@@ -171,17 +175,20 @@ def add_swap_rates(df, qcr, bcr, lots):
     # drop entry_time_t, exit_time_t, entry_time_str, exit_time_str, entry_time_hr, exit_time_hr
     df.drop(columns=['entry_time_t', 'exit_time_t', 'entry_time_str', 'exit_time_str', 'entry_time_hr', 'exit_time_hr'], inplace=True)
     df['swap_rate'] = np.where((df['direction'].str.strip() == 'buy') & (df['swap'] == 1), 
-                                      (lots*100000*(bcr-qcr))/(365 * df['exit_price']),
-                                    np.where((df['direction'].str.strip() == 'short')  & (df['swap'] == 1), 
-                                             (lots*100000*(qcr-bcr))/(365 * df['exit_price']), 0))
+                                      (lots*100000*(qcr-bcr))/(365 * df['exit_price']),
+                                    np.where((df['direction'].str.strip() == 'sell')  & (df['swap'] == 1), 
+                                             (lots*100000*(bcr-qcr))/(365 * df['exit_price']), 0))
     
     return df
 
 ## Data prep
-def prep_data(df):
-    df['datetime'] = pd.to_datetime(df['datetime'], format='%Y%m%d%H%M')
-
+def prep_data(df, year):
+    # find the year of df.datetime
+    df['year'] = df['datetime'].dt.year
+    # filter the df to just the year
+    df_year = df[df['year'] == year]
+    
     # drop the volume column
-    df = df.drop(columns=['volume'])
-    df = df.set_index('datetime')
-    return df
+    df_year = df_year.drop(columns=['volume'])
+    df_year = df_year.set_index('datetime')
+    return df_year

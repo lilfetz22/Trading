@@ -50,6 +50,8 @@
 8. Define primary and secondary T/P - DONE
 9. Add in calculations for the psar and impulse MACD so I'm not depending on the indicators
 10. integrate news events to not take any trades in the bot 5 minutes before and after the news event - DONE
+11. Make lot size adjustable to where it takes into account the average loss and the balance of the account so that we can make 4 consecutive losses and not go under the Max_drawdown limit
+    a. otherwise if max_drawdown is not a problem, then take the average lot size * 2 and use the integer value of that as the lot size 
 
 ## Debugging:
 1. there is still an error with some of the tickets opening when others are still open.  - fixed

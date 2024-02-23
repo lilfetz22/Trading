@@ -1,0 +1,63 @@
+datetime,entry
+2023.10.16 12:45, Closing Buy Ticket: 3 bar rule Ticket #: 1
+2023.10.16 14:15, Closing Buy Ticket: PSAR flip Ticket #: 2
+2023.10.16 17:30, Closing Sell Ticket: SMI crossing above -40 Ticket #: 3
+2023.10.16 19, Closing Buy Ticket: SMI crossing below 40 Ticket #: 4
+2023.10.16 23:45, Closing Buy Ticket: 3 bar rule Ticket #: 5
+2023.10.17 12:15, Closing Sell Ticket: SMI crossing above -40 Ticket #: 7
+2023.10.17 22:15, Closing Sell Ticket: SMI crossing above -40 Ticket #: 10
+2023.10.18 11:45, Closing Sell Ticket: Impulse flip Ticket #: 13
+2023.10.18 14:45, Closing Sell Ticket: 3 bar rule Ticket #: 15
+2023.10.18 15:15, Closing Sell Ticket: SMI crossing above -40 Ticket #: 16
+2023.10.19 00, Closing Sell Ticket: SMI crossing above -40 Ticket #: 18
+2023.10.19 10:45, Closing Buy Ticket: SMI crossing below 40 Ticket #: 19
+2023.10.19 17:30, Closing Buy Ticket: PSAR flip Ticket #: 20
+2023.10.20 15, Closing Buy Ticket: SMI crossing below 40 Ticket #: 28
+2023.10.20 18:45, Closing Buy Ticket: SMI crossing below 40 Ticket #: 30
+2023.10.20 21, Closing Buy Ticket: SMI crossing below 40 Ticket #: 31
+2023.10.20 22:45, Closing Buy Ticket: 3 bar rule Ticket #: 32
+2023.10.23 16, Closing Buy Ticket: SMI crossing below 40 Ticket #: 34
+2023.10.23 22:15, Closing Buy Ticket: PSAR flip Ticket #: 35
+2023.10.24 17:30, Closing Sell Ticket: SMI crossing above -40 Ticket #: 37
+2023.10.25 14:30, Closing Sell Ticket: SMI crossing above -40 Ticket #: 45
+2023.10.25 16:15, Closing Sell Ticket: 3 bar rule Ticket #: 46
+2023.10.25 17:15, Closing Sell Ticket: Impulse flip Ticket #: 47
+2023.10.26 00:15, Closing Sell Ticket: SMI crossing above -40 Ticket #: 50
+2023.10.26 10:45, Closing Sell Ticket: PSAR flip Ticket #: 51
+2023.10.26 11:30, Closing Buy Ticket: SMI crossing below 40 Ticket #: 52
+2023.10.26 17:45, Closing Buy Ticket: PSAR flip Ticket #: 56
+2023.10.26 22:30, Closing Buy Ticket: 3 bar rule Ticket #: 58
+2023.10.26 23:45, Closing Buy Ticket: SMI crossing below 40 Ticket #: 59
+2023.10.27 10:30, Closing Sell Ticket: SMI crossing above -40 Ticket #: 60
+2023.10.27 11, Closing Sell Ticket: SMI crossing above -40 Ticket #: 61
+2023.10.27 11:30, Closing Sell Ticket: SMI crossing above -40 Ticket #: 62
+2023.10.27 22:30, Closing Sell Ticket: SMI crossing above -40 Ticket #: 65
+2023.10.30 14, Closing Buy Ticket: SMI crossing below 40 Ticket #: 70
+2023.10.30 15:30, Closing Buy Ticket: SMI crossing below 40 Ticket #: 71
+2023.10.30 18:15, Closing Buy Ticket: 3 bar rule Ticket #: 73
+2023.10.30 22:15, Closing Buy Ticket: SMI crossing below 40 Ticket #: 74
+2023.10.31 13:30, Closing Buy Ticket: PSAR flip Ticket #: 76
+2023.10.31 23:45, Closing Sell Ticket: SMI crossing above -40 Ticket #: 78
+2023.11.01 13, Closing Sell Ticket: PSAR flip Ticket #: 79
+2023.11.02 19:30, Closing Sell Ticket: PSAR flip Ticket #: 98
+2023.11.02 22:45, Closing Sell Ticket: SMI crossing above -40 Ticket #: 99
+2023.11.02 23:30, Closing Sell Ticket: SMI crossing above -40 Ticket #: 100
+2023.11.03 10:15, Closing Buy Ticket: PSAR flip Ticket #: 101
+2023.11.03 11:15, Closing Sell Ticket: PSAR flip Ticket #: 102
+2023.11.06 11:30, Closing Buy Ticket: Impulse flip Ticket #: 115
+2023.11.06 13, Closing Buy Ticket: Impulse flip Ticket #: 116
+2023.11.06 16:30, Closing Sell Ticket: 3 bar rule Ticket #: 117
+2023.11.06 17:45, Closing Sell Ticket: SMI crossing above -40 Ticket #: 118
+2023.11.06 21, Closing Sell Ticket: SMI crossing above -40 Ticket #: 119
+2023.11.07 01, Closing Sell Ticket: SMI crossing above -40 Ticket #: 120
+2023.11.07 12:30, Closing Sell Ticket: SMI crossing above -40 Ticket #: 121
+2023.11.07 14:30, Closing Sell Ticket: PSAR flip Ticket #: 122
+2023.11.07 16:45, Closing Sell Ticket: SMI crossing above -40 Ticket #: 123
+2023.11.07 17:45, Closing Buy Ticket: SMI crossing below 40 Ticket #: 124
+2023.11.08 00:45, Closing Buy Ticket: SMI crossing below 40 Ticket #: 127
+2023.11.08 13, Closing Sell Ticket: PSAR flip Ticket #: 128
+2023.11.08 16, Closing Sell Ticket: SMI crossing above -40 Ticket #: 129
+2023.11.09 00:15, Closing Buy Ticket: SMI crossing below 40 Ticket #: 131
+2023.11.09 10:45, Closing Sell Ticket: SMI crossing above -40 Ticket #: 132
+2023.11.09 14:30, Closing Sell Ticket: SMI crossing above -40 Ticket #: 133
+2023.11.09 18:15, Closing Buy Ticket: SMI crossing below 40 Ticket #: 135

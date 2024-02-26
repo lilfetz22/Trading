@@ -66,3 +66,9 @@
 6. Drag the Parabolic SAR and Impulse MACD indicators onto the chart
 7. Drag Impulse_PSAR EA onto the chart
 8. Make sure that live trading is enabled
+
+
+## Changes to make EA match the backtest
+1. change start time from 3 to 4 am and end time to 4 pm - DONE
+2. Handling news events (no new trades 1 hr after news event)
+3. making it where the PSAR has to switch before initiating a new trade 

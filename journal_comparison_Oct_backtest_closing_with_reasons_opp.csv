@@ -1,331 +1,331 @@
 ,Also in new,Time_EST,action,Reason for difference,Order,lot size,Price,S/L,TP,Profit,Balance,entry,profit,Drawdown
-10/16/2023 11:45,TRUE,10/16/2023 4:45,buy,,1,7,1.05364,1.05254,0,0,100000,,0,0
-10/16/2023 12:00,TRUE,10/16/2023 5:00,modify,,1,7,1.05364,1.05294,0,0,100000,,0,0
-10/16/2023 12:45,TRUE,10/16/2023 5:45,close,in backtesting as well,1,7,1.05377,1.05294,0,91,100091,Closing Buy Ticket: 3 bar rule Ticket #: 1,91,0
-10/16/2023 13:30,,10/16/2023 6:30,buy,,2,7,1.05311,1.05201,0,0,100091,,0,0
-10/16/2023 13:45,,10/16/2023 6:45,modify,,2,7,1.05311,1.0523,0,0,100091,,0,0
-10/16/2023 14:15,,10/16/2023 7:15,close,"Extremely strict, I didn't even notice this because the lines were so close together",2,7,1.05283,1.0523,0,-196,99895,Closing Buy Ticket: PSAR flip Ticket #: 2,0,-196
-10/16/2023 17:00,TRUE,10/16/2023 10:00,sell,,3,7,1.05298,1.05408,0,0,99895,,0,0
-10/16/2023 17:30,TRUE,10/16/2023 10:30,close,SMI started going the opposite direction,3,7,1.05395,1.05408,0,-679,99216,Closing Sell Ticket: SMI crossing above -40 Ticket #: 3,0,-679
-10/16/2023 18:30,TRUE,10/16/2023 11:30,buy,,4,7,1.05458,1.05348,0,0,99216,,0,0
-10/16/2023 18:45,TRUE,10/16/2023 11:45,modify,,4,7,1.05458,1.05379,0,0,99216,,0,0
-10/16/2023 19:00,TRUE,10/16/2023 12:00,close,In backtesting I used the rule that you had to wait for psar to switch before making a new trade,4,7,1.05446,1.05379,0,-84,99132,Closing Buy Ticket: SMI crossing below 40 Ticket #: 4,0,-84
-10/16/2023 19:30,,10/16/2023 12:30,buy,,5,7,1.05446,1.05336,0,0,99132,,0,0
-10/16/2023 19:45,,10/16/2023 12:45,modify,,5,7,1.05446,1.0535,0,0,99132,,0,0
-10/16/2023 20:00,,10/16/2023 13:00,modify,,5,7,1.05446,1.05362,0,0,99132,,0,0
-10/16/2023 20:15,,10/16/2023 13:15,modify,,5,7,1.05446,1.05388,0,0,99132,,0,0
-10/16/2023 20:45,,10/16/2023 13:45,modify,,5,7,1.05446,1.05394,0,0,99132,,0,0
-10/16/2023 21:00,,10/16/2023 14:00,modify,,5,7,1.05446,1.05439,0,0,99132,,0,0
-10/16/2023 21:15,,10/16/2023 14:15,modify,,5,7,1.05446,1.05444,0,0,99132,,0,0
-10/16/2023 22:15,,10/16/2023 15:15,modify,,5,7,1.05446,1.05468,0,0,99132,,0,0
-10/16/2023 22:30,,10/16/2023 15:30,modify,,5,7,1.05446,1.05506,0,0,99132,,0,0
-10/16/2023 23:00,,10/16/2023 16:00,modify,,5,7,1.05446,1.05517,0,0,99132,,0,0
-10/16/2023 23:45,,10/16/2023 16:45,close,In backtesting I used the rule that you had to wait for psar to switch before making a new trade,5,7,1.05586,1.05517,0,980,100112,Closing Buy Ticket: 3 bar rule Ticket #: 5,980,0
-10/17/2023 10:00,,10/17/2023 3:00,sell,,6,7,1.0537,1.0548,0,0,100112,,0,0
-10/17/2023 10:09,,10/17/2023 3:09,s/l,backtesting started at 4,6,7,1.0548,1.0548,0,-770,99342,stoploss,0,-770
-10/17/2023 11:45,TRUE,10/17/2023 4:45,sell,,7,7,1.05352,1.05462,0,0,99342,,0,0
-10/17/2023 12:15,TRUE,10/17/2023 5:15,close,should have been included in backtest,7,7,1.05445,1.05462,0,-651,98691,Closing Sell Ticket: SMI crossing above -40 Ticket #: 7,0,-651
-10/17/2023 17:30,TRUE,10/17/2023 10:30,buy,,8,7,1.05803,1.05693,0,0,98691,,0,0
-10/17/2023 18:15,TRUE,10/17/2023 11:15,modify,,8,7,1.05803,1.05741,0,0,98691,,0,0
-10/17/2023 18:45,TRUE,10/17/2023 11:45,modify,,8,7,1.05803,1.05785,0,0,98691,,0,0
-10/17/2023 19:00,TRUE,10/17/2023 12:00,modify,,8,7,1.05803,1.05811,0,0,98691,,0,0
-10/17/2023 19:15,TRUE,10/17/2023 12:15,modify,,8,7,1.05803,1.05812,0,0,98691,,0,0
-10/17/2023 19:30,TRUE,10/17/2023 12:30,modify,,8,7,1.05803,1.05813,0,0,98691,,0,0
-10/17/2023 19:48,TRUE,10/17/2023 12:48,s/l,"this  was negative in my backtest, the trailing S/L saved me",8,7,1.05813,1.05813,0,70,98761,stoploss,70,0
-10/17/2023 20:30,,10/17/2023 13:30,buy,,9,7,1.05763,1.05653,0,0,98761,,0,0
-10/17/2023 20:53,,10/17/2023 13:53,s/l,exactly the same,9,7,1.05653,1.05653,0,-770,97991,stoploss,0,-770
-10/17/2023 22:00,TRUE,10/17/2023 15:00,sell,,10,7,1.0569,1.058,0,0,97991,,0,0
-10/17/2023 22:15,TRUE,10/17/2023 15:15,close,In backtesting I used the rule that you had to wait for psar to switch before making a new trade,10,7,1.05774,1.058,0,-588,97403,Closing Sell Ticket: SMI crossing above -40 Ticket #: 10,0,-588
-10/17/2023 22:45,,10/17/2023 15:45,sell,,11,7,1.05759,1.05869,0,0,97403,,0,0
-10/17/2023 22:58,,10/17/2023 15:58,close,In backtesting I used the rule that you had to wait for psar to switch before making a new trade,11,7,1.05774,1.05869,0,-105,97298,,0,-105
-10/18/2023 11:30,TRUE,10/18/2023 4:30,sell,,12,7,1.05742,1.05852,0,0,97298,,0,0
-10/18/2023 11:45,TRUE,10/18/2023 4:45,close,"In backtesting I used the rule that you had to wait for psar to switch before making a new trade, and that I wouldn't enter a trade if the trend had already started at the beginning of the day",12,7,1.05834,1.05852,0,-644,96654,Closing Sell Ticket: Impulse flip Ticket #: 12,0,-644
-10/18/2023 12:15,TRUE,10/18/2023 5:15,buy,,13,7,1.0585,1.0574,0,0,96654,,0,0
-10/18/2023 12:46,TRUE,10/18/2023 5:46,s/l,Impulse MACD was different...,13,7,1.0574,1.0574,0,-770,95884,stoploss,0,-770
-10/18/2023 13:00,TRUE,10/18/2023 6:00,sell,,14,7,1.05691,1.05801,0,0,95884,,0,0
-10/18/2023 14:45,TRUE,10/18/2023 7:45,close,"basically the same, except I closed a little differently in backtesting, but it was actually worse in backtesting",14,7,1.05624,1.05801,0,469,96353,Closing Sell Ticket: 3 bar rule Ticket #: 14,469,0
-10/18/2023 15:00,,10/18/2023 8:00,sell,,15,7,1.05605,1.05715,0,0,96353,,0,0
-10/18/2023 15:15,,10/18/2023 8:15,close,"In backtesting I used the rule that you had to wait for psar to switch before making a new trade, might need to change the buffer on SMI to 2 - right now it is grabbing the signal ",15,7,1.0568,1.05715,0,-525,95828,Closing Sell Ticket: SMI crossing above -40 Ticket #: 15,0,-525
-10/18/2023 16:45,TRUE,10/18/2023 9:45,sell,,16,7,1.05527,1.05637,0,0,95828,,0,0
-10/18/2023 18:45,TRUE,10/18/2023 11:45,modify,,16,7,1.05527,1.05402,0,0,95828,,0,0
-10/18/2023 19:15,TRUE,10/18/2023 12:15,modify,,16,7,1.05527,1.05352,0,0,95828,,0,0
-10/18/2023 19:48,TRUE,10/18/2023 12:48,s/l,exactly the same ,16,7,1.05352,1.05352,0,1225,97053,stoploss,1225,0
-10/18/2023 22:30,TRUE,10/18/2023 15:30,sell,,17,7,1.05357,1.05467,0,0,97053,,0,0
-10/19/2023 0:00,TRUE,10/18/2023 17:00,close,exactly the same ,17,7,1.05365,1.05467,0,15.63,97068.63,Closing Sell Ticket: SMI crossing above -40 Ticket #: 17,15.63,0
-10/19/2023 10:00,,10/19/2023 3:00,buy,,18,7,1.05402,1.05292,0,0,97068.63,,0,0
-10/19/2023 10:15,,10/19/2023 3:15,modify,,18,7,1.05402,1.05313,0,0,97068.63,,0,0
-10/19/2023 10:45,,10/19/2023 3:45,close,backtesting started at 4,18,7,1.05404,1.05313,0,14,97082.63,Closing Buy Ticket: SMI crossing below 40 Ticket #: 18,14,0
-10/19/2023 13:00,TRUE,10/19/2023 6:00,buy,Exactly the same,19,7,1.05444,1.05334,0,0,97082.63,,0,0
-10/19/2023 13:15,TRUE,10/19/2023 6:15,modify,,19,7,1.05444,1.05378,0,0,97082.63,,0,0
-10/19/2023 13:45,TRUE,10/19/2023 6:45,modify,,19,7,1.05444,1.05381,0,0,97082.63,,0,0
-10/19/2023 14:00,TRUE,10/19/2023 7:00,modify,,19,7,1.05444,1.05399,0,0,97082.63,,0,0
-10/19/2023 14:15,TRUE,10/19/2023 7:15,modify,,19,7,1.05444,1.05477,0,0,97082.63,,0,0
-10/19/2023 14:45,TRUE,10/19/2023 7:45,modify,,19,7,1.05444,1.05478,0,0,97082.63,,0,0
-10/19/2023 15:15,TRUE,10/19/2023 8:15,modify,,19,7,1.05444,1.0551,0,0,97082.63,,0,0
-10/19/2023 15:30,TRUE,10/19/2023 8:30,modify,,19,7,1.05444,1.05548,0,0,97082.63,,0,0
-10/19/2023 15:45,TRUE,10/19/2023 8:45,modify,,19,7,1.05444,1.05611,0,0,97082.63,,0,0
-10/19/2023 16:00,TRUE,10/19/2023 9:00,modify,,19,7,1.05444,1.05652,0,0,97082.63,,0,0
-10/19/2023 17:30,TRUE,10/19/2023 10:30,close,PSAR flipped later on MT4,19,7,1.05707,1.05652,0,1841,98923.63,Closing Buy Ticket: PSAR flip Ticket #: 19,1841,0
-10/19/2023 18:45,TRUE,10/19/2023 11:45,buy,,20,7,1.05779,1.05669,0,0,98923.63,,0,0
-10/19/2023 19:00,TRUE,10/19/2023 12:00,s/l,NEWS,20,7,1.05669,1.05669,0,-770,98153.63,stoploss,0,-770
-10/19/2023 19:15,,10/19/2023 12:15,buy,,21,7,1.05962,1.05852,0,0,98153.63,,0,0
-10/19/2023 19:28,,10/19/2023 12:28,s/l,NEWS,21,7,1.05852,1.05852,0,-770,97383.63,stoploss,0,-770
-10/19/2023 20:00,,10/19/2023 13:00,buy,,22,7,1.05964,1.05854,0,0,97383.63,,0,0
-10/19/2023 20:15,,10/19/2023 13:15,modify,,22,7,1.05964,1.05908,0,0,97383.63,,0,0
-10/19/2023 20:36,,10/19/2023 13:36,s/l,NEWS,22,7,1.05908,1.05908,0,-392,96991.63,stoploss,0,-392
-10/19/2023 21:00,,10/19/2023 14:00,buy,,23,7,1.05985,1.05875,0,0,96991.63,,0,0
-10/19/2023 21:15,,10/19/2023 14:15,modify,,23,7,1.05985,1.05903,0,0,96991.63,,0,0
-10/19/2023 21:25,,10/19/2023 14:25,close,In backtesting as well,23,7,1.0594,1.05903,0,-315,96676.63,,0,-315
-10/20/2023 13:45,TRUE,10/20/2023 6:45,buy,,24,7,1.05875,1.05765,0,0,96676.63,,0,0
-10/20/2023 14:15,TRUE,10/20/2023 7:15,modify,,24,7,1.05875,1.05785,0,0,96676.63,,0,0
-10/20/2023 14:30,TRUE,10/20/2023 7:30,modify,,24,7,1.05875,1.058,0,0,96676.63,,0,0
-10/20/2023 14:45,TRUE,10/20/2023 7:45,modify,,24,7,1.05875,1.05838,0,0,96676.63,,0,0
-10/20/2023 15:00,TRUE,10/20/2023 8:00,close,"Impulse was different on backtest, and started increasing at 5 am not 6:30 like on mt4",24,7,1.05906,1.05838,0,217,96893.63,Closing Buy Ticket: SMI crossing below 40 Ticket #: 24,217,0
-10/20/2023 16:30,TRUE,10/20/2023 9:30,sell,,25,7,1.05834,1.05944,0,0,96893.63,,0,0
-10/20/2023 16:35,TRUE,10/20/2023 9:35,s/l,"In backtesting I used the rule that you had to wait for psar to switch before making a new trade, might need to change the buffer on SMI to 2 - right now it is grabbing the signal ",25,7,1.05944,1.05944,0,-770,96123.63,stoploss,0,-770
-10/20/2023 18:30,TRUE,10/20/2023 11:30,buy,,26,7,1.05956,1.05846,0,0,96123.63,,0,0
-10/20/2023 18:45,TRUE,10/20/2023 11:45,close,In backtesting as well,26,7,1.05911,1.05846,0,-315,95808.63,Closing Buy Ticket: SMI crossing below 40 Ticket #: 26,0,-315
-10/20/2023 20:30,,10/20/2023 13:30,buy,,27,7,1.05973,1.05863,0,0,95808.63,,0,0
-10/20/2023 20:45,,10/20/2023 13:45,modify,,27,7,1.05973,1.05869,0,0,95808.63,,0,0
-10/20/2023 21:00,,10/20/2023 14:00,close,"impulse was different on backtest the entry was there on the backtest too, just 30 mins earlier",27,7,1.05955,1.05869,0,-126,95682.63,Closing Buy Ticket: SMI crossing below 40 Ticket #: 27,0,-126
-10/20/2023 21:45,,10/20/2023 14:45,buy,,28,7,1.05908,1.05798,0,0,95682.63,,0,0
-10/20/2023 22:00,,10/20/2023 15:00,modify,,28,7,1.05908,1.05813,0,0,95682.63,,0,0
-10/20/2023 22:45,,10/20/2023 15:45,close,"impulse was basically 0, but it was slightly positive, but I didn't see it on the backtest",28,7,1.05905,1.05813,0,-21,95661.63,Closing Buy Ticket: 3 bar rule Ticket #: 28,0,-21
-10/23/2023 10:30,,10/23/2023 3:30,buy,,29,7,1.05853,1.05743,0,0,95661.63,,0,0
-10/23/2023 10:45,,10/23/2023 3:45,modify,,29,7,1.05853,1.0577,0,0,95661.63,,0,0
-10/23/2023 11:00,TRUE,10/23/2023 4:00,modify,,29,7,1.05853,1.05864,0,0,95661.63,,0,0
-10/23/2023 11:15,TRUE,10/23/2023 4:15,modify,,29,7,1.05853,1.05949,0,0,95661.63,,0,0
-10/23/2023 12:15,TRUE,10/23/2023 5:15,modify,,29,7,1.05853,1.05952,0,0,95661.63,,0,0
-10/23/2023 12:30,TRUE,10/23/2023 5:30,modify,,29,7,1.05853,1.06034,0,0,95661.63,,0,0
-10/23/2023 12:43,TRUE,10/23/2023 5:43,s/l,backtesting started at 4,29,7,1.06034,1.06034,0,1267,96928.63,stoploss,1267,0
-10/23/2023 15:30,TRUE,10/23/2023 8:30,buy,,30,7,1.06143,1.06033,0,0,96928.63,,0,0
-10/23/2023 16:00,TRUE,10/23/2023 9:00,close,should have been included in backtesting,30,7,1.06096,1.06033,0,-329,96599.63,Closing Buy Ticket: SMI crossing below 40 Ticket #: 30,0,-329
-10/23/2023 17:15,TRUE,10/23/2023 10:15,buy,,31,7,1.06176,1.06066,0,0,96599.63,,0,0
-10/23/2023 17:30,TRUE,10/23/2023 10:30,modify,,31,7,1.06176,1.06154,0,0,96599.63,,0,0
-10/23/2023 18:00,TRUE,10/23/2023 11:00,modify,,31,7,1.06176,1.06176,0,0,96599.63,,0,0
-10/23/2023 18:15,TRUE,10/23/2023 11:15,modify,,31,7,1.06176,1.06257,0,0,96599.63,,0,0
-10/23/2023 18:30,TRUE,10/23/2023 11:30,modify,,31,7,1.06176,1.06272,0,0,96599.63,,0,0
-10/23/2023 18:45,TRUE,10/23/2023 11:45,modify,,31,7,1.06176,1.06341,0,0,96599.63,,0,0
-10/23/2023 19:15,TRUE,10/23/2023 12:15,modify,,31,7,1.06176,1.06345,0,0,96599.63,,0,0
-10/23/2023 19:30,TRUE,10/23/2023 12:30,modify,,31,7,1.06176,1.06378,0,0,96599.63,,0,0
-10/23/2023 19:45,TRUE,10/23/2023 12:45,modify,,31,7,1.06176,1.06386,0,0,96599.63,,0,0
-10/23/2023 20:00,TRUE,10/23/2023 13:00,modify,,31,7,1.06176,1.06535,0,0,96599.63,,0,0
-10/23/2023 20:15,TRUE,10/23/2023 13:15,modify,,31,7,1.06176,1.06549,0,0,96599.63,,0,0
-10/23/2023 20:30,TRUE,10/23/2023 13:30,modify,,31,7,1.06176,1.06574,0,0,96599.63,,0,0
-10/23/2023 20:45,TRUE,10/23/2023 13:45,modify,,31,7,1.06176,1.06584,0,0,96599.63,,0,0
-10/23/2023 21:15,TRUE,10/23/2023 14:15,modify,,31,7,1.06176,1.06592,0,0,96599.63,,0,0
-10/23/2023 21:30,TRUE,10/23/2023 14:30,modify,,31,7,1.06176,1.06601,0,0,96599.63,,0,0
-10/23/2023 21:45,TRUE,10/23/2023 14:45,modify,,31,7,1.06176,1.06609,0,0,96599.63,,0,0
-10/23/2023 22:00,TRUE,10/23/2023 15:00,modify,,31,7,1.06176,1.06631,0,0,96599.63,,0,0
-10/23/2023 22:15,TRUE,10/23/2023 15:15,close,exactly the same even the profit,31,7,1.06687,1.06631,0,3577,100176.6,Closing Buy Ticket: PSAR flip Ticket #: 31,3577,0
-10/24/2023 10:30,,10/24/2023 3:30,sell,,32,7,1.06759,1.06869,0,0,100176.6,,0,0
-10/24/2023 11:15,TRUE,10/24/2023 4:15,modify,,32,7,1.06759,1.06621,0,0,100176.6,,0,0
-10/24/2023 11:45,,10/24/2023 4:45,modify,,32,7,1.06759,1.06606,0,0,100176.6,,0,0
-10/24/2023 12:15,,10/24/2023 5:15,modify,,32,7,1.06759,1.06573,0,0,100176.6,,0,0
-10/24/2023 12:30,,10/24/2023 5:30,modify,,32,7,1.06759,1.06572,0,0,100176.6,,0,0
-10/24/2023 12:45,,10/24/2023 5:45,modify,,32,7,1.06759,1.06543,0,0,100176.6,,0,0
-10/24/2023 13:00,,10/24/2023 6:00,modify,,32,7,1.06759,1.06478,0,0,100176.6,,0,0
-10/24/2023 13:15,,10/24/2023 6:15,modify,,32,7,1.06759,1.06477,0,0,100176.6,,0,0
-10/24/2023 13:30,,10/24/2023 6:30,modify,,32,7,1.06759,1.06465,0,0,100176.6,,0,0
-10/24/2023 13:45,,10/24/2023 6:45,modify,,32,7,1.06759,1.06428,0,0,100176.6,,0,0
-10/24/2023 14:00,TRUE,10/24/2023 7:00,modify,,32,7,1.06759,1.06365,0,0,100176.6,,0,0
-10/24/2023 14:15,TRUE,10/24/2023 7:15,modify,,32,7,1.06759,1.06351,0,0,100176.6,,0,0
-10/24/2023 14:33,TRUE,10/24/2023 7:33,s/l,"backtesting started at 4,and news right at 3:30",32,7,1.06351,1.06351,0,2856,103032.6,stoploss,2856,0
-10/24/2023 15:30,TRUE,10/24/2023 8:30,sell,,33,7,1.06247,1.06357,0,0,103032.6,,0,0
-10/24/2023 17:30,TRUE,10/24/2023 10:30,close,should have been in backtest,33,7,1.0613,1.06357,0,819,103851.6,Closing Sell Ticket: SMI crossing above -40 Ticket #: 33,819,0
-10/25/2023 12:30,TRUE,10/25/2023 5:30,sell,,34,7,1.05673,1.05783,0,0,103851.6,,0,0
-10/25/2023 14:30,TRUE,10/25/2023 7:30,close,should have been in backtest,34,7,1.05764,1.05783,0,-637,103214.6,Closing Sell Ticket: SMI crossing above -40 Ticket #: 34,0,-637
-10/25/2023 14:45,,10/25/2023 7:45,sell,,35,7,1.0576,1.0587,0,0,103214.6,,0,0
-10/25/2023 16:15,,10/25/2023 9:15,close,"In backtesting I used the rule that you had to wait for psar to switch before making a new trade, might need to change the buffer on SMI to 2 - right now it is grabbing the signal ",35,7,1.05815,1.0587,0,-385,102829.6,Closing Sell Ticket: 3 bar rule Ticket #: 35,0,-385
-10/25/2023 16:30,,10/25/2023 9:30,sell,,36,7,1.05717,1.05827,0,0,102829.6,,0,0
-10/25/2023 17:15,,10/25/2023 10:15,close,"In backtesting I used the rule that you had to wait for psar to switch before making a new trade, might need to change the buffer on SMI to 2 - right now it is grabbing the signal ",36,7,1.05742,1.05827,0,-175,102654.6,Closing Sell Ticket: Impulse flip Ticket #: 36,0,-175
-10/25/2023 17:45,TRUE,10/25/2023 10:45,buy,,37,7,1.05872,1.05762,0,0,102654.6,,0,0
-10/25/2023 18:15,TRUE,10/25/2023 11:15,modify,,37,7,1.05872,1.05796,0,0,102654.6,,0,0
-10/25/2023 18:45,TRUE,10/25/2023 11:45,modify,,37,7,1.05872,1.05826,0,0,102654.6,,0,0
-10/25/2023 19:00,TRUE,10/25/2023 12:00,s/l,exactly the same in backtesting,37,7,1.05826,1.05826,0,-322,102332.6,stoploss,0,-322
-10/25/2023 19:30,,10/25/2023 12:30,buy,,38,7,1.05815,1.05705,0,0,102332.6,,0,0
-10/25/2023 19:55,,10/25/2023 12:55,s/l,"In backtesting I used the rule that you had to wait for psar to switch before making a new trade, might need to change the buffer on SMI to 2 - right now it is grabbing the signal ",38,7,1.05705,1.05705,0,-770,101562.6,stoploss,0,-770
-10/25/2023 22:45,TRUE,10/25/2023 15:45,sell,,39,7,1.05661,1.05771,0,0,101562.6,,0,0
-10/26/2023 0:15,TRUE,10/25/2023 17:15,close,I entered much earlier in backtesting because Impulse was different,39,7,1.05665,1.05771,0,43.63,101606.3,Closing Sell Ticket: SMI crossing above -40 Ticket #: 39,43.63,0
-10/26/2023 10:30,,10/26/2023 3:30,sell,,40,7,1.05415,1.05525,0,0,101606.3,,0,0
-10/26/2023 10:45,,10/26/2023 3:45,close,"In backtesting I used the rule that you had to wait for psar to switch before making a new trade, might need to change the buffer on SMI to 2 - right now it is grabbing the signal ",40,7,1.05415,1.05525,0,0,101606.3,Closing Sell Ticket: PSAR flip Ticket #: 40,0,0
-10/26/2023 11:00,TRUE,10/26/2023 4:00,buy,,41,7,1.05483,1.05373,0,0,101606.3,,0,0
-10/26/2023 11:15,TRUE,10/26/2023 4:15,modify,,41,7,1.05483,1.05389,0,0,101606.3,,0,0
-10/26/2023 11:30,TRUE,10/26/2023 4:30,close,I was able to get in earlier in backtesting because of the above trade wouldn't have been executed,41,7,1.05449,1.05389,0,-238,101368.3,Closing Buy Ticket: SMI crossing below 40 Ticket #: 41,0,-238
-10/26/2023 11:45,,10/26/2023 4:45,buy,,42,7,1.05462,1.05352,0,0,101368.3,,0,0
-10/26/2023 12:30,,10/26/2023 5:30,modify,,42,7,1.05462,1.05389,0,0,101368.3,,0,0
-10/26/2023 13:42,,10/26/2023 6:42,s/l,"In backtesting I used the rule that you had to wait for psar to switch before making a new trade, might need to change the buffer on SMI to 2 - right now it is grabbing the signal ",42,7,1.05389,1.05389,0,-511,100857.3,stoploss,0,-511
-10/26/2023 15:45,TRUE,10/26/2023 8:45,buy,,43,7,1.05472,1.05362,0,0,100857.3,,0,0
-10/26/2023 16:00,TRUE,10/26/2023 9:00,modify,,43,7,1.05472,1.05489,0,0,100857.3,,0,0
-10/26/2023 16:02,TRUE,10/26/2023 9:02,s/l,"news at 8:15, 8:30, and 8:45",43,7,1.05489,1.05489,0,119,100976.3,stoploss,119,0
-10/26/2023 16:45,,10/26/2023 9:45,buy,,44,7,1.05565,1.05455,0,0,100976.3,,0,0
-10/26/2023 17:00,,10/26/2023 10:00,s/l,"I believe I didn't enter in backtesting because the increase was due to the news, and it just seemed like the high volatility scared me",44,7,1.05455,1.05455,0,-770,100206.3,stoploss,0,-770
-10/26/2023 17:30,,10/26/2023 10:30,buy,,45,7,1.05406,1.05296,0,0,100206.3,,0,0
-10/26/2023 17:45,,10/26/2023 10:45,close,"In backtesting I used the rule that you had to wait for psar to switch before making a new trade, might need to change the buffer on SMI to 2 - right now it is grabbing the signal ",45,7,1.05399,1.05296,0,-49,100157.3,Closing Buy Ticket: PSAR flip Ticket #: 45,0,-49
-10/26/2023 19:15,TRUE,10/26/2023 12:15,sell,,46,7,1.05282,1.05392,0,0,100157.3,,0,0
-10/26/2023 20:03,TRUE,10/26/2023 13:03,s/l,impulse was different so this wasn't an opportunity,46,7,1.05392,1.05392,0,-770,99387.26,stoploss,0,-770
-10/26/2023 20:45,TRUE,10/26/2023 13:45,buy,,47,7,1.05483,1.05373,0,0,99387.26,,0,0
-10/26/2023 21:00,TRUE,10/26/2023 14:00,modify,,47,7,1.05483,1.05395,0,0,99387.26,,0,0
-10/26/2023 21:15,TRUE,10/26/2023 14:15,modify,,47,7,1.05483,1.05433,0,0,99387.26,,0,0
-10/26/2023 21:30,TRUE,10/26/2023 14:30,modify,,47,7,1.05483,1.05467,0,0,99387.26,,0,0
-10/26/2023 21:45,TRUE,10/26/2023 14:45,modify,,47,7,1.05483,1.05519,0,0,99387.26,,0,0
-10/26/2023 22:30,TRUE,10/26/2023 15:30,close,"I entered at 13:15 because impulse was different, and exited 1 bar later with SMI instead of 3 bar rule",47,7,1.05543,1.05519,0,420,99807.26,Closing Buy Ticket: 3 bar rule Ticket #: 47,420,0
-10/26/2023 23:00,,10/26/2023 16:00,buy,,48,7,1.05566,1.05456,0,0,99807.26,,0,0
-10/26/2023 23:15,,10/26/2023 16:15,modify,,48,7,1.05566,1.05459,0,0,99807.26,,0,0
-10/26/2023 23:30,,10/26/2023 16:30,modify,,48,7,1.05566,1.05503,0,0,99807.26,,0,0
-10/26/2023 23:45,,10/26/2023 16:45,close,"In backtesting I used the rule that you had to wait for psar to switch before making a new trade, might need to change the buffer on SMI to 2 - right now it is grabbing the signal ",48,7,1.05583,1.05503,0,119,99926.26,Closing Buy Ticket: SMI crossing below 40 Ticket #: 48,119,0
-10/27/2023 10:00,,10/27/2023 3:00,sell,,49,7,1.05559,1.05669,0,0,99926.26,,0,0
-10/27/2023 10:30,,10/27/2023 3:30,close,backtesting started at 4,49,7,1.05617,1.05669,0,-406,99520.26,Closing Sell Ticket: SMI crossing above -40 Ticket #: 49,0,-406
-10/27/2023 10:45,,10/27/2023 3:45,sell,,50,7,1.05544,1.05654,0,0,99520.26,,0,0
-10/27/2023 11:00,,10/27/2023 4:00,close,backtesting started at 4,50,7,1.05585,1.05654,0,-287,99233.26,Closing Sell Ticket: SMI crossing above -40 Ticket #: 50,0,-287
-10/27/2023 11:15,TRUE,10/27/2023 4:15,sell,,51,7,1.05569,1.05679,0,0,99233.26,,0,0
-10/27/2023 11:30,TRUE,10/27/2023 4:30,close,"In backtesting I used the rule that you had to wait for psar to switch before making a new trade, might need to change the buffer on SMI to 2 - right now it is grabbing the signal ",51,7,1.05585,1.05679,0,-112,99121.26,Closing Sell Ticket: SMI crossing above -40 Ticket #: 51,0,-112
-10/27/2023 18:45,TRUE,10/27/2023 11:45,buy,"news at 8:30, I also missed a profitable trade that I made in backtesting becuase the impulse was different",52,7,1.05948,1.05838,0,0,99121.26,,0,0
-10/27/2023 19:40,TRUE,10/27/2023 12:40,s/l,In backtesting I started using the rule as well to not use signals that came from news,52,7,1.05838,1.05838,0,-770,98351.26,stoploss,0,-770
-10/27/2023 21:30,TRUE,10/27/2023 14:30,sell,,53,7,1.05625,1.05735,0,0,98351.26,,0,0
-10/27/2023 21:48,TRUE,10/27/2023 14:48,s/l,I entered much eariler because impulse was different,53,7,1.05735,1.05735,0,-770,97581.26,stoploss,0,-770
-10/27/2023 22:00,,10/27/2023 15:00,sell,,54,7,1.05675,1.05785,0,0,97581.26,,0,0
-10/27/2023 22:30,,10/27/2023 15:30,close,"In backtesting I used the rule that you had to wait for psar to switch before making a new trade, might need to change the buffer on SMI to 2 - right now it is grabbing the signal ",54,7,1.05697,1.05785,0,-154,97427.26,Closing Sell Ticket: SMI crossing above -40 Ticket #: 54,0,-154
-10/27/2023 22:45,,10/27/2023 15:45,sell,,55,7,1.0565,1.0576,0,0,97427.26,,0,0
-10/27/2023 22:56,,10/27/2023 15:56,close,"In backtesting I used the rule that you had to wait for psar to switch before making a new trade, might need to change the buffer on SMI to 2 - right now it is grabbing the signal ",55,7,1.05687,1.0576,0,-259,97168.26,,0,-259
-10/30/2023 13:45,TRUE,10/30/2023 6:45,buy,,56,7,1.05886,1.05776,0,0,97168.26,,0,0
-10/30/2023 14:00,TRUE,10/30/2023 7:00,close,"in backtesting I had a order in at 5 am, but the impulse was different so it wasn't an option here",56,7,1.05852,1.05776,0,-238,96930.26,Closing Buy Ticket: SMI crossing below 40 Ticket #: 56,0,-238
-10/30/2023 14:15,,10/30/2023 7:15,buy,,57,7,1.05899,1.05789,0,0,96930.26,,0,0
-10/30/2023 15:00,,10/30/2023 8:00,modify,,57,7,1.05899,1.05958,0,0,96930.26,,0,0
-10/30/2023 15:30,,10/30/2023 8:30,close,"In backtesting I used the rule that you had to wait for psar to switch before making a new trade, might need to change the buffer on SMI to 2 - right now it is grabbing the signal ",57,7,1.0601,1.05958,0,777,97707.26,Closing Buy Ticket: SMI crossing below 40 Ticket #: 57,777,0
-10/30/2023 15:45,,10/30/2023 8:45,buy,,58,7,1.0605,1.0594,0,0,97707.26,,0,0
-10/30/2023 16:00,,10/30/2023 9:00,modify,,58,7,1.0605,1.05984,0,0,97707.26,,0,0
-10/30/2023 16:14,,10/30/2023 9:14,s/l,"In backtesting I used the rule that you had to wait for psar to switch before making a new trade, might need to change the buffer on SMI to 2 - right now it is grabbing the signal ",58,7,1.05984,1.05984,0,-462,97245.26,stoploss,0,-462
-10/30/2023 17:15,TRUE,10/30/2023 10:15,buy,,59,7,1.06199,1.06089,0,0,97245.26,,0,0
-10/30/2023 17:30,TRUE,10/30/2023 10:30,modify,,59,7,1.06199,1.06131,0,0,97245.26,,0,0
-10/30/2023 18:15,TRUE,10/30/2023 11:15,close,Should have been in backtest,59,7,1.06163,1.06131,0,-252,96993.26,Closing Buy Ticket: 3 bar rule Ticket #: 59,0,-252
-10/30/2023 18:45,,10/30/2023 11:45,buy,,60,7,1.06076,1.05966,0,0,96993.26,,0,0
-10/30/2023 19:30,,10/30/2023 12:30,modify,,60,7,1.06076,1.05999,0,0,96993.26,,0,0
-10/30/2023 19:45,,10/30/2023 12:45,modify,,60,7,1.06076,1.06017,0,0,96993.26,,0,0
-10/30/2023 20:15,,10/30/2023 13:15,modify,,60,7,1.06076,1.06033,0,0,96993.26,,0,0
-10/30/2023 20:30,,10/30/2023 13:30,modify,,60,7,1.06076,1.06038,0,0,96993.26,,0,0
-10/30/2023 20:45,,10/30/2023 13:45,modify,,60,7,1.06076,1.06065,0,0,96993.26,,0,0
-10/30/2023 21:15,,10/30/2023 14:15,modify,,60,7,1.06076,1.06095,0,0,96993.26,,0,0
-10/30/2023 22:15,,10/30/2023 15:15,close,"In backtesting I used the rule that you had to wait for psar to switch before making a new trade, might need to change the buffer on SMI to 2 - right now it is grabbing the signal ",60,7,1.06163,1.06095,0,609,97602.26,Closing Buy Ticket: SMI crossing below 40 Ticket #: 60,609,0
-10/31/2023 11:00,TRUE,10/31/2023 4:00,buy,,61,7,1.06454,1.06344,0,0,97602.26,,0,0
-10/31/2023 12:00,TRUE,10/31/2023 5:00,modify,,61,7,1.06454,1.06574,0,0,97602.26,,0,0
-10/31/2023 12:01,TRUE,10/31/2023 5:01,s/l,Impulse was different in backtesting,61,7,1.06574,1.06574,0,840,98442.26,stoploss,840,0
-10/31/2023 12:30,,10/31/2023 5:30,buy,,62,7,1.06624,1.06514,0,0,98442.26,,0,0
-10/31/2023 13:00,,10/31/2023 6:00,modify,,62,7,1.06624,1.06531,0,0,98442.26,,0,0
-10/31/2023 13:30,,10/31/2023 6:30,close,"In backtesting I used the rule that you had to wait for psar to switch before making a new trade, might need to change the buffer on SMI to 2 - right now it is grabbing the signal ",62,7,1.06586,1.06531,0,-266,98176.26,Closing Buy Ticket: PSAR flip Ticket #: 62,0,-266
-10/31/2023 15:30,TRUE,10/31/2023 8:30,sell,,63,7,1.06067,1.06177,0,0,98176.26,,0,0
-10/31/2023 17:30,TRUE,10/31/2023 10:30,modify,,63,7,1.06067,1.05942,0,0,98176.26,,0,0
-10/31/2023 17:45,TRUE,10/31/2023 10:45,modify,,63,7,1.06067,1.0588,0,0,98176.26,,0,0
-10/31/2023 18:00,TRUE,10/31/2023 11:00,modify,,63,7,1.06067,1.05781,0,0,98176.26,,0,0
-10/31/2023 18:15,TRUE,10/31/2023 11:15,modify,,63,7,1.06067,1.05751,0,0,98176.26,,0,0
-10/31/2023 18:30,TRUE,10/31/2023 11:30,modify,,63,7,1.06067,1.05733,0,0,98176.26,,0,0
-10/31/2023 19:07,TRUE,10/31/2023 12:07,s/l,Impulse was different in backtesting so the entry was an hour later,63,7,1.05733,1.05733,0,2338,100514.3,stoploss,2338,0
-10/31/2023 23:15,,10/31/2023 16:15,sell,,64,7,1.05722,1.05832,0,0,100514.3,,0,0
-10/31/2023 23:45,,10/31/2023 16:45,close,Psar was different in backtesting,64,7,1.05762,1.05832,0,-280,100234.3,Closing Sell Ticket: SMI crossing above -40 Ticket #: 64,0,-280
-11/1/2023 11:00,TRUE,11/1/2023 4:00,sell,,65,7,1.05581,1.05691,0,0,100234.3,,0,0
-11/1/2023 13:00,TRUE,11/1/2023 6:00,close,"In backtesting I used the rule that you had to wait for psar to switch before making a new trade, might need to change the buffer on SMI to 2 - right now it is grabbing the signal ",65,7,1.05483,1.05691,0,686,100920.3,Closing Sell Ticket: PSAR flip Ticket #: 65,686,0
-11/1/2023 13:30,TRUE,11/1/2023 6:30,sell,,66,7,1.05422,1.05532,0,0,100920.3,,0,0
-11/1/2023 14:30,TRUE,11/1/2023 7:30,s/l,"In backtesting I used the rule that you had to wait for psar to switch before making a new trade, might need to change the buffer on SMI to 2 - right now it is grabbing the signal ",66,7,1.05532,1.05532,0,-770,100150.3,stoploss,0,-770
-11/1/2023 15:00,TRUE,11/1/2023 8:00,sell,,67,7,1.05385,1.05495,0,0,100150.3,,0,0
-11/1/2023 16:00,TRUE,11/1/2023 9:00,s/l,NEWS AT 10,67,7,1.05495,1.05495,0,-770,99380.26,stoploss,0,-770
-11/1/2023 16:45,TRUE,11/1/2023 9:45,buy,,68,7,1.05674,1.05564,0,0,99380.26,,0,0
-11/1/2023 16:52,TRUE,11/1/2023 9:52,s/l,Impact of the news,68,7,1.05564,1.05564,0,-770,98610.26,stoploss,0,-770
-11/1/2023 17:45,,11/1/2023 10:45,buy,,69,7,1.05454,1.05344,0,0,98610.26,,0,0
-11/1/2023 17:50,,11/1/2023 10:50,close,Impact of the news; also missed out on an extremely profitable trade at 3 pm because of acct protection,69,7,1.05407,1.05344,0,-329,98281.26,Ticket closed for acct protection,0,-329
-11/2/2023 10:15,,11/2/2023 3:15,sell,,70,7,1.0597,1.0608,0,0,98281.26,,0,0
-11/2/2023 10:40,,11/2/2023 3:40,s/l,backtesting started at 4,70,7,1.0608,1.0608,0,-770,97511.26,stoploss,0,-770
-11/2/2023 11:00,TRUE,11/2/2023 4:00,sell,,71,7,1.06002,1.06112,0,0,97511.26,,0,0
-11/2/2023 11:18,TRUE,11/2/2023 4:18,s/l,"In backtesting I used the rule that you had to wait for psar to switch before making a new trade, might need to change the buffer on SMI to 2 - right now it is grabbing the signal ",71,7,1.06112,1.06112,0,-770,96741.26,stoploss,0,-770
-11/2/2023 12:30,TRUE,11/2/2023 5:30,buy,,72,7,1.0628,1.0617,0,0,96741.26,,0,0
-11/2/2023 12:45,TRUE,11/2/2023 5:45,modify,,72,7,1.0628,1.06205,0,0,96741.26,,0,0
-11/2/2023 13:00,TRUE,11/2/2023 6:00,modify,,72,7,1.0628,1.06235,0,0,96741.26,,0,0
-11/2/2023 13:15,TRUE,11/2/2023 6:15,modify,,72,7,1.0628,1.06263,0,0,96741.26,,0,0
-11/2/2023 14:15,TRUE,11/2/2023 7:15,modify,,72,7,1.0628,1.06386,0,0,96741.26,,0,0
-11/2/2023 14:45,TRUE,11/2/2023 7:45,modify,,72,7,1.0628,1.06455,0,0,96741.26,,0,0
-11/2/2023 15:00,TRUE,11/2/2023 8:00,modify,,72,7,1.0628,1.06531,0,0,96741.26,,0,0
-11/2/2023 15:15,TRUE,11/2/2023 8:15,modify,,72,7,1.0628,1.06535,0,0,96741.26,,0,0
-11/2/2023 15:19,TRUE,11/2/2023 8:19,s/l,impulse was different so it was 1 hr and 15 minutes late into trade,72,7,1.06535,1.06535,0,1785,98526.26,stoploss,1785,0
-11/2/2023 17:30,TRUE,11/2/2023 11:30,sell,,73,7,1.06251,1.06361,0,0,98526.26,,0,0
-11/2/2023 19:30,TRUE,11/2/2023 13:30,close,impulse was different so it was 1 hr late into trade,73,7,1.06246,1.06361,0,35,98561.26,Closing Sell Ticket: PSAR flip Ticket #: 73,35,0
-11/2/2023 21:45,TRUE,11/2/2023 14:45,sell,,74,7,1.06177,1.06287,0,0,98561.26,,0,0
-11/2/2023 22:45,TRUE,11/2/2023 15:45,close,"Could have been in Backtesting, but was so late in the day",74,7,1.06231,1.06287,0,-378,98183.26,Closing Sell Ticket: SMI crossing above -40 Ticket #: 74,0,-378
-11/2/2023 23:00,,11/2/2023 16:00,sell,,75,7,1.06202,1.06312,0,0,98183.26,,0,0
-11/2/2023 23:30,,11/2/2023 16:30,close,"Could have been in Backtesting, but was so late in the day",75,7,1.06191,1.06312,0,77,98260.26,Closing Sell Ticket: SMI crossing above -40 Ticket #: 75,77,0
-11/3/2023 10:00,,11/3/2023 3:00,buy,,76,7,1.06293,1.06183,0,0,98260.26,,0,0
-11/3/2023 10:15,,11/3/2023 3:15,modify,,76,7,1.06293,1.06189,0,0,98260.26,Closing Buy Ticket: PSAR flip Ticket #: 76,0,0
-11/3/2023 10:15,,11/3/2023 3:15,close,backtesting started at 4,76,7,1.06299,1.06189,0,42,98302.26,Closing Buy Ticket: PSAR flip Ticket #: 76,42,0
-11/3/2023 10:45,,11/3/2023 3:45,sell,,77,7,1.0624,1.0635,0,0,98302.26,,0,0
-11/3/2023 11:15,,11/3/2023 4:15,close,backtesting started at 4,77,7,1.06334,1.0635,0,-658,97644.26,Closing Sell Ticket: PSAR flip Ticket #: 77,0,-658
-11/3/2023 11:45,TRUE,11/3/2023 4:45,buy,,78,7,1.06414,1.06304,0,0,97644.26,,0,0
-11/3/2023 12:00,TRUE,11/3/2023 5:00,modify,,78,7,1.06414,1.06368,0,0,97644.26,,0,0
-11/3/2023 13:30,TRUE,11/3/2023 6:30,modify,,78,7,1.06414,1.06409,0,0,97644.26,,0,0
-11/3/2023 14:30,TRUE,11/3/2023 7:30,modify,,78,7,1.06414,1.06435,0,0,97644.26,,0,0
-11/3/2023 14:45,TRUE,11/3/2023 7:45,modify,,78,7,1.06414,1.06974,0,0,97644.26,,0,0
-11/3/2023 15:00,TRUE,11/3/2023 8:00,modify,,78,7,1.06414,1.06986,0,0,97644.26,,0,0
-11/3/2023 15:10,TRUE,11/3/2023 8:10,s/l,,78,7,1.06986,1.06986,0,4004,101648.3,stoploss,4004,0
-11/6/2023 10:00,,11/6/2023 3:00,sell,,79,7,1.07329,1.07439,0,0,101648.3,,0,0
-11/6/2023 10:11,,11/6/2023 3:11,s/l,backtesting started at 4,79,7,1.07439,1.07439,0,-770,100878.3,stoploss,0,-770
-11/6/2023 11:15,TRUE,11/6/2023 4:15,buy,,80,7,1.07544,1.07434,0,0,100878.3,,0,0
-11/6/2023 11:30,TRUE,11/6/2023 4:30,close,"In backtesting I used the rule that you had to wait for psar to switch before making a new trade, might need to change the buffer on SMI to 2 - right now it is grabbing the signal ",80,7,1.07461,1.07434,0,-581,100297.3,Closing Buy Ticket: Impulse flip Ticket #: 80,0,-581
-11/6/2023 11:45,,11/6/2023 4:45,buy,,81,7,1.07469,1.07359,0,0,100297.3,,0,0
-11/6/2023 12:00,,11/6/2023 5:00,modify,,81,7,1.07469,1.07361,0,0,100297.3,,0,0
-11/6/2023 12:15,,11/6/2023 5:15,modify,,81,7,1.07469,1.07418,0,0,100297.3,,0,0
-11/6/2023 12:30,,11/6/2023 5:30,modify,,81,7,1.07469,1.0742,0,0,100297.3,,0,0
-11/6/2023 13:00,,11/6/2023 6:00,close,"In backtesting I used the rule that you had to wait for psar to switch before making a new trade, might need to change the buffer on SMI to 2 - right now it is grabbing the signal ",81,7,1.07483,1.0742,0,98,100395.3,Closing Buy Ticket: Impulse flip Ticket #: 81,98,0
-11/6/2023 15:00,TRUE,11/6/2023 8:00,sell,,82,7,1.07435,1.07545,0,0,100395.3,,0,0
-11/6/2023 16:30,TRUE,11/6/2023 9:30,close,closed early,82,7,1.07414,1.07545,0,147,100542.3,Closing Sell Ticket: 3 bar rule Ticket #: 82,147,0
-11/6/2023 17:00,,11/6/2023 10:00,sell,,83,7,1.07389,1.07499,0,0,100542.3,,0,0
-11/6/2023 17:45,,11/6/2023 10:45,close,"because the last ticket closed early, this one opened and closed the same time as backtesting had open the entire time",83,7,1.07362,1.07499,0,189,100731.3,Closing Sell Ticket: SMI crossing above -40 Ticket #: 83,189,0
-11/6/2023 20:15,TRUE,11/6/2023 13:15,sell,,84,7,1.07321,1.07431,0,0,100731.3,,0,0
-11/6/2023 21:00,TRUE,11/6/2023 14:00,close,ticket closed early because SMI registered as being above -40,84,7,1.07359,1.07431,0,-266,100465.3,Closing Sell Ticket: SMI crossing above -40 Ticket #: 84,0,-266
-11/6/2023 21:15,,11/6/2023 14:15,sell,,85,7,1.07244,1.07354,0,0,100465.3,,0,0
-11/7/2023 1:00,,11/6/2023 18:00,close,"If the previous ticket didn't close early, would have been so much better off",85,7,1.07201,1.07354,0,324.88,100790.1,Closing Sell Ticket: SMI crossing above -40 Ticket #: 85,324.88,0
-11/7/2023 11:15,TRUE,11/7/2023 4:15,sell,,86,7,1.06942,1.07052,0,0,100790.1,,0,0
-11/7/2023 12:30,TRUE,11/7/2023 5:30,close,exactly the same,86,7,1.06964,1.07052,0,-154,100636.1,Closing Sell Ticket: SMI crossing above -40 Ticket #: 86,0,-154
-11/7/2023 12:45,,11/7/2023 5:45,sell,,87,7,1.06845,1.06955,0,0,100636.1,,0,0
-11/7/2023 14:30,,11/7/2023 7:30,close,"In backtesting I used the rule that you had to wait for psar to switch before making a new trade, might need to change the buffer on SMI to 2 - right now it is grabbing the signal ",87,7,1.06807,1.06955,0,266,100902.1,Closing Sell Ticket: PSAR flip Ticket #: 87,266,0
-11/7/2023 16:15,TRUE,11/7/2023 9:15,sell,,88,7,1.06686,1.06796,0,0,100902.1,,0,0
-11/7/2023 16:45,TRUE,11/7/2023 9:45,close,,88,7,1.06713,1.06796,0,-189,100713.1,Closing Sell Ticket: SMI crossing above -40 Ticket #: 88,0,-189
-11/7/2023 17:30,TRUE,11/7/2023 10:30,buy,,89,7,1.06839,1.06729,0,0,100713.1,,0,0
-11/7/2023 17:45,TRUE,11/7/2023 10:45,close,impulse was different ,89,7,1.06795,1.06729,0,-308,100405.1,Closing Buy Ticket: SMI crossing below 40 Ticket #: 89,0,-308
-11/7/2023 18:00,,11/7/2023 11:00,buy,,90,7,1.0685,1.0674,0,0,100405.1,,0,0
-11/7/2023 18:15,,11/7/2023 11:15,modify,,90,7,1.0685,1.06796,0,0,100405.1,,0,0
-11/7/2023 19:13,,11/7/2023 12:13,s/l,"In backtesting I used the rule that you had to wait for psar to switch before making a new trade, might need to change the buffer on SMI to 2 - right now it is grabbing the signal ",90,7,1.06796,1.06796,0,-378,100027.1,stoploss,0,-378
-11/7/2023 20:45,TRUE,11/7/2023 13:45,buy,,91,7,1.06917,1.06807,0,0,100027.1,,0,0
-11/7/2023 21:00,TRUE,11/7/2023 14:00,modify,,91,7,1.06917,1.06877,0,0,100027.1,,0,0
-11/7/2023 21:15,TRUE,11/7/2023 14:15,modify,,91,7,1.06917,1.06908,0,0,100027.1,,0,0
-11/7/2023 21:30,TRUE,11/7/2023 14:30,modify,,91,7,1.06917,1.06919,0,0,100027.1,,0,0
-11/7/2023 22:04,TRUE,11/7/2023 15:04,s/l,exited early,91,7,1.06919,1.06919,0,14,100041.1,stoploss,14,0
-11/7/2023 22:30,,11/7/2023 15:30,buy,,92,7,1.0696,1.0685,0,0,100041.1,,0,0
-11/7/2023 22:45,,11/7/2023 15:45,modify,,92,7,1.0696,1.06866,0,0,100041.1,,0,0
-11/7/2023 23:30,,11/7/2023 16:30,modify,,92,7,1.0696,1.06883,0,0,100041.1,,0,0
-11/8/2023 0:45,,11/7/2023 17:45,close,"exited the last ticket early, which took all the profits",92,7,1.06974,1.06883,0,33.86,100075,Closing Buy Ticket: SMI crossing below 40 Ticket #: 92,33.86,0
-11/8/2023 10:15,,11/8/2023 3:15,sell,,93,7,1.06759,1.06869,0,0,100075,,0,0
-11/8/2023 13:00,TRUE,11/8/2023 6:00,close,"In backtesting I used the rule that you had to wait for psar to switch before making a new trade, might need to change the buffer on SMI to 2 - right now it is grabbing the signal ",93,7,1.06683,1.06869,0,532,100607,Closing Sell Ticket: PSAR flip Ticket #: 93,532,0
-11/8/2023 15:30,TRUE,11/8/2023 8:30,sell,,94,7,1.06647,1.06757,0,0,100607,,0,0
-11/8/2023 16:00,TRUE,11/8/2023 9:00,close,impulse was different,94,7,1.06694,1.06757,0,-329,100278,Closing Sell Ticket: SMI crossing above -40 Ticket #: 94,0,-329
-11/8/2023 16:15,TRUE,11/8/2023 9:15,buy,,95,7,1.06724,1.06614,0,0,100278,,0,0
-11/8/2023 16:30,TRUE,11/8/2023 9:30,modify,,95,7,1.06724,1.06631,0,0,100278,,0,0
-11/8/2023 16:45,TRUE,11/8/2023 9:45,modify,,95,7,1.06724,1.06702,0,0,100278,,0,0
-11/8/2023 17:00,TRUE,11/8/2023 10:00,modify,,95,7,1.06724,1.06793,0,0,100278,,0,0
-11/8/2023 17:30,TRUE,11/8/2023 10:30,modify,,95,7,1.06724,1.06816,0,0,100278,,0,0
-11/8/2023 18:00,TRUE,11/8/2023 11:00,modify,,95,7,1.06724,1.06941,0,0,100278,,0,0
-11/8/2023 18:15,TRUE,11/8/2023 11:15,modify,,95,7,1.06724,1.06991,0,0,100278,,0,0
-11/8/2023 18:45,TRUE,11/8/2023 11:45,modify,,95,7,1.06724,1.07015,0,0,100278,,0,0
-11/8/2023 19:00,TRUE,11/8/2023 12:00,modify,,95,7,1.06724,1.07032,0,0,100278,,0,0
-11/8/2023 19:31,TRUE,11/8/2023 12:31,s/l,"entered slightly later, but otherwise the same",95,7,1.07032,1.07032,0,2156,102434,stoploss,2156,0
-11/8/2023 23:00,TRUE,11/8/2023 16:00,buy,,96,7,1.07096,1.06986,0,0,102434,,0,0
-11/8/2023 23:30,TRUE,11/8/2023 16:30,modify,,96,7,1.07096,1.06992,0,0,102434,,0,0
-11/9/2023 0:15,TRUE,11/8/2023 17:15,close,really late in the day to open a trade,96,7,1.07053,1.06992,0,-493.42,101940.6,Closing Buy Ticket: SMI crossing below 40 Ticket #: 96,0,-493.42
-11/9/2023 10:30,,11/9/2023 3:30,sell,,97,7,1.0696,1.0707,0,0,101940.6,,0,0
-11/9/2023 10:45,,11/9/2023 3:45,close,backtesting started at 4,97,7,1.07034,1.0707,0,-518,101422.6,Closing Sell Ticket: SMI crossing above -40 Ticket #: 97,0,-518
-11/9/2023 11:00,TRUE,11/9/2023 4:00,sell,,98,7,1.07014,1.07124,0,0,101422.6,,0,0
-11/9/2023 14:30,TRUE,11/9/2023 7:30,close,entered later in backtesting because I was going based on when I was looking at the trade,98,7,1.0689,1.07124,0,868,102290.6,Closing Sell Ticket: SMI crossing above -40 Ticket #: 98,868,0
-11/9/2023 16:00,TRUE,11/9/2023 9:00,buy,,99,7,1.07076,1.06966,0,0,102290.6,,0,0
-11/9/2023 16:45,TRUE,11/9/2023 9:45,modify,,99,7,1.07076,1.06976,0,0,102290.6,,0,0
-11/9/2023 17:00,TRUE,11/9/2023 10:00,modify,,99,7,1.07076,1.07133,0,0,102290.6,,0,0
-11/9/2023 17:02,TRUE,11/9/2023 10:02,s/l,entered earlier on backtest because of impulse being different,99,7,1.07133,1.07133,0,399,102689.6,stoploss,399,0
-11/9/2023 17:45,,11/9/2023 10:45,buy,,100,7,1.07152,1.07042,0,0,102689.6,,0,0
-11/9/2023 18:15,,11/9/2023 11:15,close,didn't exit in backtest until 11:18 so this wasn't even an option,100,7,1.07113,1.07042,0,-273,102416.6,Closing Buy Ticket: SMI crossing below 40 Ticket #: 100,0,-273
-11/9/2023 23:00,TRUE,11/9/2023 16:00,sell,really late to be entering a trade,101,7,1.06638,1.06748,0,0,102416.6,,0,0
-11/9/2023 23:59,TRUE,11/9/2023 16:59,close at stop,,101,7,1.06676,1.06748,0,-266,102150.6,,0,-266
+2023-10-16 11:45:00,True,2023-10-16 04:45:00,buy,,1,7,1.05364,1.05254,0,0.0,100000.0,,0.0,0.0
+2023-10-16 12:00:00,True,2023-10-16 05:00:00,modify,,1,7,1.05364,1.05294,0,0.0,100000.0,,0.0,0.0
+2023-10-16 12:45:00,True,2023-10-16 05:45:00,close,in backtesting as well,1,7,1.05377,1.05294,0,91.0,100091.0,Closing Buy Ticket: 3 bar rule Ticket #: 1,91.0,0.0
+2023-10-16 13:30:00,,2023-10-16 06:30:00,buy,,2,7,1.05311,1.05201,0,0.0,100091.0,,0.0,0.0
+2023-10-16 13:45:00,,2023-10-16 06:45:00,modify,,2,7,1.05311,1.0523,0,0.0,100091.0,,0.0,0.0
+2023-10-16 14:15:00,,2023-10-16 07:15:00,close,"Extremely strict, I didn't even notice this because the lines were so close together",2,7,1.05283,1.0523,0,-196.0,99895.0,Closing Buy Ticket: PSAR flip Ticket #: 2,0.0,-196.0
+2023-10-16 17:00:00,True,2023-10-16 10:00:00,sell,,3,7,1.05298,1.05408,0,0.0,99895.0,,0.0,0.0
+2023-10-16 17:30:00,True,2023-10-16 10:30:00,close,SMI started going the opposite direction,3,7,1.05395,1.05408,0,-679.0,99216.0,Closing Sell Ticket: SMI crossing above -40 Ticket #: 3,0.0,-679.0
+2023-10-16 18:30:00,True,2023-10-16 11:30:00,buy,,4,7,1.05458,1.05348,0,0.0,99216.0,,0.0,0.0
+2023-10-16 18:45:00,True,2023-10-16 11:45:00,modify,,4,7,1.05458,1.05379,0,0.0,99216.0,,0.0,0.0
+2023-10-16 19:00:00,True,2023-10-16 12:00:00,close,In backtesting I used the rule that you had to wait for psar to switch before making a new trade,4,7,1.05446,1.05379,0,-84.0,99132.0,Closing Buy Ticket: SMI crossing below 40 Ticket #: 4,0.0,-84.0
+2023-10-16 19:30:00,,2023-10-16 12:30:00,buy,,5,7,1.05446,1.05336,0,0.0,99132.0,,0.0,0.0
+2023-10-16 19:45:00,,2023-10-16 12:45:00,modify,,5,7,1.05446,1.0535,0,0.0,99132.0,,0.0,0.0
+2023-10-16 20:00:00,,2023-10-16 13:00:00,modify,,5,7,1.05446,1.05362,0,0.0,99132.0,,0.0,0.0
+2023-10-16 20:15:00,,2023-10-16 13:15:00,modify,,5,7,1.05446,1.05388,0,0.0,99132.0,,0.0,0.0
+2023-10-16 20:45:00,,2023-10-16 13:45:00,modify,,5,7,1.05446,1.05394,0,0.0,99132.0,,0.0,0.0
+2023-10-16 21:00:00,,2023-10-16 14:00:00,modify,,5,7,1.05446,1.05439,0,0.0,99132.0,,0.0,0.0
+2023-10-16 21:15:00,,2023-10-16 14:15:00,modify,,5,7,1.05446,1.05444,0,0.0,99132.0,,0.0,0.0
+2023-10-16 22:15:00,,2023-10-16 15:15:00,modify,,5,7,1.05446,1.05468,0,0.0,99132.0,,0.0,0.0
+2023-10-16 22:30:00,,2023-10-16 15:30:00,modify,,5,7,1.05446,1.05506,0,0.0,99132.0,,0.0,0.0
+2023-10-16 23:00:00,,2023-10-16 16:00:00,modify,,5,7,1.05446,1.05517,0,0.0,99132.0,,0.0,0.0
+2023-10-16 23:45:00,,2023-10-16 16:45:00,close,In backtesting I used the rule that you had to wait for psar to switch before making a new trade,5,7,1.05586,1.05517,0,980.0,100112.0,Closing Buy Ticket: 3 bar rule Ticket #: 5,980.0,0.0
+2023-10-17 10:00:00,,2023-10-17 03:00:00,sell,,6,7,1.0537,1.0548,0,0.0,100112.0,,0.0,0.0
+2023-10-17 10:09:00,,2023-10-17 03:09:00,s/l,backtesting started at 4,6,7,1.0548,1.0548,0,-770.0,99342.0,stoploss,0.0,-770.0
+2023-10-17 11:45:00,True,2023-10-17 04:45:00,sell,,7,7,1.05352,1.05462,0,0.0,99342.0,,0.0,0.0
+2023-10-17 12:15:00,True,2023-10-17 05:15:00,close,should have been included in backtest,7,7,1.05445,1.05462,0,-651.0,98691.0,Closing Sell Ticket: SMI crossing above -40 Ticket #: 7,0.0,-651.0
+2023-10-17 17:30:00,True,2023-10-17 10:30:00,buy,,8,7,1.05803,1.05693,0,0.0,98691.0,,0.0,0.0
+2023-10-17 18:15:00,True,2023-10-17 11:15:00,modify,,8,7,1.05803,1.05741,0,0.0,98691.0,,0.0,0.0
+2023-10-17 18:45:00,True,2023-10-17 11:45:00,modify,,8,7,1.05803,1.05785,0,0.0,98691.0,,0.0,0.0
+2023-10-17 19:00:00,True,2023-10-17 12:00:00,modify,,8,7,1.05803,1.05811,0,0.0,98691.0,,0.0,0.0
+2023-10-17 19:15:00,True,2023-10-17 12:15:00,modify,,8,7,1.05803,1.05812,0,0.0,98691.0,,0.0,0.0
+2023-10-17 19:30:00,True,2023-10-17 12:30:00,modify,,8,7,1.05803,1.05813,0,0.0,98691.0,,0.0,0.0
+2023-10-17 19:48:00,True,2023-10-17 12:48:00,s/l,"this  was negative in my backtest, the trailing S/L saved me",8,7,1.05813,1.05813,0,70.0,98761.0,stoploss,70.0,0.0
+2023-10-17 20:30:00,,2023-10-17 13:30:00,buy,,9,7,1.05763,1.05653,0,0.0,98761.0,,0.0,0.0
+2023-10-17 20:53:00,,2023-10-17 13:53:00,s/l,exactly the same,9,7,1.05653,1.05653,0,-770.0,97991.0,stoploss,0.0,-770.0
+2023-10-17 22:00:00,True,2023-10-17 15:00:00,sell,,10,7,1.0569,1.058,0,0.0,97991.0,,0.0,0.0
+2023-10-17 22:15:00,True,2023-10-17 15:15:00,close,In backtesting I used the rule that you had to wait for psar to switch before making a new trade,10,7,1.05774,1.058,0,-588.0,97403.0,Closing Sell Ticket: SMI crossing above -40 Ticket #: 10,0.0,-588.0
+2023-10-17 22:45:00,,2023-10-17 15:45:00,sell,,11,7,1.05759,1.05869,0,0.0,97403.0,,0.0,0.0
+2023-10-17 22:58:00,,2023-10-17 15:58:00,close,In backtesting I used the rule that you had to wait for psar to switch before making a new trade,11,7,1.05774,1.05869,0,-105.0,97298.0,,0.0,-105.0
+2023-10-18 11:30:00,True,2023-10-18 04:30:00,sell,,12,7,1.05742,1.05852,0,0.0,97298.0,,0.0,0.0
+2023-10-18 11:45:00,True,2023-10-18 04:45:00,close,"In backtesting I used the rule that you had to wait for psar to switch before making a new trade, and that I wouldn't enter a trade if the trend had already started at the beginning of the day",12,7,1.05834,1.05852,0,-644.0,96654.0,Closing Sell Ticket: Impulse flip Ticket #: 12,0.0,-644.0
+2023-10-18 12:15:00,True,2023-10-18 05:15:00,buy,,13,7,1.0585,1.0574,0,0.0,96654.0,,0.0,0.0
+2023-10-18 12:46:00,True,2023-10-18 05:46:00,s/l,Impulse MACD was different...,13,7,1.0574,1.0574,0,-770.0,95884.0,stoploss,0.0,-770.0
+2023-10-18 13:00:00,True,2023-10-18 06:00:00,sell,,14,7,1.05691,1.05801,0,0.0,95884.0,,0.0,0.0
+2023-10-18 14:45:00,True,2023-10-18 07:45:00,close,"basically the same, except I closed a little differently in backtesting, but it was actually worse in backtesting",14,7,1.05624,1.05801,0,469.0,96353.0,Closing Sell Ticket: 3 bar rule Ticket #: 14,469.0,0.0
+2023-10-18 15:00:00,,2023-10-18 08:00:00,sell,,15,7,1.05605,1.05715,0,0.0,96353.0,,0.0,0.0
+2023-10-18 15:15:00,,2023-10-18 08:15:00,close,"In backtesting I used the rule that you had to wait for psar to switch before making a new trade, might need to change the buffer on SMI to 2 - right now it is grabbing the signal ",15,7,1.0568,1.05715,0,-525.0,95828.0,Closing Sell Ticket: SMI crossing above -40 Ticket #: 15,0.0,-525.0
+2023-10-18 16:45:00,True,2023-10-18 09:45:00,sell,,16,7,1.05527,1.05637,0,0.0,95828.0,,0.0,0.0
+2023-10-18 18:45:00,True,2023-10-18 11:45:00,modify,,16,7,1.05527,1.05402,0,0.0,95828.0,,0.0,0.0
+2023-10-18 19:15:00,True,2023-10-18 12:15:00,modify,,16,7,1.05527,1.05352,0,0.0,95828.0,,0.0,0.0
+2023-10-18 19:48:00,True,2023-10-18 12:48:00,s/l,exactly the same ,16,7,1.05352,1.05352,0,1225.0,97053.0,stoploss,1225.0,0.0
+2023-10-18 22:30:00,True,2023-10-18 15:30:00,sell,,17,7,1.05357,1.05467,0,0.0,97053.0,,0.0,0.0
+2023-10-19 00:00:00,True,2023-10-18 17:00:00,close,exactly the same ,17,7,1.05365,1.05467,0,15.63,97068.63,Closing Sell Ticket: SMI crossing above -40 Ticket #: 17,15.63,0.0
+2023-10-19 10:00:00,,2023-10-19 03:00:00,buy,,18,7,1.05402,1.05292,0,0.0,97068.63,,0.0,0.0
+2023-10-19 10:15:00,,2023-10-19 03:15:00,modify,,18,7,1.05402,1.05313,0,0.0,97068.63,,0.0,0.0
+2023-10-19 10:45:00,,2023-10-19 03:45:00,close,backtesting started at 4,18,7,1.05404,1.05313,0,14.0,97082.63,Closing Buy Ticket: SMI crossing below 40 Ticket #: 18,14.0,0.0
+2023-10-19 13:00:00,True,2023-10-19 06:00:00,buy,Exactly the same,19,7,1.05444,1.05334,0,0.0,97082.63,,0.0,0.0
+2023-10-19 13:15:00,True,2023-10-19 06:15:00,modify,,19,7,1.05444,1.05378,0,0.0,97082.63,,0.0,0.0
+2023-10-19 13:45:00,True,2023-10-19 06:45:00,modify,,19,7,1.05444,1.05381,0,0.0,97082.63,,0.0,0.0
+2023-10-19 14:00:00,True,2023-10-19 07:00:00,modify,,19,7,1.05444,1.05399,0,0.0,97082.63,,0.0,0.0
+2023-10-19 14:15:00,True,2023-10-19 07:15:00,modify,,19,7,1.05444,1.05477,0,0.0,97082.63,,0.0,0.0
+2023-10-19 14:45:00,True,2023-10-19 07:45:00,modify,,19,7,1.05444,1.05478,0,0.0,97082.63,,0.0,0.0
+2023-10-19 15:15:00,True,2023-10-19 08:15:00,modify,,19,7,1.05444,1.0551,0,0.0,97082.63,,0.0,0.0
+2023-10-19 15:30:00,True,2023-10-19 08:30:00,modify,,19,7,1.05444,1.05548,0,0.0,97082.63,,0.0,0.0
+2023-10-19 15:45:00,True,2023-10-19 08:45:00,modify,,19,7,1.05444,1.05611,0,0.0,97082.63,,0.0,0.0
+2023-10-19 16:00:00,True,2023-10-19 09:00:00,modify,,19,7,1.05444,1.05652,0,0.0,97082.63,,0.0,0.0
+2023-10-19 17:30:00,True,2023-10-19 10:30:00,close,PSAR flipped later on MT4,19,7,1.05707,1.05652,0,1841.0,98923.63,Closing Buy Ticket: PSAR flip Ticket #: 19,1841.0,0.0
+2023-10-19 18:45:00,True,2023-10-19 11:45:00,buy,,20,7,1.05779,1.05669,0,0.0,98923.63,,0.0,0.0
+2023-10-19 19:00:00,True,2023-10-19 12:00:00,s/l,NEWS,20,7,1.05669,1.05669,0,-770.0,98153.63,stoploss,0.0,-770.0
+2023-10-19 19:15:00,,2023-10-19 12:15:00,buy,,21,7,1.05962,1.05852,0,0.0,98153.63,,0.0,0.0
+2023-10-19 19:28:00,,2023-10-19 12:28:00,s/l,NEWS,21,7,1.05852,1.05852,0,-770.0,97383.63,stoploss,0.0,-770.0
+2023-10-19 20:00:00,,2023-10-19 13:00:00,buy,,22,7,1.05964,1.05854,0,0.0,97383.63,,0.0,0.0
+2023-10-19 20:15:00,,2023-10-19 13:15:00,modify,,22,7,1.05964,1.05908,0,0.0,97383.63,,0.0,0.0
+2023-10-19 20:36:00,,2023-10-19 13:36:00,s/l,NEWS,22,7,1.05908,1.05908,0,-392.0,96991.63,stoploss,0.0,-392.0
+2023-10-19 21:00:00,,2023-10-19 14:00:00,buy,,23,7,1.05985,1.05875,0,0.0,96991.63,,0.0,0.0
+2023-10-19 21:15:00,,2023-10-19 14:15:00,modify,,23,7,1.05985,1.05903,0,0.0,96991.63,,0.0,0.0
+2023-10-19 21:25:00,,2023-10-19 14:25:00,close,In backtesting as well,23,7,1.0594,1.05903,0,-315.0,96676.63,,0.0,-315.0
+2023-10-20 13:45:00,True,2023-10-20 06:45:00,buy,,24,7,1.05875,1.05765,0,0.0,96676.63,,0.0,0.0
+2023-10-20 14:15:00,True,2023-10-20 07:15:00,modify,,24,7,1.05875,1.05785,0,0.0,96676.63,,0.0,0.0
+2023-10-20 14:30:00,True,2023-10-20 07:30:00,modify,,24,7,1.05875,1.058,0,0.0,96676.63,,0.0,0.0
+2023-10-20 14:45:00,True,2023-10-20 07:45:00,modify,,24,7,1.05875,1.05838,0,0.0,96676.63,,0.0,0.0
+2023-10-20 15:00:00,True,2023-10-20 08:00:00,close,"Impulse was different on backtest, and started increasing at 5 am not 6:30 like on mt4",24,7,1.05906,1.05838,0,217.0,96893.63,Closing Buy Ticket: SMI crossing below 40 Ticket #: 24,217.0,0.0
+2023-10-20 16:30:00,True,2023-10-20 09:30:00,sell,,25,7,1.05834,1.05944,0,0.0,96893.63,,0.0,0.0
+2023-10-20 16:35:00,True,2023-10-20 09:35:00,s/l,"In backtesting I used the rule that you had to wait for psar to switch before making a new trade, might need to change the buffer on SMI to 2 - right now it is grabbing the signal ",25,7,1.05944,1.05944,0,-770.0,96123.63,stoploss,0.0,-770.0
+2023-10-20 18:30:00,True,2023-10-20 11:30:00,buy,,26,7,1.05956,1.05846,0,0.0,96123.63,,0.0,0.0
+2023-10-20 18:45:00,True,2023-10-20 11:45:00,close,In backtesting as well,26,7,1.05911,1.05846,0,-315.0,95808.63,Closing Buy Ticket: SMI crossing below 40 Ticket #: 26,0.0,-315.0
+2023-10-20 20:30:00,,2023-10-20 13:30:00,buy,,27,7,1.05973,1.05863,0,0.0,95808.63,,0.0,0.0
+2023-10-20 20:45:00,,2023-10-20 13:45:00,modify,,27,7,1.05973,1.05869,0,0.0,95808.63,,0.0,0.0
+2023-10-20 21:00:00,,2023-10-20 14:00:00,close,"impulse was different on backtest the entry was there on the backtest too, just 30 mins earlier",27,7,1.05955,1.05869,0,-126.0,95682.63,Closing Buy Ticket: SMI crossing below 40 Ticket #: 27,0.0,-126.0
+2023-10-20 21:45:00,,2023-10-20 14:45:00,buy,,28,7,1.05908,1.05798,0,0.0,95682.63,,0.0,0.0
+2023-10-20 22:00:00,,2023-10-20 15:00:00,modify,,28,7,1.05908,1.05813,0,0.0,95682.63,,0.0,0.0
+2023-10-20 22:45:00,,2023-10-20 15:45:00,close,"impulse was basically 0, but it was slightly positive, but I didn't see it on the backtest",28,7,1.05905,1.05813,0,-21.0,95661.63,Closing Buy Ticket: 3 bar rule Ticket #: 28,0.0,-21.0
+2023-10-23 10:30:00,,2023-10-23 03:30:00,buy,,29,7,1.05853,1.05743,0,0.0,95661.63,,0.0,0.0
+2023-10-23 10:45:00,,2023-10-23 03:45:00,modify,,29,7,1.05853,1.0577,0,0.0,95661.63,,0.0,0.0
+2023-10-23 11:00:00,True,2023-10-23 04:00:00,modify,,29,7,1.05853,1.05864,0,0.0,95661.63,,0.0,0.0
+2023-10-23 11:15:00,True,2023-10-23 04:15:00,modify,,29,7,1.05853,1.05949,0,0.0,95661.63,,0.0,0.0
+2023-10-23 12:15:00,True,2023-10-23 05:15:00,modify,,29,7,1.05853,1.05952,0,0.0,95661.63,,0.0,0.0
+2023-10-23 12:30:00,True,2023-10-23 05:30:00,modify,,29,7,1.05853,1.06034,0,0.0,95661.63,,0.0,0.0
+2023-10-23 12:43:00,True,2023-10-23 05:43:00,s/l,backtesting started at 4,29,7,1.06034,1.06034,0,1267.0,96928.63,stoploss,1267.0,0.0
+2023-10-23 15:30:00,True,2023-10-23 08:30:00,buy,,30,7,1.06143,1.06033,0,0.0,96928.63,,0.0,0.0
+2023-10-23 16:00:00,True,2023-10-23 09:00:00,close,should have been included in backtesting,30,7,1.06096,1.06033,0,-329.0,96599.63,Closing Buy Ticket: SMI crossing below 40 Ticket #: 30,0.0,-329.0
+2023-10-23 17:15:00,True,2023-10-23 10:15:00,buy,,31,7,1.06176,1.06066,0,0.0,96599.63,,0.0,0.0
+2023-10-23 17:30:00,True,2023-10-23 10:30:00,modify,,31,7,1.06176,1.06154,0,0.0,96599.63,,0.0,0.0
+2023-10-23 18:00:00,True,2023-10-23 11:00:00,modify,,31,7,1.06176,1.06176,0,0.0,96599.63,,0.0,0.0
+2023-10-23 18:15:00,True,2023-10-23 11:15:00,modify,,31,7,1.06176,1.06257,0,0.0,96599.63,,0.0,0.0
+2023-10-23 18:30:00,True,2023-10-23 11:30:00,modify,,31,7,1.06176,1.06272,0,0.0,96599.63,,0.0,0.0
+2023-10-23 18:45:00,True,2023-10-23 11:45:00,modify,,31,7,1.06176,1.06341,0,0.0,96599.63,,0.0,0.0
+2023-10-23 19:15:00,True,2023-10-23 12:15:00,modify,,31,7,1.06176,1.06345,0,0.0,96599.63,,0.0,0.0
+2023-10-23 19:30:00,True,2023-10-23 12:30:00,modify,,31,7,1.06176,1.06378,0,0.0,96599.63,,0.0,0.0
+2023-10-23 19:45:00,True,2023-10-23 12:45:00,modify,,31,7,1.06176,1.06386,0,0.0,96599.63,,0.0,0.0
+2023-10-23 20:00:00,True,2023-10-23 13:00:00,modify,,31,7,1.06176,1.06535,0,0.0,96599.63,,0.0,0.0
+2023-10-23 20:15:00,True,2023-10-23 13:15:00,modify,,31,7,1.06176,1.06549,0,0.0,96599.63,,0.0,0.0
+2023-10-23 20:30:00,True,2023-10-23 13:30:00,modify,,31,7,1.06176,1.06574,0,0.0,96599.63,,0.0,0.0
+2023-10-23 20:45:00,True,2023-10-23 13:45:00,modify,,31,7,1.06176,1.06584,0,0.0,96599.63,,0.0,0.0
+2023-10-23 21:15:00,True,2023-10-23 14:15:00,modify,,31,7,1.06176,1.06592,0,0.0,96599.63,,0.0,0.0
+2023-10-23 21:30:00,True,2023-10-23 14:30:00,modify,,31,7,1.06176,1.06601,0,0.0,96599.63,,0.0,0.0
+2023-10-23 21:45:00,True,2023-10-23 14:45:00,modify,,31,7,1.06176,1.06609,0,0.0,96599.63,,0.0,0.0
+2023-10-23 22:00:00,True,2023-10-23 15:00:00,modify,,31,7,1.06176,1.06631,0,0.0,96599.63,,0.0,0.0
+2023-10-23 22:15:00,True,2023-10-23 15:15:00,close,exactly the same even the profit,31,7,1.06687,1.06631,0,3577.0,100176.6,Closing Buy Ticket: PSAR flip Ticket #: 31,3577.0,0.0
+2023-10-24 10:30:00,,2023-10-24 03:30:00,sell,,32,7,1.06759,1.06869,0,0.0,100176.6,,0.0,0.0
+2023-10-24 11:15:00,True,2023-10-24 04:15:00,modify,,32,7,1.06759,1.06621,0,0.0,100176.6,,0.0,0.0
+2023-10-24 11:45:00,,2023-10-24 04:45:00,modify,,32,7,1.06759,1.06606,0,0.0,100176.6,,0.0,0.0
+2023-10-24 12:15:00,,2023-10-24 05:15:00,modify,,32,7,1.06759,1.06573,0,0.0,100176.6,,0.0,0.0
+2023-10-24 12:30:00,,2023-10-24 05:30:00,modify,,32,7,1.06759,1.06572,0,0.0,100176.6,,0.0,0.0
+2023-10-24 12:45:00,,2023-10-24 05:45:00,modify,,32,7,1.06759,1.06543,0,0.0,100176.6,,0.0,0.0
+2023-10-24 13:00:00,,2023-10-24 06:00:00,modify,,32,7,1.06759,1.06478,0,0.0,100176.6,,0.0,0.0
+2023-10-24 13:15:00,,2023-10-24 06:15:00,modify,,32,7,1.06759,1.06477,0,0.0,100176.6,,0.0,0.0
+2023-10-24 13:30:00,,2023-10-24 06:30:00,modify,,32,7,1.06759,1.06465,0,0.0,100176.6,,0.0,0.0
+2023-10-24 13:45:00,,2023-10-24 06:45:00,modify,,32,7,1.06759,1.06428,0,0.0,100176.6,,0.0,0.0
+2023-10-24 14:00:00,True,2023-10-24 07:00:00,modify,,32,7,1.06759,1.06365,0,0.0,100176.6,,0.0,0.0
+2023-10-24 14:15:00,True,2023-10-24 07:15:00,modify,,32,7,1.06759,1.06351,0,0.0,100176.6,,0.0,0.0
+2023-10-24 14:33:00,True,2023-10-24 07:33:00,s/l,"backtesting started at 4,and news right at 3:30",32,7,1.06351,1.06351,0,2856.0,103032.6,stoploss,2856.0,0.0
+2023-10-24 15:30:00,True,2023-10-24 08:30:00,sell,,33,7,1.06247,1.06357,0,0.0,103032.6,,0.0,0.0
+2023-10-24 17:30:00,True,2023-10-24 10:30:00,close,should have been in backtest,33,7,1.0613,1.06357,0,819.0,103851.6,Closing Sell Ticket: SMI crossing above -40 Ticket #: 33,819.0,0.0
+2023-10-25 12:30:00,True,2023-10-25 05:30:00,sell,,34,7,1.05673,1.05783,0,0.0,103851.6,,0.0,0.0
+2023-10-25 14:30:00,True,2023-10-25 07:30:00,close,should have been in backtest,34,7,1.05764,1.05783,0,-637.0,103214.6,Closing Sell Ticket: SMI crossing above -40 Ticket #: 34,0.0,-637.0
+2023-10-25 14:45:00,,2023-10-25 07:45:00,sell,,35,7,1.0576,1.0587,0,0.0,103214.6,,0.0,0.0
+2023-10-25 16:15:00,,2023-10-25 09:15:00,close,"In backtesting I used the rule that you had to wait for psar to switch before making a new trade, might need to change the buffer on SMI to 2 - right now it is grabbing the signal ",35,7,1.05815,1.0587,0,-385.0,102829.6,Closing Sell Ticket: 3 bar rule Ticket #: 35,0.0,-385.0
+2023-10-25 16:30:00,,2023-10-25 09:30:00,sell,,36,7,1.05717,1.05827,0,0.0,102829.6,,0.0,0.0
+2023-10-25 17:15:00,,2023-10-25 10:15:00,close,"In backtesting I used the rule that you had to wait for psar to switch before making a new trade, might need to change the buffer on SMI to 2 - right now it is grabbing the signal ",36,7,1.05742,1.05827,0,-175.0,102654.6,Closing Sell Ticket: Impulse flip Ticket #: 36,0.0,-175.0
+2023-10-25 17:45:00,True,2023-10-25 10:45:00,buy,,37,7,1.05872,1.05762,0,0.0,102654.6,,0.0,0.0
+2023-10-25 18:15:00,True,2023-10-25 11:15:00,modify,,37,7,1.05872,1.05796,0,0.0,102654.6,,0.0,0.0
+2023-10-25 18:45:00,True,2023-10-25 11:45:00,modify,,37,7,1.05872,1.05826,0,0.0,102654.6,,0.0,0.0
+2023-10-25 19:00:00,True,2023-10-25 12:00:00,s/l,exactly the same in backtesting,37,7,1.05826,1.05826,0,-322.0,102332.6,stoploss,0.0,-322.0
+2023-10-25 19:30:00,,2023-10-25 12:30:00,buy,,38,7,1.05815,1.05705,0,0.0,102332.6,,0.0,0.0
+2023-10-25 19:55:00,,2023-10-25 12:55:00,s/l,"In backtesting I used the rule that you had to wait for psar to switch before making a new trade, might need to change the buffer on SMI to 2 - right now it is grabbing the signal ",38,7,1.05705,1.05705,0,-770.0,101562.6,stoploss,0.0,-770.0
+2023-10-25 22:45:00,True,2023-10-25 15:45:00,sell,,39,7,1.05661,1.05771,0,0.0,101562.6,,0.0,0.0
+2023-10-26 00:15:00,True,2023-10-25 17:15:00,close,I entered much earlier in backtesting because Impulse was different,39,7,1.05665,1.05771,0,43.63,101606.3,Closing Sell Ticket: SMI crossing above -40 Ticket #: 39,43.63,0.0
+2023-10-26 10:30:00,,2023-10-26 03:30:00,sell,,40,7,1.05415,1.05525,0,0.0,101606.3,,0.0,0.0
+2023-10-26 10:45:00,,2023-10-26 03:45:00,close,"In backtesting I used the rule that you had to wait for psar to switch before making a new trade, might need to change the buffer on SMI to 2 - right now it is grabbing the signal ",40,7,1.05415,1.05525,0,0.0,101606.3,Closing Sell Ticket: PSAR flip Ticket #: 40,0.0,0.0
+2023-10-26 11:00:00,True,2023-10-26 04:00:00,buy,,41,7,1.05483,1.05373,0,0.0,101606.3,,0.0,0.0
+2023-10-26 11:15:00,True,2023-10-26 04:15:00,modify,,41,7,1.05483,1.05389,0,0.0,101606.3,,0.0,0.0
+2023-10-26 11:30:00,True,2023-10-26 04:30:00,close,I was able to get in earlier in backtesting because of the above trade wouldn't have been executed,41,7,1.05449,1.05389,0,-238.0,101368.3,Closing Buy Ticket: SMI crossing below 40 Ticket #: 41,0.0,-238.0
+2023-10-26 11:45:00,,2023-10-26 04:45:00,buy,,42,7,1.05462,1.05352,0,0.0,101368.3,,0.0,0.0
+2023-10-26 12:30:00,,2023-10-26 05:30:00,modify,,42,7,1.05462,1.05389,0,0.0,101368.3,,0.0,0.0
+2023-10-26 13:42:00,,2023-10-26 06:42:00,s/l,"In backtesting I used the rule that you had to wait for psar to switch before making a new trade, might need to change the buffer on SMI to 2 - right now it is grabbing the signal ",42,7,1.05389,1.05389,0,-511.0,100857.3,stoploss,0.0,-511.0
+2023-10-26 15:45:00,True,2023-10-26 08:45:00,buy,,43,7,1.05472,1.05362,0,0.0,100857.3,,0.0,0.0
+2023-10-26 16:00:00,True,2023-10-26 09:00:00,modify,,43,7,1.05472,1.05489,0,0.0,100857.3,,0.0,0.0
+2023-10-26 16:02:00,True,2023-10-26 09:02:00,s/l,"news at 8:15, 8:30, and 8:45",43,7,1.05489,1.05489,0,119.0,100976.3,stoploss,119.0,0.0
+2023-10-26 16:45:00,,2023-10-26 09:45:00,buy,,44,7,1.05565,1.05455,0,0.0,100976.3,,0.0,0.0
+2023-10-26 17:00:00,,2023-10-26 10:00:00,s/l,"I believe I didn't enter in backtesting because the increase was due to the news, and it just seemed like the high volatility scared me",44,7,1.05455,1.05455,0,-770.0,100206.3,stoploss,0.0,-770.0
+2023-10-26 17:30:00,,2023-10-26 10:30:00,buy,,45,7,1.05406,1.05296,0,0.0,100206.3,,0.0,0.0
+2023-10-26 17:45:00,,2023-10-26 10:45:00,close,"In backtesting I used the rule that you had to wait for psar to switch before making a new trade, might need to change the buffer on SMI to 2 - right now it is grabbing the signal ",45,7,1.05399,1.05296,0,-49.0,100157.3,Closing Buy Ticket: PSAR flip Ticket #: 45,0.0,-49.0
+2023-10-26 19:15:00,True,2023-10-26 12:15:00,sell,,46,7,1.05282,1.05392,0,0.0,100157.3,,0.0,0.0
+2023-10-26 20:03:00,True,2023-10-26 13:03:00,s/l,impulse was different so this wasn't an opportunity,46,7,1.05392,1.05392,0,-770.0,99387.26,stoploss,0.0,-770.0
+2023-10-26 20:45:00,True,2023-10-26 13:45:00,buy,,47,7,1.05483,1.05373,0,0.0,99387.26,,0.0,0.0
+2023-10-26 21:00:00,True,2023-10-26 14:00:00,modify,,47,7,1.05483,1.05395,0,0.0,99387.26,,0.0,0.0
+2023-10-26 21:15:00,True,2023-10-26 14:15:00,modify,,47,7,1.05483,1.05433,0,0.0,99387.26,,0.0,0.0
+2023-10-26 21:30:00,True,2023-10-26 14:30:00,modify,,47,7,1.05483,1.05467,0,0.0,99387.26,,0.0,0.0
+2023-10-26 21:45:00,True,2023-10-26 14:45:00,modify,,47,7,1.05483,1.05519,0,0.0,99387.26,,0.0,0.0
+2023-10-26 22:30:00,True,2023-10-26 15:30:00,close,"I entered at 13:15 because impulse was different, and exited 1 bar later with SMI instead of 3 bar rule",47,7,1.05543,1.05519,0,420.0,99807.26,Closing Buy Ticket: 3 bar rule Ticket #: 47,420.0,0.0
+2023-10-26 23:00:00,,2023-10-26 16:00:00,buy,,48,7,1.05566,1.05456,0,0.0,99807.26,,0.0,0.0
+2023-10-26 23:15:00,,2023-10-26 16:15:00,modify,,48,7,1.05566,1.05459,0,0.0,99807.26,,0.0,0.0
+2023-10-26 23:30:00,,2023-10-26 16:30:00,modify,,48,7,1.05566,1.05503,0,0.0,99807.26,,0.0,0.0
+2023-10-26 23:45:00,,2023-10-26 16:45:00,close,"In backtesting I used the rule that you had to wait for psar to switch before making a new trade, might need to change the buffer on SMI to 2 - right now it is grabbing the signal ",48,7,1.05583,1.05503,0,119.0,99926.26,Closing Buy Ticket: SMI crossing below 40 Ticket #: 48,119.0,0.0
+2023-10-27 10:00:00,,2023-10-27 03:00:00,sell,,49,7,1.05559,1.05669,0,0.0,99926.26,,0.0,0.0
+2023-10-27 10:30:00,,2023-10-27 03:30:00,close,backtesting started at 4,49,7,1.05617,1.05669,0,-406.0,99520.26,Closing Sell Ticket: SMI crossing above -40 Ticket #: 49,0.0,-406.0
+2023-10-27 10:45:00,,2023-10-27 03:45:00,sell,,50,7,1.05544,1.05654,0,0.0,99520.26,,0.0,0.0
+2023-10-27 11:00:00,,2023-10-27 04:00:00,close,backtesting started at 4,50,7,1.05585,1.05654,0,-287.0,99233.26,Closing Sell Ticket: SMI crossing above -40 Ticket #: 50,0.0,-287.0
+2023-10-27 11:15:00,True,2023-10-27 04:15:00,sell,,51,7,1.05569,1.05679,0,0.0,99233.26,,0.0,0.0
+2023-10-27 11:30:00,True,2023-10-27 04:30:00,close,"In backtesting I used the rule that you had to wait for psar to switch before making a new trade, might need to change the buffer on SMI to 2 - right now it is grabbing the signal ",51,7,1.05585,1.05679,0,-112.0,99121.26,Closing Sell Ticket: SMI crossing above -40 Ticket #: 51,0.0,-112.0
+2023-10-27 18:45:00,True,2023-10-27 11:45:00,buy,"news at 8:30, I also missed a profitable trade that I made in backtesting becuase the impulse was different",52,7,1.05948,1.05838,0,0.0,99121.26,,0.0,0.0
+2023-10-27 19:40:00,True,2023-10-27 12:40:00,s/l,In backtesting I started using the rule as well to not use signals that came from news,52,7,1.05838,1.05838,0,-770.0,98351.26,stoploss,0.0,-770.0
+2023-10-27 21:30:00,True,2023-10-27 14:30:00,sell,,53,7,1.05625,1.05735,0,0.0,98351.26,,0.0,0.0
+2023-10-27 21:48:00,True,2023-10-27 14:48:00,s/l,I entered much eariler because impulse was different,53,7,1.05735,1.05735,0,-770.0,97581.26,stoploss,0.0,-770.0
+2023-10-27 22:00:00,,2023-10-27 15:00:00,sell,,54,7,1.05675,1.05785,0,0.0,97581.26,,0.0,0.0
+2023-10-27 22:30:00,,2023-10-27 15:30:00,close,"In backtesting I used the rule that you had to wait for psar to switch before making a new trade, might need to change the buffer on SMI to 2 - right now it is grabbing the signal ",54,7,1.05697,1.05785,0,-154.0,97427.26,Closing Sell Ticket: SMI crossing above -40 Ticket #: 54,0.0,-154.0
+2023-10-27 22:45:00,,2023-10-27 15:45:00,sell,,55,7,1.0565,1.0576,0,0.0,97427.26,,0.0,0.0
+2023-10-27 22:56:00,,2023-10-27 15:56:00,close,"In backtesting I used the rule that you had to wait for psar to switch before making a new trade, might need to change the buffer on SMI to 2 - right now it is grabbing the signal ",55,7,1.05687,1.0576,0,-259.0,97168.26,,0.0,-259.0
+2023-10-30 13:45:00,True,2023-10-30 06:45:00,buy,,56,7,1.05886,1.05776,0,0.0,97168.26,,0.0,0.0
+2023-10-30 14:00:00,True,2023-10-30 07:00:00,close,"in backtesting I had a order in at 5 am, but the impulse was different so it wasn't an option here",56,7,1.05852,1.05776,0,-238.0,96930.26,Closing Buy Ticket: SMI crossing below 40 Ticket #: 56,0.0,-238.0
+2023-10-30 14:15:00,,2023-10-30 07:15:00,buy,,57,7,1.05899,1.05789,0,0.0,96930.26,,0.0,0.0
+2023-10-30 15:00:00,,2023-10-30 08:00:00,modify,,57,7,1.05899,1.05958,0,0.0,96930.26,,0.0,0.0
+2023-10-30 15:30:00,,2023-10-30 08:30:00,close,"In backtesting I used the rule that you had to wait for psar to switch before making a new trade, might need to change the buffer on SMI to 2 - right now it is grabbing the signal ",57,7,1.0601,1.05958,0,777.0,97707.26,Closing Buy Ticket: SMI crossing below 40 Ticket #: 57,777.0,0.0
+2023-10-30 15:45:00,,2023-10-30 08:45:00,buy,,58,7,1.0605,1.0594,0,0.0,97707.26,,0.0,0.0
+2023-10-30 16:00:00,,2023-10-30 09:00:00,modify,,58,7,1.0605,1.05984,0,0.0,97707.26,,0.0,0.0
+2023-10-30 16:14:00,,2023-10-30 09:14:00,s/l,"In backtesting I used the rule that you had to wait for psar to switch before making a new trade, might need to change the buffer on SMI to 2 - right now it is grabbing the signal ",58,7,1.05984,1.05984,0,-462.0,97245.26,stoploss,0.0,-462.0
+2023-10-30 17:15:00,True,2023-10-30 10:15:00,buy,,59,7,1.06199,1.06089,0,0.0,97245.26,,0.0,0.0
+2023-10-30 17:30:00,True,2023-10-30 10:30:00,modify,,59,7,1.06199,1.06131,0,0.0,97245.26,,0.0,0.0
+2023-10-30 18:15:00,True,2023-10-30 11:15:00,close,Should have been in backtest,59,7,1.06163,1.06131,0,-252.0,96993.26,Closing Buy Ticket: 3 bar rule Ticket #: 59,0.0,-252.0
+2023-10-30 18:45:00,,2023-10-30 11:45:00,buy,,60,7,1.06076,1.05966,0,0.0,96993.26,,0.0,0.0
+2023-10-30 19:30:00,,2023-10-30 12:30:00,modify,,60,7,1.06076,1.05999,0,0.0,96993.26,,0.0,0.0
+2023-10-30 19:45:00,,2023-10-30 12:45:00,modify,,60,7,1.06076,1.06017,0,0.0,96993.26,,0.0,0.0
+2023-10-30 20:15:00,,2023-10-30 13:15:00,modify,,60,7,1.06076,1.06033,0,0.0,96993.26,,0.0,0.0
+2023-10-30 20:30:00,,2023-10-30 13:30:00,modify,,60,7,1.06076,1.06038,0,0.0,96993.26,,0.0,0.0
+2023-10-30 20:45:00,,2023-10-30 13:45:00,modify,,60,7,1.06076,1.06065,0,0.0,96993.26,,0.0,0.0
+2023-10-30 21:15:00,,2023-10-30 14:15:00,modify,,60,7,1.06076,1.06095,0,0.0,96993.26,,0.0,0.0
+2023-10-30 22:15:00,,2023-10-30 15:15:00,close,"In backtesting I used the rule that you had to wait for psar to switch before making a new trade, might need to change the buffer on SMI to 2 - right now it is grabbing the signal ",60,7,1.06163,1.06095,0,609.0,97602.26,Closing Buy Ticket: SMI crossing below 40 Ticket #: 60,609.0,0.0
+2023-10-31 11:00:00,True,2023-10-31 04:00:00,buy,,61,7,1.06454,1.06344,0,0.0,97602.26,,0.0,0.0
+2023-10-31 12:00:00,True,2023-10-31 05:00:00,modify,,61,7,1.06454,1.06574,0,0.0,97602.26,,0.0,0.0
+2023-10-31 12:01:00,True,2023-10-31 05:01:00,s/l,Impulse was different in backtesting,61,7,1.06574,1.06574,0,840.0,98442.26,stoploss,840.0,0.0
+2023-10-31 12:30:00,,2023-10-31 05:30:00,buy,,62,7,1.06624,1.06514,0,0.0,98442.26,,0.0,0.0
+2023-10-31 13:00:00,,2023-10-31 06:00:00,modify,,62,7,1.06624,1.06531,0,0.0,98442.26,,0.0,0.0
+2023-10-31 13:30:00,,2023-10-31 06:30:00,close,"In backtesting I used the rule that you had to wait for psar to switch before making a new trade, might need to change the buffer on SMI to 2 - right now it is grabbing the signal ",62,7,1.06586,1.06531,0,-266.0,98176.26,Closing Buy Ticket: PSAR flip Ticket #: 62,0.0,-266.0
+2023-10-31 15:30:00,True,2023-10-31 08:30:00,sell,,63,7,1.06067,1.06177,0,0.0,98176.26,,0.0,0.0
+2023-10-31 17:30:00,True,2023-10-31 10:30:00,modify,,63,7,1.06067,1.05942,0,0.0,98176.26,,0.0,0.0
+2023-10-31 17:45:00,True,2023-10-31 10:45:00,modify,,63,7,1.06067,1.0588,0,0.0,98176.26,,0.0,0.0
+2023-10-31 18:00:00,True,2023-10-31 11:00:00,modify,,63,7,1.06067,1.05781,0,0.0,98176.26,,0.0,0.0
+2023-10-31 18:15:00,True,2023-10-31 11:15:00,modify,,63,7,1.06067,1.05751,0,0.0,98176.26,,0.0,0.0
+2023-10-31 18:30:00,True,2023-10-31 11:30:00,modify,,63,7,1.06067,1.05733,0,0.0,98176.26,,0.0,0.0
+2023-10-31 19:07:00,True,2023-10-31 12:07:00,s/l,Impulse was different in backtesting so the entry was an hour later,63,7,1.05733,1.05733,0,2338.0,100514.3,stoploss,2338.0,0.0
+2023-10-31 23:15:00,,2023-10-31 16:15:00,sell,,64,7,1.05722,1.05832,0,0.0,100514.3,,0.0,0.0
+2023-10-31 23:45:00,,2023-10-31 16:45:00,close,Psar was different in backtesting,64,7,1.05762,1.05832,0,-280.0,100234.3,Closing Sell Ticket: SMI crossing above -40 Ticket #: 64,0.0,-280.0
+2023-11-01 11:00:00,True,2023-11-01 04:00:00,sell,,65,7,1.05581,1.05691,0,0.0,100234.3,,0.0,0.0
+2023-11-01 13:00:00,True,2023-11-01 06:00:00,close,"In backtesting I used the rule that you had to wait for psar to switch before making a new trade, might need to change the buffer on SMI to 2 - right now it is grabbing the signal ",65,7,1.05483,1.05691,0,686.0,100920.3,Closing Sell Ticket: PSAR flip Ticket #: 65,686.0,0.0
+2023-11-01 13:30:00,True,2023-11-01 06:30:00,sell,,66,7,1.05422,1.05532,0,0.0,100920.3,,0.0,0.0
+2023-11-01 14:30:00,True,2023-11-01 07:30:00,s/l,"In backtesting I used the rule that you had to wait for psar to switch before making a new trade, might need to change the buffer on SMI to 2 - right now it is grabbing the signal ",66,7,1.05532,1.05532,0,-770.0,100150.3,stoploss,0.0,-770.0
+2023-11-01 15:00:00,True,2023-11-01 08:00:00,sell,,67,7,1.05385,1.05495,0,0.0,100150.3,,0.0,0.0
+2023-11-01 16:00:00,True,2023-11-01 09:00:00,s/l,NEWS AT 10,67,7,1.05495,1.05495,0,-770.0,99380.26,stoploss,0.0,-770.0
+2023-11-01 16:45:00,True,2023-11-01 09:45:00,buy,,68,7,1.05674,1.05564,0,0.0,99380.26,,0.0,0.0
+2023-11-01 16:52:00,True,2023-11-01 09:52:00,s/l,Impact of the news,68,7,1.05564,1.05564,0,-770.0,98610.26,stoploss,0.0,-770.0
+2023-11-01 17:45:00,,2023-11-01 10:45:00,buy,,69,7,1.05454,1.05344,0,0.0,98610.26,,0.0,0.0
+2023-11-01 17:50:00,,2023-11-01 10:50:00,close,Impact of the news; also missed out on an extremely profitable trade at 3 pm because of acct protection,69,7,1.05407,1.05344,0,-329.0,98281.26,Ticket closed for acct protection,0.0,-329.0
+2023-11-02 10:15:00,,2023-11-02 03:15:00,sell,,70,7,1.0597,1.0608,0,0.0,98281.26,,0.0,0.0
+2023-11-02 10:40:00,,2023-11-02 03:40:00,s/l,backtesting started at 4,70,7,1.0608,1.0608,0,-770.0,97511.26,stoploss,0.0,-770.0
+2023-11-02 11:00:00,True,2023-11-02 04:00:00,sell,,71,7,1.06002,1.06112,0,0.0,97511.26,,0.0,0.0
+2023-11-02 11:18:00,True,2023-11-02 04:18:00,s/l,"In backtesting I used the rule that you had to wait for psar to switch before making a new trade, might need to change the buffer on SMI to 2 - right now it is grabbing the signal ",71,7,1.06112,1.06112,0,-770.0,96741.26,stoploss,0.0,-770.0
+2023-11-02 12:30:00,True,2023-11-02 05:30:00,buy,,72,7,1.0628,1.0617,0,0.0,96741.26,,0.0,0.0
+2023-11-02 12:45:00,True,2023-11-02 05:45:00,modify,,72,7,1.0628,1.06205,0,0.0,96741.26,,0.0,0.0
+2023-11-02 13:00:00,True,2023-11-02 06:00:00,modify,,72,7,1.0628,1.06235,0,0.0,96741.26,,0.0,0.0
+2023-11-02 13:15:00,True,2023-11-02 06:15:00,modify,,72,7,1.0628,1.06263,0,0.0,96741.26,,0.0,0.0
+2023-11-02 14:15:00,True,2023-11-02 07:15:00,modify,,72,7,1.0628,1.06386,0,0.0,96741.26,,0.0,0.0
+2023-11-02 14:45:00,True,2023-11-02 07:45:00,modify,,72,7,1.0628,1.06455,0,0.0,96741.26,,0.0,0.0
+2023-11-02 15:00:00,True,2023-11-02 08:00:00,modify,,72,7,1.0628,1.06531,0,0.0,96741.26,,0.0,0.0
+2023-11-02 15:15:00,True,2023-11-02 08:15:00,modify,,72,7,1.0628,1.06535,0,0.0,96741.26,,0.0,0.0
+2023-11-02 15:19:00,True,2023-11-02 08:19:00,s/l,impulse was different so it was 1 hr and 15 minutes late into trade,72,7,1.06535,1.06535,0,1785.0,98526.26,stoploss,1785.0,0.0
+2023-11-02 17:30:00,True,2023-11-02 11:30:00,sell,,73,7,1.06251,1.06361,0,0.0,98526.26,,0.0,0.0
+2023-11-02 19:30:00,True,2023-11-02 13:30:00,close,impulse was different so it was 1 hr late into trade,73,7,1.06246,1.06361,0,35.0,98561.26,Closing Sell Ticket: PSAR flip Ticket #: 73,35.0,0.0
+2023-11-02 21:45:00,True,2023-11-02 14:45:00,sell,,74,7,1.06177,1.06287,0,0.0,98561.26,,0.0,0.0
+2023-11-02 22:45:00,True,2023-11-02 15:45:00,close,"Could have been in Backtesting, but was so late in the day",74,7,1.06231,1.06287,0,-378.0,98183.26,Closing Sell Ticket: SMI crossing above -40 Ticket #: 74,0.0,-378.0
+2023-11-02 23:00:00,,2023-11-02 16:00:00,sell,,75,7,1.06202,1.06312,0,0.0,98183.26,,0.0,0.0
+2023-11-02 23:30:00,,2023-11-02 16:30:00,close,"Could have been in Backtesting, but was so late in the day",75,7,1.06191,1.06312,0,77.0,98260.26,Closing Sell Ticket: SMI crossing above -40 Ticket #: 75,77.0,0.0
+2023-11-03 10:00:00,,2023-11-03 03:00:00,buy,,76,7,1.06293,1.06183,0,0.0,98260.26,,0.0,0.0
+2023-11-03 10:15:00,,2023-11-03 03:15:00,modify,,76,7,1.06293,1.06189,0,0.0,98260.26,Closing Buy Ticket: PSAR flip Ticket #: 76,0.0,0.0
+2023-11-03 10:15:00,,2023-11-03 03:15:00,close,backtesting started at 4,76,7,1.06299,1.06189,0,42.0,98302.26,Closing Buy Ticket: PSAR flip Ticket #: 76,42.0,0.0
+2023-11-03 10:45:00,,2023-11-03 03:45:00,sell,,77,7,1.0624,1.0635,0,0.0,98302.26,,0.0,0.0
+2023-11-03 11:15:00,,2023-11-03 04:15:00,close,backtesting started at 4,77,7,1.06334,1.0635,0,-658.0,97644.26,Closing Sell Ticket: PSAR flip Ticket #: 77,0.0,-658.0
+2023-11-03 11:45:00,True,2023-11-03 04:45:00,buy,,78,7,1.06414,1.06304,0,0.0,97644.26,,0.0,0.0
+2023-11-03 12:00:00,True,2023-11-03 05:00:00,modify,,78,7,1.06414,1.06368,0,0.0,97644.26,,0.0,0.0
+2023-11-03 13:30:00,True,2023-11-03 06:30:00,modify,,78,7,1.06414,1.06409,0,0.0,97644.26,,0.0,0.0
+2023-11-03 14:30:00,True,2023-11-03 07:30:00,modify,,78,7,1.06414,1.06435,0,0.0,97644.26,,0.0,0.0
+2023-11-03 14:45:00,True,2023-11-03 07:45:00,modify,,78,7,1.06414,1.06974,0,0.0,97644.26,,0.0,0.0
+2023-11-03 15:00:00,True,2023-11-03 08:00:00,modify,,78,7,1.06414,1.06986,0,0.0,97644.26,,0.0,0.0
+2023-11-03 15:10:00,True,2023-11-03 08:10:00,s/l,,78,7,1.06986,1.06986,0,4004.0,101648.3,stoploss,4004.0,0.0
+2023-11-06 10:00:00,,2023-11-06 03:00:00,sell,,79,7,1.07329,1.07439,0,0.0,101648.3,,0.0,0.0
+2023-11-06 10:11:00,,2023-11-06 03:11:00,s/l,backtesting started at 4,79,7,1.07439,1.07439,0,-770.0,100878.3,stoploss,0.0,-770.0
+2023-11-06 11:15:00,True,2023-11-06 04:15:00,buy,,80,7,1.07544,1.07434,0,0.0,100878.3,,0.0,0.0
+2023-11-06 11:30:00,True,2023-11-06 04:30:00,close,"In backtesting I used the rule that you had to wait for psar to switch before making a new trade, might need to change the buffer on SMI to 2 - right now it is grabbing the signal ",80,7,1.07461,1.07434,0,-581.0,100297.3,Closing Buy Ticket: Impulse flip Ticket #: 80,0.0,-581.0
+2023-11-06 11:45:00,,2023-11-06 04:45:00,buy,,81,7,1.07469,1.07359,0,0.0,100297.3,,0.0,0.0
+2023-11-06 12:00:00,,2023-11-06 05:00:00,modify,,81,7,1.07469,1.07361,0,0.0,100297.3,,0.0,0.0
+2023-11-06 12:15:00,,2023-11-06 05:15:00,modify,,81,7,1.07469,1.07418,0,0.0,100297.3,,0.0,0.0
+2023-11-06 12:30:00,,2023-11-06 05:30:00,modify,,81,7,1.07469,1.0742,0,0.0,100297.3,,0.0,0.0
+2023-11-06 13:00:00,,2023-11-06 06:00:00,close,"In backtesting I used the rule that you had to wait for psar to switch before making a new trade, might need to change the buffer on SMI to 2 - right now it is grabbing the signal ",81,7,1.07483,1.0742,0,98.0,100395.3,Closing Buy Ticket: Impulse flip Ticket #: 81,98.0,0.0
+2023-11-06 15:00:00,True,2023-11-06 08:00:00,sell,,82,7,1.07435,1.07545,0,0.0,100395.3,,0.0,0.0
+2023-11-06 16:30:00,True,2023-11-06 09:30:00,close,closed early,82,7,1.07414,1.07545,0,147.0,100542.3,Closing Sell Ticket: 3 bar rule Ticket #: 82,147.0,0.0
+2023-11-06 17:00:00,,2023-11-06 10:00:00,sell,,83,7,1.07389,1.07499,0,0.0,100542.3,,0.0,0.0
+2023-11-06 17:45:00,,2023-11-06 10:45:00,close,"because the last ticket closed early, this one opened and closed the same time as backtesting had open the entire time",83,7,1.07362,1.07499,0,189.0,100731.3,Closing Sell Ticket: SMI crossing above -40 Ticket #: 83,189.0,0.0
+2023-11-06 20:15:00,True,2023-11-06 13:15:00,sell,,84,7,1.07321,1.07431,0,0.0,100731.3,,0.0,0.0
+2023-11-06 21:00:00,True,2023-11-06 14:00:00,close,ticket closed early because SMI registered as being above -40,84,7,1.07359,1.07431,0,-266.0,100465.3,Closing Sell Ticket: SMI crossing above -40 Ticket #: 84,0.0,-266.0
+2023-11-06 21:15:00,,2023-11-06 14:15:00,sell,,85,7,1.07244,1.07354,0,0.0,100465.3,,0.0,0.0
+2023-11-07 01:00:00,,2023-11-06 18:00:00,close,"If the previous ticket didn't close early, would have been so much better off",85,7,1.07201,1.07354,0,324.88,100790.1,Closing Sell Ticket: SMI crossing above -40 Ticket #: 85,324.88,0.0
+2023-11-07 11:15:00,True,2023-11-07 04:15:00,sell,,86,7,1.06942,1.07052,0,0.0,100790.1,,0.0,0.0
+2023-11-07 12:30:00,True,2023-11-07 05:30:00,close,exactly the same,86,7,1.06964,1.07052,0,-154.0,100636.1,Closing Sell Ticket: SMI crossing above -40 Ticket #: 86,0.0,-154.0
+2023-11-07 12:45:00,,2023-11-07 05:45:00,sell,,87,7,1.06845,1.06955,0,0.0,100636.1,,0.0,0.0
+2023-11-07 14:30:00,,2023-11-07 07:30:00,close,"In backtesting I used the rule that you had to wait for psar to switch before making a new trade, might need to change the buffer on SMI to 2 - right now it is grabbing the signal ",87,7,1.06807,1.06955,0,266.0,100902.1,Closing Sell Ticket: PSAR flip Ticket #: 87,266.0,0.0
+2023-11-07 16:15:00,True,2023-11-07 09:15:00,sell,,88,7,1.06686,1.06796,0,0.0,100902.1,,0.0,0.0
+2023-11-07 16:45:00,True,2023-11-07 09:45:00,close,,88,7,1.06713,1.06796,0,-189.0,100713.1,Closing Sell Ticket: SMI crossing above -40 Ticket #: 88,0.0,-189.0
+2023-11-07 17:30:00,True,2023-11-07 10:30:00,buy,,89,7,1.06839,1.06729,0,0.0,100713.1,,0.0,0.0
+2023-11-07 17:45:00,True,2023-11-07 10:45:00,close,impulse was different ,89,7,1.06795,1.06729,0,-308.0,100405.1,Closing Buy Ticket: SMI crossing below 40 Ticket #: 89,0.0,-308.0
+2023-11-07 18:00:00,,2023-11-07 11:00:00,buy,,90,7,1.0685,1.0674,0,0.0,100405.1,,0.0,0.0
+2023-11-07 18:15:00,,2023-11-07 11:15:00,modify,,90,7,1.0685,1.06796,0,0.0,100405.1,,0.0,0.0
+2023-11-07 19:13:00,,2023-11-07 12:13:00,s/l,"In backtesting I used the rule that you had to wait for psar to switch before making a new trade, might need to change the buffer on SMI to 2 - right now it is grabbing the signal ",90,7,1.06796,1.06796,0,-378.0,100027.1,stoploss,0.0,-378.0
+2023-11-07 20:45:00,True,2023-11-07 13:45:00,buy,,91,7,1.06917,1.06807,0,0.0,100027.1,,0.0,0.0
+2023-11-07 21:00:00,True,2023-11-07 14:00:00,modify,,91,7,1.06917,1.06877,0,0.0,100027.1,,0.0,0.0
+2023-11-07 21:15:00,True,2023-11-07 14:15:00,modify,,91,7,1.06917,1.06908,0,0.0,100027.1,,0.0,0.0
+2023-11-07 21:30:00,True,2023-11-07 14:30:00,modify,,91,7,1.06917,1.06919,0,0.0,100027.1,,0.0,0.0
+2023-11-07 22:04:00,True,2023-11-07 15:04:00,s/l,exited early,91,7,1.06919,1.06919,0,14.0,100041.1,stoploss,14.0,0.0
+2023-11-07 22:30:00,,2023-11-07 15:30:00,buy,,92,7,1.0696,1.0685,0,0.0,100041.1,,0.0,0.0
+2023-11-07 22:45:00,,2023-11-07 15:45:00,modify,,92,7,1.0696,1.06866,0,0.0,100041.1,,0.0,0.0
+2023-11-07 23:30:00,,2023-11-07 16:30:00,modify,,92,7,1.0696,1.06883,0,0.0,100041.1,,0.0,0.0
+2023-11-08 00:45:00,,2023-11-07 17:45:00,close,"exited the last ticket early, which took all the profits",92,7,1.06974,1.06883,0,33.86,100075.0,Closing Buy Ticket: SMI crossing below 40 Ticket #: 92,33.86,0.0
+2023-11-08 10:15:00,,2023-11-08 03:15:00,sell,,93,7,1.06759,1.06869,0,0.0,100075.0,,0.0,0.0
+2023-11-08 13:00:00,True,2023-11-08 06:00:00,close,"In backtesting I used the rule that you had to wait for psar to switch before making a new trade, might need to change the buffer on SMI to 2 - right now it is grabbing the signal ",93,7,1.06683,1.06869,0,532.0,100607.0,Closing Sell Ticket: PSAR flip Ticket #: 93,532.0,0.0
+2023-11-08 15:30:00,True,2023-11-08 08:30:00,sell,,94,7,1.06647,1.06757,0,0.0,100607.0,,0.0,0.0
+2023-11-08 16:00:00,True,2023-11-08 09:00:00,close,impulse was different,94,7,1.06694,1.06757,0,-329.0,100278.0,Closing Sell Ticket: SMI crossing above -40 Ticket #: 94,0.0,-329.0
+2023-11-08 16:15:00,True,2023-11-08 09:15:00,buy,,95,7,1.06724,1.06614,0,0.0,100278.0,,0.0,0.0
+2023-11-08 16:30:00,True,2023-11-08 09:30:00,modify,,95,7,1.06724,1.06631,0,0.0,100278.0,,0.0,0.0
+2023-11-08 16:45:00,True,2023-11-08 09:45:00,modify,,95,7,1.06724,1.06702,0,0.0,100278.0,,0.0,0.0
+2023-11-08 17:00:00,True,2023-11-08 10:00:00,modify,,95,7,1.06724,1.06793,0,0.0,100278.0,,0.0,0.0
+2023-11-08 17:30:00,True,2023-11-08 10:30:00,modify,,95,7,1.06724,1.06816,0,0.0,100278.0,,0.0,0.0
+2023-11-08 18:00:00,True,2023-11-08 11:00:00,modify,,95,7,1.06724,1.06941,0,0.0,100278.0,,0.0,0.0
+2023-11-08 18:15:00,True,2023-11-08 11:15:00,modify,,95,7,1.06724,1.06991,0,0.0,100278.0,,0.0,0.0
+2023-11-08 18:45:00,True,2023-11-08 11:45:00,modify,,95,7,1.06724,1.07015,0,0.0,100278.0,,0.0,0.0
+2023-11-08 19:00:00,True,2023-11-08 12:00:00,modify,,95,7,1.06724,1.07032,0,0.0,100278.0,,0.0,0.0
+2023-11-08 19:31:00,True,2023-11-08 12:31:00,s/l,"entered slightly later, but otherwise the same",95,7,1.07032,1.07032,0,2156.0,102434.0,stoploss,2156.0,0.0
+2023-11-08 23:00:00,True,2023-11-08 16:00:00,buy,,96,7,1.07096,1.06986,0,0.0,102434.0,,0.0,0.0
+2023-11-08 23:30:00,True,2023-11-08 16:30:00,modify,,96,7,1.07096,1.06992,0,0.0,102434.0,,0.0,0.0
+2023-11-09 00:15:00,True,2023-11-08 17:15:00,close,really late in the day to open a trade,96,7,1.07053,1.06992,0,-493.42,101940.6,Closing Buy Ticket: SMI crossing below 40 Ticket #: 96,0.0,-493.42
+2023-11-09 10:30:00,,2023-11-09 03:30:00,sell,,97,7,1.0696,1.0707,0,0.0,101940.6,,0.0,0.0
+2023-11-09 10:45:00,,2023-11-09 03:45:00,close,backtesting started at 4,97,7,1.07034,1.0707,0,-518.0,101422.6,Closing Sell Ticket: SMI crossing above -40 Ticket #: 97,0.0,-518.0
+2023-11-09 11:00:00,True,2023-11-09 04:00:00,sell,,98,7,1.07014,1.07124,0,0.0,101422.6,,0.0,0.0
+2023-11-09 14:30:00,True,2023-11-09 07:30:00,close,entered later in backtesting because I was going based on when I was looking at the trade,98,7,1.0689,1.07124,0,868.0,102290.6,Closing Sell Ticket: SMI crossing above -40 Ticket #: 98,868.0,0.0
+2023-11-09 16:00:00,True,2023-11-09 09:00:00,buy,,99,7,1.07076,1.06966,0,0.0,102290.6,,0.0,0.0
+2023-11-09 16:45:00,True,2023-11-09 09:45:00,modify,,99,7,1.07076,1.06976,0,0.0,102290.6,,0.0,0.0
+2023-11-09 17:00:00,True,2023-11-09 10:00:00,modify,,99,7,1.07076,1.07133,0,0.0,102290.6,,0.0,0.0
+2023-11-09 17:02:00,True,2023-11-09 10:02:00,s/l,entered earlier on backtest because of impulse being different,99,7,1.07133,1.07133,0,399.0,102689.6,stoploss,399.0,0.0
+2023-11-09 17:45:00,,2023-11-09 10:45:00,buy,,100,7,1.07152,1.07042,0,0.0,102689.6,,0.0,0.0
+2023-11-09 18:15:00,,2023-11-09 11:15:00,close,didn't exit in backtest until 11:18 so this wasn't even an option,100,7,1.07113,1.07042,0,-273.0,102416.6,Closing Buy Ticket: SMI crossing below 40 Ticket #: 100,0.0,-273.0
+2023-11-09 23:00:00,True,2023-11-09 16:00:00,sell,really late to be entering a trade,101,7,1.06638,1.06748,0,0.0,102416.6,,0.0,0.0
+2023-11-09 23:59:00,True,2023-11-09 16:59:00,close at stop,,101,7,1.06676,1.06748,0,-266.0,102150.6,,0.0,-266.0

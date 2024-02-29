@@ -53,8 +53,9 @@
 11. Make lot size adjustable to where it takes into account the average loss and the balance of the account so that we can make 4 consecutive losses and not go under the Max_drawdown limit
     a. otherwise if max_drawdown is not a problem, then take the average lot size * 2 and use the integer value of that as the lot size - DONE
 12. find out the profit for running IP for the entire year
-    a. calculate the win_rate per hour
+    a. calculate the win_rate per hour - DONE
     b. Use this to adjust the lot_size
+13. Create the pseudo take profit with the closing being after 3 bars that are relatively level
 
 ## Debugging:
 1. there is still an error with some of the tickets opening when others are still open.  - fixed

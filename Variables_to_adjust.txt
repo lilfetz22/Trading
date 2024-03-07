@@ -88,4 +88,5 @@ https://www.mql5.com/en/market/product/58254?source=External#description
 
 
 1. Check the integrity of the tickdata
+2. See what impact it will have to not enter a position when the bar closes in the opposite direction
    

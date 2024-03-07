@@ -85,4 +85,7 @@ https://www.mql5.com/en/market/product/58254?source=External#description
 1. We can then create a strategy and use reinforcement learning with my PSAR/Impulse/SMI strategy and optimize the parameters and then be able to run the strategy in MT4
    - This opens up the door to Renko bars again
    - allows me to stay in python and be able to control the backtesting rather than depending on the MT4 strategy tester
+
+
+1. Check the integrity of the tickdata
    

@@ -79,14 +79,18 @@
 
 
 # New Strategy
-Shift everything to just straight python. I have a new connector that will allow me to run python code with a EA in MT4: https://github.com/TheSnowGuru/PyTrader-python-mt4-mt5-trading-api-connector-drag-n-drop/tree/master
+Shift everything to just straight python. I have a new connector that will allow me to run python code with a EA in MT4: 
+https://github.com/TheSnowGuru/PyTrader-python-mt4-mt5-trading-api-connector-drag-n-drop/tree/master
 https://www.mql5.com/en/market/product/58254?source=External#description
 
-1. We can then create a strategy and use reinforcement learning with my PSAR/Impulse/SMI strategy and optimize the parameters and then be able to run the strategy in MT4
+1. We can then create a strategy and use reinforcement learning with my PSAR/Impulse/SMI strategy and optimize the parameters 
+and then be able to run the strategy in MT4
    - This opens up the door to Renko bars again
    - allows me to stay in python and be able to control the backtesting rather than depending on the MT4 strategy tester
 
 
-1. Check the integrity of the tickdata
+1. Check the integrity of the tickdata - DONE
+      - the data looks fairly solid, there were a few instances of the tick data missing a few minutes, but it was a low 
+      percentage and pretty consistent across the entire dataset, so nothing to really be concerned about
 2. See what impact it will have to not enter a position when the bar closes in the opposite direction
    

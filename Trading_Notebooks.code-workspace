@@ -8,5 +8,10 @@
 			"path": "FinRL-Meta"
 		}
 	],
-	"settings": {}
+	"settings": {},
+	"extensions": {
+		"recommendations": [
+			"canadaduane.notes"
+		]
+	}
 }

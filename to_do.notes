@@ -1,0 +1,96 @@
+# Variables to adjust:
+
+## IMPULSE MACD and PSAR
+1. Renko Brick Size
+2. 15 min chart or Renko chart
+3. Renko and just PSAR? or Renko, PSAR, and Impulse? 
+4. When to exit? 
+    a. Vu's strategy (one renko brick in same direction, take half, set SL to 0, then exit on Renko bar reversal)
+    b. one renko brick in same direction, take half, set SL to 0, then exit at n fib levels above entry (optimize n)
+5. When to Enter?
+    a. PSAR and Impulse
+    b. PSAR only
+    c. Impulse only
+5. Optimize inputs into PSAR and Impulse
+6. What would happen if I didn't take half after one renko brick in same direction? 
+    
+
+## Things to investigate
+1. Weekend holds - DONE
+2. Max daily drawdown = -$4,500 -> start Nova at 5 lot size, Msolutions is good for 10 lot size
+3. Swap rates - DONE
+4. Rejoin with original data to see if high's and low's are correct - DONE
+5. find out how often the input data skips minutes - 0.5% of the time, there are 98 instances of 121 min gaps, then several 60 min gaps, 1814 gaps in total that are greater than 1 min - DONE
+6. Create an optimization function for each of the parameters
+    a. Check how well the hours for turning off IP extend to new data
+    b. calculate win rate - DONE
+    c. how often do the parameters need to be refreshed? 
+        - say I optimized the parameters on the last 4 months of data, then applied them to the next week, did it perform significantly better than just using the full year's parameters? 
+    d. make sure the optimization function negatively imposes constraints for any value outside of the original bounds of each list and will ask for a new sample if the value is impossible and will throw an error in the making_calculations function. - DONE
+7. figure out how to add in the Max payout to the notebook
+8. integrate news events to not take any trades in the bot 5 minutes before and after the news event - DONE
+
+
+
+
+## Next Steps:
+1. See if I can connect to MetaTrader 5 and run this strategy on a demo account - NOT POSSIBLE
+      - after I get the impulse_psar working on MT4, then I can only choose brokers who offer MT5 (Nova) and transition over in the future
+2. If that doesn't work, then see if I can translate this strategy to create a Expert Advisor in MetaTrader 4
+
+## EA in MetaTrader 4
+1. Get Renko bars on the chart and then be able to extract their values
+     - determine how far back the indicator stores values that can be accessed by the EA for PSAR and Impulse
+2. replicate the PSAR function - DONE found an indicator that does this
+3. replicate the Impulse MACD function - DONE found an indicator that does this
+4. figure out how to test EA on historical data - DONE
+5. Define Entry Conditions - DONE
+6. Define Exit Conditions - DONE
+7. Define S/L - DONE
+8. Define primary and secondary T/P - DONE
+9. Add in calculations for the psar and impulse MACD so I'm not depending on the indicators
+10. integrate news events to not take any trades in the bot 5 minutes before and after the news event - DONE
+11. Make lot size adjustable to where it takes into account the average loss and the balance of the account so that we can make 4 consecutive losses and not go under the Max_drawdown limit
+    a. otherwise if max_drawdown is not a problem, then take the average lot size * 2 and use the integer value of that as the lot size - DONE
+12. find out the profit for running IP for the entire year
+    a. calculate the win_rate per hour - DONE
+    b. Use this to adjust the lot_size
+13. Create the pseudo take profit with the closing being after 3 bars that are relatively level
+
+## Debugging:
+1. there is still an error with some of the tickets opening when others are still open.  - fixed
+2. I need to either protect against errors in Impulse MACD when the Impulse was Null and the Signal was 0.0088 because that will cause the EA to open shorts even though it shouldn't - this is fine
+
+# Steps to add the EA to the chart
+1. Open EURUSD 1 min chart
+2. Drag Renko EA onto the chart
+3. Make sure that live trading is enabled
+4. Open offline EURUSD 2 chart
+5. Uncheck "offline chart" in the properties
+6. Drag the Parabolic SAR and Impulse MACD indicators onto the chart
+7. Drag Impulse_PSAR EA onto the chart
+8. Make sure that live trading is enabled
+
+
+## Changes to make EA match the backtest
+1. change start time from 3 to 4 am and end time to 4 pm - DONE
+2. Handling news events (no new trades 1 hr after news event) - DONE
+3. making it where the PSAR has to switch before initiating a new trade - DONE
+
+
+# New Strategy
+Shift everything to just straight python. I have a new connector that will allow me to run python code with a EA in MT4: 
+https://github.com/TheSnowGuru/PyTrader-python-mt4-mt5-trading-api-connector-drag-n-drop/tree/master
+https://www.mql5.com/en/market/product/58254?source=External#description
+
+1. We can then create a strategy and use reinforcement learning with my PSAR/Impulse/SMI strategy and optimize the parameters 
+and then be able to run the strategy in MT4
+   - This opens up the door to Renko bars again
+   - allows me to stay in python and be able to control the backtesting rather than depending on the MT4 strategy tester
+
+
+1. Check the integrity of the tickdata - DONE
+      - the data looks fairly solid, there were a few instances of the tick data missing a few minutes, but it was a low 
+      percentage and pretty consistent across the entire dataset, so nothing to really be concerned about
+2. See what impact it will have to not enter a position when the bar closes in the opposite direction
+   

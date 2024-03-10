@@ -152,3 +152,200 @@ Robotics with Reinforcement Learning:
 Control with Reinforcement Learning:
 - Reinforcement learning has found applications in aerobatic helicopter flight, autonomous helicopter control, and operations research for product delivery.
 - It has also been applied to human-computer interaction for dialogue management optimization.
+
+From Domino.ai - https://domino.ai/blog/deep-reinforcement-learning
+Domino's Spring ’24 Release:
+- Announcement of the Spring ’24 Release of Domino's offerings.
+- Features and improvements in the latest release to be showcased.
+
+Deep Reinforcement Learning:
+- An introduction to the concept and its significance in machine learning.
+- Overview of the deep Q-learning model and its application in a simulated video game environment.
+
+Agent-Environment Interaction:
+- Modeling interactions between the agent and the environment in deep reinforcement learning.
+- Using Keras and OpenAI Gym to create a deep learning model for training.
+
+Theory of Reinforcement Learning:
+- Explanation of the reinforcement learning paradigm involving an agent and environment.
+- Understanding of rewards, states, and sequential decision-making in reinforcement learning.
+
+The Cart-Pole Game:
+- Explanation of the classic problem and its objectives.
+- Description of the game rules and the reward system.
+
+Markov Decision Processes:
+- Mathematical definition of reinforcement learning problems as Markov decision processes.
+- Components and concepts involved in Markov decision processes.
+
+Reinforcement Learning Applications:
+- Examples and applications of reinforcement learning in various domains.
+- Utilization of reinforcement learning in autonomous vehicles, board games, and robot-arm manipulation tasks.
+
+Future of Deep RL Agents:
+- Exploration of advanced deep RL agents beyond deep Q-learning.
+- Approaches for optimizing the performance of deep reinforcement learning agents.
+
+States and Actions:
+- States in reinforcement learning are the conditions or configurations of the environment, while actions are the possible moves or decisions that the agent can make.
+- The potential reward for a specific state-action pair is denoted as R, and it represents a probability distribution.
+
+Reward Distribution:
+- The reward distribution R determines the expected reward for a state-action pair and is concealed from the agent.
+- The specifics of the reward distribution can be discerned by taking actions within the environment.
+
+Next State Probabilities:
+- The probability distribution P indicates the likelihood of the next state given a current state-action pair and is also hidden from the agent.
+- Aspects of the next state probabilities can be inferred through actions in the environment.
+
+Discount Factor:
+- The discount factor γ influences the significance of future rewards, allowing for immediate rewards to be valued more highly than distant ones.
+- It prevents value functions from becoming unbounded in games with an infinite number of possible future timesteps.
+
+Optimal Policy:
+- The objective of an MDP is to find a policy function π that enables the agent to take the best action for any state encountered.
+- The optimal policy π* provides the action that leads to the maximum possible discounted future reward.
+
+Deep Q-Learning Networks:
+- Computing the maximum cumulative discounted future reward is computationally intractable, leading to the need for shortcuts like Q-learning.
+- Value functions, such as Vπ(s), gauge the value of a state when following a policy.
+
+Estimating Optimal Actions:
+- The Q-learning approach estimates the optimal action for a given situation, accounting for the abundance of possible future outcomes.
+- It utilizes value functions to indicate the value of a state when following a policy.
+
+Value Functions:
+- The value function, V π (s), represents the utility of a particular state s and is high for states where the pole is near vertical.
+- In contrast, for a state where the pole angle is approaching horizontal, V π (sh) is lower, indicating that the episode is likely to terminate within a few timesteps.
+
+Q-Value Functions:
+- The Q-value function, Qπ (s, a), considers the utility of a particular action when paired with a given state.
+- For example, pairing the action left with a particular state generally corresponds to a higher cumulative discounted future reward compared to pairing the action right.
+
+Estimating Optimal Q-Value:
+- When encountering a state s, we aim to calculate the optimal Q-value, Q∗ (s, a).
+- With deep Q-learning networks, we can use an artificial neural network to estimate the optimal Q-value by leveraging the approximation equation.
+
+Defining a DQN Agent:
+- A DQN agent is defined for learning how to act in an environment, such as the Cart-Pole game from the OpenAI Gym library of environments.
+- The agent incorporates hyperparameters and a neural network model to facilitate learning from the environment.
+
+Initialization Parameters:
+- The DQNAgent class is initialized with various parameters such as state_size, action_size, memory, gamma, epsilon, epsilon_decay, epsilon_min, learning_rate, and the model architecture.
+- The model architecture includes layers with specific activation functions and input dimensions.
+
+Training and Execution:
+- The training process involves updating the agent's memory, training the neural network model, and adjusting the agent's exploration-exploitation strategy based on observed rewards and states.
+- The act method is used to determine the agent's action based on the current state.
+
+Saving Model Parameters:
+- The agent includes a method for saving the neural network's weights with a specified name for future use.
+
+Dependency and Environment Setup:
+- The agent relies on dependencies such as gym, numpy, and keras for reinforcement learning tasks.
+- The Cart-Pole environment from OpenAI Gym is utilized, and hyperparameters are set for training the neural network model.
+
+Parameters:
+- State size and action size are environment-specific, with values of 4 and 2 for the Cart-Pole game, respectively.
+- The memory is for storing and replaying memories, maintained as a deque with a maximum length of 2000.
+
+Hyperparameters:
+- Gamma (discount factor) is an agent hyperparameter that discounts future rewards with typical values near 1, 0.9, 0.95, 0.98, or 0.99.
+- Epsilon (exploration rate) represents the proportion of random actions for exploration and is decayed gradually over gameplay.
+
+Decay and Learning Rate:
+- Epsilon decay gradually reduces the exploration rate with common options of 0.990, 0.995, and 0.999.
+- Learning rate is the stochastic gradient descent hyperparameter.
+
+Neural Network Model:
+- The _build_model() method constructs and compiles a Keras neural network for mapping environmental states to the agent's Q-values.
+- It includes hidden layers with ReLU neurons, and the output layer corresponds to the number of possible actions.
+
+Gameplay Memory:
+- The agent's remember() method appends memories of state, action, reward, next state, and a Boolean flag for episode completion to the memory deque.
+- Training of the neural net model occurs through replaying memories sampled from the memory deque.
+
+Training Process:
+- Sampling a minibatch of memories for more efficient model training by providing a richer range of experiences.
+- Model training involves rounds of training for each sampled memory, particularly considering the done flag for episode completion.
+
+Conclusion:
+- The DQNAgent class includes various method implementations to facilitate reinforcement learning in the Cart-Pole environment.
+- Efficient memory replay and training processes are integral to the agent's learning and decision-making capabilities.
+
+Target Reward Calculation:
+- Calculating the highest possible reward from the timestep as the target reward when the episode is complete.
+- Estimating the target reward by adding the discounted maximum future Q-value when the episode is not completed.
+
+Training the Model:
+- Using the predict method to estimate the future Q-values and store them in target_f.
+- Training the model by replacing the target_f output and calling the fit method.
+
+Selecting an Action to Take:
+- Using the act method to select either a random exploratory action or an exploitative action based on a random value.
+- Selecting an action that exploits the knowledge learned by the model via memory replay.
+
+Saving and Loading Model Parameters:
+- Utilizing save and load methods to save and load the model parameters at regular intervals to maintain performance.
+
+Interacting with an OpenAI Gym Environment:
+- Initializing an instance of the DQN agent to interact with an OpenAI Gym environment such as the Cart-Pole game.
+
+Gameplay Loop:
+- Initiating multiple rounds of game play, episode by episode, using a for loop.
+- Engaging in actions such as resetting the game, rendering the environment, and training the agent.
+
+Episode Completion and Reward:
+- If the episode is not done, the reward increases by one for each additional time step of gameplay.
+- The episode is represented by a while loop that iterates over the time steps until the episode ends.
+
+Agent's Behavior within an Episode:
+- The state is reoriented to a row at the start of the episode using reshape.
+- The agent uses the remember() method to save all aspects of the time step to memory, including the state, action, reward, next state, and the 'done' flag.
+
+Agent Training and Neural Net Parameters:
+- The agent uses the train() method to train its neural net parameters by replaying its memories of gameplay.
+- Every 50 episodes, the agent uses the save() method to store the neural net model's parameters.
+
+Agent Performance and Exploration Rate:
+- The exploration rate ε starts at 100 percent and decays gradually over episodes.
+- The agent improves its performance significantly over episodes, attaining a perfect score of 199 in the final 10 episodes.
+
+Hyperparameter Optimization with SLM Lab:
+- SLM Lab is a deep reinforcement learning framework developed by Wah Loon Keng and Laura Graesser.
+- It provides modular agent components and allows experimenting with various agent hyperparameters.
+
+Metrics for Evaluating Model Performance:
+- SLM Lab provides metrics such as strength, speed, stability, consistency, and fitness for evaluating model performance.
+
+Optimal Hyperparameter Settings:
+- For a DQN agent playing the Cart-Pole game, optimal hyperparameter settings include a single-hidden-layer neural net architecture with 64 neurons, the tanh activation function, and a low learning rate.
+- Trials with an exploration rate that anneals over 10 episodes outperform trials that anneal over 50 or 100 episodes.
+
+Agents Beyond DQN:
+- Deep Q-learning networks, like DQNs, are relatively simple in the world of deep reinforcement learning.
+- DQNs make efficient use of training samples, but they do have drawbacks, especially for environments with a large number of state-action pairs.
+
+Complexity of Q-function:
+- In some cases, the Q-function can become extremely complex, making it intractable to estimate the optimal Q-value, Q∗.
+- This complexity can make DQNs inefficient at exploring and converging on Q∗.
+
+Types of Agents Beyond DQNs:
+- The main categories of deep RL agents include value optimization, imitation learning, model optimization, and policy optimization.
+- These agents solve reinforcement learning problems through different approaches such as predicting future states and learning policies directly.
+
+Policy Gradient Algorithms:
+- Policy gradient algorithms like REINFORCE perform gradient ascent on π directly, leading to more widely applicable solutions than value optimization methods like DQN.
+- However, they have higher variance in performance and require a larger number of training samples.
+
+The Actor-Critic Algorithm:
+- The actor-critic algorithm combines the value optimization and policy optimization approaches, involving a loop between the actor and critic.
+- It has the advantage of solving a broader range of problems than DQN while having lower variance in performance relative to REINFORCE.
+
+Chapter Summary:
+- The chapter covers the essential theory of reinforcement learning, including deep Q-learning and its application to the Cart-Pole environment.
+- It also introduces deep RL algorithms beyond DQN, such as REINFORCE and actor-critic.
+
+Related Tags:
+- The blog also covers related tags such as machine learning, practical techniques, Keras models, and others.
+- Topics include deep Q-learning, DQN, reinforcement learning, and deep learning.

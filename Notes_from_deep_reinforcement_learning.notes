@@ -10,5 +10,145 @@ Ideas:
 TODO:
 Activity Log:
 
+This is a summary by Merlin from: https://wiki.pathmind.com/deep-reinforcement-learning
+Deep Reinforcement Learning:
+- The combination of artificial neural networks and reinforcement learning enables software agents to learn how to achieve complex objectives.
+- Neural networks combined with reinforcement learning algorithms have produced astounding results, such as Deepmind’s AlphaGo.
 
+Reinforcement Learning Algorithms:
+- Reinforcement learning algorithms are goal-oriented and can achieve superhuman performance under the right conditions.
+- These algorithms incorporate deep neural networks and have achieved significant progress in real-life environments.
 
+Applications of Deep Reinforcement Learning:
+- Deep reinforcement learning has been applied in various industries, such as industrial robotics, supply chain optimization, and autonomous control systems technology.
+- Major companies like Google and Microsoft are utilizing deep reinforcement learning for diverse applications.
+
+Basic Terms of Reinforcement Learning:
+- The essential terms of reinforcement learning include agents, environments, states, actions, rewards, policies, and values.
+- These terms form the basis for understanding how reinforcement learning algorithms operate.
+
+Discount Factor:
+- The discount factor is used to lessen the impact of future rewards on the agent’s choice of action.
+- It enforces a form of short-term hedonism and evaluates the present value of future rewards.
+
+State and Reward:
+- A state represents a concrete and immediate situation in which the agent finds itself, while a reward reflects the success or failure of an agent's actions.
+- Both states and rewards play crucial roles in shaping the agent's decision-making process.
+
+Policy and Value:
+- The policy maps states to actions, guiding the agent to the actions promising the highest rewards.
+- Value, on the other hand, represents the expected long-term return with discount and evaluates rewards further into the future.
+
+Application of Q-Value:
+- The Q-value, or action-value, considers the expected long-term return with discount and includes the current action.
+- It plays a significant role in evaluating the value of actions in reinforcement learning scenarios.
+
+Q and Policy:
+- Q maps state-action pairs to rewards.
+- Policy denotes an action taken under a given state.
+
+Trajectory and Key Distinctions:
+- Trajectory influences states through sequences of actions.
+- Value and reward differ in time horizons and expectations.
+
+Environment and Agent Functions:
+- Environments transform current state actions into new states and rewards.
+- Agents transform new states and rewards into next actions.
+
+Reinforcement Learning vs. Other Learning Types:
+- Reinforcement learning focuses on long-term rewards and goal-oriented actions.
+- It differs from supervised and unsupervised learning in its interpretation of inputs.
+
+Domain Selection for Reinforcement Learning:
+- Algorithms must decide which inputs to consider, known as domain selection.
+- Domain selection requires human decisions based on problem knowledge or theories.
+
+State-Action Pairs & Probability Distributions:
+- Reinforcement learning aims to rank and assign values to state-dependent actions.
+- The Q function maps state-action pairs to probable rewards.
+
+Complex Probability Distribution & Statistics:
+- Reinforcement learning attempts to model a complex probability distribution of rewards.
+- It resembles the problem that inspired the invention of the Monte Carlo method.
+
+Iterative Nature of Reinforcement Learning:
+- Reinforcement learning is iterative and learns relations through repetition.
+- It involves a tension between exploitation of known rewards and exploration for new actions.
+
+Advantages of Algorithms Over Humans:
+- Reinforcement learning algorithms have the potential to learn more and better than humans, as they can run in parallel on many chips, train night and day without fatigue, and learn from a large number of game plays.
+
+Role of Neural Networks in Reinforcement Learning:
+- Neural networks are used as function approximators to handle large state or action spaces in reinforcement learning.
+- They can be used to approximate a value function or a policy function, learning to map states to values or state-action pairs to Q values.
+
+Convolutional Networks in Reinforcement Learning:
+- Convolutional networks are used to recognize an agent's state when the input is visual, such as in game environments.
+- In reinforcement learning, they rank the actions possible to perform in a state, deriving different interpretations from images compared to supervised learning.
+
+Application of Q Function in Reinforcement Learning:
+- The Q function selects the state-action pair with the highest Q value, taking into account both immediate rewards and delayed rewards in the sequence.
+- It is recursive in nature and is adjusted by feedback from the environment, analogous to the backpropagation of error in supervised learning.
+
+Real-World Applications of Reinforcement Learning:
+- Reinforcement learning is applied to real-world processes in areas like robotics, industrial operations, traffic control, and recommender systems, performing tactical and strategic tasks.
+
+Parallelization in Accelerating Algorithms:
+- Technological advancements enable the acceleration of algorithms by parallelizing computation over multiple chips, effectively collapsing time and increasing the performance of algorithms.
+- OpenAI demonstrated the success of parallelization by training an algorithm to play a video game for 10 months, equivalent to 180 years worth of games, which led to the algorithm's victory over a world-champion human team.
+
+Algorithm vs Individual Humans:
+- Learning algorithms collect knowledge similar to how humans do through language and reports back.
+- Civilization's accumulated wisdom is pitted against a single human.
+
+Resources for Reinforcement Learning:
+- Reinforcement Learning books: Richard Sutton and Andrew Barto's 'Reinforcement Learning: An Introduction'
+- Survey papers on Reinforcement Learning.
+
+Reinforcement Learning Methods:
+- Dynamic Programming, Monte Carlo, Temporal-Difference, Q-Learning, Sarsa, and R-Learning are fundamental methods.
+- Function Approximation and Policy Search/Policy Gradient are key approaches.
+
+Policy Search and Hierarchical RL:
+- Policy Search methods like Natural Actor-Critic and Relative Entropy Policy Search are important for motor primitives in robotics.
+- Hierarchical RL is also a significant area in reinforcement learning.
+
+Reinforcement Learning Papers/Thesis:
+- Foundational papers and methods papers, including DP, Monte Carlo, Temporal-Difference, and Policy Search.
+- Research highlights the various algorithmic approaches in RL.
+
+Summary of Key RL Lectures:
+- Identifies important lectures, courses, and books on RL offered by various universities and institutions.
+- Reinforcement Learning by David Silver and CS229 Machine Learning by Andrew Ng are some of the key lectures mentioned.
+
+Subversion and Noise in Collective Models:
+- Subversion and noise introduce challenges in collective models.
+- This is important to consider when analyzing the success of learning algorithms vs. individual humans.
+
+FURTHER READING and Other Posts:
+- Includes references for related reading and other posts available on the Pathmind Wiki.
+- Provides resources for further understanding and exploration of the topic.
+
+Temporal Abstraction in Reinforcement Learning:
+- DPs and Semi-MDPs provide a framework for temporal abstraction in reinforcement learning.
+- This framework allows for the transfer of skills in reinforcement learning.
+
+Deep Learning + Reinforcement Learning:
+- Recent works include Human-level Control through Deep Reinforcement Learning (by V. Mnih et al.) published in Nature, 2015.
+- Another notable work is Deep Learning for Real-Time Atari Game Play Using Offline Monte-Carlo Tree Search Planning by Xiaoxiao Guo et al.
+
+End-to-End Training of Deep Visuomotor Policies:
+- This work by Sergey Levine et al. focuses on deep visuomotor policies.
+- It was published in ArXiv on 16th October 2015.
+
+Game Playing with Reinforcement Learning:
+- Reinforcement learning applications include game plays like backgammon, chess, Flappy Bird, and MarI/O learning to play Mario.
+- OpenAI also explored reinforcement learning with Montezuma’s Revenge.
+
+Robotics with Reinforcement Learning:
+- Reinforcement learning has been applied to robotics for applications such as locomotion, skill coordination, and autonomous skill acquisition on mobile manipulators.
+- It has also been used for policy search and adaptation in robotics.
+
+Control with Reinforcement Learning:
+- Reinforcement learning has found applications in aerobatic helicopter flight, autonomous helicopter control, and operations research for product delivery.
+- It has also been applied to human-computer interaction for dialogue management optimization.

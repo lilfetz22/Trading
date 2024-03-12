@@ -10,6 +10,7 @@ profit_df.csv
 ~$IP Trades.xlsx
 ~$profit_df_new.xlsx
 3mo_EURUSD.csv
+EURUSD/
 EURUSD/2023/00/01/00h_ticks.bi5
 EURUSD/2023/00/01/01h_ticks.bi5
 EURUSD/2023/00/01/02h_ticks.bi5
@@ -20393,3 +20394,4 @@ EURUSD/2024/02/09/09h_ticks.bi5
 old files/IP expert print messages - Sheet2.csv
 renko_full_data_2.csv
 renko_full_data_1.csv
+EURUSD_3_8_to_3_12_24.csv

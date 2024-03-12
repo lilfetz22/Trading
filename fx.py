@@ -192,3 +192,19 @@ def prep_data(df, year):
     df_year = df_year.drop(columns=['volume'])
     df_year = df_year.set_index('datetime')
     return df_year
+
+def cum_count(df):
+    # position_count will be a cumulative count used to filter the data to the timeframe between the entry 
+    # and exit signals so anytime there is an "entry + buy" or "entry + short" the count should increase by 1
+    df['position_count'] = np.where(df['sma_crossover'] == 1, 1, np.where(df['sma_crossover'] == -1, 1,0))
+    df['cum_position_count'] = df['position_count'].cumsum()
+    # if day_of_week_transition is 1 then make the cum_position_count null
+    df['cum_position_count'] = np.where(df['sma_signal'] == 'exit', None, df['cum_position_count'])
+    return df
+
+def add_tp_sl(df, take_profit, stop_loss):
+    df['take_profit'] = np.where(df['sma_crossover'] == 1, df['open'] + take_profit, 
+                                 np.where(df['sma_crossover'] == -1, df['open'] - take_profit, np.nan))
+    df['stop_loss'] = np.where(df['sma_crossover'] == 1, df['open'] - stop_loss, 
+                                 np.where(df['sma_crossover'] == -1, df['open'] + stop_loss, np.nan))
+    return df

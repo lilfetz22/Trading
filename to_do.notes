@@ -108,8 +108,9 @@ again with the next bar then the order will be opened.
 - Determine if pyramiding trades works better than just taking one trade at a time
     - I believe that I can do this by finding out how many bars are in between the trades and if they are in the same direction, then creating a new order;
     however, I need to look at some of the losing trades and see why they lost
+- a pyramid order should be defined as (brick_size * sma_length) + 0.00001
 TODO:
-[ ] investigate losing trades
+[√] investigate losing trades
 [ ] test pyramiding orders
 Activity Log:
 

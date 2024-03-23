@@ -93,4 +93,24 @@ and then be able to run the strategy in MT4
       - the data looks fairly solid, there were a few instances of the tick data missing a few minutes, but it was a low 
       percentage and pretty consistent across the entire dataset, so nothing to really be concerned about
 2. See what impact it will have to not enter a position when the bar closes in the opposite direction
+
+
+[2024-03-23]
+Notes:
+Ideas:
+# Reinforcement Learning
+- I should create a reinforcement learning model that will decide based upon the Double SMA, bollinger bands and Awesome Oscillator (I can change these later)
+whether it is a good time to buy, sell, or hold. If the signal is given to buy/sell with a current order, that order will close, and then if the signal appears
+again with the next bar then the order will be opened.
+- I do this with the parameters that I have found successful so far which is 8.1 brick size, 3 for both sma and smoothing sma
+- after that I can take the models as inputs into the GA and optimize the model parameters with GA with the score being how well the model performs
+# Double SMA optimization
+- Determine if pyramiding trades works better than just taking one trade at a time
+    - I believe that I can do this by finding out how many bars are in between the trades and if they are in the same direction, then creating a new order;
+    however, I need to look at some of the losing trades and see why they lost
+TODO:
+[ ] investigate losing trades
+[ ] test pyramiding orders
+Activity Log:
+
    

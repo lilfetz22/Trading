@@ -199,11 +199,11 @@ def cum_count(df):
     # position_count will be a cumulative count used to filter the data to the timeframe between the entry 
     # and exit signals so anytime there is an "entry + buy" or "entry + short" the count should increase by 1
     df['position_count'] = np.where(df['sma_crossover'] == 1, 1, np.where(df['sma_crossover'] == -1, 1,0))
-    df['cum_position_count'] = df['position_count'].cumsum()
+    df['nova_cum_position_count'] = df['position_count'].cumsum()
     # if day_of_week_transition is 1 then make the cum_position_count null
-    df['cum_position_count'] = np.where(df['sma_signal'] == 'exit', None, df['cum_position_count'])
+    df['nova_cum_position_count'] = np.where(df['sma_signal'] == 'exit', None, df['nova_cum_position_count'])
     # a new column called msolutions_cum_position_count which is the cum_position_count but only for msolutions
-    df['msolutions_cum_position_count'] = np.where(df['news_event_5'] != 1, df['cum_position_count'], None)
+    df['msolutions_cum_position_count'] = np.where(df['news_event_5'] != 1, df['nova_cum_position_count'], None)
     return df
 
 def add_tp_sl(df, take_profit, stop_loss):

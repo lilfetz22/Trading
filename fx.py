@@ -202,6 +202,8 @@ def cum_count(df):
     df['cum_position_count'] = df['position_count'].cumsum()
     # if day_of_week_transition is 1 then make the cum_position_count null
     df['cum_position_count'] = np.where(df['sma_signal'] == 'exit', None, df['cum_position_count'])
+    # a new column called msolutions_cum_position_count which is the cum_position_count but only for msolutions
+    df['msolutions_cum_position_count'] = np.where(df['news_event_5'] != 1, df['cum_position_count'], None)
     return df
 
 def add_tp_sl(df, take_profit, stop_loss):

@@ -164,22 +164,29 @@ def add_swap_rates(df, qcr, bcr, lots, acct, remove_neg_swap=True):
     # find the positions where the period in between the entry_time and exit_time include 5:00 pm 
     df[acct + '_entry_time'] = pd.to_datetime(df[acct + '_entry_time'])
     df[acct + '_exit_time'] = pd.to_datetime(df[acct + '_exit_time'])
-    df['entry_time_t'] = df[acct + '_entry_time'].dt.time
-    df['exit_time_t'] = df[acct + '_exit_time'].dt.time
-    df['entry_time_str'] = df['entry_time_t'].astype(str)
-    df['exit_time_str'] = df['exit_time_t'].astype(str)
-    df['entry_time_hr'] = df['entry_time_str'].str.split(':').str[0].astype(int)
-    df['exit_time_hr'] = df['exit_time_str'].str.split(':').str[0].astype(int)
-    # if 17 is between entry_time_hr and exit_time_hr then add a column called 'swap' and set it to 1
-    df[acct + '_swap'] = np.where((df['entry_time_hr'] < 17) & (df['exit_time_hr'] >= 17), 1, 0)
+    no_nas = df.dropna(subset=[acct + '_entry_time', acct + '_exit_time'])
+    no_nas['entry_time_t'] = no_nas[acct + '_entry_time'].dt.time
+    no_nas['exit_time_t'] = no_nas[acct + '_exit_time'].dt.time
+    no_nas['entry_time_str'] = no_nas['entry_time_t'].astype(str)
+    no_nas['exit_time_str'] = no_nas['exit_time_t'].astype(str)
+    no_nas['entry_time_hr'] = no_nas['entry_time_str'].str.split(':').str[0].astype(int)
+    no_nas['exit_time_hr'] = no_nas['exit_time_str'].str.split(':').str[0].astype(int)
+    # if 23 is between entry_time_hr and exit_time_hr then add a column called 'swap' and set it to 1
+    no_nas[acct + '_swap'] = np.where((no_nas['entry_time_hr'] < 23) & (no_nas['exit_time_hr'] >= 23), 1, 0)
     # drop entry_time_t, exit_time_t, entry_time_str, exit_time_str, entry_time_hr, exit_time_hr
-    df.drop(columns=['entry_time_t', 'exit_time_t', 'entry_time_str', 'exit_time_str', 'entry_time_hr', 'exit_time_hr'], inplace=True)
-    df[acct + '_swap_rate'] = np.where((df[acct + '_direction'].str.strip() == 'buy') & (df[acct + '_swap'] == 1), 
-                                      (lots*100000*(qcr-bcr))/(365 * df[acct + '_exit_price']),
-                                    np.where((df[acct + '_direction'].str.strip() == 'sell')  & (df[acct + '_swap'] == 1), 
-                                             (lots*100000*(bcr-qcr))/(365 * df[acct + '_exit_price']), 0))
+    no_nas.drop(columns=['entry_time_t', 'exit_time_t', 'entry_time_str', 'exit_time_str', 'entry_time_hr', 'exit_time_hr'], inplace=True)
+    no_nas[acct + '_swap_rate'] = np.where((no_nas[acct + '_direction'].str.strip() == 'buy') & (no_nas[acct + '_swap'] == 1), 
+                                      (lots*100000*(qcr-bcr))/(365 * no_nas[acct + '_exit_price']),
+                                    np.where((no_nas[acct + '_direction'].str.strip() == 'sell')  & (no_nas[acct + '_swap'] == 1), 
+                                             (lots*100000*(bcr-qcr))/(365 * no_nas[acct + '_exit_price']), 0))
     if remove_neg_swap:
-        df[acct + '_swap_rate'] = np.where(df[acct + '_swap_rate'] < 0, 0, df[acct + '_swap_rate'])
+        no_nas[acct + '_swap_rate'] = np.where(no_nas[acct + '_swap_rate'] < 0, 0, no_nas[acct + '_swap_rate'])
+    
+    # only grab the swap and swap_rate columns for no_nas
+    no_nas_fil = no_nas.loc[:, [acct + '_swap', acct + '_swap_rate']]
+    
+    # join no_nas back with df
+    df = df.join(no_nas_fil)
     
     return df
 

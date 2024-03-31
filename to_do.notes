@@ -119,7 +119,7 @@ again with the next bar then the order will be opened.
 TODO:
 [√] investigate losing trades
 [√] test pyramiding orders
-[ ] incorporate spread into closing price for pyramiding_orders
+[√] incorporate spread into closing price for pyramiding_orders
 
 Activity Log:
 

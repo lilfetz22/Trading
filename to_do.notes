@@ -123,4 +123,14 @@ TODO:
 
 Activity Log:
 
+[2024-04-08]
+Notes:
+Ideas:
+
+TODO:
+[ ] Hyperparameter Tuning: Carefully tune the hyperparameters of your PPO algorithm, such as the learning rate, discount factor, and entropy coefficient, to find the optimal configuration for your trading environment.
+[ ] Splitting the Data Appropriately: Instead of an 80/20 split, consider using a more rigorous approach, such as a rolling window or a walk-forward validation technique. This will ensure that your testing data is truly independent and representative of the market conditions your model will face in production.
+Activity Log:
+
+
    

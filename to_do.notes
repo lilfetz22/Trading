@@ -132,5 +132,99 @@ TODO:
 [ ] Splitting the Data Appropriately: Instead of an 80/20 split, consider using a more rigorous approach, such as a rolling window or a walk-forward validation technique. This will ensure that your testing data is truly independent and representative of the market conditions your model will face in production.
 Activity Log:
 
+[2024-04-09]
+Notes:
+From phind:
+[python]
+hyperparameters = {
+    'lr': [1e-3, 1e-4, 1e-5], # Learning rate
+    'gamma': [0.9, 0.95, 0.99], # Discount factor
+    'ent_coef': [0.01, 0.05, 0.1] # Entropy coefficient
+}
+def train_and_evaluate(lr, gamma, ent_coef):
+    model_ppo = PPO(policy_ppo, env_train, verbose=0, lr=lr, gamma=gamma, ent_coef=ent_coef)
+    model_ppo.learn(total_timesteps=total_learning_timesteps_ppo, callback=ProgressBarCallback(100))
+    # Evaluate the model and return the performance metric
+    # For example, you might calculate the average reward over a test set
+    # This is a placeholder for your evaluation logic
+    return average_reward
+best_hyperparameters = None
+best_performance = -np.inf
 
+for lr in hyperparameters['lr']:
+    for gamma in hyperparameters['gamma']:
+        for ent_coef in hyperparameters['ent_coef']:
+            performance = train_and_evaluate(lr, gamma, ent_coef)
+            if performance > best_performance:
+                best_performance = performance
+                best_hyperparameters = (lr, gamma, ent_coef)
+
+print(f"Best hyperparameters: {best_hyperparameters}")
+
+best_lr, best_gamma, best_ent_coef = best_hyperparameters
+model_ppo = PPO(policy_ppo, env_train, verbose=0, lr=best_lr, gamma=best_gamma, ent_coef=best_ent_coef)
+model_ppo.learn(total_timesteps=total_learning_timesteps_ppo, callback=ProgressBarCallback(100))
+
+# Walk forward validation: 
+env_train = MyForexEnv(
+    df=FOREX_EURUSD_RENKO[:split],
+    window_size=10,
+    frame_bound=(10, split),
+    trade_fee=0.0001,
+    spread=0.0001,
+    spread_bool=False,
+    unit_side='right',
+    sma_length=4,
+    smoothing_sma=4
+)
+
+env_test = MyForexEnv(
+    df=FOREX_EURUSD_RENKO[split:],
+    window_size=10,
+    frame_bound=(split, len(FOREX_EURUSD_RENKO)),
+    trade_fee=0.0001,
+    spread=0.0001,
+    spread_bool=False,
+    unit_side='right',
+    sma_length=4,
+    smoothing_sma=4
+)
+
+# Set the random seed
+seed_ppo = 42
+torch.manual_seed(seed_ppo)
+random.seed(seed_ppo)
+np.random.seed(seed_ppo)
+
+# Initialize the PPO model
+model_ppo = PPO(policy_ppo, env_train, verbose=0)
+
+# Iterate through the training and testing sets
+for i in range(0, len(FOREX_EURUSD_RENKO) - split, 10):
+    # Update the training and testing environments
+    env_train.frame_bound = (10, split + i)
+    env_test.frame_bound = (split + i, len(FOREX_EURUSD_RENKO))
+
+    # Train the model
+    model_ppo.learn(total_timesteps=total_learning_timesteps_ppo // 10)
+
+    # Evaluate the model on the testing set
+    obs_test, info_test = env_test.reset()
+    done_test = False
+    total_reward_test = 0
+    while not done_test:
+        action_test, _ = model_ppo.predict(obs_test)
+        obs_test, reward_test, done_test, info_test = env_test.step(action_test)
+        total_reward_test += reward_test
+
+    print(f"Iteration {i}: Testing Reward = {total_reward_test}")
+
+[end]
+
+Ideas:
+TODO:
+[ ] continue working with Perplexity to implement Hyperparameter Tuning
+
+Activity Log:
+- I created the news events for the entire time of the data, before it only went back to 2022-01-01
    

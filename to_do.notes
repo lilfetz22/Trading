@@ -219,6 +219,12 @@ for i in range(0, len(FOREX_EURUSD_RENKO) - split, 10):
 
     print(f"Iteration {i}: Testing Reward = {total_reward_test}")
 
+# Save the model after training
+model_ppo.save("ppo_model.pkl")
+
+# Load the saved model
+model_ppo = PPO.load("ppo_model.pkl", env=env_train)
+
 [end]
 
 Ideas:

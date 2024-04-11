@@ -6,6 +6,7 @@ import datetime as dt
 import mplfinance 
 from renkodf import Renko
 from scipy.signal import lfilter
+import finta
 
 def test_fx(x):
     x = x + 1
@@ -218,3 +219,95 @@ def add_tp_sl(df, take_profit, stop_loss):
     df['stop_loss'] = np.where(df['sma_crossover'] == 1, df['open'] - stop_loss, 
                                  np.where(df['sma_crossover'] == -1, df['open'] + stop_loss, np.nan))
     return df
+
+def add_cols(df, sma_length, smoothing_sma): 
+            # calculate the sma of the open high low, close / 4 for 3 periods
+        df.loc[:, 'ohlc4'] = (df['close'] + df['open'] + df['high'] + df['low']) / 4
+        df.loc[:, 'sma'] = df['ohlc4'].rolling(window=sma_length).mean()
+        # calculate the sma of sma3 for 3 periods
+        df.loc[:, 'smoothing_sma'] = df['sma'].rolling(window=smoothing_sma).mean()
+        # find the difference between sma and smoothing_sma
+        df.loc[:, 'sma_diff'] = df['sma'] - df['smoothing_sma']
+        # find the sign of the sma_diff
+        df.loc[:, 'sma_sign'] = np.sign(df['sma_diff'])
+        # find where the sma_sign changes from 1 to -1 or -1 to 1 or from 1
+        df.loc[:, 'sma_crossover'] = np.where((df['sma_sign'] == 1) & (df['sma_sign'].shift(1) == -1), 1, 
+                                        np.where((df['sma_sign'] == -1) & (df['sma_sign'].shift(1) == 1), -1, 
+                                        np.where((df['sma_sign'] == -1) & (df['sma_sign'].shift(1) == 0) & 
+                                                 (df['sma_sign'].shift(2) == 1), -1,
+                                        np.where((df['sma_sign'] == 1) & (df['sma_sign'].shift(1) == 0) & 
+                                                 (df['sma_sign'].shift(2) == -1), 1, 0))))
+        
+        # add the day of the week to the dataframe
+        df['day_of_week'] = df.index.day_name()
+        # place a 1 in day_of_week_transition, if it is the last bar on Friday and the next bar is Sunday
+        df['day_of_week_transition'] = np.where((df['day_of_week'] == 'Friday') & 
+                                                            ((df['day_of_week'].shift(-1) == 'Sunday') | 
+                                                            (df['day_of_week'].shift(-1) == 'Monday') |
+                                                            (df['day_of_week'].shift(-1) == 'Tuesday')), 1, 0)
+        
+        # add the news event to the dataframe
+        path_to_news = 'C:/Users/WilliamFetzner/Documents/Trading/calendar_df_full.csv'
+        news_df = pd.read_csv(path_to_news)
+
+        if 'Unnamed: 0' in news_df.columns:
+            news_df.drop('Unnamed: 0', axis=1, inplace=True)
+        # # convert datetime to a datetime object
+        news_df.loc[:, 'datetime'] = pd.to_datetime(news_df['datetime'])
+
+        # group the data by the datetime column and count the number of events
+        news_df_grouped = news_df.groupby('datetime')['Event'].count()
+        # convert caledndar_df_full_grouped to a dataframe
+        news_df_grouped = news_df_grouped.to_frame()
+
+        # create a new column in df called 'news_event_5' and place a 1 in it if there is an event in the news_df_grouped 
+        # dataframe that has a datetime that is within 5 minutes of the datetime in the df dataframe
+        # first add a new column in df called datetime_5 that is the datetime column increased by 5 minutes
+        df.loc[:, 'datetime_5'] = df.index + pd.Timedelta(minutes=5)
+        df.loc[:, 'datetime_neg_5'] = df.index - pd.Timedelta(minutes=5)
+        # Step 2: Initialize the new column 'news_event_5' with 0s
+        df.loc[:, 'news_event_5'] = 0
+
+        # add the minutes until the next news event to the dataframe
+        # Initialize the new column 'secs_until_next_news_event' with np.nan
+        df.loc[:, 'secs_until_next_news_event'] = np.nan
+        news_g = news_df_grouped.copy()
+
+        # Step 3: Iterate over each row in df and check for events in news_df_grouped
+        for index, row in df.iterrows():
+            # filter the calendar_df_full_grouped dataframe to just the events that are >= the datetime in the df dataframe
+            news_g = news_g[news_g.index >= index]
+                # find the difference between the datetime in the calendar_df_full_grouped dataframe and the index
+            # of the df dataframe
+            news_g['diff'] = news_g.index - index
+            # find the minimum difference that is positive
+            news_g['diff'] = news_g['diff'].apply(lambda x: x.total_seconds())
+            news_g['diff'] = news_g['diff'].apply(lambda x: x if x > 0 else np.nan)
+            # find the minimum difference and place it into the secs_until_next_news_event column
+            df.at[index, 'secs_until_next_news_event'] = news_g['diff'].min()
+
+
+            # Find events in news_df_grouped that fall within the 5-minute window
+            events_in_window = news_df_grouped[(news_df_grouped.index >= row['datetime_neg_5']) & 
+                                                        (news_df_grouped.index <= row['datetime_5'])]
+            
+            # If there's at least one event in the window, mark the new column as 1
+            if not events_in_window.empty:
+                df.at[index, 'news_event_5'] = 1
+
+                # add a column for the width of bollinger bands
+        df.loc[:, 'bollinger_width'] = finta.TA.BBWIDTH(df, period=20)
+        # add a column for the awesome oscillator
+        df.loc[:, 'awesome_oscillator'] = finta.TA.AO(df)
+
+
+        # calculates the difference between consecutive elements in the prices array using the np.diff function. 
+        # This results in an array that is one element shorter than the original prices array. To compensate for this, 
+        # a zero is inserted at the beginning of the diff array using np.insert.
+        # diff = np.insert(np.diff(prices), 0, 0)
+
+    #     features = ['open', 'high', 'low', 'close', 'sma', 'smoothing_sma',
+    #    'sma_diff', 'sma_sign', 'sma_crossover', 
+    #    'bollinger_width', 'awesome_oscillator', 'day_of_week_transition',
+    #    'news_event_5', 'secs_until_next_news_event']
+        return df

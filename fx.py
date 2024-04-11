@@ -220,7 +220,7 @@ def add_tp_sl(df, take_profit, stop_loss):
                                  np.where(df['sma_crossover'] == -1, df['open'] + stop_loss, np.nan))
     return df
 
-def add_cols(df, sma_length, smoothing_sma): 
+def add_cols(df, sma_length, smoothing_sma, bbw_period): 
             # calculate the sma of the open high low, close / 4 for 3 periods
         df.loc[:, 'ohlc4'] = (df['close'] + df['open'] + df['high'] + df['low']) / 4
         df.loc[:, 'sma'] = df['ohlc4'].rolling(window=sma_length).mean()
@@ -296,7 +296,7 @@ def add_cols(df, sma_length, smoothing_sma):
                 df.at[index, 'news_event_5'] = 1
 
                 # add a column for the width of bollinger bands
-        df.loc[:, 'bollinger_width'] = finta.TA.BBWIDTH(df, period=20)
+        df.loc[:, 'bollinger_width'] = finta.TA.BBWIDTH(df, period=bbw_period)
         # add a column for the awesome oscillator
         df.loc[:, 'awesome_oscillator'] = finta.TA.AO(df)
 

@@ -1,5 +1,7 @@
 # Variables to adjust:
 
+# type "newday"
+
 ## IMPULSE MACD and PSAR
 1. Renko Brick Size
 2. 15 min chart or Renko chart
@@ -242,3 +244,14 @@ TODO:
 [ ] figure out how to change the frame_bound
 [ ] figure out what .reset is doing for the environment
 Activity Log:
+
+
+[2024-04-19]
+Notes:
+Ideas:
+TODO:
+[ ] Start working on AI Agents that will find the most profitable method and test it on the data
+Activity Log:
+- I figured out how to connect with MT4 to python and run a script! :) 
+- currently training the model to find the best hyperparameters
+

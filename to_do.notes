@@ -315,8 +315,8 @@ Questions to answer:
 - How often do I need to update the hyperparameters?
 - will the model be able to retrain in between receiving new data?
 - How well does the model perform on a new week of data?
-- What are the things to consider when taking a model into production? 
-- What are things that most people don't consider when taking a reinforcement learning model into production?
+- What are the things to consider when taking a model into production? -Above-
+- What are things that most people don't consider when taking a reinforcement learning model into production?-Above-
 - How much data do I need to train on? 
 - How do I implement combining this model with my current account protection strategies?
 TODO:

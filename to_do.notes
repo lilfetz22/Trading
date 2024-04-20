@@ -267,7 +267,7 @@ Notes:
     - 5-6:30 - working for Q-C
 
 Answers to some of the questions below:
-- What are the things to consider when taking a model into production? 
+- What are the things to consider when taking a model into production?: 
 Model Performance: Ensure your model performs well on unseen data and maintains its performance over time. Regularly evaluate your model's performance using appropriate metrics.
 
 Data Pipeline: Your model's performance depends on the quality of data it receives. Ensure your production data pipeline is robust, reliable, and can handle the scale of data your model needs.
@@ -320,5 +320,10 @@ Questions to answer:
 - How much data do I need to train on? 
 - How do I implement combining this model with my current account protection strategies?
 TODO:
+[ ] Start working on AI Agents that will find the most profitable method and test it on the data
+[ ] investigate the ability to use TimeGPT
+[ ] create the logic to implement the model in production while the model is still training and finding the hyperparameters
 Activity Log:
+- answered questions that I have outstanding
+- created the logic to be able to next test weekly hyperparameter updates
 

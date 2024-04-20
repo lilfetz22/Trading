@@ -332,11 +332,11 @@ TODO:
                    - then I found the minimum of that and the max lot size to determine the proposed lot size 
                 
             2. start and end hours
-            3. max_daily_drawdown percent
-            4. max total drawdown
-            5. payout max
+            3. max_daily_drawdown percent - Done - 
+            4. max total drawdown - Done - 
+            5. payout max - Done - 
             6. news events
-            7. long orders closed at 4-55 pm to protect against swap, shorts kept open
+            7. long orders closed at 4-55 pm to protect against swap, shorts kept open - Done - 
             8. closing any order on Friday at 4 pm 
             9. 
 Activity Log:

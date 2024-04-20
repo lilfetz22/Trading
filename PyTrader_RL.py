@@ -200,6 +200,11 @@ if (connection == True):
         # for comparing 2 dates this is ok
 
         if (actual_bar_info['date'] > date_value_last_bar):
+
+            # check if within 10 minutes of a news event
+
+            # check if within trading hours
+
             date_value_last_bar = actual_bar_info['date']
             # new bar, so read last x bars
             bars = MT.Get_last_x_bars_from_now(instrument=instrument, timeframe=MT.get_timeframe_value(timeframe), nbrofbars=number_of_bars)

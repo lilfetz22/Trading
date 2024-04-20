@@ -265,13 +265,58 @@ Notes:
     - 11-11:15 am proritize the tasks from Q-C
     - 11:15-5 pm working for CVS
     - 5-6:30 - working for Q-C
+
+Answers to some of the questions below:
+- What are the things to consider when taking a model into production? 
+Model Performance: Ensure your model performs well on unseen data and maintains its performance over time. Regularly evaluate your model's performance using appropriate metrics.
+
+Data Pipeline: Your model's performance depends on the quality of data it receives. Ensure your production data pipeline is robust, reliable, and can handle the scale of data your model needs.
+
+Model Versioning: Keep track of different versions of your model and the data they were trained on. This helps in debugging and allows for rollbacks if necessary
+
+Scalability: Your model should be able to handle increasing amounts of data and requests as your user base grows.
+
+Monitoring: Implement monitoring to track your model's performance and health over time. This helps in identifying and addressing issues promptly.
+
+Security and Privacy: Ensure your model complies with all relevant data privacy laws and regulations. Implement necessary security measures to protect your model and data.
+
+Maintenance: Models may need to be retrained over time as data and requirements change. Plan for regular model updates and maintenance.
+
+Infrastructure: Consider the infrastructure needed to support your model in production. This includes server capacity, storage, and networking capabilities.
+
+Integration: Ensure your model can be integrated smoothly with other parts of your system.
+
+Testing: Implement thorough testing to catch and fix any issues before your model goes live. This includes unit tests, integration tests, and end-to-end tests.
+
+Documentation: Document your model, its inputs and outputs, how it should be used, and any known issues or limitations. This is crucial for effective use and maintenance of your model in production.
+
+What are things that most people don't consider when taking a reinforcement learning model into production:
+Non-Stationarity: Unlike supervised learning models, RL models interact with an environment that can change over time. This non-stationarity can lead to model degradation if not properly managed.
+
+Exploration vs Exploitation: RL models need to balance exploration (trying new actions to improve) and exploitation (using known information to make the best decision). This balance can be challenging to maintain in a production environment.
+
+Safety: RL models can make harmful decisions during exploration. It's important to implement safety measures to prevent these actions, especially in sensitive environments.
+
+Reward Engineering: Designing a good reward function can be difficult but it's crucial for RL models. A poorly designed reward function can lead to unintended behavior.
+
+Sample Efficiency: RL models often require a lot of data (experiences) to learn effectively. In a production environment, collecting this data can be time-consuming and costly.
+
+Model Interpretability: RL models can be hard to interpret. This can make it difficult to understand why the model is making certain decisions, which is problematic in many production environments.
+
+Real-time Learning: Many RL applications require the model to learn and make decisions in real time. This can be challenging from a computational perspective.
+
+Evaluation: Evaluating RL models can be tricky as performance can be highly variable and dependent on the initial conditions of the environment.
+
+Reproducibility: RL models can be hard to reproduce due to their interaction with the environment and the stochastic nature of many RL algorithms.
+
+Continuous Deployment: Unlike other models, RL models often need to be continuously updated and deployed as they learn from new data. This requires a robust infrastructure that can support continuous deployment and monitoring.
 Ideas:
 Questions to answer:
 - How often do I need to update the hyperparameters?
 - will the model be able to retrain in between receiving new data?
 - How well does the model perform on a new week of data?
 - What are the things to consider when taking a model into production? 
-- What are things that most people don't consider when taking a model into production?
+- What are things that most people don't consider when taking a reinforcement learning model into production?
 - How much data do I need to train on? 
 - How do I implement combining this model with my current account protection strategies?
 TODO:

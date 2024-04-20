@@ -8,8 +8,14 @@ The logic is a simple crossing of two sma averages.
 
 import time
 import pandas as pd
-import sys
+#import talib as ta
+import numpy as np
+import pandas as pd
 import configparser
+from datetime import datetime
+import pytz
+from Pytrader_API_V3_02a import Pytrader_API
+import sys
 sys.path.append("C:/Users/WilliamFetzner/Documents/Trading/PyTrader-python-mt4-mt5-trading-api-connector-drag-n-drop")
 from Pytrader_API_V3_02a import Pytrader_API
 sys.path.append("C:/Users/WilliamFetzner/Documents/Trading/PyTrader-python-mt4-mt5-trading-api-connector-drag-n-drop/strategies/utils")
@@ -81,7 +87,6 @@ config = configparser.ConfigParser()
 config.read(CONFIG_FILE)
 
 brokerInstrumentsLookup = config_instruments(config, "ICMarkets")
-
 def get_current_equity_balance():
     # Get current equity and balance
     DynamicInfo = MT.Get_dynamic_account_info()
@@ -91,6 +96,40 @@ def get_current_equity_balance():
         if prop == 'balance':
             current_acct_balance = DynamicInfo[prop]
     return current_acct_equity, current_acct_balance
+# for not using talib
+def calculate_simple_moving_average(series: pd.Series, n: int=20) -> pd.Series:
+    """Calculates the simple moving average"""
+    return series.rolling(n).mean()
+
+log = Logger()
+log.configure()
+
+# settings
+timeframe = 'M5'
+instrument = 'EURUSD'
+server_IP = '127.0.0.1'
+server_port = 1122                                              # check port number
+SL_in_pips = 20
+TP_in_pips = 10
+
+volume = 0.01
+slippage = 5
+magicnumber = 2772
+multiplier = 10000                                              # multiplier for calculating SL and TP, for JPY pairs should have the value of 100
+if instrument.find('JPY') >= 0:
+    multiplier = 100.0  
+sma_period_1 = 9
+sma_period_2 = 16
+date_value_last_bar = 0 
+number_of_bars = 100                 
+
+#   Create simple lookup table, for the demo api only the following instruments can be traded
+brokerInstrumentsLookup = {
+    'EURUSD': 'EURUSD',
+    'AUDCHF': 'AUDCHF',
+    'NZDCHF': 'NZDCHF',
+    'GBPNZD': 'GBPNZD',
+    'USDCAD': 'USDCAD'}
 
 # Define pytrader API
 MT = Pytrader_API()

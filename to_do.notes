@@ -323,6 +323,22 @@ TODO:
 [ ] Start working on AI Agents that will find the most profitable method and test it on the data
 [ ] investigate the ability to use TimeGPT
 [ ] create the logic to implement the model in production while the model is still training and finding the hyperparameters
+[ ] combine this model with my current account protection strategies?
+      - current account protection safeguards:
+            1. controlling lot size
+                a. trades in runway
+                   - I did this by finding the average lot size, multiplying it by 2 for the max lot size
+                   - then I looked at both the daily drawdown max and the total drawdown max compared to where I currently stand in drawdown. Then whichever is the least, I divided that number by the number of trades I wanted in the runway. 
+                   - then I found the minimum of that and the max lot size to determine the proposed lot size 
+                
+            2. start and end hours
+            3. max_daily_drawdown percent
+            4. max total drawdown
+            5. payout max
+            6. news events
+            7. long orders closed at 4-55 pm to protect against swap, shorts kept open
+            8. closing any order on Friday at 4 pm 
+            9. 
 Activity Log:
 - answered questions that I have outstanding
 - created the logic to be able to next test weekly hyperparameter updates

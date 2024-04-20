@@ -255,3 +255,25 @@ Activity Log:
 - I figured out how to connect with MT4 to python and run a script! :) 
 - currently training the model to find the best hyperparameters
 
+[2024-04-20]
+Notes:
+- I need to make a hard cut off for the transition from my personal project and work. 
+    - 9:45 am is the cut off time for my personal project
+    - 9:45 am - 10:00 am is the time for me to transition to work, wrapping up, putting in my commit messages, 
+        and prepping for what I need to do in the next session
+    - 10-11 am are meetings
+    - 11-11:15 am proritize the tasks from Q-C
+    - 11:15-5 pm working for CVS
+    - 5-6:30 - working for Q-C
+Ideas:
+Questions to answer:
+- How often do I need to update the hyperparameters?
+- will the model be able to retrain in between receiving new data?
+- How well does the model perform on a new week of data?
+- What are the things to consider when taking a model into production? 
+- What are things that most people don't consider when taking a model into production?
+- How much data do I need to train on? 
+- How do I implement combining this model with my current account protection strategies?
+TODO:
+Activity Log:
+

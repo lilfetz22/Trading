@@ -343,3 +343,31 @@ Activity Log:
 - answered questions that I have outstanding
 - created the logic to be able to next test weekly hyperparameter updates
 
+[2024-04-21]
+Notes:
+ I figured out that a learning rate > 0.05 always results in failures, and there is a negative exponential curve that seems to fit the distribution of successes to failures when comparing entropy to learning rate
+Ideas:
+TODO:
+[ ] investigate the hyperparameters and find the best ones
+    [ ] determine which hyperparameters were causing the failures
+       [√] learning rate upper limit is 0.05
+       [√] entropy upper limit is 0.1
+          [ ] need to see what the actual results were for these
+       [ ] window size
+    [ ] figure out the best ones
+[ ] logic to implement the model
+[ ] combine with current account protection strategies
+      [ ] controlling lot size
+          [ ] trades in runway
+      [ ] start and end hours
+      [ ] news events
+[ ] Answer the question: did the hyperparameter tuning make a difference for each week of retraining?
+
+Long-term
+[ ] Start working on AI Agents that will find the most profitable method and test it on the data
+[ ] investigate the ability to use TimeGPT
+      
+Activity Log:
+1. worked on weekly budget for the family
+2. looked at hyperparameter distribution of failures
+

@@ -371,3 +371,35 @@ Activity Log:
 1. worked on weekly budget for the family
 2. looked at hyperparameter distribution of failures
 
+[2024-04-22]
+Notes:
+ - It might not necessarily be that those hyperparameters didn't work, but that the model never learned completely
+    so then when testing the hyperparameters, we get a faulty reading on whether those hyperparameters are good or not
+    which would cause issues for the minimization problem
+ - so do I need to train the model, test how it does on the training env, then run it in the test environment to evaluate
+    the validity of the hyperparameters? - I can have it rerun the training 5 times to see if the model is successful, otherwise
+    just say that those hyperparameters failed
+Ideas:
+TODO:
+[ ] investigate the hyperparameters and find the best ones
+    [ ] determine which hyperparameters were causing the failures
+       [√] learning rate upper limit is 0.05
+       [√] entropy upper limit is 0.1
+          [√] need to see what the actual results were for these
+       [√] window size
+    [ ] figure out the best ones
+[ ] logic to implement the model
+[ ] combine with current account protection strategies
+      [ ] controlling lot size
+          [ ] trades in runway
+      [ ] start and end hours
+      [ ] news events
+[ ] Answer the question: did the hyperparameter tuning make a difference for each week of retraining?
+
+Long-term
+[ ] Start working on AI Agents that will find the most profitable method and test it on the data
+[ ] investigate the ability to use TimeGPT
+
+Activity Log:
+
+1. Window size always fails if it is not 10

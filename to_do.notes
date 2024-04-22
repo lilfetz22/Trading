@@ -382,12 +382,13 @@ Notes:
 Ideas:
 TODO:
 [ ] investigate the hyperparameters and find the best ones
-    [ ] determine which hyperparameters were causing the failures
+    [√] determine which hyperparameters were causing the failures
        [√] learning rate upper limit is 0.05
        [√] entropy upper limit is 0.1
           [√] need to see what the actual results were for these
-       [√] window size
-    [ ] figure out the best ones
+       [√] window size - anything above 10 fails
+    [ ] gamma test
+    [ ] figure out the best hyperparameters to use (ask GenAI the best way to do this)
 [ ] logic to implement the model
 [ ] combine with current account protection strategies
       [ ] controlling lot size
@@ -403,3 +404,7 @@ Long-term
 Activity Log:
 
 1. Window size always fails if it is not 10
+2. Tested out whether I could weed out the models that didn't train, but this just left all of them failing to train, 
+even my best performing model - not sure whether this is important to do
+3. started testing whether I need to search for the best hyperparameters every week
+

@@ -16,6 +16,7 @@ from datetime import datetime
 import pytz
 from Pytrader_API_V3_02a import Pytrader_API
 import sys
+import fx_rl
 sys.path.append("C:/Users/WilliamFetzner/Documents/Trading/PyTrader-python-mt4-mt5-trading-api-connector-drag-n-drop")
 from Pytrader_API_V3_02a import Pytrader_API
 sys.path.append("C:/Users/WilliamFetzner/Documents/Trading/PyTrader-python-mt4-mt5-trading-api-connector-drag-n-drop/strategies/utils")
@@ -57,7 +58,8 @@ acct_protection, swap_protection_long, swap_protection_short = False, False, Fal
 
 ## Other Parameters ##
 date_value_last_bar = 0 
-number_of_bars = 100                 
+number_of_bars = 100 
+more_trades = True                
 
 #   Create simple lookup table, for the demo api only the following instruments can be traded
 brokerInstrumentsLookup = {
@@ -99,6 +101,8 @@ def get_current_equity_balance():
         if prop == 'Account balance':
             current_acct_balance = DynamicInfo[prop]
     return current_acct_equity, current_acct_balance
+
+
 
 # Define pytrader API
 MT = Pytrader_API()
@@ -199,11 +203,43 @@ if (connection == True):
         # date values are in seconds from 1970 onwards.
         # for comparing 2 dates this is ok
 
-        if (actual_bar_info['date'] > date_value_last_bar):
+        if (actual_bar_info['date'] > date_value_last_bar) and not acct_protection:
 
-            # check if within 10 minutes of a news event
+            ######## check if within 10 minutes of a news event ########
+            if (News_Trading_Allowed == False):
+                news_happening = fx_rl.get_news_from_csv(News_Trading_Allowed)
+                if news_happening:
+                    more_trades = False
+                    log.debug('No trades allowed due to news event')
+                else:
+                    more_trades = True
 
-            # check if within trading hours
+
+            ######## check if within trading hours ########
+            if ((ServerTime.hour < Start_Hour) or (ServerTime.hour > End_Hour)):
+                more_trades = False
+                log.debug('No trades allowed due to not being within the trading hours')
+            elif ((ServerTime.hour > Start_Hour) and (ServerTime.hour < End_Hour) and more_trades):
+                more_trades = True
+
+            ######## calculate the volume for the orders ########
+            all_positions_df = MT.Get_closed_positions_within_window()
+            current_instrument_all_positions = all_positions_df[all_positions_df['instrument'] == instrument]
+            if (len(current_instrument_all_positions) > 0):
+                # find the average volume for current_instrument_all_positions
+                avg_volume = current_instrument_all_positions.loc[:, 'volume'].mean()
+                max_volume = round(avg_volume * 2, 2)
+                min_volume = round(avg_volume / 4, 2)
+                todays_drawdown_limit = max_Daily_Drawdown_Perc * account_balance_at_last_close
+                todays_drawdown_diff = current_account_balance - todays_drawdown_limit
+                max_drawdown_diff = current_account_balance - max_Total_Drawdown_Amt
+                closer_drawdown_diff = min(todays_drawdown_diff, max_drawdown_diff)
+
+                risk_per_trade = closer_drawdown_diff / trades_in_runway
+                risk_volume = round(risk_per_trade / ((SL_in_pips / multiplier) * 100_000), 2)
+                calculated_volume = min(max_volume, risk_volume)
+                if (volume != 0.01) and (calculated_volume < volume):
+                    volume = max(min_volume, calculated_volume)          
 
             date_value_last_bar = actual_bar_info['date']
             # new bar, so read last x bars
@@ -213,9 +249,11 @@ if (connection == True):
             df.rename(columns = {'tick_volume':'volume'}, inplace = True)
             df['date'] = pd.to_datetime(df['date'], unit='s')
 
+
+            ######## SMA buying conditions ########
             index = len(df) - 2
             # conditions will be checked on bar [index] and [index-1]
-            if (df['sma_1'][index] > df['sma_2'][index] and df['sma_1'][index-1] < df['sma_2'][index-1]):           # buy condition
+            if (df['sma_1'][index] > df['sma_2'][index] and df['sma_1'][index-1] < df['sma_2'][index-1] and more_trades and not swap_protection_long):           # buy condition
                 
                 buy_OK = MT.Open_order(instrument=instrument,
                                         ordertype='buy',
@@ -235,8 +273,11 @@ if (connection == True):
                             # close
                             close_OK = MT.Close_position_by_ticket(ticket=position.ticket) 
                             log.debug('closed sell trade due to cross and opening buy trade') 
+
+            ###### RL Model Buy conditions ########
+            # if (more_trades and not swap_protection_long)
             
-            if (df['sma_1'][index] < df['sma_2'][index] and df['sma_1'][index-1] > df['sma_2'][index-1]):           # sell condition
+            if (df['sma_1'][index] < df['sma_2'][index] and df['sma_1'][index-1] > df['sma_2'][index-1] and more_trades and not swap_protection_short):           # sell condition
                 
                 sell_OK = MT.Open_order(instrument=instrument,
                                         ordertype='sell',

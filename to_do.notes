@@ -421,12 +421,13 @@ TODO:
        [√] window size - anything above 10 fails
     [ ] gamma test
     [√] figure out the best hyperparameters to use (ask GenAI the best way to do this)
+    [ ] Need to test the best model on the testing week
 [ ] logic to implement the model
-[ ] combine with current account protection strategies
-      [ ] controlling lot size
-          [ ] trades in runway
-      [ ] start and end hours
-      [ ] news events
+[√] combine with current account protection strategies
+      [√] controlling lot size
+          [√] trades in runway
+      [√] start and end hours
+      [√] news events
 [ ] Answer the question: did the hyperparameter tuning make a difference for each week of retraining?
 
 Long-term
@@ -434,7 +435,9 @@ Long-term
 [ ] investigate the ability to use TimeGPT
 
 Activity Log:
-1. Answer to the question of: How do I figure out the best hyperparameters to use?
+1. I added all of the account protection strategies to the function that will implement the model
+2. I started investigating whether I need to do the hyperparameter search every week
+3. Answer to the question of: How do I figure out the best hyperparameters to use?
     Determining the best hyperparameters for a model that generalizes well across different data and time periods, especially for deployment in production, involves a combination of strategies. Here are some approaches to consider:
 
     ### 1. **Cross-Validation**

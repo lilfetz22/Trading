@@ -8,9 +8,6 @@ def get_news_from_csv(News_Trading_Allowed):
         day_of_week = today.weekday()
         days_to_subtract = 0 if day_of_week == 0 else day_of_week
         past_sunday = today - timedelta(days=days_to_subtract+1)
-        # add 4 hours to today
-        today = today + timedelta(hours=4)
-
         
         # Get the month, day, and year of the past Sunday
         month = past_sunday.month
@@ -56,5 +53,4 @@ def get_news_from_csv(News_Trading_Allowed):
                     print(f"Error parsing date from row: {row}")
     except FileNotFoundError:
         print(f"Error opening file: {filename}")
-    
     return any_news

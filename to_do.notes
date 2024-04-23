@@ -408,3 +408,69 @@ Activity Log:
 even my best performing model - not sure whether this is important to do
 3. started testing whether I need to search for the best hyperparameters every week
 
+
+[2024-04-23]
+Notes:
+Ideas:
+TODO:
+[ ] investigate the hyperparameters and find the best ones
+    [√] determine which hyperparameters were causing the failures
+       [√] learning rate upper limit is 0.05
+       [√] entropy upper limit is 0.1
+          [√] need to see what the actual results were for these
+       [√] window size - anything above 10 fails
+    [ ] gamma test
+    [√] figure out the best hyperparameters to use (ask GenAI the best way to do this)
+[ ] logic to implement the model
+[ ] combine with current account protection strategies
+      [ ] controlling lot size
+          [ ] trades in runway
+      [ ] start and end hours
+      [ ] news events
+[ ] Answer the question: did the hyperparameter tuning make a difference for each week of retraining?
+
+Long-term
+[ ] Start working on AI Agents that will find the most profitable method and test it on the data
+[ ] investigate the ability to use TimeGPT
+
+Activity Log:
+1. Answer to the question of: How do I figure out the best hyperparameters to use?
+    Determining the best hyperparameters for a model that generalizes well across different data and time periods, especially for deployment in production, involves a combination of strategies. Here are some approaches to consider:
+
+    ### 1. **Cross-Validation**
+
+    Use cross-validation to estimate the performance of your model with different hyperparameters. Cross-validation involves splitting your dataset into multiple subsets and training your model on some of these subsets while validating it on others. This process helps ensure that your model's performance is not overly optimistic due to overfitting to a single training set.
+
+    - **Time Series Cross-Validation**: For time series data, you can use time series cross-validation, which involves creating multiple training and validation sets by splitting the data at different points in time. This ensures that your model is evaluated on data that it has not seen during training, providing a more realistic estimate of its performance.
+
+    ### 2. **Hyperparameter Optimization with Robustness Testing**
+
+    When optimizing hyperparameters, consider not only the performance on your current dataset but also how well the model generalizes to new data. This can be done by:
+
+    - **Holdout Validation Set**: Keep a separate validation set that is not used during the hyperparameter optimization process. This set should be representative of the data the model will encounter in production. Evaluate the performance of the model with the best hyperparameters on this validation set.
+
+    - **Incremental Validation**: As you update your model with new data, periodically re-evaluate the model's performance with the best hyperparameters on the new data. This helps ensure that the model remains robust as new data comes in.
+
+    ### 3. **Monitoring and Adaptation**
+
+    - **Monitoring in Production**: Once your model is deployed, continuously monitor its performance in production. Use this data to adjust hyperparameters as needed.
+
+    - **Adaptive Hyperparameter Tuning**: Implement a system that can adapt the model's hyperparameters based on its performance in production. This could involve re-running hyperparameter optimization with the new data or using more sophisticated techniques like online learning or adaptive hyperparameter tuning algorithms.
+
+    ### 4. **Domain Knowledge and Feature Engineering**
+
+    - **Domain Knowledge**: Use your understanding of the problem domain to guide the selection of hyperparameters. For example, if you know that certain features are more important than others, you might choose hyperparameters that emphasize these features.
+
+    - **Feature Engineering**: Experiment with different feature engineering techniques to see if they improve the model's performance. This could involve creating new features, selecting different subsets of existing features, or transforming features in different ways.
+
+    ### 5. **Regular Experimentation and Evaluation**
+
+    - **Experimentation**: Regularly experiment with different hyperparameters, feature engineering techniques, and model architectures. Use cross-validation and holdout validation to estimate the performance of these changes.
+
+    - **Evaluation**: Evaluate the performance of your model not just on accuracy or other traditional metrics, but also on its ability to generalize to new data and its robustness to changes in the data.
+
+    ### 6. **Ensemble Methods**
+
+    - **Ensemble Methods**: Consider using ensemble methods, which combine the predictions of multiple models trained with different hyperparameters or data subsets. This can help improve the model's robustness and generalization.
+
+    By combining these strategies, you can develop a model that not only performs well on your current dataset but also remains robust and effective as new data comes in and as the underlying data distribution changes.

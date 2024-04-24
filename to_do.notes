@@ -428,7 +428,7 @@ TODO:
           [√] trades in runway
       [√] start and end hours
       [√] news events
-[ ] Answer the question: did the hyperparameter tuning make a difference for each week of retraining?
+[ ] Answer the question: did the hyperparameter tuning make a difference for each week of retraining? YES
 
 Long-term
 [ ] Start working on AI Agents that will find the most profitable method and test it on the data
@@ -437,6 +437,7 @@ Long-term
 Activity Log:
 1. I added all of the account protection strategies to the function that will implement the model
 2. I started investigating whether I need to do the hyperparameter search every week
+3. The answer is Yes, it makes a significant difference and I will need to continue to search for the best hyperparameters each week.
 3. Answer to the question of: How do I figure out the best hyperparameters to use?
     Determining the best hyperparameters for a model that generalizes well across different data and time periods, especially for deployment in production, involves a combination of strategies. Here are some approaches to consider:
 
@@ -477,3 +478,25 @@ Activity Log:
     - **Ensemble Methods**: Consider using ensemble methods, which combine the predictions of multiple models trained with different hyperparameters or data subsets. This can help improve the model's robustness and generalization.
 
     By combining these strategies, you can develop a model that not only performs well on your current dataset but also remains robust and effective as new data comes in and as the underlying data distribution changes.
+
+
+[2024-04-24]
+Notes:
+Ideas:
+TODO:
+[ ] investigate the hyperparameters and find the best ones
+    [√] determine which hyperparameters were causing the failures
+       [√] learning rate upper limit is 0.05
+       [√] entropy upper limit is 0.1
+          [√] need to see what the actual results were for these
+       [√] window size - anything above 10 fails
+    [ ] gamma test
+    [ ] Need to test the best model on the testing week
+    [ ] look into how reward is calculated and if my account protection strategies can safeguard me from a model that has a bad run
+[ ] logic to implement the model
+[ ] test the code with a basic model that might not be the best
+
+Long-term
+[ ] Start working on AI Agents that will find the most profitable method and test it on the data
+[ ] investigate the ability to use TimeGPT
+Activity Log:

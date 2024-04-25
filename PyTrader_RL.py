@@ -4,22 +4,32 @@
 This script is meant as example how to use the Pytrader_API in live trading.
 The logic is a simple crossing of two sma averages.
 '''
+from tqdm import tqdm
+import random
+import sys
 
-
-import time
-import pandas as pd
-#import talib as ta
 import numpy as np
 import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+import gymnasium as gym
+import gym_mtsim
+from gym_mtsim_forked.gym_mtsim.data import FOREX_DATA_PATH, FOREX_DATA_PATH_TRAIN, MODEL_PATH
+from gym_mtsim import OrderType, Timeframe, MtEnv, MtSimulator
+from stable_baselines3 import A2C, PPO
+from stable_baselines3.common.callbacks import BaseCallback, EvalCallback
+import time
+import torch
+#import talib as ta
 import configparser
 from datetime import datetime
 import pytz
-from Pytrader_API_V3_02a import Pytrader_API
 import sys
 import fx_rl
-sys.path.append("C:/Users/WilliamFetzner/Documents/Trading/PyTrader-python-mt4-mt5-trading-api-connector-drag-n-drop")
+sys.path.append("./PyTrader-python-mt4-mt5-trading-api-connector-drag-n-drop")
 from Pytrader_API_V3_02a import Pytrader_API
-sys.path.append("C:/Users/WilliamFetzner/Documents/Trading/PyTrader-python-mt4-mt5-trading-api-connector-drag-n-drop/strategies/utils")
+sys.path.append("./PyTrader-python-mt4-mt5-trading-api-connector-drag-n-drop/strategies/utils")
 from LogHelper import Logger                              # for logging events
 
 log = Logger()
@@ -30,6 +40,8 @@ timeframe = 'M5'
 instrument = 'EURUSD'
 server_IP = '127.0.0.1'
 server_port = 1122  # check port number
+
+seed = 2024
 
 ###### input parameters ######
 ## Parameters for model:
@@ -102,10 +114,18 @@ def get_current_equity_balance():
             current_acct_balance = DynamicInfo[prop]
     return current_acct_equity, current_acct_balance
 
-
+# load in the model to use for the week
+train_env = fx_rl.load_env(instrument, FOREX_DATA_PATH_TRAIN, training=True)
+model = PPO.load(MODEL_PATH, env=train_env)
 
 # Define pytrader API
 MT = Pytrader_API()
+
+initial_account_equity, initial_account_balance = get_current_equity_balance()
+initial_spread = MT.Get_last_tick_info(instrument=instrument)['spread']
+env_production = fx_rl.load_env(instrument, FOREX_DATA_PATH, spread=initial_spread, current_balance=initial_account_balance, training=True)
+obs_production, info_production = env_production.reset(seed=seed)
+# model.set_env(env_production) # do I need this? I didn't even know this existed
 
 connection = MT.Connect(server_IP, server_port, brokerInstrumentsLookup)
 forever = True

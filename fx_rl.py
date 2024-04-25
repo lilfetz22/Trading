@@ -1,5 +1,25 @@
 import csv
 from datetime import datetime, timedelta
+from tqdm import tqdm
+import random
+import sys
+
+import numpy as np
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+import gymnasium as gym
+import gym_mtsim
+sys.path.append("C:/Users/WilliamFetzner/Documents/Trading/")
+from gym_mtsim_forked.gym_mtsim.data import FOREX_DATA_PATH, FOREX_DATA_PATH_TRAIN
+from gym_mtsim import OrderType, Timeframe, MtEnv, MtSimulator
+from stable_baselines3 import A2C, PPO
+from stable_baselines3.common.callbacks import BaseCallback, EvalCallback
+import time
+import torch
+import pickle
+import pytz
 
 def get_news_from_csv(News_Trading_Allowed):
     try:
@@ -54,3 +74,65 @@ def get_news_from_csv(News_Trading_Allowed):
     except FileNotFoundError:
         print(f"Error opening file: {filename}")
     return any_news
+
+def load_env(instrument, path, spread=0.0005, current_balance=200_000., training=False):
+    if not training:
+        sim = gym_mtsim.MtSimulator(
+            unit='USD',
+            balance=current_balance,
+            leverage=100.,
+            stop_out_level=0.2,
+            hedge=True,
+            symbols_filename=path
+        )
+        current_time = datetime.now() #+ timedelta(hours=7)
+        sim.download_data(
+            symbols=['EURUSD', 'AUDCHF', 'NZDCHF', 'GBPNZD', 'USDCAD'],
+            time_range=(
+                datetime(2024, 1, 1, tzinfo=pytz.UTC),
+                current_time
+            ),
+            timeframe=Timeframe.H1
+        )
+        sim.save_symbols(path)
+    else:
+        sim = gym_mtsim.MtSimulator(
+            unit='USD',
+            balance=current_balance,
+            leverage=100.,
+            stop_out_level=0.2,
+            hedge=True,
+            symbols_filename=path
+        )
+    with open(path, 'rb') as f:
+        symbols = pickle.load(f)
+    symbols[1][instrument].index = pd.to_datetime(symbols[1][instrument].index)
+    max_date = symbols[1][instrument].index.max()
+
+    # what is the day of the week of the max_date
+    max_day_of_week = max_date.dayofweek
+    # subtract the day of the week from the max_date to get the previous friday
+    max_friday = max_date - pd.DateOffset(days=max_day_of_week+2)
+    one_week = max_friday - pd.DateOffset(days=7)
+    if training:
+        training_index_slice = symbols[1][instrument].loc[:one_week, :].index
+        fee_ready = lambda symbol: {
+            instrument: max(0., np.random.normal(0.0001, 0.00003))
+        }[symbol]
+    else:
+        training_index_slice = symbols[1][instrument].index
+        fee_ready = spread
+
+    env = MtEnv(
+        original_simulator=sim,
+        trading_symbols=[instrument],
+        window_size = 10,
+        time_points=list(training_index_slice),
+        hold_threshold=0.5,
+        close_threshold=0.5,
+        fee=fee_ready,
+        symbol_max_orders=2,
+        multiprocessing_processes=2
+    )
+
+    return env

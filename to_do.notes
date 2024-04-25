@@ -501,3 +501,30 @@ Long-term
 [ ] investigate the ability to use TimeGPT
 Activity Log:
 1. Volume is calculated as an output from the model, so I can easily protect against this with forcing the orders to be my volume, not the model's volume
+
+[2024-04-25]
+Notes:
+Ideas:
+1. I can just create an observation without the environment, so I create the observation from the data, provide it to the model, the model gives a prediction, and produces an action. I can then take that action, and use it to perform a step and use the parameters received within the action to then place/hold/close the order. then after the fact I can update the environment and have it reset with the next observation and data added. And re-train the model if need be.
+TODO:
+[ ] investigate the hyperparameters and find the best ones
+    [√] determine which hyperparameters were causing the failures
+       [√] learning rate upper limit is 0.05
+       [√] entropy upper limit is 0.1
+          [√] need to see what the actual results were for these
+       [√] window size - anything above 10 fails
+    [ ] gamma test
+    [ ] Need to test the best model on the testing week
+    [√] look into how reward is calculated and if my account protection strategies can safeguard me from a model that has a bad run
+[ ] logic to implement the model
+[ ] test the code with a basic model that might not be the best
+
+Long-term
+[ ] Start working on AI Agents that will find the most profitable method and test it on the data
+[ ] investigate the ability to use TimeGPT
+Activity Log:
+1. Started looking into the actual implementation of the model and how to get it to interact with the environment. 
+2. Set up the environment, and importing the model. 
+3. Trying to determine the best setup for the model without it taking a ridiculously long time for the model to make a decision by providing it with an observation which I can grab from MetaTrader.
+
+

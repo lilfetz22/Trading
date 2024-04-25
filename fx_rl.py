@@ -75,7 +75,7 @@ def get_news_from_csv(News_Trading_Allowed):
         print(f"Error opening file: {filename}")
     return any_news
 
-def load_env(instrument, path, spread=0.0005, current_balance=200_000., training=False):
+def load_env(instrument, path, STime, spread=0.0005, current_balance=200_000., training=False):
     if not training:
         sim = gym_mtsim.MtSimulator(
             unit='USD',
@@ -85,7 +85,7 @@ def load_env(instrument, path, spread=0.0005, current_balance=200_000., training
             hedge=True,
             symbols_filename=path
         )
-        current_time = datetime.now() #+ timedelta(hours=7)
+        current_time = STime #+ timedelta(hours=7)
         sim.download_data(
             symbols=['EURUSD', 'AUDCHF', 'NZDCHF', 'GBPNZD', 'USDCAD'],
             time_range=(

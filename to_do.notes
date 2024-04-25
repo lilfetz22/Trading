@@ -492,7 +492,7 @@ TODO:
        [√] window size - anything above 10 fails
     [ ] gamma test
     [ ] Need to test the best model on the testing week
-    [ ] look into how reward is calculated and if my account protection strategies can safeguard me from a model that has a bad run
+    [√] look into how reward is calculated and if my account protection strategies can safeguard me from a model that has a bad run
 [ ] logic to implement the model
 [ ] test the code with a basic model that might not be the best
 
@@ -500,3 +500,4 @@ Long-term
 [ ] Start working on AI Agents that will find the most profitable method and test it on the data
 [ ] investigate the ability to use TimeGPT
 Activity Log:
+1. Volume is calculated as an output from the model, so I can easily protect against this with forcing the orders to be my volume, not the model's volume

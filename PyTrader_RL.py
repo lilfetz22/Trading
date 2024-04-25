@@ -120,10 +120,11 @@ model = PPO.load(MODEL_PATH, env=train_env)
 
 # Define pytrader API
 MT = Pytrader_API()
-
+# initialize model and environment
+ServerTime = MT.Get_broker_server_time()
 initial_account_equity, initial_account_balance = get_current_equity_balance()
 initial_spread = MT.Get_last_tick_info(instrument=instrument)['spread']
-env_production = fx_rl.load_env(instrument, FOREX_DATA_PATH, spread=initial_spread, current_balance=initial_account_balance, training=True)
+env_production = fx_rl.load_env(instrument, FOREX_DATA_PATH, ServerTime, spread=initial_spread, current_balance=initial_account_balance, training=True)
 obs_production, info_production = env_production.reset(seed=seed)
 # model.set_env(env_production) # do I need this? I didn't even know this existed
 

@@ -586,6 +586,7 @@ TODO:
         [√] need to see the distribution of gamma and whether I need to continue to add this into the hyperparameters or not
     [√] Need to test the best model on the testing week
     [√] create a function that will calculate the profit factor for the model as the "loss" that will go into the hyperparameter search. Using my way of calculating the profit and including the stoploss 
+    [ ] figure out if I should train with more timesteps on the model with the best hyperparameters or keep it at 50
 [ ] logic to implement the model
     [ ] create the observation from the data
         I need to provide:

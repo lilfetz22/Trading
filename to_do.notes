@@ -569,8 +569,54 @@ Activity Log:
        - I need to see how well these perform on the testing week - then choose my hyperparameters from there.
 2. Looked into the Profit calculated by the model during a test week. 
 3. Figured out how to create an observation for the model to predict from
+4. created a function that will calculate the profit factor for the model as the "loss" that will go into the 
+hyperparameter search. Using my way of calculating the profit and including the stoploss 
 
+[2024-04-27]
+Notes:
+Ideas:
+TODO:
+[ ] investigate the hyperparameters and find the best ones
+    [√] determine which hyperparameters were causing the failures
+       [√] learning rate upper limit is 0.05
+       [√] entropy upper limit is 0.1
+          [√] need to see what the actual results were for these
+       [√] window size - anything above 10 fails
+    [√] gamma test
+        [√] need to see the distribution of gamma and whether I need to continue to add this into the hyperparameters or not
+    [√] Need to test the best model on the testing week
+    [√] create a function that will calculate the profit factor for the model as the "loss" that will go into the hyperparameter search. Using my way of calculating the profit and including the stoploss 
+[ ] logic to implement the model
+    [ ] create the observation from the data
+        I need to provide:
+        [ ] balance - account info
+        [ ] equity  - account info
+        [ ] margin  - account info
+        [ ] features- 10 rows of close, open prices from the last 10 bars
+        [ ] orders - dynamic account info
+    [ ] provide the observation to the model
+    [ ] model gives a prediction
+    [ ] produce an action
+    [ ] take that action
+    [ ] use the parameters received within the action to then place/hold/close the order
+    [ ] update the environment
+    [ ] reset with the next observation and data added
+    [ ] re-train the model if need be - this poses a risk since the model might not successfully train each time
+[ ] test the code with a basic model that might not be the best
 
+Long-term
+[ ] Start working on AI Agents that will find the most profitable method and test it on the data
+[ ] investigate the ability to use TimeGPT
+Activity Log:
+I think gamma hyperparameter should stay. 
+
+Tested the top performing hyperparameters and they all looked good. the ones that didn't perform as well during the hyperparameter search, also didn't do as well and there was a higher occurrence of them actually producing losses on average but the top 5 all looked good. There were a few outliers, like the best model was somewhere at the top of the other, but I think we should be good taking the top performer each week. 
+
+implemented the work that I needed to save the model and have it ready for production.
+
+Created a new notebook that I will use to save the model and send it to production
+
+Checked the data in a single observation, and it is definitely something I can provide the model
 
 
 

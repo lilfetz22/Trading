@@ -530,6 +530,7 @@ Activity Log:
 
 [2024-04-26]
 Notes:
+The *Gym observation_space* property. Each observation contains information about *balance*, *equity*, *margin*, *features*, and *orders*. The **features** is a window on the *signal_features* from index *current_tick - window_size + 1* to *current_tick*. The **orders** is a 3D array. Its first dimension specifies the symbol index in the *trading_symbols* list. The second dimension specifies the order number (each symbol can have more than one open order at the same time in hedge trading). The last dimension has three elements, *entry_price*, *volume*, and *profit* of corresponding order.
 Ideas:
 TODO:
 [ ] investigate the hyperparameters and find the best ones
@@ -544,6 +545,12 @@ TODO:
     [ ] create a function that will calculate the profit factor for the model as the "loss" that will go into the hyperparameter search. Using my way of calculating the profit and including the stoploss 
 [ ] logic to implement the model
     [ ] create the observation from the data
+        I need to provide:
+        [ ] balance - account info
+        [ ] equity  - account info
+        [ ] margin  - account info
+        [ ] features- 10 rows of close, open prices from the last 10 bars
+        [ ] orders
     [ ] provide the observation to the model
     [ ] model gives a prediction
     [ ] produce an action
@@ -561,6 +568,8 @@ Activity Log:
 1. looked into the results of the hyperparameter test, and I am unsure of whether to keep gamma in the hyperparameters or not
        - I need to see how well these perform on the testing week - then choose my hyperparameters from there.
 2. Looked into the Profit calculated by the model during a test week. 
+3. Figured out how to create an observation for the model to predict from
+
 
 
 

@@ -645,5 +645,7 @@ TODO:
     [ ] reset with the next observation and data added
     [ ] re-train the model if need be - this poses a risk since the model might not successfully train each time
 [ ] test the code with a basic model that might not be the best
+
+[ ]  look at the distribution for the finished hyperparameter searches
 Activity Log:
 

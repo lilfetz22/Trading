@@ -576,7 +576,7 @@ hyperparameter search. Using my way of calculating the profit and including the 
 Notes:
 Ideas:
 TODO:
-[ ] investigate the hyperparameters and find the best ones
+[√] investigate the hyperparameters and find the best ones
     [√] determine which hyperparameters were causing the failures
        [√] learning rate upper limit is 0.05
        [√] entropy upper limit is 0.1
@@ -586,7 +586,7 @@ TODO:
         [√] need to see the distribution of gamma and whether I need to continue to add this into the hyperparameters or not
     [√] Need to test the best model on the testing week
     [√] create a function that will calculate the profit factor for the model as the "loss" that will go into the hyperparameter search. Using my way of calculating the profit and including the stoploss 
-    [ ] figure out if I should train with more timesteps on the model with the best hyperparameters or keep it at 50
+    [√] figure out if I should train with more timesteps on the model with the best hyperparameters or keep it at 50
 [ ] logic to implement the model
     [ ] create the observation from the data
         I need to provide:
@@ -620,4 +620,30 @@ Created a new notebook that I will use to save the model and send it to producti
 Checked the data in a single observation, and it is definitely something I can provide the model
 
 
+[2024-04-28]
+Notes:
+Ideas:
+- If I go and get all of the data from using the pytrader connector, then train the model on all of that, then run several simulations with the last week of the data and then use that model as the one for the test run, does it perform better? [optimization]
+- Need to determine how to best update the simulator with a new datapoint
+    - I'm thinking that I grab the new data from the broker, then I concat that with the current dataframe that was in the pickle file, then I re-save the pickle file with the new data appended and then reload the data on the simulator
+
+TODO:
+[ ] logic to implement the model
+    [ ] create the observation from the data
+        I need to provide:
+        [ ] balance - account info
+        [ ] equity  - account info
+        [ ] margin  - account info
+        [ ] features- 10 rows of close, open prices from the last 10 bars
+        [ ] orders - dynamic account info
+    [ ] provide the observation to the model
+    [ ] model gives a prediction
+    [ ] produce an action
+    [ ] take that action
+    [ ] use the parameters received within the action to then place/hold/close the order
+    [ ] update the environment
+    [ ] reset with the next observation and data added
+    [ ] re-train the model if need be - this poses a risk since the model might not successfully train each time
+[ ] test the code with a basic model that might not be the best
+Activity Log:
 

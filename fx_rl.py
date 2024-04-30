@@ -85,7 +85,7 @@ def load_env(instrument, path, STime, spread=0.0005, current_balance=200_000., t
             hedge=True,
             symbols_filename=path
         )
-        current_time = STime #+ timedelta(hours=7)
+        current_time = STime #+ timedelta(hours=5)
         sim.download_data(
             symbols=['EURUSD', 'AUDCHF', 'NZDCHF', 'GBPNZD', 'USDCAD'],
             time_range=(
@@ -113,7 +113,7 @@ def load_env(instrument, path, STime, spread=0.0005, current_balance=200_000., t
     max_day_of_week = max_date.dayofweek
     # subtract the day of the week from the max_date to get the previous friday
     max_friday = max_date - pd.DateOffset(days=max_day_of_week+2)
-    one_week = max_friday - pd.DateOffset(days=7)
+    one_week = max_friday - pd.DateOffset(days=5)
     if training:
         training_index_slice = symbols[1][instrument].loc[:one_week, :].index
         fee_ready = lambda symbol: {
@@ -136,3 +136,34 @@ def load_env(instrument, path, STime, spread=0.0005, current_balance=200_000., t
     )
 
     return env
+
+## add the latest data to the environment
+def get_latest_data(path_to_data, new_data, instrument='EURUSD'):
+    with open(path_to_data, 'rb') as f:
+        symbols = pickle.load(f)
+    current_data = symbols[1][instrument]
+    # Capitalize the column names in new_data
+    new_data.columns = [col.capitalize() for col in new_data.columns]
+    # set the date column to be "Time" and set it as the index
+    new_data = new_data.rename(columns={'Date': 'Time'}).set_index('Time')
+    new_data_fil = new_data[new_data.index > max(current_data.index)]
+    current_data_new_week_added = pd.concat([current_data, new_data_fil.iloc[[0], :]])
+    symbols[1][instrument] = current_data_new_week_added
+    # resave the symbols back to a pickle file
+    with open(path_to_data, 'wb') as f:
+        pickle.dump(symbols, f)
+
+### create a function that will calculate the number of bars needed for a full week's worth of data depending on the given timeframe (M1, M5, M15, H1, H4, D1)
+def get_bars_needed(timeframe):
+    if timeframe == 'M1':
+        return 60 * 24 * 5
+    elif timeframe == 'M5':
+        return 20 * 24 * 5
+    elif timeframe == 'M15':
+        return 4 * 24 * 5
+    elif timeframe == 'H1':
+        return 24 * 5
+    elif timeframe == 'H4':
+        return 6 * 5
+    else:
+        return 12

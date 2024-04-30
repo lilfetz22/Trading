@@ -15,7 +15,7 @@ import matplotlib.pyplot as plt
 
 import gymnasium as gym
 import gym_mtsim
-from gym_mtsim_forked.gym_mtsim.data import FOREX_DATA_PATH, FOREX_DATA_PATH_TRAIN, MODEL_PATH
+from gym_mtsim_forked.gym_mtsim.data import FOREX_DATA_PATH_PRODUCTION, FOREX_DATA_PATH_TRAIN, MODEL_PATH
 from gym_mtsim import OrderType, Timeframe, MtEnv, MtSimulator
 from stable_baselines3 import A2C, PPO
 from stable_baselines3.common.callbacks import BaseCallback, EvalCallback
@@ -36,7 +36,7 @@ log = Logger()
 log.configure()
 
 # settings
-timeframe = 'M5'
+timeframe = 'H1'
 instrument = 'EURUSD'
 server_IP = '127.0.0.1'
 server_port = 1122  # check port number
@@ -124,9 +124,27 @@ MT = Pytrader_API()
 ServerTime = MT.Get_broker_server_time()
 initial_account_equity, initial_account_balance = get_current_equity_balance()
 initial_spread = MT.Get_last_tick_info(instrument=instrument)['spread']
-env_production = fx_rl.load_env(instrument, FOREX_DATA_PATH, ServerTime, spread=initial_spread, current_balance=initial_account_balance, training=True)
+sim_production = gym_mtsim.MtSimulator(
+    unit='USD',
+    balance=initial_account_balance,
+    leverage=100.,
+    stop_out_level=0.2,
+    hedge=True,
+    symbols_filename=FOREX_DATA_PATH_PRODUCTION
+)
+env_production = fx_rl.load_env(instrument, FOREX_DATA_PATH_PRODUCTION, ServerTime, spread=initial_spread, current_balance=initial_account_balance, training=False)
 obs_production, info_production = env_production.reset(seed=seed)
 # model.set_env(env_production) # do I need this? I didn't even know this existed
+done_production = False
+# run through the environment up to the current week and stop with the model
+while not done_production:
+    action_pre_production, _states = model.predict(obs_production)
+    obs_production, reward_production, terminated_production, truncated_production, info_production = env_production.step(action_pre_production)
+    done_production = terminated_production or truncated_production
+    if done_production:
+        break
+
+
 
 connection = MT.Connect(server_IP, server_port, brokerInstrumentsLookup)
 forever = True
@@ -264,14 +282,26 @@ if (connection == True):
 
             date_value_last_bar = actual_bar_info['date']
             # new bar, so read last x bars
-            bars = MT.Get_last_x_bars_from_now(instrument=instrument, timeframe=MT.get_timeframe_value(timeframe), nbrofbars=number_of_bars)
+            bars = MT.Get_last_x_bars_from_now(instrument=instrument, timeframe=MT.get_timeframe_value(timeframe), nbrofbars=fx_rl.get_bars_needed(timeframe))
             # convert to dataframe
             df = pd.DataFrame(bars)
             df.rename(columns = {'tick_volume':'volume'}, inplace = True)
             df['date'] = pd.to_datetime(df['date'], unit='s')
 
+            ## add the data to the environment
+            fx_rl.get_latest_data(FOREX_DATA_PATH_PRODUCTION, df, instrument=instrument)
+            sim_production.load_symbols(FOREX_DATA_PATH_PRODUCTION)
+            action, _states = model.predict(obs_production)
+            env_production.time_points = list(sim_production.symbols_data['EURUSD'].index)
+            env_production._end_tick = len(env_production.time_points) - 1
+            env_production.signal_features = env_production._process_data()
+            env_production.prices = env_production._get_prices()
+            env_production.features_shape = (env_production.window_size, env_production.signal_features.shape[1])
+            obs_production, reward_production, terminated_production, truncated_production, info_production = env_production.step(action)
+            
 
             ######## SMA buying conditions ########
+
             index = len(df) - 2
             # conditions will be checked on bar [index] and [index-1]
             if (df['sma_1'][index] > df['sma_2'][index] and df['sma_1'][index-1] < df['sma_2'][index-1] and more_trades and not swap_protection_long):           # buy condition

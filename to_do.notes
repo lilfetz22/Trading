@@ -680,7 +680,7 @@ TODO:
 [ ] logic to implement the model
     [√] initialize the production_environment with a week's worth of data
     [√] update the datapoints
-    [ ] update the load_env function
+    [√] update the load_env function
     [ ] allow the environment to tell me whether to hold, open or close an order
 [ ] test the code with a basic model that might not be the best
 [ ] figure out how to best deal with volume issue - does this have an impact on training the model? 

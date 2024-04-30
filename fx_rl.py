@@ -75,68 +75,6 @@ def get_news_from_csv(News_Trading_Allowed):
         print(f"Error opening file: {filename}")
     return any_news
 
-def load_env(instrument, path, STime, spread=0.0005, current_balance=200_000., training=False):
-    if not training:
-        sim = gym_mtsim.MtSimulator(
-            unit='USD',
-            balance=current_balance,
-            leverage=100.,
-            stop_out_level=0.2,
-            hedge=True,
-            symbols_filename=path
-        )
-        current_time = STime #+ timedelta(hours=5)
-        sim.download_data(
-            symbols=['EURUSD', 'AUDCHF', 'NZDCHF', 'GBPNZD', 'USDCAD'],
-            time_range=(
-                datetime(2024, 1, 1, tzinfo=pytz.UTC),
-                current_time
-            ),
-            timeframe=Timeframe.H1
-        )
-        sim.save_symbols(path)
-    else:
-        sim = gym_mtsim.MtSimulator(
-            unit='USD',
-            balance=current_balance,
-            leverage=100.,
-            stop_out_level=0.2,
-            hedge=True,
-            symbols_filename=path
-        )
-    with open(path, 'rb') as f:
-        symbols = pickle.load(f)
-    symbols[1][instrument].index = pd.to_datetime(symbols[1][instrument].index)
-    max_date = symbols[1][instrument].index.max()
-
-    # what is the day of the week of the max_date
-    max_day_of_week = max_date.dayofweek
-    # subtract the day of the week from the max_date to get the previous friday
-    max_friday = max_date - pd.DateOffset(days=max_day_of_week+2)
-    one_week = max_friday - pd.DateOffset(days=5)
-    if training:
-        training_index_slice = symbols[1][instrument].loc[:one_week, :].index
-        fee_ready = lambda symbol: {
-            instrument: max(0., np.random.normal(0.0001, 0.00003))
-        }[symbol]
-    else:
-        training_index_slice = symbols[1][instrument].index
-        fee_ready = spread
-
-    env = MtEnv(
-        original_simulator=sim,
-        trading_symbols=[instrument],
-        window_size = 10,
-        time_points=list(training_index_slice),
-        hold_threshold=0.5,
-        close_threshold=0.5,
-        fee=fee_ready,
-        symbol_max_orders=2,
-        multiprocessing_processes=2
-    )
-
-    return env
-
 ## add the latest data to the environment
 def get_latest_data(path_to_data, new_data, instrument='EURUSD'):
     with open(path_to_data, 'rb') as f:

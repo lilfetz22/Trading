@@ -115,7 +115,29 @@ def get_current_equity_balance():
     return current_acct_equity, current_acct_balance
 
 # load in the model to use for the week
-train_env = fx_rl.load_env(instrument, FOREX_DATA_PATH_TRAIN, training=True)
+sim_train = gym_mtsim.MtSimulator(
+    unit='USD',
+    balance=200_000.,
+    leverage=100.,
+    stop_out_level=0.2,
+    hedge=True,
+    symbols_filename=FOREX_DATA_PATH_TRAIN
+)
+sim_training_fee = lambda symbol: {
+    instrument: max(0., np.random.normal(0.0001, 0.00003))
+}[symbol]
+
+train_env = MtEnv(
+    original_simulator=sim_train,
+    trading_symbols=[instrument],
+    window_size = 10,
+    # time_points=list(training_index_slice),
+    hold_threshold=0.5,
+    close_threshold=0.5,
+    fee=sim_training_fee,
+    symbol_max_orders=2,
+    multiprocessing_processes=2
+)
 model = PPO.load(MODEL_PATH, env=train_env)
 
 # Define pytrader API
@@ -132,7 +154,17 @@ sim_production = gym_mtsim.MtSimulator(
     hedge=True,
     symbols_filename=FOREX_DATA_PATH_PRODUCTION
 )
-env_production = fx_rl.load_env(instrument, FOREX_DATA_PATH_PRODUCTION, ServerTime, spread=initial_spread, current_balance=initial_account_balance, training=False)
+env_production = MtEnv(
+    original_simulator=sim_production,
+    trading_symbols=[instrument],
+    window_size = 10,
+    # time_points=list(training_index_slice),
+    hold_threshold=0.5,
+    close_threshold=0.5,
+    fee=sim_training_fee,
+    symbol_max_orders=2,
+    multiprocessing_processes=2
+)
 obs_production, info_production = env_production.reset(seed=seed)
 # model.set_env(env_production) # do I need this? I didn't even know this existed
 done_production = False
@@ -298,13 +330,27 @@ if (connection == True):
             env_production.prices = env_production._get_prices()
             env_production.features_shape = (env_production.window_size, env_production.signal_features.shape[1])
             obs_production, reward_production, terminated_production, truncated_production, info_production = env_production.step(action)
+            current_orders = env_production.render()['orders']
+            # convert current_orders['Entry Time'] to datetime
+            current_orders['Entry Time'] = pd.to_datetime(current_orders['Entry Time'])
+            # find the max Entry Time
+            max_entry_time = current_orders['Entry Time'].max()
+            # if the max Entry Time is within the last 30 seconds, then open a trade
+            if (max_entry_time <= (ServerTime - pd.Timedelta(seconds=30))): 
+                # filter current_orders to the max_entry_time
+                new_order = current_orders[current_orders['Entry Time'] == max_entry_time]
+                if (new_order['Order Type'].values[0] == 'Buy'):
+                    buy_signal = True
+                elif (new_order['Order Type'].values[0] == 'Sell'):
+                    sell_signal = True
+
             
 
-            ######## SMA buying conditions ########
+            ###### RL Model Buy conditions ########
 
             index = len(df) - 2
             # conditions will be checked on bar [index] and [index-1]
-            if (df['sma_1'][index] > df['sma_2'][index] and df['sma_1'][index-1] < df['sma_2'][index-1] and more_trades and not swap_protection_long):           # buy condition
+            if (buy_signal and more_trades and not swap_protection_long):           # buy condition
                 
                 buy_OK = MT.Open_order(instrument=instrument,
                                         ordertype='buy',
@@ -319,16 +365,14 @@ if (connection == True):
                 if (buy_OK > 0):
                     log.debug('Buy trade opened')
                     # check if not a sell position is active, if yes close this sell position 
-                    for position in positions_df.itertuples():
-                        if (position.instrument== instrument and position.position_type== 'sell' and position.magic_number == magicnumber):
-                            # close
-                            close_OK = MT.Close_position_by_ticket(ticket=position.ticket) 
-                            log.debug('closed sell trade due to cross and opening buy trade') 
+                    # for position in positions_df.itertuples():
+                    #     if (position.instrument== instrument and position.position_type== 'sell' and position.magic_number == magicnumber):
+                    #         # close
+                    #         close_OK = MT.Close_position_by_ticket(ticket=position.ticket) 
+                    #         log.debug('closed sell trade due to cross and opening buy trade') 
 
-            ###### RL Model Buy conditions ########
-            # if (more_trades and not swap_protection_long)
             
-            if (df['sma_1'][index] < df['sma_2'][index] and df['sma_1'][index-1] > df['sma_2'][index-1] and more_trades and not swap_protection_short):           # sell condition
+            if (sell_signal and more_trades and not swap_protection_short):           # sell condition
                 
                 sell_OK = MT.Open_order(instrument=instrument,
                                         ordertype='sell',

@@ -691,3 +691,5 @@ Long-term
 [ ] Start working on AI Agents that will find the most profitable method and test it on the data
 [ ] investigate the ability to use TimeGPT
 Activity Log:
+
+added a pickle file for the production which takes the last week

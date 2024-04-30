@@ -672,3 +672,22 @@ Long-term
 Activity Log:
 
 1. found out that I don't need to do any of that. I can just update the environment with each new datapoint and then get the environment to read the observation for me, and return whether or not I should place an order
+
+[2024-04-30]
+Notes:
+Ideas:
+TODO:
+[ ] logic to implement the model
+    [√] initialize the production_environment with a week's worth of data
+    [√] update the datapoints
+    [ ] update the load_env function
+    [ ] allow the environment to tell me whether to hold, open or close an order
+[ ] test the code with a basic model that might not be the best
+[ ] figure out how to best deal with volume issue - does this have an impact on training the model? 
+
+[ ]  look at the distribution for the finished hyperparameter searches
+
+Long-term
+[ ] Start working on AI Agents that will find the most profitable method and test it on the data
+[ ] investigate the ability to use TimeGPT
+Activity Log:

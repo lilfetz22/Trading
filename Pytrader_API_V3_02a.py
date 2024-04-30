@@ -824,7 +824,7 @@ class Pytrader_API:
 
         Args:
             instrument: instrument name
-            nbrofticks: number of ticks to retriev
+            nbrofticks: number of ticks to retrieve
         Returns: numpy array with:
             date,
             ask,

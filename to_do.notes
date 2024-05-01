@@ -693,3 +693,24 @@ Long-term
 Activity Log:
 
 added a pickle file for the production which takes the last week
+
+
+[2024-05-01]
+Notes:
+Ideas:
+TODO:
+[√] logic to implement the model
+    [√] allow the environment to tell me whether to hold, open or close an order
+[ ] test the code with a basic model that might not be the best
+
+
+[ ] figure out how to best deal with volume issue - does this have an impact on training the model? 
+
+[ ]  look at the distribution for the finished hyperparameter searches
+
+Long-term
+[ ] Start working on AI Agents that will find the most profitable method and test it on the data
+[ ] investigate the ability to use TimeGPT
+Activity Log:
+Added closing conditions to the RL model
+- started testing out the code and going through it line-by-line

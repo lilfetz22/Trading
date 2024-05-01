@@ -106,14 +106,15 @@ config.read(CONFIG_FILE)
 
 brokerInstrumentsLookup = config_instruments(config, "ICMarkets")
 connection = MT.Connect(server_IP, server_port, brokerInstrumentsLookup)
+print(connection)
 
 def get_current_equity_balance():
     # Get current equity and balance
     DynamicInfo = MT.Get_dynamic_account_info()
     for prop in DynamicInfo:
-        if prop == 'Account equity': 
+        if prop == 'equity': 
             current_acct_equity = DynamicInfo[prop]
-        if prop == 'Account balance':
+        if prop == 'balance':
             current_acct_balance = DynamicInfo[prop]
     return current_acct_equity, current_acct_balance
 
@@ -147,7 +148,11 @@ model = PPO.load(MODEL_PATH, env=train_env)
 ServerTime = MT.Get_broker_server_time()
 print(ServerTime)
 initial_account_equity, initial_account_balance = get_current_equity_balance()
+print(f'Initial account equity: {initial_account_equity}, Initial account balance: {initial_account_balance}')
+
 initial_spread = MT.Get_last_tick_info(instrument=instrument)['spread']
+print(MT.Get_last_tick_info(instrument=instrument)['bid'], MT.Get_last_tick_info(instrument=instrument)['ask'], MT.Get_last_tick_info(instrument=instrument)['spread'])
+print(f'Initial spread: {initial_spread / (multiplier * 10)}')
 sim_production = gym_mtsim.MtSimulator(
     unit='USD',
     balance=initial_account_balance,

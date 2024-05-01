@@ -26,6 +26,8 @@ import configparser
 from datetime import datetime
 import pytz
 import sys
+# reimport this module
+
 import fx_rl
 sys.path.append("./PyTrader-python-mt4-mt5-trading-api-connector-drag-n-drop")
 from Pytrader_API_V3_02a import Pytrader_API
@@ -181,10 +183,20 @@ done_production = False
 # run through the environment up to the current week and stop with the model
 while not done_production:
     action_pre_production, _states = model.predict(obs_production)
+    if (len(env_production.time_points) - 2) == env_production._current_tick:
+        # if there are any open orders, we need to go ahead and close them
+        for o in range(len(env_production.simulator.symbol_orders('EURUSD'))):
+            print(f'closing order {o}')
+            action_pre_production[o] = 0.99
+            # make sure the model doesn't place another one
+        action_pre_production[-2] = 0.99
     obs_production, reward_production, terminated_production, truncated_production, info_production = env_production.step(action_pre_production)
     done_production = terminated_production or truncated_production
     if done_production:
         break
+# if (len(env_production.simulator.symbol_orders('EURUSD')) > 0):
+#     for simulator_order in env_production.simulator.symbol_orders('EURUSD'):
+#         env_production.simulator.close_order(simulator_order)
 
 # dictionary to store the trade_id and the corresponding ticket number
 trade_id_conversion = {}
@@ -211,14 +223,21 @@ if (connection == True):
                     swap_long = InstrumentInfo[prop]
                     if swap_long < 0:
                         swap_protection_long = True
+                        # print(f'swap_long: {swap_long}')
                 if prop == 'swap_short':
                     swap_short = InstrumentInfo[prop]
                     if swap_short < 0:
                         swap_protection_short = True
+                        # print(f'swap_short: {swap_short}')
 
 
         # retrieve open positions
         positions_df = MT.Get_all_open_positions()
+        # create a fake position with ticket, instrument, order_ticket, position_type, magic_number, volume, open_price, open_time, stop_loss, take_profit, comment, profit, swap, commission
+        # fake_position = {'ticket': 46686819, 'instrument': 'EURUSD', 'order_ticket': 46686819, 'position_type': 'Buy', 
+        #                  'magic_number': 2772, 'volume': 0.0, 'open_price': 0.0, 'open_time': datetime(2024, 5, 1, 0, 0, 0), 
+        #                  'stop_loss': 0.0, 'take_profit': 0.0, 'comment': 'RL_PPO_strategy', 'profit': 0.02, 
+        #                  'swap': 0.0, 'commission': 0.0}
         # if open positions, check for closing, if SL and/or TP are defined.
         # using hidden SL/TP
         # first need actual bar info
@@ -331,7 +350,7 @@ if (connection == True):
             # so that the model will not simulate an order
             if ((not more_trades) or swap_protection):
                 action2 = 0.99
-                action = np.array([action[0], action[1], action2, action[3]])
+                action[-2] = action2
                 log.debug(f'No trades allowed due to either swap {swap_protection} or more_trades {more_trades} being False')
             env_production.time_points = list(sim_production.symbols_data[instrument].index)
             env_production._end_tick = len(env_production.time_points) - 1

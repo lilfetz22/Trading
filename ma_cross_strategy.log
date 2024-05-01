@@ -1,0 +1,4 @@
+2024-05-01 09:52:40 DEBUG    Strategy started
+2024-05-01 18:39:50 DEBUG    trade with ticket 59801119 closed due to daily drawdown protection
+2024-05-01 18:43:39 DEBUG    trade with ticket 59801122 closed due to max payout - Request payout now! Yay!
+2024-05-01 18:50:50 DEBUG    trade with ticket 59801124 closed for no weekend hold

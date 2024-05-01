@@ -109,6 +109,8 @@ config.read(CONFIG_FILE)
 brokerInstrumentsLookup = config_instruments(config, "ICMarkets")
 connection = MT.Connect(server_IP, server_port, brokerInstrumentsLookup)
 print(connection)
+IsAlive = MT.connected
+print(IsAlive)
 
 def get_current_equity_balance():
     # Get current equity and balance
@@ -259,7 +261,7 @@ if (connection == True):
                     log.debug('trade with ticket ' + str(position.ticket) + ' closed due to max payout - Request payout now! Yay!')
 
                 # close positions to not allow weekend holds
-                if (position.instrument == instrument and position.magic_number == magicnumber and (ServerTime.hour == 23 & ServerTime.day == 5)):
+                if (position.instrument == instrument and position.magic_number == magicnumber and ((ServerTime.hour == 23) & (ServerTime.weekday() == 4))):
                     # close the position
                     MT.Close_position_by_ticket(ticket=position.ticket)
                     log.debug('trade with ticket ' + str(position.ticket) + ' closed for no weekend hold')
@@ -378,7 +380,7 @@ if (connection == True):
                         stoploss=0.0,
                         takeprofit=0.0,
                         comment='RL_PPO_strategy') 
-                    
+                order_test = MT.Open_order(instrument=instrument, ordertype = 'buy', volume = 0.01, openprice=0.0, slippage = slippage, magicnumber = magicnumber,stoploss=0.0, takeprofit=0.0,comment='test') 
 
                 if (order_OK > 0):
                     log.debug(f'{new_order['Order Type'].values[0]} trade opened')

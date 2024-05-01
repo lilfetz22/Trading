@@ -189,10 +189,10 @@ print('')
 # (documentation reference 12)
 # LastBars = data array
 LastBars = MT.Get_last_x_bars_from_now(
-    instrument='GBPUSD',
-    timeframe=MT.get_timeframe_value('M1'),
+    instrument='EURUSD',
+    timeframe=MT.get_timeframe_value('H1'),
     nbrofbars=1000)
-
+print(LastBars)
 
 # Open a new order (market or pending)
 # (documentation reference 13)

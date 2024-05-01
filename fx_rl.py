@@ -105,3 +105,17 @@ def get_bars_needed(timeframe):
         return 6 * 5
     else:
         return 12
+    
+def normalize_to_range(x, x_min, x_max):
+    m = (2 - 0) / (x_max - x_min)
+    b = 2
+    y = m * (x - x_min)
+    return y
+
+def my_get_modified_volume(env, symbol: str, volume: float) -> float:
+    si = env.simulator.symbols_info[symbol]
+    v = abs(volume)
+    v = normalize_to_range(v, si.volume_min, 100)
+    v = np.clip(v, si.volume_min, si.volume_max)
+    v = round(v / si.volume_step) * si.volume_step
+    return v

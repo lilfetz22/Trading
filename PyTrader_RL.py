@@ -39,7 +39,7 @@ log.configure()
 timeframe = 'H1'
 instrument = 'EURUSD'
 server_IP = '127.0.0.1'
-server_port = 1122  # check port number
+server_port = 4516  # check port number
 
 seed = 2024
 
@@ -73,6 +73,9 @@ date_value_last_bar = 0
 number_of_bars = 100 
 more_trades = True                
 
+# Define pytrader API
+MT = Pytrader_API()
+
 #   Create simple lookup table, for the demo api only the following instruments can be traded
 brokerInstrumentsLookup = {
     'EURUSD': 'EURUSD',
@@ -102,7 +105,7 @@ config = configparser.ConfigParser()
 config.read(CONFIG_FILE)
 
 brokerInstrumentsLookup = config_instruments(config, "ICMarkets")
-
+connection = MT.Connect(server_IP, server_port, brokerInstrumentsLookup)
 
 def get_current_equity_balance():
     # Get current equity and balance
@@ -140,10 +143,9 @@ train_env = MtEnv(
 )
 model = PPO.load(MODEL_PATH, env=train_env)
 
-# Define pytrader API
-MT = Pytrader_API()
 # initialize model and environment
 ServerTime = MT.Get_broker_server_time()
+print(ServerTime)
 initial_account_equity, initial_account_balance = get_current_equity_balance()
 initial_spread = MT.Get_last_tick_info(instrument=instrument)['spread']
 sim_production = gym_mtsim.MtSimulator(
@@ -178,7 +180,6 @@ while not done_production:
 
 # dictionary to store the trade_id and the corresponding ticket number
 trade_id_conversion = {}
-connection = MT.Connect(server_IP, server_port, brokerInstrumentsLookup)
 forever = True
 if (connection == True):
     log.debug('Strategy started')
@@ -229,6 +230,7 @@ if (connection == True):
                     # close the position
                     MT.Close_position_by_ticket(ticket=position.ticket)
                     log.debug('trade with ticket ' + str(position.ticket) + ' closed due to max payout - Request payout now! Yay!')
+
                 # close positions to not allow weekend holds
                 if (position.instrument == instrument and position.magic_number == magicnumber and (ServerTime.hour == 23 & ServerTime.day == 5)):
                     # close the position
@@ -241,13 +243,6 @@ if (connection == True):
                     # close the position
                     MT.Close_position_by_ticket(ticket=position.ticket)
                     log.debug(f'trade with {position.position_type} ticket {position.ticket} closed due to negative swap protection')
-
-                # if (position.instrument == instrument and position.position_type == 'buy' and position.magic_number == magicnumber):
-                #     # tp = position.open_price + TP_in_pips / multiplier
-                #     if (actual_bar_info['close'] > tp):
-                #         # close the position
-                #         MT.Close_position_by_ticket(ticket=position.ticket)
-                #         log.debug('trade with ticket ' + str(position.ticket) + ' closed in profit')
                         
                 elif (position.instrument == instrument and position.position_type == 'buy' and SL_in_pips > 0.0 and position.magic_number == magicnumber):
                     sl = position.open_price - SL_in_pips / multiplier
@@ -255,13 +250,7 @@ if (connection == True):
                         # close the position
                         MT.Close_position_by_ticket(ticket=position.ticket)
                         log.debug('trade with ticket ' + str(position.ticket) + ' closed with stoploss')
-                
-                # elif (position.instrument == instrument and position.position_type == 'sell' and position.magic_number == magicnumber):
-                #     # tp = position.open_price - TP_in_pips / multiplier
-                #     if (actual_bar_info['close'] < tp):
-                #         # close the position
-                #         MT.Close_position_by_ticket(ticket=position.ticket)
-                #         log.debug('trade with ticket ' + str(position.ticket) + ' closed in profit')
+
                 elif (position.instrument == instrument and position.position_type == 'sell' and SL_in_pips > 0.0 and position.magic_number == magicnumber):
                     sl = position.open_price + SL_in_pips / multiplier
                     if (actual_bar_info['close'] > sl):
@@ -379,6 +368,8 @@ if (connection == True):
                         log.debug(f'Error setting stoploss for ticket {order_OK}')
                 else:
                     log.debug('Error opening trade')
+                    log.debug(MT.order_error)
+                    log.debug(MT.order_return_message)
                 trade_id_conversion[new_order['Id'].values[0]] = order_OK
             
             ######## RL Model Closing conditions ########

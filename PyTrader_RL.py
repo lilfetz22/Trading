@@ -150,9 +150,8 @@ print(ServerTime)
 initial_account_equity, initial_account_balance = get_current_equity_balance()
 print(f'Initial account equity: {initial_account_equity}, Initial account balance: {initial_account_balance}')
 
-initial_spread = MT.Get_last_tick_info(instrument=instrument)['spread']
-print(MT.Get_last_tick_info(instrument=instrument)['bid'], MT.Get_last_tick_info(instrument=instrument)['ask'], MT.Get_last_tick_info(instrument=instrument)['spread'])
-print(f'Initial spread: {initial_spread / (multiplier * 10)}')
+initial_spread = MT.Get_last_tick_info(instrument=instrument)['spread'] / (multiplier * 10)
+print(f'Initial spread: {initial_spread}')
 sim_production = gym_mtsim.MtSimulator(
     unit='USD',
     balance=initial_account_balance,
@@ -161,7 +160,11 @@ sim_production = gym_mtsim.MtSimulator(
     hedge=True,
     symbols_filename=FOREX_DATA_PATH_PRODUCTION
 )
-env_production = MtEnv(
+
+class MyMtEnv(MtEnv):
+    _get_modified_volume = fx_rl.my_get_modified_volume
+
+env_production = MyMtEnv(
     original_simulator=sim_production,
     trading_symbols=[instrument],
     window_size = 10,
@@ -335,6 +338,7 @@ if (connection == True):
             env_production.signal_features = env_production._process_data()
             env_production.prices = env_production._get_prices()
             env_production.features_shape = (env_production.window_size, env_production.signal_features.shape[1])
+            env_production.fee = MT.Get_last_tick_info(instrument=instrument)['spread'] / (multiplier * 10)
             obs_production, reward_production, terminated_production, truncated_production, info_production = env_production.step(action)
             current_orders = env_production.render()['orders']
             # convert current_orders['Entry Time'] to datetime

@@ -717,6 +717,9 @@ Added closing conditions to the RL model
 
 [2024-05-02]
 Notes:
+
+importlib.reload(fx_rl)
+
 Ideas:
 TODO:
 [ ] test the code with a basic model that might not be the best, but I can optimize later

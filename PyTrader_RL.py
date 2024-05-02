@@ -38,7 +38,7 @@ log = Logger()
 log.configure()
 
 # settings
-timeframe = 'H1'
+timeframe = 'M5'
 instrument = 'EURUSD'
 server_IP = '127.0.0.1'
 server_port = 4516  # check port number
@@ -178,7 +178,8 @@ if InstrumentInfo is not None:
                 # print(f'swap_short: {swap_short}')
 
 # get the last week's worth of data for the production environment
-bars = MT.Get_last_x_bars_from_now(instrument=instrument, timeframe=MT.get_timeframe_value(timeframe), nbrofbars=fx_rl.get_bars_needed(timeframe))
+# bars = MT.Get_last_x_bars_from_now(instrument=instrument, timeframe=MT.get_timeframe_value(timeframe), nbrofbars=fx_rl.get_bars_needed(timeframe))
+bars = MT.Get_last_x_bars_from_now(instrument=instrument, timeframe=MT.get_timeframe_value(timeframe), nbrofbars=200)
 # convert to dataframe
 df = pd.DataFrame(bars)
 # df.rename(columns = {'tick_volume':'volume'})#, inplace = True)
@@ -223,7 +224,7 @@ stop = False
 # run through the environment up to the current week and stop with the model
 while not done_production:
     action_pre_production, _states = model.predict(obs_production)
-    if (len(env_production.time_points) - 3) == env_production._current_tick:
+    if (len(env_production.time_points) - 2) == env_production._current_tick:
         stop = True
         print('closing all orders')
         # if there are any open orders, we need to go ahead and close them
@@ -274,12 +275,14 @@ if (connection == True):
                     # close the position
                     MT.Close_position_by_ticket(ticket=position.ticket)
                     log.debug('trade with ticket ' + str(position.ticket) + ' closed due to daily drawdown protection')
+                    print(f'trade with ticket ' + str(position.ticket) + ' closed due to daily drawdown protection')
 
                 if (position.instrument == instrument and position.magic_number == magicnumber and (Max_Payout_Bool == True and (current_account_balance - Initial_Acct_Size) > Max_Payout_Amt)):
                     acct_protection = True
                     # close the position
                     MT.Close_position_by_ticket(ticket=position.ticket)
                     log.debug('trade with ticket ' + str(position.ticket) + ' closed due to max payout - Request payout now! Yay!')
+                    print(f'trade with ticket ' + str(position.ticket) + ' closed due to max payout - Request payout now! Yay!')
 
                 # close positions to not allow weekend holds
                 if (position.instrument == instrument and position.magic_number == magicnumber and ((ServerTime.hour == 23) & (ServerTime.weekday() == 4))):
@@ -287,6 +290,7 @@ if (connection == True):
                     # close the position
                     MT.Close_position_by_ticket(ticket=position.ticket)
                     log.debug('trade with ticket ' + str(position.ticket) + ' closed for no weekend hold')
+                    print(f'trade with ticket ' + str(position.ticket) + ' closed for no weekend hold')
 
                 # close negative swap positions
                 if ((position.instrument == instrument) & (position.magic_number == magicnumber) & 
@@ -296,6 +300,7 @@ if (connection == True):
                     # close the position
                     MT.Close_position_by_ticket(ticket=position.ticket)
                     log.debug(f'trade with {position.position_type} ticket {position.ticket} closed due to negative swap protection')
+                    print(f'trade with {position.position_type} ticket {position.ticket} closed due to negative swap protection')
 
         # only if we have a new bar, we want to check the conditions for opening a trade/position
         # at start check will be done immediatly
@@ -313,11 +318,13 @@ if (connection == True):
                     more_trades = False
                     # print(f'more trades = {more_trades}')
                     log.debug('No trades allowed due to news event')
+                    print('No trades allowed due to news event')
 
             ######## check if within trading hours ########
             if ((ServerTime.hour < Start_Hour) or (ServerTime.hour > End_Hour)):
                 more_trades = False
                 log.debug('No trades allowed due to not being within the trading hours')
+                print('No trades allowed due to not being within the trading hours')
             elif ((ServerTime.hour >= Start_Hour) and (ServerTime.hour <= End_Hour) and more_trades):
                 more_trades = True
             # print(more_trades)
@@ -367,6 +374,7 @@ if (connection == True):
                     action2 = 0.99
                     action[-2] = action2
                     log.debug(f'No trades allowed due to either swap {swap_protection} or more_trades {more_trades} being False')
+                    print(f'No trades allowed due to either swap {swap_protection} or more_trades {more_trades} being False')
                 env_production.time_points = list(sim_production.symbols_data[instrument].index)
                 env_production._end_tick = len(env_production.time_points) - 1
                 print(env_production._current_tick)
@@ -376,14 +384,16 @@ if (connection == True):
                 env_production.fee = MT.Get_last_tick_info(instrument=instrument)['spread'] / (multiplier * 10)
                 obs_production, reward_production, terminated_production, truncated_production, info_production = env_production.step(action)
                 current_orders = env_production.render()['orders']
+                print(current_orders)
                 # convert current_orders['Entry Time'] to datetime
                 current_orders['Entry Time'] = pd.to_datetime(current_orders['Entry Time'])
                 # find the max Entry Time
-                max_entry_time = current_orders['Entry Time'].max() + pd.Timedelta(hours=1)
+                max_entry_time = current_orders['Entry Time'].max() + pd.Timedelta(minutes=5)#pd.Timedelta(hours=1)
                 # if the max Entry Time is within the last 30 seconds, then open a trade
                 if ((max_entry_time >= (ServerTime - pd.Timedelta(seconds=30))) & (max_entry_time <= ServerTime)): 
                     # filter current_orders to the max_entry_time
-                    new_order = current_orders[(current_orders['Entry Time'] == (max_entry_time - pd.Timedelta(hours=1))) & (current_orders['Symbol'] == instrument)]
+                    new_order = current_orders[(current_orders['Entry Time'] == (max_entry_time - pd.Timedelta(minutes=5))) & (current_orders['Symbol'] == instrument)]#pd.Timedelta(hours=1)
+                    print(new_order)
                     order_type = new_order['Type'].values[0].lower()
                     order_OK = MT.Open_order(instrument=instrument,
                             ordertype = order_type,
@@ -393,11 +403,12 @@ if (connection == True):
                             magicnumber = magicnumber,
                             stoploss=0.0,
                             takeprofit=0.0,
-                            comment='RL_PPO_strategy') 
+                            comment='RL_PPO_strategy')
                     # order_test = MT.Open_order(instrument=instrument, ordertype = 'buy', volume = 0.01, openprice=0.0, slippage = slippage, magicnumber = magicnumber,stoploss=0.0, takeprofit=0.0,comment='test') 
 
                     if (order_OK > 0):
                         log.debug(f'{order_type} trade opened')
+                        print(f'{order_type} trade opened')
                         open_positions = MT.Get_all_open_positions()
                         # filter the open positions to just the current ticket number
                         new_order_open_price = open_positions[open_positions['ticket'] == order_OK].open_price.values[0]

@@ -88,12 +88,13 @@ def get_latest_data(path_to_data, new_data, instrument='EURUSD'):
     new_data_fil = new_data[new_data.index > max(current_data.index)]
     if len(new_data_fil) == 0:
         print('No new data to add!')
-        return None
+        return False
     current_data_new_week_added = pd.concat([current_data, new_data_fil.iloc[[0], :]])
     symbols[1][instrument] = current_data_new_week_added
     # resave the symbols back to a pickle file
     with open(path_to_data, 'wb') as f:
         pickle.dump(symbols, f)
+    return True
 
 ### create a function that will calculate the number of bars needed for a full week's worth of data depending on the given timeframe (M1, M5, M15, H1, H4, D1)
 def get_bars_needed(timeframe):

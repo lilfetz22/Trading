@@ -156,6 +156,23 @@ print(f'Initial account equity: {initial_account_equity}, Initial account balanc
 
 initial_spread = MT.Get_last_tick_info(instrument=instrument)['spread'] / (multiplier * 10)
 print(f'Initial spread: {initial_spread}')
+
+# get the last week's worth of data for the production environment
+bars = MT.Get_last_x_bars_from_now(instrument=instrument, timeframe=MT.get_timeframe_value(timeframe), nbrofbars=fx_rl.get_bars_needed(timeframe))
+# convert to dataframe
+df = pd.DataFrame(bars)
+# df.rename(columns = {'tick_volume':'volume'})#, inplace = True)
+df['date'] = pd.to_datetime(df['date'], unit='s')
+df.columns = [col.capitalize() for col in df.columns]
+df = df.rename(columns={'Date': 'Time'}).set_index('Time')
+with open(FOREX_DATA_PATH_PRODUCTION, 'rb') as f:
+    import pickle
+    symbols_new = pickle.load(f)
+# replace the data in the pickle file with the new data
+symbols_new[1][instrument] = df
+with open(FOREX_DATA_PATH_PRODUCTION, 'wb') as f:
+    pickle.dump(symbols_new, f)
+
 sim_production = gym_mtsim.MtSimulator(
     unit='USD',
     balance=initial_account_balance,
@@ -196,9 +213,6 @@ while not done_production:
     done_production = terminated_production or truncated_production
     if done_production:
         break
-# if (len(env_production.simulator.symbol_orders('EURUSD')) > 0):
-#     for simulator_order in env_production.simulator.symbol_orders('EURUSD'):
-#         env_production.simulator.close_order(simulator_order)
 
 # dictionary to store the trade_id and the corresponding ticket number
 trade_id_conversion = {}
@@ -342,8 +356,17 @@ if (connection == True):
             bars = MT.Get_last_x_bars_from_now(instrument=instrument, timeframe=MT.get_timeframe_value(timeframe), nbrofbars=fx_rl.get_bars_needed(timeframe))
             # convert to dataframe
             df = pd.DataFrame(bars)
-            df.rename(columns = {'tick_volume':'volume'}, inplace = True)
+            # df.rename(columns = {'tick_volume':'volume'})#, inplace = True)
             df['date'] = pd.to_datetime(df['date'], unit='s')
+            with open(FOREX_DATA_PATH_PRODUCTION, 'rb') as f:
+                import pickle
+                symbols_new = pickle.load(f)
+            # replace the data in the pickle file with the new data
+            symbols_new[1][instrument] = df
+            with open(FOREX_DATA_PATH_PRODUCTION, 'wb') as f:
+                pickle.dump(symbols_new, f)
+
+            
 
             ## add the data to the environment
             fx_rl.get_latest_data(FOREX_DATA_PATH_PRODUCTION, df, instrument=instrument)

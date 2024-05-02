@@ -8,3 +8,5 @@
 2024-05-02 05:41:09 DEBUG    No trades allowed due to not being within the trading hours
 2024-05-02 05:41:47 DEBUG    No trades allowed due to not being within the trading hours
 2024-05-02 05:42:02 DEBUG    No trades allowed due to not being within the trading hours
+2024-05-02 07:52:11 DEBUG    sell trade opened
+2024-05-02 08:00:53 DEBUG    Stoploss set for ticket 59801731

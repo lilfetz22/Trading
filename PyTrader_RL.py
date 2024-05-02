@@ -55,7 +55,7 @@ slippage = 5
 Start_Hour = 1
 End_Hour = 22
 magicnumber = 2772
-SL_in_pips = 20
+SL_in_pips = 10
 TP_in_pips = 10
 multiplier = 10_000  # multiplier for calculating SL and TP, for JPY pairs should have the value of 100
 if instrument.find('JPY') >= 0:
@@ -353,23 +353,14 @@ if (connection == True):
 
             date_value_last_bar = actual_bar_info['date']
             # new bar, so read last x bars
-            bars = MT.Get_last_x_bars_from_now(instrument=instrument, timeframe=MT.get_timeframe_value(timeframe), nbrofbars=fx_rl.get_bars_needed(timeframe))
+            bars = MT.Get_last_x_bars_from_now(instrument=instrument, timeframe=MT.get_timeframe_value(timeframe), nbrofbars=10)
             # convert to dataframe
-            df = pd.DataFrame(bars)
+            df_new = pd.DataFrame(bars)
             # df.rename(columns = {'tick_volume':'volume'})#, inplace = True)
-            df['date'] = pd.to_datetime(df['date'], unit='s')
-            with open(FOREX_DATA_PATH_PRODUCTION, 'rb') as f:
-                import pickle
-                symbols_new = pickle.load(f)
-            # replace the data in the pickle file with the new data
-            symbols_new[1][instrument] = df
-            with open(FOREX_DATA_PATH_PRODUCTION, 'wb') as f:
-                pickle.dump(symbols_new, f)
-
-            
+            df_new['date'] = pd.to_datetime(df_new['date'], unit='s')           
 
             ## add the data to the environment
-            fx_rl.get_latest_data(FOREX_DATA_PATH_PRODUCTION, df, instrument=instrument)
+            fx_rl.get_latest_data(FOREX_DATA_PATH_PRODUCTION, df_new, instrument=instrument)
             sim_production.load_symbols(FOREX_DATA_PATH_PRODUCTION)
             action, _states = model.predict(obs_production)
             swap_protection = False
@@ -380,7 +371,7 @@ if (connection == True):
             # if we shouldn't place an order right now due to more_trades being False or swap_protection being True, 
             # then we set the hold_probability (action[2]) to 0.99 which is greater than the hold threshold of 0.5
             # so that the model will not simulate an order
-            if ((not more_trades) or swap_protection):
+            if ((not more_trades) | (swap_protection)):
                 action2 = 0.99
                 action[-2] = action2
                 log.debug(f'No trades allowed due to either swap {swap_protection} or more_trades {more_trades} being False')
@@ -395,12 +386,12 @@ if (connection == True):
             # convert current_orders['Entry Time'] to datetime
             current_orders['Entry Time'] = pd.to_datetime(current_orders['Entry Time'])
             # find the max Entry Time
-            max_entry_time = current_orders['Entry Time'].max()
+            max_entry_time = current_orders['Entry Time'].max() + pd.Timedelta(hours=1)
             # if the max Entry Time is within the last 30 seconds, then open a trade
             if ((max_entry_time >= (ServerTime - pd.Timedelta(seconds=30))) & (max_entry_time <= ServerTime)): 
                 # filter current_orders to the max_entry_time
-                new_order = current_orders[(current_orders['Entry Time'] == max_entry_time) & (current_orders['Symbol'] == instrument)]
-                order_type = new_order['Order Type'].values[0].lower()
+                new_order = current_orders[(current_orders['Entry Time'] == (max_entry_time - pd.Timedelta(hours=1))) & (current_orders['Symbol'] == instrument)]
+                order_type = new_order['Type'].values[0].lower()
                 order_OK = MT.Open_order(instrument=instrument,
                         ordertype = order_type,
                         volume = volume,
@@ -410,18 +401,18 @@ if (connection == True):
                         stoploss=0.0,
                         takeprofit=0.0,
                         comment='RL_PPO_strategy') 
-                order_test = MT.Open_order(instrument=instrument, ordertype = 'buy', volume = 0.01, openprice=0.0, slippage = slippage, magicnumber = magicnumber,stoploss=0.0, takeprofit=0.0,comment='test') 
+                # order_test = MT.Open_order(instrument=instrument, ordertype = 'buy', volume = 0.01, openprice=0.0, slippage = slippage, magicnumber = magicnumber,stoploss=0.0, takeprofit=0.0,comment='test') 
 
                 if (order_OK > 0):
-                    log.debug(f'{new_order['Order Type'].values[0]} trade opened')
-                    open_positions = MT.Get_all_open_positions
+                    log.debug(f'{order_type} trade opened')
+                    open_positions = MT.Get_all_open_positions()
                     # filter the open positions to just the current ticket number
                     new_order_open_price = open_positions[open_positions['ticket'] == order_OK].open_price.values[0]
-                    if (new_order['Order Type'].values[0] == 'Buy'):
+                    if (order_type == 'buy'):
                         new_order_sl = new_order_open_price - (SL_in_pips / multiplier)
-                    elif (new_order['Order Type'].values[0] == 'Sell'):
+                    elif (order_type == 'sell'):
                         new_order_sl = new_order_open_price + (SL_in_pips / multiplier)
-                    stoploss_set = MT.Set_stoploss_by_ticket(ticket=order_OK, stoploss=new_order_sl)
+                    stoploss_set = MT.Set_sl_and_tp_for_position(ticket=order_OK, stoploss=new_order_sl)
                     if (stoploss_set == True):
                         log.debug(f'Stoploss set for ticket {order_OK}')
                     else:
@@ -433,20 +424,21 @@ if (connection == True):
                 trade_id_conversion[new_order['Id'].values[0]] = order_OK
             
             ######## RL Model Closing conditions ########
-            # find out if any orders closed in the simulator and need to be actually closed
-            # convert current_orders['Exit Time'] to datetime
-            current_orders['Exit Time'] = pd.to_datetime(current_orders['Exit Time'])
-            # create a column that checks if any of the Exit Times are within the last 30 seconds
-            current_orders.loc[:, 'Close_Real_Order'] = np.where((current_orders['Exit Time'] >= (ServerTime - pd.Timedelta(seconds=30))) & (current_orders['Exit Time'] <= ServerTime), True, False)
-            # filter current_orders to just the ones that need to be closed
-            orders_to_close = current_orders[current_orders['Close_Real_Order'] == True]
-            for order in orders_to_close.itertuples():
-                ticket = trade_id_conversion[order.Id]
-                close_OK = MT.Close_position_by_ticket(ticket=ticket)
-                if (close_OK == True):
-                    log.debug(f'Closed trade with ticket {ticket} due to signal from model')
-                else:
-                    log.debug(f'Error closing trade with ticket {ticket} even though the model signaled to close it')
+            open_positions_close_check = MT.Get_all_open_positions()
+            if (len(open_positions_close_check) > 0):
+                for position in open_positions_close_check.itertuples():
+                    # get the key from the value within the trade_id_conversion dictionary
+                    key = fx_rl.find_key_by_value(trade_id_conversion, position.ticket)
+                    # filter current_orders to the key
+                    orders_to_close = current_orders[current_orders['Id'] == key]
+                    if orders_to_close.loc[0, 'Closed'] == True:
+                        close_OK = MT.Close_position_by_ticket(ticket=position.ticket)
+                        if (close_OK == True):
+                            print(f'Closed trade with ticket {position.ticket} due to signal from model')
+                            log.debug(f'Closed trade with ticket {position.ticket} due to signal from model')
+                        else:
+                            print(f'Error closing trade with ticket {position.ticket} even though the model signaled to close it')
+                            log.debug(f'Error closing trade with ticket {position.ticket} even though the model signaled to close it')
 
         # wait 2 seconds
         time.sleep(2)

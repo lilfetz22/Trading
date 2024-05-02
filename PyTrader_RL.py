@@ -257,11 +257,6 @@ if (connection == True):
         # retrieve open positions
         positions_df = MT.Get_all_open_positions()
         positions_df
-        # create a fake position with ticket, instrument, order_ticket, position_type, magic_number, volume, open_price, open_time, stop_loss, take_profit, comment, profit, swap, commission
-        # fake_position = {'ticket': 46686819, 'instrument': 'EURUSD', 'order_ticket': 46686819, 'position_type': 'Buy', 
-        #                  'magic_number': 2772, 'volume': 0.0, 'open_price': 0.0, 'open_time': datetime(2024, 5, 1, 0, 0, 0), 
-        #                  'stop_loss': 0.0, 'take_profit': 0.0, 'comment': 'RL_PPO_strategy', 'profit': 0.02, 
-        #                  'swap': 0.0, 'commission': 0.0}
         # if open positions, check for closing, if SL and/or TP are defined.
         # using hidden SL/TP
         # first need actual bar info
@@ -297,20 +292,6 @@ if (connection == True):
                     # close the position
                     MT.Close_position_by_ticket(ticket=position.ticket)
                     log.debug(f'trade with {position.position_type} ticket {position.ticket} closed due to negative swap protection')
-                        
-                # elif (position.instrument == instrument and position.position_type == 'buy' and SL_in_pips > 0.0 and position.magic_number == magicnumber):
-                #     sl = position.open_price - SL_in_pips / multiplier
-                #     if (actual_bar_info['close'] < sl):
-                #         # close the position
-                #         MT.Close_position_by_ticket(ticket=position.ticket)
-                #         log.debug('trade with ticket ' + str(position.ticket) + ' closed with stoploss')
-
-                # elif (position.instrument == instrument and position.position_type == 'sell' and SL_in_pips > 0.0 and position.magic_number == magicnumber):
-                #     sl = position.open_price + SL_in_pips / multiplier
-                #     if (actual_bar_info['close'] > sl):
-                #         # close the position
-                #         MT.Close_position_by_ticket(ticket=position.ticket)
-                #         log.debug('trade with ticket ' + str(position.ticket) + ' closed with stoploss')
 
         # only if we have a new bar, we want to check the conditions for opening a trade/position
         # at start check will be done immediatly
@@ -366,68 +347,70 @@ if (connection == True):
             df_new['date'] = pd.to_datetime(df_new['date'], unit='s')           
 
             ## add the data to the environment
-            fx_rl.get_latest_data(FOREX_DATA_PATH_PRODUCTION, df_new, instrument=instrument)
-            sim_production.load_symbols(FOREX_DATA_PATH_PRODUCTION)
-            action, _states = model.predict(obs_production)
-            swap_protection = False
-            if ((action[-1] > 0) & (ServerTime.hour == 23)): # the last item in action is the volume, if it is positive it is a long trade
-                swap_protection = swap_protection_long
-            elif ((action[-1] < 0) & (ServerTime.hour == 23)):
-                swap_protection = swap_protection_short
-            # if we shouldn't place an order right now due to more_trades being False or swap_protection being True, 
-            # then we set the hold_probability (action[2]) to 0.99 which is greater than the hold threshold of 0.5
-            # so that the model will not simulate an order
-            if ((not more_trades) | (swap_protection)):
-                action2 = 0.99
-                action[-2] = action2
-                log.debug(f'No trades allowed due to either swap {swap_protection} or more_trades {more_trades} being False')
-            env_production.time_points = list(sim_production.symbols_data[instrument].index)
-            env_production._end_tick = len(env_production.time_points) - 1
-            env_production.signal_features = env_production._process_data()
-            env_production.prices = env_production._get_prices()
-            env_production.features_shape = (env_production.window_size, env_production.signal_features.shape[1])
-            env_production.fee = MT.Get_last_tick_info(instrument=instrument)['spread'] / (multiplier * 10)
-            obs_production, reward_production, terminated_production, truncated_production, info_production = env_production.step(action)
-            current_orders = env_production.render()['orders']
-            # convert current_orders['Entry Time'] to datetime
-            current_orders['Entry Time'] = pd.to_datetime(current_orders['Entry Time'])
-            # find the max Entry Time
-            max_entry_time = current_orders['Entry Time'].max() + pd.Timedelta(hours=1)
-            # if the max Entry Time is within the last 30 seconds, then open a trade
-            if ((max_entry_time >= (ServerTime - pd.Timedelta(seconds=30))) & (max_entry_time <= ServerTime)): 
-                # filter current_orders to the max_entry_time
-                new_order = current_orders[(current_orders['Entry Time'] == (max_entry_time - pd.Timedelta(hours=1))) & (current_orders['Symbol'] == instrument)]
-                order_type = new_order['Type'].values[0].lower()
-                order_OK = MT.Open_order(instrument=instrument,
-                        ordertype = order_type,
-                        volume = volume,
-                        openprice=0.0,
-                        slippage = slippage,
-                        magicnumber = magicnumber,
-                        stoploss=0.0,
-                        takeprofit=0.0,
-                        comment='RL_PPO_strategy') 
-                # order_test = MT.Open_order(instrument=instrument, ordertype = 'buy', volume = 0.01, openprice=0.0, slippage = slippage, magicnumber = magicnumber,stoploss=0.0, takeprofit=0.0,comment='test') 
+            data_added = fx_rl.get_latest_data(FOREX_DATA_PATH_PRODUCTION, df_new, instrument=instrument)
+            if data_added:
+                sim_production.load_symbols(FOREX_DATA_PATH_PRODUCTION)
+                action, _states = model.predict(obs_production)
+                swap_protection = False
+                if ((action[-1] > 0) & (ServerTime.hour == 23)): # the last item in action is the volume, if it is positive it is a long trade
+                    swap_protection = swap_protection_long
+                elif ((action[-1] < 0) & (ServerTime.hour == 23)):
+                    swap_protection = swap_protection_short
+                # if we shouldn't place an order right now due to more_trades being False or swap_protection being True, 
+                # then we set the hold_probability (action[2]) to 0.99 which is greater than the hold threshold of 0.5
+                # so that the model will not simulate an order
+                if ((not more_trades) | (swap_protection)):
+                    action2 = 0.99
+                    action[-2] = action2
+                    log.debug(f'No trades allowed due to either swap {swap_protection} or more_trades {more_trades} being False')
+                env_production.time_points = list(sim_production.symbols_data[instrument].index)
+                env_production._end_tick = len(env_production.time_points) - 1
+                print(env_production._current_tick)
+                env_production.signal_features = env_production._process_data()
+                env_production.prices = env_production._get_prices()
+                env_production.features_shape = (env_production.window_size, env_production.signal_features.shape[1])
+                env_production.fee = MT.Get_last_tick_info(instrument=instrument)['spread'] / (multiplier * 10)
+                obs_production, reward_production, terminated_production, truncated_production, info_production = env_production.step(action)
+                current_orders = env_production.render()['orders']
+                # convert current_orders['Entry Time'] to datetime
+                current_orders['Entry Time'] = pd.to_datetime(current_orders['Entry Time'])
+                # find the max Entry Time
+                max_entry_time = current_orders['Entry Time'].max() + pd.Timedelta(hours=1)
+                # if the max Entry Time is within the last 30 seconds, then open a trade
+                if ((max_entry_time >= (ServerTime - pd.Timedelta(seconds=30))) & (max_entry_time <= ServerTime)): 
+                    # filter current_orders to the max_entry_time
+                    new_order = current_orders[(current_orders['Entry Time'] == (max_entry_time - pd.Timedelta(hours=1))) & (current_orders['Symbol'] == instrument)]
+                    order_type = new_order['Type'].values[0].lower()
+                    order_OK = MT.Open_order(instrument=instrument,
+                            ordertype = order_type,
+                            volume = volume,
+                            openprice=0.0,
+                            slippage = slippage,
+                            magicnumber = magicnumber,
+                            stoploss=0.0,
+                            takeprofit=0.0,
+                            comment='RL_PPO_strategy') 
+                    # order_test = MT.Open_order(instrument=instrument, ordertype = 'buy', volume = 0.01, openprice=0.0, slippage = slippage, magicnumber = magicnumber,stoploss=0.0, takeprofit=0.0,comment='test') 
 
-                if (order_OK > 0):
-                    log.debug(f'{order_type} trade opened')
-                    open_positions = MT.Get_all_open_positions()
-                    # filter the open positions to just the current ticket number
-                    new_order_open_price = open_positions[open_positions['ticket'] == order_OK].open_price.values[0]
-                    if (order_type == 'buy'):
-                        new_order_sl = new_order_open_price - (SL_in_pips / multiplier)
-                    elif (order_type == 'sell'):
-                        new_order_sl = new_order_open_price + (SL_in_pips / multiplier)
-                    stoploss_set = MT.Set_sl_and_tp_for_position(ticket=order_OK, stoploss=new_order_sl)
-                    if (stoploss_set == True):
-                        log.debug(f'Stoploss set for ticket {order_OK}')
+                    if (order_OK > 0):
+                        log.debug(f'{order_type} trade opened')
+                        open_positions = MT.Get_all_open_positions()
+                        # filter the open positions to just the current ticket number
+                        new_order_open_price = open_positions[open_positions['ticket'] == order_OK].open_price.values[0]
+                        if (order_type == 'buy'):
+                            new_order_sl = new_order_open_price - (SL_in_pips / multiplier)
+                        elif (order_type == 'sell'):
+                            new_order_sl = new_order_open_price + (SL_in_pips / multiplier)
+                        stoploss_set = MT.Set_sl_and_tp_for_position(ticket=order_OK, stoploss=new_order_sl)
+                        if (stoploss_set == True):
+                            log.debug(f'Stoploss set for ticket {order_OK}')
+                        else:
+                            log.debug(f'Error setting stoploss for ticket {order_OK}')
                     else:
-                        log.debug(f'Error setting stoploss for ticket {order_OK}')
-                else:
-                    log.debug('Error opening trade')
-                    log.debug(MT.order_error)
-                    log.debug(MT.order_return_message)
-                trade_id_conversion[new_order['Id'].values[0]] = order_OK
+                        log.debug('Error opening trade')
+                        log.debug(MT.order_error)
+                        log.debug(MT.order_return_message)
+                    trade_id_conversion[new_order['Id'].values[0]] = order_OK
             
             ######## RL Model Closing conditions ########
             open_positions_close_check = MT.Get_all_open_positions()

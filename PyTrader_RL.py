@@ -111,6 +111,7 @@ connection = MT.Connect(server_IP, server_port, brokerInstrumentsLookup)
 print(connection)
 IsAlive = MT.connected
 print(IsAlive)
+time.sleep(2)
 
 def get_current_equity_balance():
     # Get current equity and balance
@@ -144,7 +145,7 @@ train_env = MtEnv(
     close_threshold=0.5,
     fee=sim_training_fee,
     symbol_max_orders=2,
-    multiprocessing_processes=2
+    multiprocessing_processes=1
 )
 model = PPO.load(MODEL_PATH, env=train_env)
 
@@ -194,7 +195,7 @@ env_production = MyMtEnv(
     close_threshold=0.5,
     fee=sim_training_fee,
     symbol_max_orders=2,
-    multiprocessing_processes=2
+    multiprocessing_processes=1
 )
 obs_production, info_production = env_production.reset(seed=seed)
 # model.set_env(env_production) # do I need this? I didn't even know this existed

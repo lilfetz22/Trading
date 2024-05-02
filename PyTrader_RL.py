@@ -209,7 +209,8 @@ if (connection == True):
         current_account_equity, current_account_balance = get_current_equity_balance()
         # if the current time is 0:00:00 then reset the daily account balance/equity
         ServerTime = MT.Get_broker_server_time()
-        if ServerTime.hour == 0 and ServerTime.minute == 0 and ServerTime.second == 0:
+        # if it is midnight or if account_equity_at_last_close and account_balance_at_last_close are not defined
+        if (ServerTime.hour == 0 and ServerTime.minute == 0 and ServerTime.second == 0) | ((not 'account_equity_at_last_close' in locals()) | (not 'account_balance_at_last_close' in locals())):
             account_equity_at_last_close, account_balance_at_last_close = get_current_equity_balance()
             print(f'Account equity at close: {account_equity_at_last_close}, Account balance at close: {account_balance_at_last_close}')
             # reset acct_protection, swap_protection_long, swap_protection_short
@@ -225,16 +226,17 @@ if (connection == True):
                     swap_long = InstrumentInfo[prop]
                     if swap_long < 0:
                         swap_protection_long = True
-                        # print(f'swap_long: {swap_long}')
+                        print(f'swap_long: {swap_long}')
                 if prop == 'swap_short':
                     swap_short = InstrumentInfo[prop]
                     if swap_short < 0:
                         swap_protection_short = True
-                        # print(f'swap_short: {swap_short}')
+                        print(f'swap_short: {swap_short}')
 
 
         # retrieve open positions
         positions_df = MT.Get_all_open_positions()
+        positions_df
         # create a fake position with ticket, instrument, order_ticket, position_type, magic_number, volume, open_price, open_time, stop_loss, take_profit, comment, profit, swap, commission
         # fake_position = {'ticket': 46686819, 'instrument': 'EURUSD', 'order_ticket': 46686819, 'position_type': 'Buy', 
         #                  'magic_number': 2772, 'volume': 0.0, 'open_price': 0.0, 'open_time': datetime(2024, 5, 1, 0, 0, 0), 
@@ -262,47 +264,50 @@ if (connection == True):
 
                 # close positions to not allow weekend holds
                 if (position.instrument == instrument and position.magic_number == magicnumber and ((ServerTime.hour == 23) & (ServerTime.weekday() == 4))):
+                    acct_protection = True
                     # close the position
                     MT.Close_position_by_ticket(ticket=position.ticket)
                     log.debug('trade with ticket ' + str(position.ticket) + ' closed for no weekend hold')
 
                 # close negative swap positions
-                if (position.instrument == instrument and position.magic_number == magicnumber and ((swap_protection_long == True and position.position_type == 'buy') or
-                                                                                                     (swap_protection_short == True and position.position_type == 'sell'))):
+                if ((position.instrument == instrument) & (position.magic_number == magicnumber) & 
+                    (((swap_protection_long == True) & (position.position_type == 'buy')) | ((swap_protection_short == True) & (position.position_type == 'sell'))) &
+                    ((ServerTime.hour == 23) & (ServerTime.minute >= 55))
+                    ):
                     # close the position
                     MT.Close_position_by_ticket(ticket=position.ticket)
                     log.debug(f'trade with {position.position_type} ticket {position.ticket} closed due to negative swap protection')
                         
-                elif (position.instrument == instrument and position.position_type == 'buy' and SL_in_pips > 0.0 and position.magic_number == magicnumber):
-                    sl = position.open_price - SL_in_pips / multiplier
-                    if (actual_bar_info['close'] < sl):
-                        # close the position
-                        MT.Close_position_by_ticket(ticket=position.ticket)
-                        log.debug('trade with ticket ' + str(position.ticket) + ' closed with stoploss')
+                # elif (position.instrument == instrument and position.position_type == 'buy' and SL_in_pips > 0.0 and position.magic_number == magicnumber):
+                #     sl = position.open_price - SL_in_pips / multiplier
+                #     if (actual_bar_info['close'] < sl):
+                #         # close the position
+                #         MT.Close_position_by_ticket(ticket=position.ticket)
+                #         log.debug('trade with ticket ' + str(position.ticket) + ' closed with stoploss')
 
-                elif (position.instrument == instrument and position.position_type == 'sell' and SL_in_pips > 0.0 and position.magic_number == magicnumber):
-                    sl = position.open_price + SL_in_pips / multiplier
-                    if (actual_bar_info['close'] > sl):
-                        # close the position
-                        MT.Close_position_by_ticket(ticket=position.ticket)
-                        log.debug('trade with ticket ' + str(position.ticket) + ' closed with stoploss')
+                # elif (position.instrument == instrument and position.position_type == 'sell' and SL_in_pips > 0.0 and position.magic_number == magicnumber):
+                #     sl = position.open_price + SL_in_pips / multiplier
+                #     if (actual_bar_info['close'] > sl):
+                #         # close the position
+                #         MT.Close_position_by_ticket(ticket=position.ticket)
+                #         log.debug('trade with ticket ' + str(position.ticket) + ' closed with stoploss')
 
         # only if we have a new bar, we want to check the conditions for opening a trade/position
         # at start check will be done immediatly
         # date values are in seconds from 1970 onwards.
         # for comparing 2 dates this is ok
 
-        if (actual_bar_info['date'] > date_value_last_bar) and not acct_protection:
+        if (actual_bar_info['date'] > date_value_last_bar) and (not acct_protection):
+            more_trades = True
 
             ######## check if within 10 minutes of a news event ########
             if (News_Trading_Allowed == False):
-                news_happening = fx_rl.get_news_from_csv(News_Trading_Allowed)
+                news_happening = fx_rl.get_news_from_csv(News_Trading_Allowed, ServerTime)
+                # print(f'news happening = {news_happening}')
                 if news_happening:
                     more_trades = False
+                    # print(f'more trades = {more_trades}')
                     log.debug('No trades allowed due to news event')
-                else:
-                    more_trades = True
-
 
             ######## check if within trading hours ########
             if ((ServerTime.hour < Start_Hour) or (ServerTime.hour > End_Hour)):
@@ -310,6 +315,7 @@ if (connection == True):
                 log.debug('No trades allowed due to not being within the trading hours')
             elif ((ServerTime.hour > Start_Hour) and (ServerTime.hour < End_Hour) and more_trades):
                 more_trades = True
+            print(more_trades)
 
             ######## calculate the volume for the orders ########
             all_positions_df = MT.Get_closed_positions_within_window()

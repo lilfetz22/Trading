@@ -123,3 +123,9 @@ def my_get_modified_volume(env, symbol: str, volume: float) -> float:
     v = np.clip(v, si.volume_min, si.volume_max)
     v = round(v / si.volume_step) * si.volume_step
     return v
+
+def find_key_by_value(dictionary, value_to_find):
+    for key, value in dictionary.items():
+        if value == value_to_find:
+            return key
+    return None 

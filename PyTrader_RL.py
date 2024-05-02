@@ -163,6 +163,20 @@ print(f'Initial account equity: {initial_account_equity}, Initial account balanc
 initial_spread = MT.Get_last_tick_info(instrument=instrument)['spread'] / (multiplier * 10)
 print(f'Initial spread: {initial_spread}')
 
+InstrumentInfo = MT.Get_instrument_info(instrument=instrument)
+if InstrumentInfo is not None:
+    for prop in InstrumentInfo:
+        if prop == 'swap_long':
+            swap_long = InstrumentInfo[prop]
+            if swap_long < 0:
+                swap_protection_long = True
+                # print(f'swap_long: {swap_long}')
+        if prop == 'swap_short':
+            swap_short = InstrumentInfo[prop]
+            if swap_short < 0:
+                swap_protection_short = True
+                # print(f'swap_short: {swap_short}')
+
 # get the last week's worth of data for the production environment
 bars = MT.Get_last_x_bars_from_now(instrument=instrument, timeframe=MT.get_timeframe_value(timeframe), nbrofbars=fx_rl.get_bars_needed(timeframe))
 # convert to dataframe
@@ -205,10 +219,13 @@ env_production = MyMtEnv(
 obs_production, info_production = env_production.reset(seed=seed)
 # model.set_env(env_production) # do I need this? I didn't even know this existed
 done_production = False
+stop = False
 # run through the environment up to the current week and stop with the model
 while not done_production:
     action_pre_production, _states = model.predict(obs_production)
-    if (len(env_production.time_points) - 2) == env_production._current_tick:
+    if (len(env_production.time_points) - 3) == env_production._current_tick:
+        stop = True
+        print('closing all orders')
         # if there are any open orders, we need to go ahead and close them
         for o in range(len(env_production.simulator.symbol_orders('EURUSD'))):
             print(f'closing order {o}')
@@ -216,6 +233,8 @@ while not done_production:
             # make sure the model doesn't place another one
         action_pre_production[-2] = 0.99
     obs_production, reward_production, terminated_production, truncated_production, info_production = env_production.step(action_pre_production)
+    if stop:
+        truncated_production = True
     done_production = terminated_production or truncated_production
     if done_production:
         break
@@ -234,29 +253,14 @@ if (connection == True):
             account_equity_at_last_close, account_balance_at_last_close = get_current_equity_balance()
             print(f'Account equity at close: {account_equity_at_last_close}, Account balance at close: {account_balance_at_last_close}')
             # reset acct_protection, swap_protection_long, swap_protection_short
-            acct_protection, swap_protection_long, swap_protection_short = False, False, False
+            acct_protection = False
         
         AcctBalDrawdown = (account_balance_at_last_close - current_account_balance) / account_balance_at_last_close
         AcctEquityDrawdown = (account_equity_at_last_close - current_account_equity) / account_equity_at_last_close
 
-        InstrumentInfo = MT.Get_instrument_info(instrument=instrument)
-        if InstrumentInfo is not None:
-            for prop in InstrumentInfo:
-                if prop == 'swap_long':
-                    swap_long = InstrumentInfo[prop]
-                    if swap_long < 0:
-                        swap_protection_long = True
-                        print(f'swap_long: {swap_long}')
-                if prop == 'swap_short':
-                    swap_short = InstrumentInfo[prop]
-                    if swap_short < 0:
-                        swap_protection_short = True
-                        print(f'swap_short: {swap_short}')
-
-
         # retrieve open positions
         positions_df = MT.Get_all_open_positions()
-        positions_df
+        # positions_df
         # if open positions, check for closing, if SL and/or TP are defined.
         # using hidden SL/TP
         # first need actual bar info

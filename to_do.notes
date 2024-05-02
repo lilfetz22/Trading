@@ -714,3 +714,23 @@ Long-term
 Activity Log:
 Added closing conditions to the RL model
 - started testing out the code and going through it line-by-line
+
+[2024-05-02]
+Notes:
+Ideas:
+TODO:
+[ ] test the code with a basic model that might not be the best, but I can optimize later
+
+[ ] determine whether the VPS that I am using is what I need, or whether I can get a cheaper one. 
+
+
+[ ] figure out how to best deal with volume issue - does this have an impact on training the model? 
+[ ]  look at the distribution for the finished hyperparameter searches
+
+Long-term
+[ ] Start working on AI Agents that will find the most profitable method and test it on the data
+[ ] investigate the ability to use TimeGPT
+Activity Log:
+ran through all of the code for RL and checked everything. Everything looks good. Trades opened, I was able to set the stoploss, and the trades closed. Really successful time
+
+trying to get the script to run

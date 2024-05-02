@@ -313,9 +313,9 @@ if (connection == True):
             if ((ServerTime.hour < Start_Hour) or (ServerTime.hour > End_Hour)):
                 more_trades = False
                 log.debug('No trades allowed due to not being within the trading hours')
-            elif ((ServerTime.hour > Start_Hour) and (ServerTime.hour < End_Hour) and more_trades):
+            elif ((ServerTime.hour >= Start_Hour) and (ServerTime.hour <= End_Hour) and more_trades):
                 more_trades = True
-            print(more_trades)
+            # print(more_trades)
 
             ######## calculate the volume for the orders ########
             all_positions_df = MT.Get_closed_positions_within_window()
@@ -326,7 +326,7 @@ if (connection == True):
                 max_volume = round(avg_volume * 2, 2)
                 min_volume = round(avg_volume / 4, 2)
                 todays_drawdown_limit = max_Daily_Drawdown_Perc * account_balance_at_last_close
-                todays_drawdown_diff = current_account_balance - todays_drawdown_limit
+                todays_drawdown_diff = current_account_balance - (current_account_balance - todays_drawdown_limit)
                 max_drawdown_diff = current_account_balance - max_Total_Drawdown_Amt
                 closer_drawdown_diff = min(todays_drawdown_diff, max_drawdown_diff)
 
@@ -334,7 +334,8 @@ if (connection == True):
                 risk_volume = round(risk_per_trade / ((SL_in_pips / multiplier) * 100_000), 2)
                 calculated_volume = min(max_volume, risk_volume)
                 if (volume != 0.01) and (calculated_volume < volume):
-                    volume = max(min_volume, calculated_volume)          
+                    volume = max(min_volume, calculated_volume)
+                print(f'volume: {volume}')          
 
             date_value_last_bar = actual_bar_info['date']
             # new bar, so read last x bars

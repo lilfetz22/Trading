@@ -28,3 +28,24 @@
 2024-05-02 16:25:03 DEBUG    No trades allowed due to either swap True or more_trades True being False
 2024-05-02 16:30:03 DEBUG    sell trade opened
 2024-05-02 16:30:03 DEBUG    Stoploss set for ticket 59818518
+2024-05-02 17:33:12 DEBUG    Strategy started
+2024-05-02 17:35:03 DEBUG    buy trade opened
+2024-05-02 17:35:04 DEBUG    Stoploss set for ticket 59818787
+2024-05-02 17:40:21 DEBUG    sell trade opened
+2024-05-02 17:40:21 DEBUG    Stoploss set for ticket 59818791
+2024-05-02 17:40:22 DEBUG    Closed trade with ticket 59818787 due to signal from model
+2024-05-02 17:45:02 DEBUG    sell trade opened
+2024-05-02 17:45:02 DEBUG    Stoploss set for ticket 59818794
+2024-05-02 17:50:08 DEBUG    sell trade opened
+2024-05-02 17:50:08 DEBUG    Stoploss set for ticket 59818797
+2024-05-02 17:50:08 DEBUG    Closed trade with ticket 59818791 due to signal from model
+2024-05-02 17:55:14 DEBUG    buy trade opened
+2024-05-02 17:55:14 DEBUG    Stoploss set for ticket 59818801
+2024-05-02 17:55:15 DEBUG    Closed trade with ticket 59818794 due to signal from model
+2024-05-02 17:55:15 DEBUG    Closed trade with ticket 59818797 due to signal from model
+2024-05-02 18:00:04 DEBUG    buy trade opened
+2024-05-02 18:00:04 DEBUG    Stoploss set for ticket 59818806
+2024-05-02 18:00:04 DEBUG    Closed trade with ticket 59818801 due to signal from model
+2024-05-02 18:05:20 DEBUG    sell trade opened
+2024-05-02 18:05:20 DEBUG    Stoploss set for ticket 59818810
+2024-05-02 18:10:32 DEBUG    Closed trade with ticket 59818810 due to signal from model

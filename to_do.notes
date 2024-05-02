@@ -720,6 +720,8 @@ Notes:
 
 importlib.reload(fx_rl)
 
+- always make sure that you get the production data and start the script quickly
+
 Ideas:
 TODO:
 [ ] test the code with a basic model that might not be the best, but I can optimize later

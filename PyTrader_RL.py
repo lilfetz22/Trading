@@ -38,7 +38,7 @@ log = Logger()
 log.configure()
 
 # settings
-timeframe = 'M5'
+timeframe = 'H1'
 instrument = 'EURUSD'
 server_IP = '127.0.0.1'
 server_port = 4516  # check port number
@@ -179,7 +179,7 @@ if InstrumentInfo is not None:
 
 # get the last week's worth of data for the production environment
 # bars = MT.Get_last_x_bars_from_now(instrument=instrument, timeframe=MT.get_timeframe_value(timeframe), nbrofbars=fx_rl.get_bars_needed(timeframe))
-bars = MT.Get_last_x_bars_from_now(instrument=instrument, timeframe=MT.get_timeframe_value(timeframe), nbrofbars=200)
+bars = MT.Get_last_x_bars_from_now(instrument=instrument, timeframe=MT.get_timeframe_value(timeframe), nbrofbars=120)
 # convert to dataframe
 df = pd.DataFrame(bars)
 # df.rename(columns = {'tick_volume':'volume'})#, inplace = True)
@@ -389,11 +389,11 @@ if (connection == True):
                 # convert current_orders['Entry Time'] to datetime
                 current_orders['Entry Time'] = pd.to_datetime(current_orders['Entry Time'])
                 # find the max Entry Time
-                max_entry_time = current_orders['Entry Time'].max() + pd.Timedelta(minutes=5)#pd.Timedelta(hours=1)
+                max_entry_time = current_orders['Entry Time'].max() + pd.Timedelta(hours=1)#pd.Timedelta(hours=1)
                 # if the max Entry Time is within the last 30 seconds, then open a trade
                 if ((max_entry_time >= (ServerTime - pd.Timedelta(seconds=30))) & (max_entry_time <= ServerTime)): 
                     # filter current_orders to the max_entry_time
-                    new_order = current_orders[(current_orders['Entry Time'] == (max_entry_time - pd.Timedelta(minutes=5))) & (current_orders['Symbol'] == instrument)]#pd.Timedelta(hours=1)
+                    new_order = current_orders[(current_orders['Entry Time'] == (max_entry_time - pd.Timedelta(hours=1))) & (current_orders['Symbol'] == instrument)]#pd.Timedelta(hours=1)
                     print(new_order)
                     order_type = new_order['Type'].values[0].lower()
                     order_OK = MT.Open_order(instrument=instrument,

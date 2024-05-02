@@ -450,3 +450,4 @@ if (connection == True):
             forever = False
             print('Loop stopped')
             log.debug('Loop stopped')
+            break

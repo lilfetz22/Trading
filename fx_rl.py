@@ -21,10 +21,10 @@ import torch
 import pickle
 import pytz
 
-def get_news_from_csv(News_Trading_Allowed):
+def get_news_from_csv(News_Trading_Allowed, STime):
     try:
         # Get the date of the past Sunday
-        today = datetime.now()
+        today = STime
         day_of_week = today.weekday()
         days_to_subtract = 0 if day_of_week == 0 else day_of_week
         past_sunday = today - timedelta(days=days_to_subtract+1)
@@ -40,7 +40,8 @@ def get_news_from_csv(News_Trading_Allowed):
         year_str = str(year)
         
         # Construct the filename
-        filename = f"calendar_statement_{year_str}_{month_str}_{day_str}.csv"
+        location = "C:/Users/WilliamFetzner/AppData/Roaming/MetaQuotes/Terminal/0C2BFA140CA8FBEFEDCADDDEDD61AA24/tester/files/calendar_statement_"
+        filename = f"{location}{year_str}_{month_str}_{day_str}.csv"
         
         any_news = False
         
@@ -55,7 +56,7 @@ def get_news_from_csv(News_Trading_Allowed):
                     if date.day == today.day:
                         # Find how many hours and minutes until the news event
                         hours = date.hour - today.hour
-                        print(hours)
+                        # print(hours)
                         if hours == 0:
                             minutes = date.minute - today.minute
                             print(f"News in {minutes} minutes")

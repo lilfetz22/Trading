@@ -52,8 +52,8 @@ seed = 2024
 volume = 0.01
 trades_in_runway = 25
 slippage = 5
-Start_Hour = 1
-End_Hour = 22
+Start_Hour = 0
+End_Hour = 23
 magicnumber = 2772
 SL_in_pips = 10
 TP_in_pips = 10
@@ -361,6 +361,7 @@ if (connection == True):
             data_added = fx_rl.get_latest_data(FOREX_DATA_PATH_PRODUCTION, df_new, instrument=instrument)
             if data_added:
                 sim_production.load_symbols(FOREX_DATA_PATH_PRODUCTION)
+                # obs_production['features'] - tell it to get observation right here - or do all the data processing beolw right here, and just say _get_observation()
                 action, _states = model.predict(obs_production)
                 swap_protection = False
                 if ((action[-1] > 0) & (ServerTime.hour == 23)): # the last item in action is the volume, if it is positive it is a long trade
@@ -378,8 +379,8 @@ if (connection == True):
                 env_production.time_points = list(sim_production.symbols_data[instrument].index)
                 env_production._end_tick = len(env_production.time_points) - 1
                 print(env_production._current_tick)
-                env_production.signal_features = env_production._process_data()
                 env_production.prices = env_production._get_prices()
+                env_production.signal_features = env_production._process_data()
                 env_production.features_shape = (env_production.window_size, env_production.signal_features.shape[1])
                 env_production.fee = MT.Get_last_tick_info(instrument=instrument)['spread'] / (multiplier * 10)
                 obs_production, reward_production, terminated_production, truncated_production, info_production = env_production.step(action)
@@ -435,7 +436,7 @@ if (connection == True):
                     key = fx_rl.find_key_by_value(trade_id_conversion, position.ticket)
                     # filter current_orders to the key
                     orders_to_close = current_orders[current_orders['Id'] == key]
-                    if orders_to_close.loc[0, 'Closed'] == True:
+                    if orders_to_close.iloc[0, -1] == True:
                         close_OK = MT.Close_position_by_ticket(ticket=position.ticket)
                         if (close_OK == True):
                             print(f'Closed trade with ticket {position.ticket} due to signal from model')

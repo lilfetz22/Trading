@@ -16,3 +16,15 @@
 2024-05-02 11:15:39 DEBUG    Strategy started
 2024-05-02 11:22:53 DEBUG    Strategy started
 2024-05-02 15:18:48 DEBUG    Strategy started
+2024-05-02 15:26:20 DEBUG    Strategy started
+2024-05-02 15:30:02 DEBUG    buy trade opened
+2024-05-02 15:30:02 DEBUG    Stoploss set for ticket 59817586
+2024-05-02 16:07:09 DEBUG    Strategy started
+2024-05-02 16:07:09 DEBUG    No trades allowed due to not being within the trading hours
+2024-05-02 16:11:42 DEBUG    Strategy started
+2024-05-02 16:15:03 DEBUG    sell trade opened
+2024-05-02 16:15:03 DEBUG    Stoploss set for ticket 59818471
+2024-05-02 16:20:07 DEBUG    No trades allowed due to either swap True or more_trades True being False
+2024-05-02 16:25:03 DEBUG    No trades allowed due to either swap True or more_trades True being False
+2024-05-02 16:30:03 DEBUG    sell trade opened
+2024-05-02 16:30:03 DEBUG    Stoploss set for ticket 59818518

@@ -86,6 +86,9 @@ def get_latest_data(path_to_data, new_data, instrument='EURUSD'):
     # set the date column to be "Time" and set it as the index
     new_data = new_data.rename(columns={'Date': 'Time'}).set_index('Time')
     new_data_fil = new_data[new_data.index > max(current_data.index)]
+    if len(new_data_fil) == 0:
+        print('No new data to add!')
+        return None
     current_data_new_week_added = pd.concat([current_data, new_data_fil.iloc[[0], :]])
     symbols[1][instrument] = current_data_new_week_added
     # resave the symbols back to a pickle file

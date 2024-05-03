@@ -88,7 +88,7 @@ def get_latest_data(path_to_data, new_data, instrument='EURUSD'):
     # set the date column to be "Time" and set it as the index
     new_data = new_data.rename(columns={'Date': 'Time'}).set_index('Time')
     new_data_fil = new_data[new_data.index > max(current_data.index)]
-    if len(new_data_fil) == 0:
+    if len(new_data_fil) == 1:
         print('No new data to add!')
         return False
     current_data_new_week_added = pd.concat([current_data, new_data_fil])

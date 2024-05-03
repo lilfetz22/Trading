@@ -27,16 +27,13 @@ from datetime import datetime
 import pytz
 import sys
 # reimport this module
-
 import fx_rl
 sys.path.append("./PyTrader-python-mt4-mt5-trading-api-connector-drag-n-drop")
 from Pytrader_API_V3_02a import Pytrader_API
 sys.path.append("./PyTrader-python-mt4-mt5-trading-api-connector-drag-n-drop/strategies/utils")
 from LogHelper import Logger                              # for logging events
-
 log = Logger()
 log.configure()
-
 # settings
 timeframe = 'M5'
 instrument = 'EURUSD'
@@ -374,6 +371,7 @@ if (connection == True):
                     print(f'No trades allowed due to either swap {swap_protection} or more_trades {more_trades} being False')
                 env_production.time_points = list(sim_production.symbols_data[instrument].index)
                 env_production.simulator = sim_production
+                env_production.simulator.current_time = env_production.time_points[env_production._current_tick]
                 env_production._end_tick = len(env_production.time_points) - 1
                 print(env_production._current_tick)
                 env_production.prices = env_production._get_prices()

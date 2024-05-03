@@ -81,6 +81,8 @@ def get_latest_data(path_to_data, new_data, instrument='EURUSD'):
     with open(path_to_data, 'rb') as f:
         symbols = pickle.load(f)
     current_data = symbols[1][instrument]
+    # remove the last row of current data
+    current_data = current_data.iloc[:-1, :]
     # Capitalize the column names in new_data
     new_data.columns = [col.capitalize() for col in new_data.columns]
     # set the date column to be "Time" and set it as the index

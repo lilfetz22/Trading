@@ -157,6 +157,7 @@ model = PPO.load(MODEL_PATH, env=train_env)
 # initialize model and environment
 ServerTime = MT.Get_broker_server_time()
 print(ServerTime)
+run_start_time = ServerTime
 initial_account_equity, initial_account_balance = get_current_equity_balance()
 print(f'Initial account equity: {initial_account_equity}, Initial account balance: {initial_account_balance}')
 
@@ -387,7 +388,7 @@ if (connection == True):
                 obs_production, reward_production, terminated_production, truncated_production, info_production = env_production.step(action)
                 current_orders = env_production.render()['orders']
                 # save the current_orders to a csv file
-                current_orders.to_csv('current_orders.csv', index=False)
+                current_orders.to_csv(f'current_orders_{run_start_time}.csv', index=False)
                 print(current_orders)
                 # convert current_orders['Entry Time'] to datetime
                 current_orders['Entry Time'] = pd.to_datetime(current_orders['Entry Time'])
@@ -432,7 +433,7 @@ if (connection == True):
                     trade_id_conversion[new_order['Id'].values[0]] = order_OK
                     # convert trade_id_conversion to a dataframe
                     trade_id_conversion_df = pd.DataFrame(list(trade_id_conversion.items()), columns=['Id', 'ticket'])
-                    trade_id_conversion_df.to_csv('trade_id_conversion.csv', index=False)
+                    trade_id_conversion_df.to_csv(f'trade_id_conversion_{run_start_time}.csv', index=False)
             
             ######## RL Model Closing conditions ########
             open_positions_close_check = MT.Get_all_open_positions()

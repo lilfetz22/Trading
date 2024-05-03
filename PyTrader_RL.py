@@ -402,7 +402,7 @@ if (connection == True):
                 else:
                     ValueError('Timeframe not recognized')
                 # if the max Entry Time is within the last 30 seconds, then open a trade
-                if ((max_entry_time >= (ServerTime - pd.Timedelta(seconds=30))) & (max_entry_time <= ServerTime)): 
+                if ((actual_entry_time >= (ServerTime - pd.Timedelta(seconds=30))) & (actual_entry_time <= ServerTime)): 
                     # filter current_orders to the max_entry_time
                     new_order = current_orders[(current_orders['Entry Time'] == (max_entry_time)) & (current_orders['Symbol'] == instrument)]#pd.Timedelta(hours=1)
                     # print(new_order)

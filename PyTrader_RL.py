@@ -377,6 +377,7 @@ if (connection == True):
                     log.debug(f'No trades allowed due to either swap {swap_protection} or more_trades {more_trades} being False')
                     print(f'No trades allowed due to either swap {swap_protection} or more_trades {more_trades} being False')
                 env_production.time_points = list(sim_production.symbols_data[instrument].index)
+                env_production.simulator = sim_production
                 env_production._end_tick = len(env_production.time_points) - 1
                 print(env_production._current_tick)
                 env_production.prices = env_production._get_prices()
@@ -396,7 +397,7 @@ if (connection == True):
                 if ((max_entry_time >= (ServerTime - pd.Timedelta(seconds=30))) & (max_entry_time <= ServerTime)): 
                     # filter current_orders to the max_entry_time
                     new_order = current_orders[(current_orders['Entry Time'] == (max_entry_time - pd.Timedelta(hours=1))) & (current_orders['Symbol'] == instrument)]#pd.Timedelta(hours=1)
-                    print(new_order)
+                    # print(new_order)
                     order_type = new_order['Type'].values[0].lower()
                     order_OK = MT.Open_order(instrument=instrument,
                             ordertype = order_type,

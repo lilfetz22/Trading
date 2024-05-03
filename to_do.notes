@@ -720,11 +720,10 @@ Notes:
 
 importlib.reload(fx_rl)
 
-- always make sure that you get the production data and start the script quickly
-
+- always make sure that you get the production data and start the script before the next interval starts
 Ideas:
 TODO:
-[ ] test the code with a basic model that might not be the best, but I can optimize later
+[√] test the code with a basic model that might not be the best, but I can optimize later
 
 [ ] determine whether the VPS that I am using is what I need, or whether I can get a cheaper one. 
 
@@ -739,3 +738,37 @@ Activity Log:
 ran through all of the code for RL and checked everything. Everything looks good. Trades opened, I was able to set the stoploss, and the trades closed. Really successful time
 
 trying to get the script to run - it runs!!! SWEET !!!
+
+Have to get the prices before we process the data! DUH!
+
+
+[2024-05-03]
+Notes:
+Current VPS:
+($123)
+Premium Beta VPS (LD4)
+- Location: Equinix LD4 Data Center, UK
+- 3.5-3.7 GHz CPU clock frequency
+- 4 VCPU Core
+- 6 GB RAM
+- 40 GB SSD
+- 10Gb/sec ultra low latency ASIC network card
+Possible VPS' that I can use:
+- Kamatera - 8 GB RAM, 50GB SSD = $41/mo
+
+- there was a bug that happened where I lost the ID of an order, and it wasn't in the dictionary
+Ideas:
+TODO:
+[√] fix bug where the entry price is exactly the same every hour even though the price is changing
+
+[√] determine whether the VPS that I am using is what I need, or whether I can get a cheaper one. 
+
+[ ] figure out how to best deal with volume issue - does this have an impact on training the model? 
+[ ]  look at the distribution for the finished hyperparameter searches
+
+Long-term
+[ ] Start working on AI Agents that will find the most profitable method and test it on the data
+[ ] investigate the ability to use TimeGPT
+Activity Log:
+fixed bug where the entry price was the same every hour
+fixed several other bugs that arose from that issue

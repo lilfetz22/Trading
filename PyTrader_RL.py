@@ -370,7 +370,7 @@ if (connection == True):
                     log.debug(f'No trades allowed due to either swap {swap_protection} or more_trades {more_trades} being False')
                     print(f'No trades allowed due to either swap {swap_protection} or more_trades {more_trades} being False')
                 env_production.time_points = list(sim_production.symbols_data[instrument].index)
-                env_production.simulator = sim_production
+                env_production.simulator.symbols_data = sim_production.symbols_data
                 env_production.simulator.current_time = env_production.time_points[env_production._current_tick]
                 env_production._end_tick = len(env_production.time_points) - 1
                 print(env_production._current_tick)

@@ -50,3 +50,29 @@
 2024-05-02 18:05:20 DEBUG    Stoploss set for ticket 59818810
 2024-05-02 18:10:32 DEBUG    Closed trade with ticket 59818810 due to signal from model
 2024-05-02 18:19:02 DEBUG    Strategy started
+2024-05-02 19:01:50 DEBUG    Strategy started
+2024-05-02 20:00:53 DEBUG    buy trade opened
+2024-05-02 20:00:54 DEBUG    Stoploss set for ticket 59818855
+2024-05-02 21:00:31 DEBUG    buy trade opened
+2024-05-02 21:00:31 DEBUG    Stoploss set for ticket 59818899
+2024-05-02 22:00:02 DEBUG    sell trade opened
+2024-05-02 22:00:02 DEBUG    Stoploss set for ticket 59818908
+2024-05-02 22:00:02 DEBUG    Closed trade with ticket 59818855 due to signal from model
+2024-05-02 22:00:03 DEBUG    Closed trade with ticket 59818899 due to signal from model
+2024-05-02 23:00:49 DEBUG    buy trade opened
+2024-05-02 23:00:50 DEBUG    Stoploss set for ticket 59818914
+2024-05-03 00:00:02 DEBUG    buy trade opened
+2024-05-03 00:00:03 DEBUG    Stoploss set for ticket 59818917
+2024-05-03 00:00:03 DEBUG    Closed trade with ticket 59818908 due to signal from model
+2024-05-03 00:00:04 DEBUG    Closed trade with ticket 59818914 due to signal from model
+2024-05-03 01:00:00 DEBUG    sell trade opened
+2024-05-03 01:00:01 DEBUG    Stoploss set for ticket 59818926
+2024-05-03 02:00:03 DEBUG    sell trade opened
+2024-05-03 02:00:03 DEBUG    Stoploss set for ticket 59818931
+2024-05-03 02:00:03 DEBUG    Closed trade with ticket 59818926 due to signal from model
+2024-05-03 04:00:01 DEBUG    sell trade opened
+2024-05-03 04:00:02 DEBUG    Stoploss set for ticket 59819005
+2024-05-03 04:00:02 DEBUG    Closed trade with ticket 59818931 due to signal from model
+2024-05-03 05:00:03 DEBUG    sell trade opened
+2024-05-03 05:00:04 DEBUG    Stoploss set for ticket 59819137
+2024-05-03 06:15:48 DEBUG    Strategy started

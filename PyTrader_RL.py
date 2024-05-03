@@ -42,12 +42,8 @@ timeframe = 'M5'
 instrument = 'EURUSD'
 server_IP = '127.0.0.1'
 server_port = 4516  # check port number
-
 seed = 2024
-
 ###### input parameters ######
-## Parameters for model:
-
 ## Order Parameters
 volume = 0.01
 trades_in_runway = 25

@@ -419,8 +419,12 @@ if (connection == True):
                     # order_test = MT.Open_order(instrument=instrument, ordertype = 'buy', volume = 0.01, openprice=0.0, slippage = slippage, magicnumber = magicnumber,stoploss=0.0, takeprofit=0.0,comment='test') 
 
                     if (order_OK > 0):
-                        log.debug(f'{order_type} trade opened')
-                        print(f'{order_type} trade opened')
+                        log.debug(f'{order_type} with ticket number {order_OK} trade opened')
+                        print(f'{order_type} with ticket number {order_OK} trade opened')
+                        trade_id_conversion[new_order['Id'].values[0]] = order_OK
+                        # convert trade_id_conversion to a dataframe
+                        trade_id_conversion_df = pd.DataFrame(list(trade_id_conversion.items()), columns=['Id', 'ticket'])
+                        trade_id_conversion_df.to_csv('trade_id_conversion.csv', index=False)
                         open_positions = MT.Get_all_open_positions()
                         # filter the open positions to just the current ticket number
                         new_order_open_price = open_positions[open_positions['ticket'] == order_OK].open_price.values[0]
@@ -437,10 +441,6 @@ if (connection == True):
                         log.debug('Error opening trade')
                         log.debug(MT.order_error)
                         log.debug(MT.order_return_message)
-                    trade_id_conversion[new_order['Id'].values[0]] = order_OK
-                    # convert trade_id_conversion to a dataframe
-                    trade_id_conversion_df = pd.DataFrame(list(trade_id_conversion.items()), columns=['Id', 'ticket'])
-                    trade_id_conversion_df.to_csv('trade_id_conversion.csv', index=False)
             
             ######## RL Model Closing conditions ########
             open_positions_close_check = MT.Get_all_open_positions()

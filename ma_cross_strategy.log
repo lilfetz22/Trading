@@ -122,3 +122,142 @@
 2024-05-03 08:50:03 DEBUG    Closed trade with ticket 59820810 due to signal from model
 2024-05-03 09:11:17 DEBUG    sell trade opened
 2024-05-03 09:11:18 DEBUG    Stoploss set for ticket 59822067
+2024-05-03 10:11:59 DEBUG    Strategy started
+2024-05-03 10:15:02 DEBUG    sell with ticket number 59824654 trade opened
+2024-05-03 10:15:02 DEBUG    Stoploss set for ticket 59824654
+2024-05-03 10:20:02 DEBUG    buy with ticket number 59825148 trade opened
+2024-05-03 10:20:02 DEBUG    Stoploss set for ticket 59825148
+2024-05-03 10:25:00 DEBUG    sell with ticket number 59825703 trade opened
+2024-05-03 10:25:01 DEBUG    Stoploss set for ticket 59825703
+2024-05-03 10:25:02 DEBUG    Closed trade with ticket 59824654 due to signal from model
+2024-05-03 10:25:02 DEBUG    Closed trade with ticket 59825148 due to signal from model
+2024-05-03 10:30:01 DEBUG    buy with ticket number 59826072 trade opened
+2024-05-03 10:30:02 DEBUG    Stoploss set for ticket 59826072
+2024-05-03 10:30:02 DEBUG    Closed trade with ticket 59825703 due to signal from model
+2024-05-03 10:35:04 DEBUG    buy with ticket number 59826428 trade opened
+2024-05-03 10:35:05 DEBUG    Stoploss set for ticket 59826428
+2024-05-03 10:40:02 DEBUG    buy with ticket number 59826705 trade opened
+2024-05-03 10:40:02 DEBUG    Stoploss set for ticket 59826705
+2024-05-03 10:40:03 DEBUG    Closed trade with ticket 59826428 due to signal from model
+2024-05-03 11:05:01 DEBUG    buy with ticket number 59827526 trade opened
+2024-05-03 11:05:02 DEBUG    Stoploss set for ticket 59827526
+2024-05-03 11:05:02 DEBUG    Closed trade with ticket 59826705 due to signal from model
+2024-05-03 11:15:03 DEBUG    buy with ticket number 59827815 trade opened
+2024-05-03 11:15:04 DEBUG    Stoploss set for ticket 59827815
+2024-05-03 11:15:05 DEBUG    Closed trade with ticket 59827526 due to signal from model
+2024-05-03 11:20:02 DEBUG    buy with ticket number 59827979 trade opened
+2024-05-03 11:20:02 DEBUG    Stoploss set for ticket 59827979
+2024-05-03 11:20:03 DEBUG    Closed trade with ticket 59826072 due to signal from model
+2024-05-03 11:42:24 DEBUG    Closed trade with ticket 59827815 due to signal from model
+2024-05-03 11:42:24 DEBUG    Closed trade with ticket 59827979 due to signal from model
+2024-05-03 11:45:03 DEBUG    sell with ticket number 59828097 trade opened
+2024-05-03 11:45:03 DEBUG    Stoploss set for ticket 59828097
+2024-05-03 12:00:02 DEBUG    buy with ticket number 59828513 trade opened
+2024-05-03 12:00:02 DEBUG    Stoploss set for ticket 59828513
+2024-05-03 12:00:03 DEBUG    Closed trade with ticket 59828097 due to signal from model
+2024-05-03 12:05:02 DEBUG    sell with ticket number 59828612 trade opened
+2024-05-03 12:05:02 DEBUG    Stoploss set for ticket 59828612
+2024-05-03 12:10:04 DEBUG    sell with ticket number 59828708 trade opened
+2024-05-03 12:10:04 DEBUG    Stoploss set for ticket 59828708
+2024-05-03 12:10:04 DEBUG    Closed trade with ticket 59828513 due to signal from model
+2024-05-03 12:15:02 DEBUG    buy with ticket number 59828845 trade opened
+2024-05-03 12:15:02 DEBUG    Stoploss set for ticket 59828845
+2024-05-03 12:15:02 DEBUG    Closed trade with ticket 59828708 due to signal from model
+2024-05-03 12:20:03 DEBUG    buy with ticket number 59828978 trade opened
+2024-05-03 12:20:03 DEBUG    Stoploss set for ticket 59828978
+2024-05-03 12:20:03 DEBUG    Closed trade with ticket 59828612 due to signal from model
+2024-05-03 12:30:01 DEBUG    buy with ticket number 59829242 trade opened
+2024-05-03 12:30:01 DEBUG    Stoploss set for ticket 59829242
+2024-05-03 12:30:02 DEBUG    Closed trade with ticket 59828845 due to signal from model
+2024-05-03 12:35:03 DEBUG    sell with ticket number 59829368 trade opened
+2024-05-03 12:35:03 DEBUG    Stoploss set for ticket 59829368
+2024-05-03 12:35:03 DEBUG    Closed trade with ticket 59829242 due to signal from model
+2024-05-03 12:40:02 DEBUG    buy with ticket number 59829496 trade opened
+2024-05-03 12:40:03 DEBUG    Stoploss set for ticket 59829496
+2024-05-03 12:40:03 DEBUG    Closed trade with ticket 59828978 due to signal from model
+2024-05-03 12:50:03 DEBUG    buy with ticket number 59829879 trade opened
+2024-05-03 12:50:04 DEBUG    Stoploss set for ticket 59829879
+2024-05-03 12:50:04 DEBUG    Closed trade with ticket 59829368 due to signal from model
+2024-05-03 12:50:04 DEBUG    Closed trade with ticket 59829496 due to signal from model
+2024-05-03 12:55:03 DEBUG    buy with ticket number 59830105 trade opened
+2024-05-03 12:55:04 DEBUG    Stoploss set for ticket 59830105
+2024-05-03 13:00:01 DEBUG    buy with ticket number 59830314 trade opened
+2024-05-03 13:00:01 DEBUG    Stoploss set for ticket 59830314
+2024-05-03 13:00:01 DEBUG    Closed trade with ticket 59829879 due to signal from model
+2024-05-03 13:10:04 DEBUG    sell with ticket number 59830688 trade opened
+2024-05-03 13:10:04 DEBUG    Stoploss set for ticket 59830688
+2024-05-03 13:10:04 DEBUG    Closed trade with ticket 59830314 due to signal from model
+2024-05-03 13:15:04 DEBUG    sell with ticket number 59830915 trade opened
+2024-05-03 13:15:05 DEBUG    Stoploss set for ticket 59830915
+2024-05-03 13:15:05 DEBUG    Closed trade with ticket 59830688 due to signal from model
+2024-05-03 13:20:02 DEBUG    sell with ticket number 59831127 trade opened
+2024-05-03 13:20:02 DEBUG    Stoploss set for ticket 59831127
+2024-05-03 13:20:02 DEBUG    Closed trade with ticket 59830915 due to signal from model
+2024-05-03 13:30:02 DEBUG    sell with ticket number 59831431 trade opened
+2024-05-03 13:30:03 DEBUG    Stoploss set for ticket 59831431
+2024-05-03 13:30:03 DEBUG    Closed trade with ticket 59831127 due to signal from model
+2024-05-03 13:40:01 DEBUG    sell with ticket number 59831810 trade opened
+2024-05-03 13:40:02 DEBUG    Stoploss set for ticket 59831810
+2024-05-03 13:40:02 DEBUG    Closed trade with ticket 59831431 due to signal from model
+2024-05-03 13:45:02 DEBUG    buy with ticket number 59832056 trade opened
+2024-05-03 13:45:03 DEBUG    Stoploss set for ticket 59832056
+2024-05-03 13:45:03 DEBUG    Closed trade with ticket 59831810 due to signal from model
+2024-05-03 13:50:12 DEBUG    sell with ticket number 59832174 trade opened
+2024-05-03 13:50:13 DEBUG    Stoploss set for ticket 59832174
+2024-05-03 13:50:13 DEBUG    Closed trade with ticket 59832056 due to signal from model
+2024-05-03 13:55:03 DEBUG    sell with ticket number 59832327 trade opened
+2024-05-03 13:55:04 DEBUG    Stoploss set for ticket 59832327
+2024-05-03 13:55:04 DEBUG    Closed trade with ticket 59830105 due to signal from model
+2024-05-03 14:00:45 DEBUG    sell with ticket number 59832507 trade opened
+2024-05-03 14:00:45 DEBUG    Stoploss set for ticket 59832507
+2024-05-03 14:00:45 DEBUG    Closed trade with ticket 59832174 due to signal from model
+2024-05-03 14:00:46 DEBUG    Closed trade with ticket 59832327 due to signal from model
+2024-05-03 14:05:03 DEBUG    buy with ticket number 59832648 trade opened
+2024-05-03 14:05:03 DEBUG    Stoploss set for ticket 59832648
+2024-05-03 14:10:02 DEBUG    sell with ticket number 59832808 trade opened
+2024-05-03 14:10:02 DEBUG    Stoploss set for ticket 59832808
+2024-05-03 14:10:03 DEBUG    Closed trade with ticket 59832648 due to signal from model
+2024-05-03 14:15:03 DEBUG    sell with ticket number 59832945 trade opened
+2024-05-03 14:15:03 DEBUG    Stoploss set for ticket 59832945
+2024-05-03 14:15:04 DEBUG    Closed trade with ticket 59832808 due to signal from model
+2024-05-03 14:20:02 DEBUG    buy with ticket number 59833097 trade opened
+2024-05-03 14:20:02 DEBUG    Stoploss set for ticket 59833097
+2024-05-03 14:20:03 DEBUG    Closed trade with ticket 59832945 due to signal from model
+2024-05-03 14:25:03 DEBUG    sell with ticket number 59833233 trade opened
+2024-05-03 14:25:04 DEBUG    Stoploss set for ticket 59833233
+2024-05-03 14:25:05 DEBUG    Closed trade with ticket 59833097 due to signal from model
+2024-05-03 14:35:23 DEBUG    buy with ticket number 59833525 trade opened
+2024-05-03 14:35:23 DEBUG    Stoploss set for ticket 59833525
+2024-05-03 14:35:24 DEBUG    Closed trade with ticket 59832507 due to signal from model
+2024-05-03 14:40:02 DEBUG    buy with ticket number 59833655 trade opened
+2024-05-03 14:40:03 DEBUG    Stoploss set for ticket 59833655
+2024-05-03 14:40:03 DEBUG    Closed trade with ticket 59833525 due to signal from model
+2024-05-03 14:45:03 DEBUG    buy with ticket number 59833723 trade opened
+2024-05-03 14:45:04 DEBUG    Stoploss set for ticket 59833723
+2024-05-03 14:45:04 DEBUG    Closed trade with ticket 59833233 due to signal from model
+2024-05-03 14:55:03 DEBUG    sell with ticket number 59833818 trade opened
+2024-05-03 14:55:03 DEBUG    Stoploss set for ticket 59833818
+2024-05-03 14:55:03 DEBUG    Closed trade with ticket 59833655 due to signal from model
+2024-05-03 14:55:03 DEBUG    Closed trade with ticket 59833723 due to signal from model
+2024-05-03 15:00:01 DEBUG    buy with ticket number 59833860 trade opened
+2024-05-03 15:00:02 DEBUG    Stoploss set for ticket 59833860
+2024-05-03 15:05:02 DEBUG    sell with ticket number 59833907 trade opened
+2024-05-03 15:05:02 DEBUG    Stoploss set for ticket 59833907
+2024-05-03 15:05:03 DEBUG    Closed trade with ticket 59833818 due to signal from model
+2024-05-03 15:05:03 DEBUG    Closed trade with ticket 59833860 due to signal from model
+2024-05-03 15:10:03 DEBUG    sell with ticket number 59833971 trade opened
+2024-05-03 15:10:04 DEBUG    Stoploss set for ticket 59833971
+2024-05-03 15:30:02 DEBUG    sell with ticket number 59834164 trade opened
+2024-05-03 15:30:02 DEBUG    Stoploss set for ticket 59834164
+2024-05-03 15:30:02 DEBUG    Closed trade with ticket 59833907 due to signal from model
+2024-05-03 15:35:03 DEBUG    buy with ticket number 59834214 trade opened
+2024-05-03 15:35:03 DEBUG    Stoploss set for ticket 59834214
+2024-05-03 15:35:03 DEBUG    Closed trade with ticket 59834164 due to signal from model
+2024-05-03 15:40:01 DEBUG    sell with ticket number 59834311 trade opened
+2024-05-03 15:40:02 DEBUG    Stoploss set for ticket 59834311
+2024-05-03 15:40:02 DEBUG    Closed trade with ticket 59834214 due to signal from model
+2024-05-03 15:55:01 DEBUG    sell with ticket number 59834348 trade opened
+2024-05-03 15:55:01 DEBUG    Stoploss set for ticket 59834348
+2024-05-03 15:55:02 DEBUG    Closed trade with ticket 59834311 due to signal from model
+2024-05-03 16:00:01 DEBUG    trade with ticket 59833971 closed for no weekend hold
+2024-05-03 16:00:02 DEBUG    trade with ticket 59834348 closed for no weekend hold

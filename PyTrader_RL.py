@@ -236,6 +236,7 @@ while not done_production:
 # dictionary to store the trade_id and the corresponding ticket number
 trade_id_conversion = {}
 forever = True
+count_of_times_getting_new_data = 0
 if (connection == True):
     log.debug('Strategy started')
     while(forever):
@@ -353,6 +354,7 @@ if (connection == True):
             ## add the data to the environment
             data_added = fx_rl.get_latest_data(FOREX_DATA_PATH_PRODUCTION, df_new, instrument=instrument)
             if data_added:
+                count_of_times_getting_new_data += 1
                 sim_production.load_symbols(FOREX_DATA_PATH_PRODUCTION)
                 # obs_production['features'] - tell it to get observation right here - or do all the data processing beolw right here, and just say _get_observation()
                 action, _states = model.predict(obs_production)
@@ -405,6 +407,8 @@ if (connection == True):
                 if ((actual_entry_time >= (ServerTime - pd.Timedelta(seconds=30))) & (actual_entry_time <= ServerTime)): 
                     # filter current_orders to the max_entry_time
                     new_order = current_orders[(current_orders['Entry Time'] == (max_entry_time)) & (current_orders['Symbol'] == instrument)]#pd.Timedelta(hours=1)
+                    if count_of_times_getting_new_data < 2:
+                        volume = 0.01
                     # print(new_order)
                     order_type = new_order['Type'].values[0].lower()
                     order_OK = MT.Open_order(instrument=instrument,

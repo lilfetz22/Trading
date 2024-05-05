@@ -772,3 +772,48 @@ Long-term
 Activity Log:
 fixed bug where the entry price was the same every hour
 fixed several other bugs that arose from that issue
+
+[2024-05-04]
+Notes:
+Ideas:
+TODO:
+[√] analyze the results from the test run yesterday
+[ ] figure out how to best deal with volume issue - does this have an impact on training the model? 
+[√] look at the distribution for the finished hyperparameter searches
+
+Long-term
+[ ] Start working on AI Agents that will find the most profitable method and test it on the data
+[ ] investigate the ability to use TimeGPT
+Activity Log:
+
+- analyzed the results from the test run yesterday, everything is looking good, all I did was add a safeguard for the first 2 runs of getting new data, I made it so that those first 2 orders would be 0.01, because they were significantly off in the results for the entry and exit prices
+
+- investigated the distribution of the hyperparameter searches. Found new upper bounds for the distributions
+
+- the profit factor worked out really well. Didn't see those huge losses like before
+
+[2024-05-05]
+Notes:
+- the hyperparameter search needs to be done with the validation week being the week that just ended.
+- this week ended with May 3rd, the training should be evertyhing before April 26th, and then the validation should be for the week ending in the 3rd.
+Ideas:
+TODO:
+[ ] prepare for next stage of testing that will start Sunday -> Tuesday Morning
+[ ] Use the same model from Friday -> the main test will be whether we can get it working on the VPS and how it does up there.
+[ ] during that time Monday morning -> analyze the results from the hyperparameter searches comparing the volumes, then we need to 
+         run the hyperparameter search with either the old volume calc or the new, and then use the best hyperparameters from that search that will run on Monday, to then generate a model that we can run 
+         starting on Tuesday morning
+      [ ] get the model ready
+          [ ] getting the correct parameters
+          [ ] putting that into Saving_tested_model notebook running it on 250K learning timesteps
+          [ ] saving the model into its location on the init__.py file
+          [ ] restarting the script on the VPS
+      
+
+[ ] figure out how to best deal with volume issue - does this have an impact on training the model? 
+[ ] compare the hyperparameter searches for the new and old volume calculations
+
+Long-term
+[ ] Start working on AI Agents that will find the most profitable method and test it on the data
+[ ] investigate the ability to use TimeGPT
+Activity Log:

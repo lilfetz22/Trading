@@ -4,33 +4,23 @@
 This script is meant as example how to use the Pytrader_API in live trading.
 The logic is a simple crossing of two sma averages.
 '''
-from tqdm import tqdm
-import random
-import sys
-
 import numpy as np
 import pandas as pd
-import seaborn as sns
-import matplotlib.pyplot as plt
-
 import gymnasium as gym
+import pickle
 import gym_mtsim
-from gym_mtsim_forked.gym_mtsim.data import FOREX_DATA_PATH_PRODUCTION, FOREX_DATA_PATH_TRAIN, MODEL_PATH
-from gym_mtsim import OrderType, Timeframe, MtEnv, MtSimulator
-from stable_baselines3 import A2C, PPO
+from gym_mtsim_forked.gym_mtsim.data import FOREX_DATA_PATH_PRODUCTION, FOREX_DATA_PATH, MODEL_PATH
+from stable_baselines3 import PPO
 from stable_baselines3.common.callbacks import BaseCallback, EvalCallback
 import time
-import torch
+# import torch
 #import talib as ta
 import configparser
 from datetime import datetime
-import pytz
-import sys
+# import pytz
 # reimport this module
 import fx_rl
-sys.path.append("./PyTrader-python-mt4-mt5-trading-api-connector-drag-n-drop")
 from Pytrader_API_V3_02a import Pytrader_API
-sys.path.append("./PyTrader-python-mt4-mt5-trading-api-connector-drag-n-drop/strategies/utils")
 from LogHelper import Logger                              # for logging events
 log = Logger()
 log.configure()
@@ -123,7 +113,7 @@ sim_train = gym_mtsim.MtSimulator(
     leverage=100.,
     stop_out_level=0.2,
     hedge=True,
-    symbols_filename=FOREX_DATA_PATH_TRAIN
+    symbols_filename=FOREX_DATA_PATH
 )
 sim_training_fee = lambda symbol: {
     instrument: max(0., np.random.normal(0.0001, 0.00003))
@@ -196,7 +186,7 @@ sim_production = gym_mtsim.MtSimulator(
     symbols_filename=FOREX_DATA_PATH_PRODUCTION
 )
 
-class MyMtEnv(MtEnv):
+class MyMtEnv(gym_mtsim.MtEnv):
     _get_modified_volume = fx_rl.my_get_modified_volume
 
 env_production = MyMtEnv(

@@ -1,25 +1,16 @@
 import csv
 from datetime import datetime, timedelta
-from tqdm import tqdm
-import random
-import sys
-
 import numpy as np
 import pandas as pd
-import seaborn as sns
-import matplotlib.pyplot as plt
-
-import gymnasium as gym
-import gym_mtsim
-sys.path.append("C:/Users/WilliamFetzner/Documents/Trading/")
-from gym_mtsim_forked.gym_mtsim.data import FOREX_DATA_PATH, FOREX_DATA_PATH_TRAIN
-from gym_mtsim import OrderType, Timeframe, MtEnv, MtSimulator
-from stable_baselines3 import A2C, PPO
-from stable_baselines3.common.callbacks import BaseCallback, EvalCallback
 import time
-import torch
 import pickle
-import pytz
+# import gymnasium as gym
+# import gym_mtsim
+# from gym_mtsim_forked.gym_mtsim.data import FOREX_DATA_PATH, FOREX_DATA_PATH_TRAIN
+# from gym_mtsim import OrderType, Timeframe, MtEnv, MtSimulator
+# from stable_baselines3 import A2C, PPO
+# from stable_baselines3.common.callbacks import BaseCallback, EvalCallback
+
 
 def get_news_from_csv(News_Trading_Allowed, STime):
     try:

@@ -31,7 +31,7 @@ def get_news_from_csv(News_Trading_Allowed, STime):
         year_str = str(year)
         
         # Construct the filename
-        location = "C:/Users/WilliamFetzner/AppData/Roaming/MetaQuotes/Terminal/0C2BFA140CA8FBEFEDCADDDEDD61AA24/tester/files/calendar_statement_"
+        location = "./news_events/"
         filename = f"{location}{year_str}_{month_str}_{day_str}.csv"
         
         any_news = False

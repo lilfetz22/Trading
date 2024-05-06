@@ -25,7 +25,7 @@ from LogHelper import Logger                              # for logging events
 log = Logger()
 log.configure()
 # settings
-timeframe = 'M5'
+timeframe = 'H1'
 instrument = 'EURUSD'
 server_IP = '127.0.0.1'
 server_port = 4516  # check port number

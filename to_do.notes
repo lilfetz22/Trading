@@ -852,9 +852,9 @@ Ideas:
 TODO:
 [ ] figure out if I have the right calculation for estimating spread
 
-[ ] during that time Monday morning -> analyze the results from the hyperparameter searches comparing the volumes, then we need to 
-         run the hyperparameter search with either the old volume calc or the new, and then use the best hyperparameters from that search that will run on Monday, to then generate a model that we can run 
-         starting on Tuesday morning      
+[√] during that time Monday morning -> analyze the results from the hyperparameter searches comparing the volumes, then we need to 
+         [√] run the hyperparameter search with either the old volume calc or the new, and then use the best hyperparameters from that search that will run on Monday, to then generate a model that we can run 
+         [√] starting on Tuesday morning      
 
 [√] figure out how to best deal with volume issue - does this have an impact on training the model? 
     [√] compare the hyperparameter searches for the new and old volume calculations
@@ -862,8 +862,6 @@ TODO:
 [ ] figure out how this works on different timeframes through the simulation
     [ ] test training it on the 1hr timeframe, then test on 5 min timeframe
     [ ] training it on 5 min timeframe with 100_000 bars, then running on 5 min timeframe
-
-
 
 Long-term
 [ ] Start working on AI Agents that will find the most profitable method and test it on the data

@@ -817,3 +817,30 @@ Long-term
 [ ] Start working on AI Agents that will find the most profitable method and test it on the data
 [ ] investigate the ability to use TimeGPT
 Activity Log:
+
+
+[2024-05-06]
+Notes:
+Ideas:
+TODO:
+[ ] prepare for next stage of testing that will start Sunday -> Tuesday Morning
+[√] Use the same model from Friday -> the main test will be whether we can get it working on the VPS and how it does up there.
+[ ] during that time Monday morning -> analyze the results from the hyperparameter searches comparing the volumes, then we need to 
+         run the hyperparameter search with either the old volume calc or the new, and then use the best hyperparameters from that search that will run on Monday, to then generate a model that we can run 
+         starting on Tuesday morning
+      [ ] get the model ready
+          [ ] getting the correct parameters
+          [ ] putting that into Saving_tested_model notebook running it on 250K learning timesteps
+          [ ] saving the model into its location on the init__.py file
+          [ ] restarting the script on the VPS
+      
+
+[ ] figure out how to best deal with volume issue - does this have an impact on training the model? 
+[ ] compare the hyperparameter searches for the new and old volume calculations
+
+Long-term
+[ ] Start working on AI Agents that will find the most profitable method and test it on the data
+[ ] investigate the ability to use TimeGPT
+Activity Log:
+
+Got the model working on the VPS

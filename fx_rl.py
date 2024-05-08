@@ -4,6 +4,7 @@ import numpy as np
 import pandas as pd
 import time
 import pickle
+import pytz
 # import gymnasium as gym
 # import gym_mtsim
 # from gym_mtsim_forked.gym_mtsim.data import FOREX_DATA_PATH, FOREX_DATA_PATH_TRAIN
@@ -122,4 +123,53 @@ def find_key_by_value(dictionary, value_to_find):
     for key, value in dictionary.items():
         if value == value_to_find:
             return key
-    return None 
+    return None
+
+# create a function that provides the datetime that it was 100_000 bars back given the timeframe as an input
+def bars_back(current_time, timeframe, total_bars=100_000):
+    if timeframe == 'M1':
+        # round down the current time to the nearest interval for the timeframe
+        current_time = current_time.replace(second=0, microsecond=0)
+        while total_bars > 0:
+            current_time = current_time - timedelta(minutes=1)
+            if current_time.weekday() < 5: # Monday is 0 and Sunday is 6
+                total_bars -= 1
+        return current_time.replace(tzinfo=pytz.UTC)
+    
+    elif timeframe == 'M5':
+        # round down the current time to the nearest interval for the timeframe
+        current_time = current_time.replace(minute=current_time.minute - current_time.minute%5, second=0, microsecond=0)
+        while total_bars > 0:
+            current_time = current_time - timedelta(minutes=5)
+            if current_time.weekday() < 5: # Monday is 0 and Sunday is 6
+                total_bars -= 1
+        return current_time.replace(tzinfo=pytz.UTC)
+    
+    elif timeframe == 'M15':
+        # round down the current time to the nearest interval for the timeframe
+        current_time = current_time.replace(minute=current_time.minute - current_time.minute%15, second=0, microsecond=0)
+        while total_bars > 0:
+            current_time = current_time - timedelta(minutes=15)
+            if current_time.weekday() < 5: # Monday is 0 and Sunday is 6
+                total_bars -= 1
+        return current_time.replace(tzinfo=pytz.UTC)
+    
+    elif timeframe == 'H1':
+        # round down the current time to the nearest interval for the timeframe
+        current_time = current_time.replace(minute=0, second=0, microsecond=0)
+        while total_bars > 0:
+            current_time = current_time - timedelta(hours=1)
+            if current_time.weekday() < 5: # Monday is 0 and Sunday is 6
+                total_bars -= 1
+        return current_time.replace(tzinfo=pytz.UTC)
+    
+    elif timeframe == 'H4':
+        # round down the current time to the nearest interval for the timeframe
+        current_time = current_time.replace(minute=0, second=0, microsecond=0)
+        while total_bars > 0:
+            current_time = current_time - timedelta(hours=4)
+            if current_time.weekday() < 5: # Monday is 0 and Sunday is 6
+                total_bars -= 1
+        return current_time.replace(tzinfo=pytz.UTC)
+    else:
+        return Exception('Invalid timeframe')    

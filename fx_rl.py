@@ -173,3 +173,22 @@ def bars_back(current_time, timeframe, total_bars=100_000):
         return current_time.replace(tzinfo=pytz.UTC)
     else:
         return Exception('Invalid timeframe')    
+    
+def slices_finder(data, max_date, testing_needed=True):
+    max_day_of_week = max_date.dayofweek
+    # subtract the day of the week from the max_date to get the previous friday
+    if max_day_of_week >= 4:
+        max_friday = max_date
+    else:
+        max_friday = max_date - pd.DateOffset(days=max_day_of_week+2)
+    two_weeks = max_friday - pd.DateOffset(days=14)
+    one_week = max_friday - pd.DateOffset(days=7)
+    if testing_needed:
+        training_index_slice = data.loc[:two_weeks, :].index
+        validation_index_slice = data.loc[two_weeks:one_week, :].index
+        testing_index_slice = data.loc[one_week:max_friday, :].index
+        return [training_index_slice, validation_index_slice, testing_index_slice]
+    else:
+        training_index_slice = data.loc[:one_week, :].index
+        validation_index_slice = data.loc[one_week:max_friday, :].index
+        return [training_index_slice, validation_index_slice]

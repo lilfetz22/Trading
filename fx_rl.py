@@ -5,6 +5,7 @@ import pandas as pd
 import time
 import pickle
 import pytz
+from typing import List, Tuple, Dict, Any, Optional, Union, Callable
 # import gymnasium as gym
 # import gym_mtsim
 # from gym_mtsim_forked.gym_mtsim.data import FOREX_DATA_PATH, FOREX_DATA_PATH_TRAIN
@@ -124,6 +125,22 @@ def find_key_by_value(dictionary, value_to_find):
         if value == value_to_find:
             return key
     return None
+
+def my_get_prices(env, keys: List[str]=['Close', 'Open', 'High', 'Low', 'Volume']) -> Dict[str, np.ndarray]:
+    prices = {}
+
+    for symbol in env.trading_symbols:
+        get_price_at = lambda time: \
+            env.original_simulator.price_at(symbol, time)[keys]
+
+        if env.multiprocessing_pool is None:
+            p = list(map(get_price_at, env.time_points))
+        else:
+            p = env.multiprocessing_pool.map(get_price_at, env.time_points)
+
+        prices[symbol] = np.array(p)
+
+    return prices
 
 # create a function that provides the datetime that it was 100_000 bars back given the timeframe as an input
 def bars_back(current_time, timeframe, total_bars=100_000):

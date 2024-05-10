@@ -191,21 +191,27 @@ def bars_back(current_time, timeframe, total_bars=100_000):
     else:
         return Exception('Invalid timeframe')    
     
-def slices_finder(data, max_date, testing_needed=True):
-    max_day_of_week = max_date.dayofweek
-    # subtract the day of the week from the max_date to get the previous friday
-    if max_day_of_week >= 4:
-        max_friday = max_date
-    else:
-        max_friday = max_date - pd.DateOffset(days=max_day_of_week+2)
-    two_weeks = max_friday - pd.DateOffset(days=14)
-    one_week = max_friday - pd.DateOffset(days=7)
+def slices_finder(data, max_date, training_refresh='week', testing_needed=True):
+    if training_refresh == 'week':
+        max_day_of_week = max_date.dayofweek
+        # subtract the day of the week from the max_date to get the previous friday
+        if max_day_of_week >= 4:
+            max_friday = max_date
+        else:
+            max_friday = max_date - pd.DateOffset(days=max_day_of_week+2)
+        training_end_date = max_friday - pd.DateOffset(days=14)
+        validation_end_date = max_friday - pd.DateOffset(days=7)
+    elif training_refresh == 'day':
+        max_friday = max_date.replace(hour=0, minute=0, second=0, microsecond=0)
+        training_end_date = max_date - pd.DateOffset(days=2)
+        validation_end_date = max_date - pd.DateOffset(days=1)
+
     if testing_needed:
-        training_index_slice = data.loc[:two_weeks, :].index
-        validation_index_slice = data.loc[two_weeks:one_week, :].index
-        testing_index_slice = data.loc[one_week:max_friday, :].index
+        training_index_slice = data.loc[:training_end_date, :].index
+        validation_index_slice = data.loc[training_end_date:validation_end_date, :].index
+        testing_index_slice = data.loc[validation_end_date:max_friday, :].index
         return [training_index_slice, validation_index_slice, testing_index_slice]
     else:
-        training_index_slice = data.loc[:one_week, :].index
-        validation_index_slice = data.loc[one_week:max_friday, :].index
+        training_index_slice = data.loc[:validation_end_date, :].index
+        validation_index_slice = data.loc[validation_end_date:max_friday, :].index
         return [training_index_slice, validation_index_slice]

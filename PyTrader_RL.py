@@ -135,7 +135,7 @@ train_env = gym_mtsim.MtEnv(
 # end = time.time()
 # print(f'Environment creation time: {end - start} seconds')
 # time.sleep(65)
-model = PPO.load(MODEL_PATH, env=train_env)
+model = PPO.load('model_250K_2024-05-03.pkl', env=train_env)
 
 # initialize model and environment
 ServerTime = MT.Get_broker_server_time()

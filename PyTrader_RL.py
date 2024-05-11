@@ -361,6 +361,24 @@ if (connection == True):
                     action[-2] = action2
                     log.debug(f'No trades allowed due to either swap {swap_protection} or more_trades {more_trades} being False')
                     print(f'No trades allowed due to either swap {swap_protection} or more_trades {more_trades} being False')
+                # if a trade was closed due to the stoploss, close it for the simulator
+                # get the list of all the ticket numbers for all the closed positions from all_positions_df
+                closed_tickets = all_positions_df.ticket.values()
+                if (len(closed_tickets) > 0):
+                    for ticket in closed_tickets:
+                        if (ticket in trade_id_conversion.values()):
+                            # get the key from the value within the trade_id_conversion dictionary
+                            key = fx_rl.find_key_by_value(trade_id_conversion, ticket)
+                            # filter current_orders to the key
+                            orders_closed_by_sl = current_orders[current_orders['Id'] == key]
+                            if (orders_closed_by_sl.iloc[0, -1] == False):
+                                # Grab the entry price
+                                orders_table_entry_price = orders_closed_by_sl['Entry Price']
+                                # find the index within the 'orders' of obs_production
+                                for idx, order in enumerate(obs_production['orders'][0][0]): # this will break when using more than one instrument
+                                    if order[0] == orders_table_entry_price:
+                                        action[idx] = 0.99
+                        
                 env_production.time_points = list(sim_production.symbols_data[instrument].index)
                 env_production.simulator.symbols_data = sim_production.symbols_data
                 env_production.simulator.current_time = env_production.time_points[env_production._current_tick]

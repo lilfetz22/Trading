@@ -959,3 +959,37 @@ Long-term
 Activity Log:
 
 determined that 1 hr was the best timeframe when only training the data on the weekend and then using the same model for the entire week, but if we were to 
+
+[2024-05-11]
+Notes:
+Ideas:
+TODO:
+[ ] check whether the new functionality works for closing a trade in the simulator when the stoploss is hit
+TOP PRIORITY
+[√] update the model to close a trade in the simulator if the stoploss is hit so that it can potentially open a new trade
+
+[√] figure out how this works on different timeframes through the simulation
+    [√] training it on 5 min timeframe with 100_000 bars, then running on 5 min timeframe
+    [ ] analyze gym_mtsim_forked/examples/hyperopt/trials_5_8_timeframe_test.pkl
+
+[ ] start running the hyperparameter search for 15 and 5 min timeframes on how many bars I need to train on.
+
+[√] determine the best sized dataset for the model to train on
+
+[ ] test whether the model performs better when re-training with every additional timestep
+
+[ ] add more data for the model to work with
+   [ ] OHLCV instead of just OC 
+   [ ] add the time until the next news event
+   [ ] add some indicators
+
+[ ] find more hyperparameters to tune that might impact the ability of the model to be more successful
+
+Long-term
+[ ] Start working on AI Agents that will find the most profitable method and test it on the data
+[ ] investigate the ability to use TimeGPT
+Activity Log:
+- added functionality for closing trades when stoploss is hit
+
+analyzed results from this week, everything looks fine. Just not a profitable week. Had a lot of times where the SL was hit
+- training data size inconclusive

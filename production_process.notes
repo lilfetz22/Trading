@@ -1,0 +1,7 @@
+Production process
+
+1. Get the latest data
+2. tune the hyperparameters without the testing set
+3. run the Saving_tested_model notebook so that we can save the model
+4. update the model name and any new updates to the VPS versions
+5. get the code running on the VPS

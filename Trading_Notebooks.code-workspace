@@ -1,0 +1,17 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"name": "FinRL-Meta",
+			"path": "FinRL-Meta"
+		}
+	],
+	"settings": {},
+	"extensions": {
+		"recommendations": [
+			"canadaduane.notes"
+		]
+	}
+}

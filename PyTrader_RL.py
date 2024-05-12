@@ -106,6 +106,10 @@ def get_current_equity_balance():
             current_acct_balance = DynamicInfo[prop]
     return current_acct_equity, current_acct_balance
 
+class MyMtEnv(gym_mtsim.MtEnv):
+    # _get_modified_volume = fx_rl.my_get_modified_volume
+    _get_prices = fx_rl.my_get_prices
+
 # load in the model to use for the week
 sim_train = gym_mtsim.MtSimulator(
     unit='USD',
@@ -121,7 +125,7 @@ sim_training_fee = lambda symbol: {
 
 # time how long this code takes
 # start = time.time()
-train_env = gym_mtsim.MtEnv(
+train_env = MyMtEnv(
     original_simulator=sim_train,
     trading_symbols=[instrument],
     window_size = 10,
@@ -135,7 +139,7 @@ train_env = gym_mtsim.MtEnv(
 # end = time.time()
 # print(f'Environment creation time: {end - start} seconds')
 # time.sleep(65)
-model = PPO.load('model_250K_2024-05-03.pkl', env=train_env)
+model = PPO.load('model_116_2024-05-10.pkl', env=train_env)
 
 # initialize model and environment
 ServerTime = MT.Get_broker_server_time()
@@ -186,10 +190,11 @@ sim_production = gym_mtsim.MtSimulator(
     symbols_filename=FOREX_DATA_PATH_PRODUCTION
 )
 
-class MyMtEnv(gym_mtsim.MtEnv):
+class MyMtEnv2(gym_mtsim.MtEnv):
     _get_modified_volume = fx_rl.my_get_modified_volume
+    _get_prices = fx_rl.my_get_prices
 
-env_production = MyMtEnv(
+env_production = MyMtEnv2(
     original_simulator=sim_production,
     trading_symbols=[instrument],
     window_size = 10,

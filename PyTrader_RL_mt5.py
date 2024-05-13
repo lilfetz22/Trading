@@ -25,10 +25,10 @@ from LogHelper import Logger                              # for logging events
 log = Logger()
 log.configure()
 # settings
-timeframe = 'H1'
+timeframe = 'M5'
 instrument = 'EURUSD'
 server_IP = '127.0.0.1'
-server_port = 4516  # check port number
+server_port = 3322  # check port number
 seed = 2024
 ###### input parameters ######
 ## Order Parameters
@@ -123,9 +123,12 @@ sim_training_fee = lambda symbol: {
     instrument: max(0., np.random.normal(0.0001, 0.00003))
 }[symbol]
 
+# 5025438051
+# -pLkOdH4
+
 # time how long this code takes
 # start = time.time()
-train_env = MyMtEnv(
+train_env = gym_mtsim.MtEnv(
     original_simulator=sim_train,
     trading_symbols=[instrument],
     window_size = 10,
@@ -139,7 +142,7 @@ train_env = MyMtEnv(
 # end = time.time()
 # print(f'Environment creation time: {end - start} seconds')
 # time.sleep(65)
-model = PPO.load('model_0.pkl', env=train_env)
+model = PPO.load(MODEL_PATH, env=train_env)
 
 # initialize model and environment
 ServerTime = MT.Get_broker_server_time()
@@ -192,7 +195,7 @@ sim_production = gym_mtsim.MtSimulator(
 
 class MyMtEnv2(gym_mtsim.MtEnv):
     _get_modified_volume = fx_rl.my_get_modified_volume
-    _get_prices = fx_rl.my_get_prices
+    # _get_prices = fx_rl.my_get_prices
 
 env_production = MyMtEnv2(
     original_simulator=sim_production,

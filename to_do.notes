@@ -1062,6 +1062,7 @@ TODO:
 
 [ ] figure out how this works on different timeframes through the simulation
     [ ] training it on 5 min timeframe with 100_000 bars, then running on 5 min timeframe
+    [ ] combine increasing_data_for_model and saving_tested_model hyperparameter search logic to test this
 
 [ ] start running the hyperparameter search for 15 and 5 min timeframes on how many bars I need to train on.
 
@@ -1078,3 +1079,31 @@ Long-term
 [ ] Start working on AI Agents that will find the most profitable method and test it on the data
 [ ] investigate the ability to use TimeGPT
 Activity Log:
+
+[2024-05-16]
+Notes:
+Ideas:
+TODO:
+[√] create a plan for the other freelance sites to apply to on which day - have the last day be for enhancing Fiverr gigs
+[√] create the business loan amoritization schedule
+[√] Find a replacement for github copilot
+
+
+[ ] check whether the new functionality works for closing a trade in the simulator when the stoploss is hit
+
+[ ] figure out how this works on different timeframes through the simulation
+    [ ] training it on 5 min timeframe with 100_000 bars, then running on 5 min timeframe
+    [√] combine increasing_data_for_model and saving_tested_model hyperparameter search logic to test this
+
+Long-term
+[ ] Start working on AI Agents that will find the most profitable method and test it on the data
+[ ] investigate the ability to use TimeGPT
+Activity Log:
+
+1. applied for proxify.io
+2. restarted the gigs on Fiverr - still need to optimize all of these and update with latest info about me
+3. Created a plan for applying to other freelance sites over the next week
+4. Created the loan amortization schedule for business loan
+5. Updated loan amoritization schedule for home improvement loans
+6. Combined increasing_data_for_model and saving_tested_model hyperparameter search logic to test the timeframe
+7. Found an alternative to github copilot

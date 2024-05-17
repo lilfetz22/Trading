@@ -993,3 +993,117 @@ Activity Log:
 
 analyzed results from this week, everything looks fine. Just not a profitable week. Had a lot of times where the SL was hit
 - training data size inconclusive
+
+[2024-05-12]
+Notes:
+Ideas:
+- is performance on the validation week, always a predictor of performance on the testing week?
+    - I might be able to use this to understand if the results that I run on the simulation of the data prior to 
+    starting to run the model in the real world is a good validation run or not
+
+- main will be my production code
+TODO:
+[ ] check whether the new functionality works for closing a trade in the simulator when the stoploss is hit
+
+[√] figure out how this works on different timeframes through the simulation
+    [√] training it on 5 min timeframe with 100_000 bars, then running on 5 min timeframe
+    [ ] analyze gym_mtsim_forked/examples/hyperopt/trials_5_8_timeframe_test.pkl
+
+[ ] start running the hyperparameter search for 15 and 5 min timeframes on how many bars I need to train on.
+
+[ ] test whether the model performs better when re-training with every additional timestep
+
+[ ] add more data for the model to work with
+   [√] OHLCV instead of just OC 
+   [ ] add the time until the next news event
+   [ ] add some indicators
+
+[ ] find more hyperparameters to tune that might impact the ability of the model to be more successful
+
+Long-term
+[ ] Start working on AI Agents that will find the most profitable method and test it on the data
+[ ] investigate the ability to use TimeGPT
+Activity Log:
+
+
+[2024-05-14]
+Notes:
+Ideas:
+TODO:
+[ ] check whether the new functionality works for closing a trade in the simulator when the stoploss is hit
+
+[ ] figure out how this works on different timeframes through the simulation
+    [ ] training it on 5 min timeframe with 100_000 bars, then running on 5 min timeframe
+
+[ ] start running the hyperparameter search for 15 and 5 min timeframes on how many bars I need to train on.
+
+[√] test whether the model performs better when re-training each day
+
+[ ] add more data for the model to work with
+   [√] OHLCV instead of just OC 
+   [ ] add the time until the next news event
+   [ ] add some indicators
+
+[ ] find more hyperparameters to tune that might impact the ability of the model to be more successful
+
+Long-term
+[ ] Start working on AI Agents that will find the most profitable method and test it on the data
+[ ] investigate the ability to use TimeGPT
+Activity Log:
+
+- logic for retraining the model every day
+- found out that this was not a good method to use
+
+[2024-05-15]
+Notes:
+Ideas:
+TODO:
+[ ] check whether the new functionality works for closing a trade in the simulator when the stoploss is hit
+
+[ ] figure out how this works on different timeframes through the simulation
+    [ ] training it on 5 min timeframe with 100_000 bars, then running on 5 min timeframe
+    [ ] combine increasing_data_for_model and saving_tested_model hyperparameter search logic to test this
+
+[ ] start running the hyperparameter search for 15 and 5 min timeframes on how many bars I need to train on.
+
+[√] test whether the model performs better when re-training each day
+
+[ ] add more data for the model to work with
+   [√] OHLCV instead of just OC 
+   [ ] add the time until the next news event
+   [ ] add some indicators
+
+[ ] find more hyperparameters to tune that might impact the ability of the model to be more successful
+
+Long-term
+[ ] Start working on AI Agents that will find the most profitable method and test it on the data
+[ ] investigate the ability to use TimeGPT
+Activity Log:
+
+[2024-05-16]
+Notes:
+Ideas:
+TODO:
+[√] create a plan for the other freelance sites to apply to on which day - have the last day be for enhancing Fiverr gigs
+[√] create the business loan amoritization schedule
+[√] Find a replacement for github copilot
+
+
+[ ] check whether the new functionality works for closing a trade in the simulator when the stoploss is hit
+
+[ ] figure out how this works on different timeframes through the simulation
+    [ ] training it on 5 min timeframe with 100_000 bars, then running on 5 min timeframe
+    [√] combine increasing_data_for_model and saving_tested_model hyperparameter search logic to test this
+
+Long-term
+[ ] Start working on AI Agents that will find the most profitable method and test it on the data
+[ ] investigate the ability to use TimeGPT
+Activity Log:
+
+1. applied for proxify.io
+2. restarted the gigs on Fiverr - still need to optimize all of these and update with latest info about me
+3. Created a plan for applying to other freelance sites over the next week
+4. Created the loan amortization schedule for business loan
+5. Updated loan amoritization schedule for home improvement loans
+6. Combined increasing_data_for_model and saving_tested_model hyperparameter search logic to test the timeframe
+7. Found an alternative to github copilot

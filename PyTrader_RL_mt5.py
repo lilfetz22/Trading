@@ -436,7 +436,7 @@ if (connection == True):
                             stoploss=0.0,
                             takeprofit=0.0,
                             comment='RL_PPO_strategy')
-                    # order_test = MT.Open_order(instrument=instrument, ordertype = 'buy', volume = 0.01, openprice=0.0, slippage = slippage, magicnumber = magicnumber,stoploss=0.0, takeprofit=0.0,comment='test') 
+                    order_test = MT.Open_order(instrument=instrument, ordertype = 'sell', volume = 0.01, openprice=0.0, slippage = slippage, magicnumber = magicnumber,stoploss=0.0, takeprofit=0.0,comment='test') 
 
                     if (order_OK > 0):
                         log.debug(f'{order_type} with ticket number {order_OK} trade opened')
@@ -446,6 +446,8 @@ if (connection == True):
                         trade_id_conversion_df = pd.DataFrame(list(trade_id_conversion.items()), columns=['Id', 'ticket'])
                         trade_id_conversion_df.to_csv('trade_id_conversion.csv', index=False)
                         open_positions = MT.Get_all_open_positions()
+                        weird_ticket_diff = 51539607552
+                        open_positions['ticket'] = open_positions['ticket'] + weird_ticket_diff
                         # filter the open positions to just the current ticket number
                         new_order_open_price = open_positions[open_positions['ticket'] == order_OK].open_price.values[0]
                         if (order_type == 'buy'):

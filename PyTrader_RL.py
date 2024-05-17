@@ -25,11 +25,15 @@ from LogHelper import Logger                              # for logging events
 log = Logger()
 log.configure()
 # settings
-timeframe = 'H1'
+timeframe = 'M5'
 instrument = 'EURUSD'
 server_IP = '127.0.0.1'
 server_port = 4516  # check port number
 seed = 2024
+# IG Account info
+# 744127
+# w8gmsxe
+
 ###### input parameters ######
 ## Order Parameters
 volume = 0.01
@@ -90,6 +94,12 @@ config = configparser.ConfigParser()
 config.read(CONFIG_FILE)
 
 brokerInstrumentsLookup = config_instruments(config, "ICMarkets")
+# brokerInstrumentsLookup = {
+#     'EURUSD.FX': 'EURUSD',
+#     'AUDCHF.FX': 'AUDCHF',
+#     'NZDCHF.FX': 'NZDCHF',
+#     'GBPNZD.FX': 'GBPNZD',
+#     'USDCAD.FX': 'USDCAD'}
 connection = MT.Connect(server_IP, server_port, brokerInstrumentsLookup)
 print(connection)
 IsAlive = MT.connected
@@ -139,7 +149,7 @@ train_env = MyMtEnv(
 # end = time.time()
 # print(f'Environment creation time: {end - start} seconds')
 # time.sleep(65)
-model = PPO.load('model_0.pkl', env=train_env)
+model = PPO.load(MODEL_PATH, env=train_env)
 
 # initialize model and environment
 ServerTime = MT.Get_broker_server_time()
@@ -227,7 +237,7 @@ while not done_production:
     done_production = terminated_production or truncated_production
     if done_production:
         break
-
+#  env_production.render()['orders']
 # dictionary to store the trade_id and the corresponding ticket number
 trade_id_conversion = {}
 forever = True
@@ -433,7 +443,7 @@ if (connection == True):
                             stoploss=0.0,
                             takeprofit=0.0,
                             comment='RL_PPO_strategy')
-                    # order_test = MT.Open_order(instrument=instrument, ordertype = 'buy', volume = 0.01, openprice=0.0, slippage = slippage, magicnumber = magicnumber,stoploss=0.0, takeprofit=0.0,comment='test') 
+                    # order_test = MT.Open_order(instrument='EURUSD.FX', ordertype = 'buy', volume = 0.01, openprice=0.0, slippage = slippage, magicnumber = magicnumber,stoploss=0.0, takeprofit=0.0,comment='test') 
 
                     if (order_OK > 0):
                         log.debug(f'{order_type} with ticket number {order_OK} trade opened')

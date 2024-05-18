@@ -28,12 +28,8 @@ log.configure()
 timeframe = 'M5'
 instrument = 'EURUSD'
 server_IP = '127.0.0.1'
-server_port = 4516  # check port number
+server_port = 3322  # check port number
 seed = 2024
-# IG Account info
-# 744127
-# w8gmsxe
-
 ###### input parameters ######
 ## Order Parameters
 volume = 0.01
@@ -94,12 +90,6 @@ config = configparser.ConfigParser()
 config.read(CONFIG_FILE)
 
 brokerInstrumentsLookup = config_instruments(config, "ICMarkets")
-# brokerInstrumentsLookup = {
-#     'EURUSD.FX': 'EURUSD',
-#     'AUDCHF.FX': 'AUDCHF',
-#     'NZDCHF.FX': 'NZDCHF',
-#     'GBPNZD.FX': 'GBPNZD',
-#     'USDCAD.FX': 'USDCAD'}
 connection = MT.Connect(server_IP, server_port, brokerInstrumentsLookup)
 print(connection)
 IsAlive = MT.connected
@@ -133,9 +123,12 @@ sim_training_fee = lambda symbol: {
     instrument: max(0., np.random.normal(0.0001, 0.00003))
 }[symbol]
 
+# 5025438051
+# -pLkOdH4
+
 # time how long this code takes
 # start = time.time()
-train_env = MyMtEnv(
+train_env = gym_mtsim.MtEnv(
     original_simulator=sim_train,
     trading_symbols=[instrument],
     window_size = 10,
@@ -202,7 +195,7 @@ sim_production = gym_mtsim.MtSimulator(
 
 class MyMtEnv2(gym_mtsim.MtEnv):
     _get_modified_volume = fx_rl.my_get_modified_volume
-    _get_prices = fx_rl.my_get_prices
+    # _get_prices = fx_rl.my_get_prices
 
 env_production = MyMtEnv2(
     original_simulator=sim_production,
@@ -237,7 +230,7 @@ while not done_production:
     done_production = terminated_production or truncated_production
     if done_production:
         break
-#  env_production.render()['orders']
+
 # dictionary to store the trade_id and the corresponding ticket number
 trade_id_conversion = {}
 forever = True
@@ -443,7 +436,7 @@ if (connection == True):
                             stoploss=0.0,
                             takeprofit=0.0,
                             comment='RL_PPO_strategy')
-                    # order_test = MT.Open_order(instrument='EURUSD.FX', ordertype = 'buy', volume = 0.01, openprice=0.0, slippage = slippage, magicnumber = magicnumber,stoploss=0.0, takeprofit=0.0,comment='test') 
+                    order_test = MT.Open_order(instrument=instrument, ordertype = 'sell', volume = 0.01, openprice=0.0, slippage = slippage, magicnumber = magicnumber,stoploss=0.0, takeprofit=0.0,comment='test') 
 
                     if (order_OK > 0):
                         log.debug(f'{order_type} with ticket number {order_OK} trade opened')
@@ -453,6 +446,8 @@ if (connection == True):
                         trade_id_conversion_df = pd.DataFrame(list(trade_id_conversion.items()), columns=['Id', 'ticket'])
                         trade_id_conversion_df.to_csv('trade_id_conversion.csv', index=False)
                         open_positions = MT.Get_all_open_positions()
+                        weird_ticket_diff = 51539607552
+                        open_positions['ticket'] = open_positions['ticket'] + weird_ticket_diff
                         # filter the open positions to just the current ticket number
                         new_order_open_price = open_positions[open_positions['ticket'] == order_OK].open_price.values[0]
                         if (order_type == 'buy'):

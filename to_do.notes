@@ -1107,3 +1107,21 @@ Activity Log:
 5. Updated loan amoritization schedule for home improvement loans
 6. Combined increasing_data_for_model and saving_tested_model hyperparameter search logic to test the timeframe
 7. Found an alternative to github copilot
+
+[2024-05-18]
+Notes:
+Ideas:
+TODO:
+[ ] check whether the new functionality works for closing a trade in the simulator when the stoploss is hit
+
+[√] figure out how this works on different timeframes through the simulation
+    [√] training it on 5 min timeframe with 100_000 bars, then running on 5 min timeframe
+    [√] combine increasing_data_for_model and saving_tested_model hyperparameter search logic to test this
+    [√] investigate the hyperparameter results from 5_16_timeframe_analysis...pkl
+
+Long-term
+[ ] Start working on AI Agents that will find the most profitable method and test it on the data
+[ ] investigate the ability to use TimeGPT
+Activity Log:
+
+Longer timeframes are more successful than shorter timeframes

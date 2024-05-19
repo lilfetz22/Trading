@@ -11,6 +11,7 @@ profit_df.csv
 ~$profit_df_new.xlsx
 3mo_EURUSD.csv
 models_2024-05-10/
+models_2024-05-17/
 EURUSD/
 EURUSD/2023/00/01/00h_ticks.bi5
 EURUSD/2023/00/01/01h_ticks.bi5
@@ -20495,3 +20496,4 @@ symbols_forex_1hr_2008-05-19_2024-05-08
 symbols_forex_5min_2023-01-09_2024-05-08
 symbols_forex_15min_2020-05-11_2024-05-08
 models_2024-05-10/model_21_2024-05-10.pkl
+models_2024-05-17/model_0_2024-05-17.pkl

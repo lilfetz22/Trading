@@ -3,6 +3,9 @@
 '''
 This script is meant as example how to use the Pytrader_API in live trading.
 The logic is a simple crossing of two sma averages.
+
+to begin running the terminal & C:/Users/Administrator/AppData/Local/Programs/Python/Python312/python.exe
+
 '''
 import numpy as np
 import pandas as pd
@@ -183,7 +186,7 @@ df = pd.DataFrame(bars)
 df['date'] = pd.to_datetime(df['date'], unit='s')
 df.columns = [col.capitalize() for col in df.columns]
 df = df.rename(columns={'Date': 'Time'}).set_index('Time')
-with open(FOREX_DATA_PATH_PRODUCTION, 'rb') as f:
+with open(FOREX_DATA_PATH_PRODUCTION, 'rb') as f:#'C:/Users/Administrator/Documents/Trading/gym_mtsim_forked/gym_mtsim/data/symbols_forex_production_2.pkl'
     import pickle
     symbols_new = pickle.load(f)
 # replace the data in the pickle file with the new data

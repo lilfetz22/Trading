@@ -342,7 +342,7 @@ if (connection == True):
             # print(more_trades)
 
             ######## calculate the volume for the orders ########
-            all_positions_df = MT.Get_closed_positions_within_window()
+            all_positions_df = MT.Get_closed_positions_within_window(date_to=ServerTime)
             current_instrument_all_positions = all_positions_df[all_positions_df['instrument'] == instrument]
             if (len(current_instrument_all_positions) > 0):
                 # find the average volume for current_instrument_all_positions
@@ -403,8 +403,8 @@ if (connection == True):
                                 # Grab the entry price
                                 orders_table_entry_price = orders_closed_by_sl['Entry Price']
                                 # find the index within the 'orders' of obs_production
-                                for idx, order in enumerate(obs_production['orders'][0][0]): # this will break when using more than one instrument
-                                    if order[0] == orders_table_entry_price:
+                                for idx, order in enumerate(obs_production['orders'][0]): # this will break when using more than one instrument
+                                    if order[0] == orders_table_entry_price.values[0]:
                                         action[idx] = 0.99
                         
                 env_production.time_points = list(sim_production.symbols_data[instrument].index)

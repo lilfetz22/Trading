@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
+# to begin running the terminal & cd C:/Users/Administrator/AppData/Local/Programs/Python/Python312/
+# .\python C:\Users\Administrator\Documents\Trading\PyTrader_RL_MSolutions.py
+
 
 '''
 This script is meant as example how to use the Pytrader_API in live trading.
 The logic is a simple crossing of two sma averages.
-
-to begin running the terminal & C:/Users/Administrator/AppData/Local/Programs/Python/Python312/python.exe
 
 '''
 import numpy as np
@@ -68,14 +69,6 @@ more_trades = True
 # Define pytrader API
 MT = Pytrader_API()
 
-#   Create simple lookup table, for the demo api only the following instruments can be traded
-brokerInstrumentsLookup = {
-    'EURUSD': 'EURUSD',
-    'AUDCHF': 'AUDCHF',
-    'NZDCHF': 'NZDCHF',
-    'GBPNZD': 'GBPNZD',
-    'USDCAD': 'USDCAD'}
-
 def config_instruments(config, section):
     dict1 = {}
     options = config.options(section)
@@ -96,13 +89,13 @@ CONFIG_FILE = "Instrument.conf"
 config = configparser.ConfigParser()
 config.read(CONFIG_FILE)
 
-brokerInstrumentsLookup = config_instruments(config, "MSolutions")
-# brokerInstrumentsLookup = {
-#     'EURUSD.FX': 'EURUSD',
-#     'AUDCHF.FX': 'AUDCHF',
-#     'NZDCHF.FX': 'NZDCHF',
-#     'GBPNZD.FX': 'GBPNZD',
-#     'USDCAD.FX': 'USDCAD'}
+# brokerInstrumentsLookup = config_instruments(config, "MSolutions")
+brokerInstrumentsLookup = {
+    'EURUSD': 'EURUSD.i',
+    'AUDCHF': 'AUDCHF.i',
+    'NZDCHF': 'NZDCHF.i',
+    'GBPNZD': 'GBPNZD.i',
+    'USDCAD': 'USDCAD.i'}
 connection = MT.Connect(server_IP, server_port, brokerInstrumentsLookup)
 print(connection)
 IsAlive = MT.connected
@@ -119,9 +112,9 @@ def get_current_equity_balance():
             current_acct_balance = DynamicInfo[prop]
     return current_acct_equity, current_acct_balance
 
-class MyMtEnv(gym_mtsim.MtEnv):
+# class MyMtEnv(gym_mtsim.MtEnv):
     # _get_modified_volume = fx_rl.my_get_modified_volume
-    _get_prices = fx_rl.my_get_prices
+    # _get_prices = fx_rl.my_get_prices
 
 # load in the model to use for the week
 sim_train = gym_mtsim.MtSimulator(
@@ -146,12 +139,12 @@ train_env = gym_mtsim.MtEnv(
     hold_threshold=0.5,
     close_threshold=0.5,
     fee=sim_training_fee,
-    symbol_max_orders=2,
-    multiprocessing_processes=2
+    symbol_max_orders=2
+    # multiprocessing_processes=1
 )
 # end = time.time()
 # print(f'Environment creation time: {end - start} seconds')
-# time.sleep(65)
+# time.sleep(120)
 model = PPO.load(MODEL_PATH, env=train_env)
 
 # initialize model and environment
@@ -180,6 +173,7 @@ if InstrumentInfo is not None:
 # get the last week's worth of data for the production environment
 # bars = MT.Get_last_x_bars_from_now(instrument=instrument, timeframe=MT.get_timeframe_value(timeframe), nbrofbars=fx_rl.get_bars_needed(timeframe))
 bars = MT.Get_last_x_bars_from_now(instrument=instrument, timeframe=MT.get_timeframe_value(timeframe), nbrofbars=120)
+time.sleep(2)
 # convert to dataframe
 df = pd.DataFrame(bars)
 # df.rename(columns = {'tick_volume':'volume'})#, inplace = True)
@@ -206,7 +200,7 @@ sim_production = gym_mtsim.MtSimulator(
 class MyMtEnv2(gym_mtsim.MtEnv):
     _get_modified_volume = fx_rl.my_get_modified_volume
     # _get_prices = fx_rl.my_get_prices
-
+# start_2 = time.time()
 env_production = MyMtEnv2(
     original_simulator=sim_production,
     trading_symbols=[instrument],
@@ -215,9 +209,12 @@ env_production = MyMtEnv2(
     hold_threshold=0.5,
     close_threshold=0.5,
     fee=sim_training_fee,
-    symbol_max_orders=2,
-    multiprocessing_processes=2
+    symbol_max_orders=2
+    # multiprocessing_processes=1
 )
+# end_2 = time.time()
+# print(f'Production Environment creation time: {end_2 - start_2} seconds')
+# time.sleep(2)
 obs_production, info_production = env_production.reset(seed=seed)
 # model.set_env(env_production) # do I need this? I didn't even know this existed
 done_production = False
@@ -343,7 +340,7 @@ if (connection == True):
             # print(more_trades)
 
             ######## calculate the volume for the orders ########
-            all_positions_df = MT.Get_closed_positions_within_window()
+            all_positions_df = MT.Get_closed_positions_within_window(date_to=ServerTime)
             current_instrument_all_positions = all_positions_df[all_positions_df['instrument'] == instrument]
             if (len(current_instrument_all_positions) > 0):
                 # find the average volume for current_instrument_all_positions
@@ -404,8 +401,8 @@ if (connection == True):
                                 # Grab the entry price
                                 orders_table_entry_price = orders_closed_by_sl['Entry Price']
                                 # find the index within the 'orders' of obs_production
-                                for idx, order in enumerate(obs_production['orders'][0][0]): # this will break when using more than one instrument
-                                    if order[0] == orders_table_entry_price:
+                                for idx, order in enumerate(obs_production['orders'][0]): # this will break when using more than one instrument
+                                    if order[0] == orders_table_entry_price.values[0]:
                                         action[idx] = 0.99
                         
                 env_production.time_points = list(sim_production.symbols_data[instrument].index)
@@ -457,7 +454,7 @@ if (connection == True):
                             stoploss=0.0,
                             takeprofit=0.0,
                             comment='RL_PPO_strategy')
-                    # order_test = MT.Open_order(instrument='EURUSD.FX', ordertype = 'buy', volume = 0.01, openprice=0.0, slippage = slippage, magicnumber = magicnumber,stoploss=0.0, takeprofit=0.0,comment='test') 
+                    # order_test = MT.Open_order(instrument='EURUSD', ordertype = 'buy', volume = 0.01, openprice=0.0, slippage = slippage, magicnumber = magicnumber,stoploss=0.0, takeprofit=0.0,comment='test') 
 
                     if (order_OK > 0):
                         log.debug(f'{order_type} with ticket number {order_OK} trade opened')

@@ -33,7 +33,7 @@ def get_news_from_csv(News_Trading_Allowed, STime):
         year_str = str(year)
         
         # Construct the filename
-        location = "./news_events/"
+        location = "C:/Users/Administrator/Documents/Trading/news_events/calendar_statement_"
         filename = f"{location}{year_str}_{month_str}_{day_str}.csv"
         
         any_news = False

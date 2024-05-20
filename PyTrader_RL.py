@@ -1,10 +1,8 @@
-# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*- to begin running the terminal & C:/Users/Administrator/AppData/Local/Programs/Python/Python312/python.exe
 
 '''
 This script is meant as example how to use the Pytrader_API in live trading.
 The logic is a simple crossing of two sma averages.
-
-to begin running the terminal & C:/Users/Administrator/AppData/Local/Programs/Python/Python312/python.exe
 
 '''
 import numpy as np
@@ -146,8 +144,8 @@ train_env = gym_mtsim.MtEnv(
     hold_threshold=0.5,
     close_threshold=0.5,
     fee=sim_training_fee,
-    symbol_max_orders=2,
-    multiprocessing_processes=2
+    symbol_max_orders=2
+    # multiprocessing_processes=2
 )
 # end = time.time()
 # print(f'Environment creation time: {end - start} seconds')
@@ -215,8 +213,8 @@ env_production = MyMtEnv2(
     hold_threshold=0.5,
     close_threshold=0.5,
     fee=sim_training_fee,
-    symbol_max_orders=2,
-    multiprocessing_processes=2
+    symbol_max_orders=2
+    # multiprocessing_processes=2
 )
 obs_production, info_production = env_production.reset(seed=seed)
 # model.set_env(env_production) # do I need this? I didn't even know this existed
@@ -419,7 +417,7 @@ if (connection == True):
                 obs_production, reward_production, terminated_production, truncated_production, info_production = env_production.step(action)
                 current_orders = env_production.render()['orders']
                 # save the current_orders to a csv file
-                current_orders.to_csv('current_orders.csv', index=False)
+                current_orders.to_csv('C:/Users/Administrator/Documents/Trading/current_orders.csv', index=False)
                 print(current_orders)
                 # convert current_orders['Entry Time'] to datetime
                 current_orders['Entry Time'] = pd.to_datetime(current_orders['Entry Time'])
@@ -464,7 +462,7 @@ if (connection == True):
                         trade_id_conversion[new_order['Id'].values[0]] = order_OK
                         # convert trade_id_conversion to a dataframe
                         trade_id_conversion_df = pd.DataFrame(list(trade_id_conversion.items()), columns=['Id', 'ticket'])
-                        trade_id_conversion_df.to_csv('trade_id_conversion.csv', index=False)
+                        trade_id_conversion_df.to_csv('C:/Users/Administrator/Documents/Trading/trade_id_conversion.csv', index=False)
                         open_positions = MT.Get_all_open_positions()
                         # filter the open positions to just the current ticket number
                         new_order_open_price = open_positions[open_positions['ticket'] == order_OK].open_price.values[0]

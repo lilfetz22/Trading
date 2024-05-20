@@ -341,7 +341,7 @@ if (connection == True):
 
             ######## calculate the volume for the orders ########
             all_positions_df = MT.Get_closed_positions_within_window(date_to=ServerTime)
-            current_instrument_all_positions = all_positions_df[all_positions_df['instrument'] == instrument]
+            current_instrument_all_positions = all_positions_df[all_positions_df['instrument'] == (instrument + '.i')]
             if (len(current_instrument_all_positions) > 0):
                 # find the average volume for current_instrument_all_positions
                 avg_volume = current_instrument_all_positions.loc[:, 'volume'].mean()
@@ -417,7 +417,7 @@ if (connection == True):
                 obs_production, reward_production, terminated_production, truncated_production, info_production = env_production.step(action)
                 current_orders = env_production.render()['orders']
                 # save the current_orders to a csv file
-                current_orders.to_csv('current_orders_ms.csv', index=False)
+                current_orders.to_csv('C:/Users/Administrator/Documents/Trading/current_orders_ms.csv', index=False)
                 print(current_orders)
                 # convert current_orders['Entry Time'] to datetime
                 current_orders['Entry Time'] = pd.to_datetime(current_orders['Entry Time'])
@@ -462,7 +462,7 @@ if (connection == True):
                         trade_id_conversion[new_order['Id'].values[0]] = order_OK
                         # convert trade_id_conversion to a dataframe
                         trade_id_conversion_df = pd.DataFrame(list(trade_id_conversion.items()), columns=['Id', 'ticket'])
-                        trade_id_conversion_df.to_csv('trade_id_conversion_ms.csv', index=False)
+                        trade_id_conversion_df.to_csv('C:/Users/Administrator/Documents/Trading/trade_id_conversion_ms.csv', index=False)
                         open_positions = MT.Get_all_open_positions()
                         # filter the open positions to just the current ticket number
                         new_order_open_price = open_positions[open_positions['ticket'] == order_OK].open_price.values[0]

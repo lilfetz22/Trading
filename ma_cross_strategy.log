@@ -362,3 +362,11 @@
 2024-05-14 16:15:03 DEBUG    Error opening trade
 2024-05-14 16:15:03 DEBUG    0
 2024-05-14 16:15:03 DEBUG    Error opening market order
+2024-05-20 09:47:27 DEBUG    Strategy started
+2024-05-20 11:28:12 DEBUG    Strategy started
+2024-05-20 11:32:23 DEBUG    Strategy started
+2024-05-20 13:00:06 DEBUG    buy with ticket number 13967223 trade opened
+2024-05-20 13:00:07 DEBUG    Stoploss set for ticket 13967223
+2024-05-20 15:00:04 DEBUG    Closed trade with ticket 13967223 due to signal from model
+2024-05-20 16:00:03 DEBUG    sell with ticket number 13970021 trade opened
+2024-05-20 16:00:03 DEBUG    Stoploss set for ticket 13970021

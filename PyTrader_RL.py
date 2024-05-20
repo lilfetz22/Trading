@@ -25,7 +25,7 @@ from LogHelper import Logger                              # for logging events
 log = Logger()
 log.configure()
 # settings
-timeframe = 'M5'
+timeframe = 'H1'
 instrument = 'EURUSD'
 server_IP = '127.0.0.1'
 server_port = 4516  # check port number
@@ -36,7 +36,7 @@ seed = 2024
 
 ###### input parameters ######
 ## Order Parameters
-volume = 0.01
+volume = 0.5
 trades_in_runway = 25
 slippage = 5
 Start_Hour = 0
@@ -135,7 +135,7 @@ sim_training_fee = lambda symbol: {
 
 # time how long this code takes
 # start = time.time()
-train_env = MyMtEnv(
+train_env = gym_mtsim.MtEnv(
     original_simulator=sim_train,
     trading_symbols=[instrument],
     window_size = 10,
@@ -202,7 +202,7 @@ sim_production = gym_mtsim.MtSimulator(
 
 class MyMtEnv2(gym_mtsim.MtEnv):
     _get_modified_volume = fx_rl.my_get_modified_volume
-    _get_prices = fx_rl.my_get_prices
+    # _get_prices = fx_rl.my_get_prices
 
 env_production = MyMtEnv2(
     original_simulator=sim_production,
@@ -220,22 +220,32 @@ obs_production, info_production = env_production.reset(seed=seed)
 done_production = False
 stop = False
 # run through the environment up to the current week and stop with the model
-while not done_production:
-    action_pre_production, _states = model.predict(obs_production)
-    if (len(env_production.time_points) - 2) == env_production._current_tick:
-        stop = True
-        print('closing all orders')
-        # if there are any open orders, we need to go ahead and close them
-        for o in range(len(env_production.simulator.symbol_orders('EURUSD'))):
-            print(f'closing order {o}')
-            action_pre_production[o] = 0.99
-            # make sure the model doesn't place another one
-        action_pre_production[-2] = 0.99
-    obs_production, reward_production, terminated_production, truncated_production, info_production = env_production.step(action_pre_production)
-    if stop:
-        truncated_production = True
-    done_production = terminated_production or truncated_production
-    if done_production:
+iteration = 0
+diff_balances = -1 
+while diff_balances < 0:
+    while not done_production:
+        action_pre_production, _states = model.predict(obs_production)
+        if (len(env_production.time_points) - 2) == env_production._current_tick:
+            stop = True
+            # print('closing all orders')
+            # if there are any open orders, we need to go ahead and close them
+            for o in range(len(env_production.simulator.symbol_orders('EURUSD'))):
+                # print(f'closing order {o}')
+                action_pre_production[o] = 0.99
+                # make sure the model doesn't place another one
+            action_pre_production[-2] = 0.99
+        obs_production, reward_production, terminated_production, truncated_production, info_production = env_production.step(action_pre_production)
+        if stop:
+            truncated_production = True
+        done_production = terminated_production or truncated_production
+        if done_production:
+            break
+    end_balance_pre_prod = env_production.render()['orders']['Exit Balance'].values[0]
+    starting_balance_pre_prod = env_production.render()['orders']['Exit Balance'].values[-1]
+    diff_balances = end_balance_pre_prod - starting_balance_pre_prod
+    iteration += 1
+    if iteration > 100:
+        print('Too many iterations')
         break
 #  env_production.render()['orders']
 # dictionary to store the trade_id and the corresponding ticket number

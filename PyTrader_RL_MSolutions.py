@@ -12,7 +12,7 @@ import pandas as pd
 import gymnasium as gym
 import pickle
 import gym_mtsim
-from gym_mtsim_forked.gym_mtsim.data import FOREX_DATA_PATH_PRODUCTION, FOREX_DATA_PATH, MODEL_PATH
+from gym_mtsim_forked.gym_mtsim.data import FOREX_DATA_PATH_PRODUCTION_MS, FOREX_DATA_PATH, MODEL_PATH
 from stable_baselines3 import PPO
 from stable_baselines3.common.callbacks import BaseCallback, EvalCallback
 import time
@@ -31,7 +31,7 @@ log.configure()
 timeframe = 'H1'
 instrument = 'EURUSD'
 server_IP = '127.0.0.1'
-server_port = 4516  # check port number
+server_port = 2981  # check port number
 seed = 2024
 # IG Account info
 # 744127
@@ -57,7 +57,7 @@ max_Total_Drawdown_Amt = 184_000
 Max_Payout_Bool = False
 Max_Payout_Amt = 12_000
 Initial_Acct_Size = 200_000
-News_Trading_Allowed = True
+News_Trading_Allowed = False
 acct_protection, swap_protection_long, swap_protection_short = False, False, False
 
 ## Other Parameters ##
@@ -96,7 +96,7 @@ CONFIG_FILE = "Instrument.conf"
 config = configparser.ConfigParser()
 config.read(CONFIG_FILE)
 
-brokerInstrumentsLookup = config_instruments(config, "ICMarkets")
+brokerInstrumentsLookup = config_instruments(config, "MSolutions")
 # brokerInstrumentsLookup = {
 #     'EURUSD.FX': 'EURUSD',
 #     'AUDCHF.FX': 'AUDCHF',
@@ -186,12 +186,12 @@ df = pd.DataFrame(bars)
 df['date'] = pd.to_datetime(df['date'], unit='s')
 df.columns = [col.capitalize() for col in df.columns]
 df = df.rename(columns={'Date': 'Time'}).set_index('Time')
-with open(FOREX_DATA_PATH_PRODUCTION, 'rb') as f:#'C:/Users/Administrator/Documents/Trading/gym_mtsim_forked/gym_mtsim/data/symbols_forex_production_2.pkl'
+with open(FOREX_DATA_PATH_PRODUCTION_MS, 'rb') as f:
     import pickle
     symbols_new = pickle.load(f)
 # replace the data in the pickle file with the new data
 symbols_new[1][instrument] = df
-with open(FOREX_DATA_PATH_PRODUCTION, 'wb') as f:
+with open(FOREX_DATA_PATH_PRODUCTION_MS, 'wb') as f:
     pickle.dump(symbols_new, f)
 
 sim_production = gym_mtsim.MtSimulator(
@@ -200,7 +200,7 @@ sim_production = gym_mtsim.MtSimulator(
     leverage=100.,
     stop_out_level=0.2,
     hedge=True,
-    symbols_filename=FOREX_DATA_PATH_PRODUCTION
+    symbols_filename=FOREX_DATA_PATH_PRODUCTION_MS
 )
 
 class MyMtEnv2(gym_mtsim.MtEnv):
@@ -250,6 +250,7 @@ while diff_balances < 0:
     if iteration > 100:
         print('Too many iterations')
         break
+print(f'iterations: {iteration}, positive_balance: {diff_balances}')
 #  env_production.render()['orders']
 # dictionary to store the trade_id and the corresponding ticket number
 trade_id_conversion = {}
@@ -370,10 +371,10 @@ if (connection == True):
             df_new['date'] = pd.to_datetime(df_new['date'], unit='s')           
 
             ## add the data to the environment
-            data_added = fx_rl.get_latest_data(FOREX_DATA_PATH_PRODUCTION, df_new, instrument=instrument)
+            data_added = fx_rl.get_latest_data(FOREX_DATA_PATH_PRODUCTION_MS, df_new, instrument=instrument)
             if data_added:
                 count_of_times_getting_new_data += 1
-                sim_production.load_symbols(FOREX_DATA_PATH_PRODUCTION)
+                sim_production.load_symbols(FOREX_DATA_PATH_PRODUCTION_MS)
                 # obs_production['features'] - tell it to get observation right here - or do all the data processing beolw right here, and just say _get_observation()
                 action, _states = model.predict(obs_production)
                 swap_protection = False
@@ -419,7 +420,7 @@ if (connection == True):
                 obs_production, reward_production, terminated_production, truncated_production, info_production = env_production.step(action)
                 current_orders = env_production.render()['orders']
                 # save the current_orders to a csv file
-                current_orders.to_csv('current_orders.csv', index=False)
+                current_orders.to_csv('current_orders_ms.csv', index=False)
                 print(current_orders)
                 # convert current_orders['Entry Time'] to datetime
                 current_orders['Entry Time'] = pd.to_datetime(current_orders['Entry Time'])
@@ -464,7 +465,7 @@ if (connection == True):
                         trade_id_conversion[new_order['Id'].values[0]] = order_OK
                         # convert trade_id_conversion to a dataframe
                         trade_id_conversion_df = pd.DataFrame(list(trade_id_conversion.items()), columns=['Id', 'ticket'])
-                        trade_id_conversion_df.to_csv('trade_id_conversion.csv', index=False)
+                        trade_id_conversion_df.to_csv('trade_id_conversion_ms.csv', index=False)
                         open_positions = MT.Get_all_open_positions()
                         # filter the open positions to just the current ticket number
                         new_order_open_price = open_positions[open_positions['ticket'] == order_OK].open_price.values[0]

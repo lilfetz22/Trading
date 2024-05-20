@@ -74,27 +74,27 @@ brokerInstrumentsLookup = {
     'GBPNZD': 'GBPNZD',
     'USDCAD': 'USDCAD'}
 
-def config_instruments(config, section):
-    dict1 = {}
-    options = config.options(section)
-    for option in options:
-        try:
-            option = option.upper()
-            dict1[option] = config.get(section, option)
-            if dict1[option] == -1:
-                print("skip: %s" % option)
-        except BaseException:
-            print("exception on %s!" % option)
-            dict1[option] = None
-    return dict1
+# def config_instruments(config, section):
+#     dict1 = {}
+#     options = config.options(section)
+#     for option in options:
+#         try:
+#             option = option.upper()
+#             dict1[option] = config.get(section, option)
+#             if dict1[option] == -1:
+#                 print("skip: %s" % option)
+#         except BaseException:
+#             print("exception on %s!" % option)
+#             dict1[option] = None
+#     return dict1
 
 
-# Read in config
-CONFIG_FILE = "Instrument.conf"
-config = configparser.ConfigParser()
-config.read(CONFIG_FILE)
+# # Read in config
+# CONFIG_FILE = "Instrument.conf"
+# config = configparser.ConfigParser()
+# config.read(CONFIG_FILE)
 
-brokerInstrumentsLookup = config_instruments(config, "ICMarkets")
+# brokerInstrumentsLookup = config_instruments(config, "ICMarkets")
 # brokerInstrumentsLookup = {
 #     'EURUSD.FX': 'EURUSD',
 #     'AUDCHF.FX': 'AUDCHF',

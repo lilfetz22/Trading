@@ -280,14 +280,14 @@ if (connection == True):
             for position in positions_df.itertuples():
 
                 # account protection if statements
-                if (position.instrument == instrument and position.magic_number == magicnumber and (AcctBalDrawdown > max_Daily_Drawdown_Perc or AcctEquityDrawdown > max_Daily_Drawdown_Perc)):
+                if (position.instrument == (instrument + '.i') and position.magic_number == magicnumber and (AcctBalDrawdown > max_Daily_Drawdown_Perc or AcctEquityDrawdown > max_Daily_Drawdown_Perc)):
                     acct_protection = True
                     # close the position
                     MT.Close_position_by_ticket(ticket=position.ticket)
                     log.debug('trade with ticket ' + str(position.ticket) + ' closed due to daily drawdown protection')
                     print(f'trade with ticket ' + str(position.ticket) + ' closed due to daily drawdown protection')
 
-                if (position.instrument == instrument and position.magic_number == magicnumber and (Max_Payout_Bool == True and (current_account_balance - Initial_Acct_Size) > Max_Payout_Amt)):
+                if (position.instrument == (instrument + '.i') and position.magic_number == magicnumber and (Max_Payout_Bool == True and (current_account_balance - Initial_Acct_Size) > Max_Payout_Amt)):
                     acct_protection = True
                     # close the position
                     MT.Close_position_by_ticket(ticket=position.ticket)
@@ -295,7 +295,7 @@ if (connection == True):
                     print(f'trade with ticket ' + str(position.ticket) + ' closed due to max payout - Request payout now! Yay!')
 
                 # close positions to not allow weekend holds
-                if (position.instrument == instrument and position.magic_number == magicnumber and ((ServerTime.hour == 23) & (ServerTime.weekday() == 4))):
+                if (position.instrument == (instrument + '.i') and position.magic_number == magicnumber and ((ServerTime.hour == 23) & (ServerTime.weekday() == 4))):
                     acct_protection = True
                     # close the position
                     MT.Close_position_by_ticket(ticket=position.ticket)
@@ -303,7 +303,7 @@ if (connection == True):
                     print(f'trade with ticket ' + str(position.ticket) + ' closed for no weekend hold')
 
                 # close negative swap positions
-                if ((position.instrument == instrument) & (position.magic_number == magicnumber) & 
+                if ((position.instrument == (instrument + '.i')) & (position.magic_number == magicnumber) & 
                     (((swap_protection_long == True) & (position.position_type == 'buy')) | ((swap_protection_short == True) & (position.position_type == 'sell'))) &
                     ((ServerTime.hour == 23) & (ServerTime.minute >= 55))
                     ):

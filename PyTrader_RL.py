@@ -1,10 +1,8 @@
-# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*- to begin running the terminal & C:/Users/Administrator/AppData/Local/Programs/Python/Python312/python.exe
 
 '''
 This script is meant as example how to use the Pytrader_API in live trading.
 The logic is a simple crossing of two sma averages.
-
-to begin running the terminal & C:/Users/Administrator/AppData/Local/Programs/Python/Python312/python.exe
 
 '''
 import numpy as np
@@ -76,27 +74,27 @@ brokerInstrumentsLookup = {
     'GBPNZD': 'GBPNZD',
     'USDCAD': 'USDCAD'}
 
-def config_instruments(config, section):
-    dict1 = {}
-    options = config.options(section)
-    for option in options:
-        try:
-            option = option.upper()
-            dict1[option] = config.get(section, option)
-            if dict1[option] == -1:
-                print("skip: %s" % option)
-        except BaseException:
-            print("exception on %s!" % option)
-            dict1[option] = None
-    return dict1
+# def config_instruments(config, section):
+#     dict1 = {}
+#     options = config.options(section)
+#     for option in options:
+#         try:
+#             option = option.upper()
+#             dict1[option] = config.get(section, option)
+#             if dict1[option] == -1:
+#                 print("skip: %s" % option)
+#         except BaseException:
+#             print("exception on %s!" % option)
+#             dict1[option] = None
+#     return dict1
 
 
-# Read in config
-CONFIG_FILE = "Instrument.conf"
-config = configparser.ConfigParser()
-config.read(CONFIG_FILE)
+# # Read in config
+# CONFIG_FILE = "Instrument.conf"
+# config = configparser.ConfigParser()
+# config.read(CONFIG_FILE)
 
-brokerInstrumentsLookup = config_instruments(config, "ICMarkets")
+# brokerInstrumentsLookup = config_instruments(config, "ICMarkets")
 # brokerInstrumentsLookup = {
 #     'EURUSD.FX': 'EURUSD',
 #     'AUDCHF.FX': 'AUDCHF',
@@ -146,8 +144,8 @@ train_env = gym_mtsim.MtEnv(
     hold_threshold=0.5,
     close_threshold=0.5,
     fee=sim_training_fee,
-    symbol_max_orders=2,
-    multiprocessing_processes=2
+    symbol_max_orders=2
+    # multiprocessing_processes=2
 )
 # end = time.time()
 # print(f'Environment creation time: {end - start} seconds')
@@ -215,8 +213,8 @@ env_production = MyMtEnv2(
     hold_threshold=0.5,
     close_threshold=0.5,
     fee=sim_training_fee,
-    symbol_max_orders=2,
-    multiprocessing_processes=2
+    symbol_max_orders=2
+    # multiprocessing_processes=2
 )
 obs_production, info_production = env_production.reset(seed=seed)
 # model.set_env(env_production) # do I need this? I didn't even know this existed
@@ -342,7 +340,7 @@ if (connection == True):
             # print(more_trades)
 
             ######## calculate the volume for the orders ########
-            all_positions_df = MT.Get_closed_positions_within_window()
+            all_positions_df = MT.Get_closed_positions_within_window(date_to=ServerTime)
             current_instrument_all_positions = all_positions_df[all_positions_df['instrument'] == instrument]
             if (len(current_instrument_all_positions) > 0):
                 # find the average volume for current_instrument_all_positions
@@ -403,8 +401,8 @@ if (connection == True):
                                 # Grab the entry price
                                 orders_table_entry_price = orders_closed_by_sl['Entry Price']
                                 # find the index within the 'orders' of obs_production
-                                for idx, order in enumerate(obs_production['orders'][0][0]): # this will break when using more than one instrument
-                                    if order[0] == orders_table_entry_price:
+                                for idx, order in enumerate(obs_production['orders'][0]): # this will break when using more than one instrument
+                                    if order[0] == orders_table_entry_price.values[0]:
                                         action[idx] = 0.99
                         
                 env_production.time_points = list(sim_production.symbols_data[instrument].index)
@@ -419,7 +417,7 @@ if (connection == True):
                 obs_production, reward_production, terminated_production, truncated_production, info_production = env_production.step(action)
                 current_orders = env_production.render()['orders']
                 # save the current_orders to a csv file
-                current_orders.to_csv('current_orders.csv', index=False)
+                current_orders.to_csv('C:/Users/Administrator/Documents/Trading/current_orders.csv', index=False)
                 print(current_orders)
                 # convert current_orders['Entry Time'] to datetime
                 current_orders['Entry Time'] = pd.to_datetime(current_orders['Entry Time'])
@@ -464,7 +462,7 @@ if (connection == True):
                         trade_id_conversion[new_order['Id'].values[0]] = order_OK
                         # convert trade_id_conversion to a dataframe
                         trade_id_conversion_df = pd.DataFrame(list(trade_id_conversion.items()), columns=['Id', 'ticket'])
-                        trade_id_conversion_df.to_csv('trade_id_conversion.csv', index=False)
+                        trade_id_conversion_df.to_csv('C:/Users/Administrator/Documents/Trading/trade_id_conversion.csv', index=False)
                         open_positions = MT.Get_all_open_positions()
                         # filter the open positions to just the current ticket number
                         new_order_open_price = open_positions[open_positions['ticket'] == order_OK].open_price.values[0]

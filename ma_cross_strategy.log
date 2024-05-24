@@ -372,3 +372,11 @@
 2024-05-20 11:55:07 DEBUG    Stoploss set for ticket 145617735
 2024-05-20 12:15:01 DEBUG    sell with ticket number 145618312 trade opened
 2024-05-20 12:15:01 DEBUG    Stoploss set for ticket 145618312
+2024-05-20 09:47:27 DEBUG    Strategy started
+2024-05-20 11:28:12 DEBUG    Strategy started
+2024-05-20 11:32:23 DEBUG    Strategy started
+2024-05-20 13:00:06 DEBUG    buy with ticket number 13967223 trade opened
+2024-05-20 13:00:07 DEBUG    Stoploss set for ticket 13967223
+2024-05-20 15:00:04 DEBUG    Closed trade with ticket 13967223 due to signal from model
+2024-05-20 16:00:03 DEBUG    sell with ticket number 13970021 trade opened
+2024-05-20 16:00:03 DEBUG    Stoploss set for ticket 13970021

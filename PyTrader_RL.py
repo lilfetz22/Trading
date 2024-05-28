@@ -442,12 +442,14 @@ if (connection == True):
                     # filter current_orders to the max_entry_time
                     new_order = current_orders[(current_orders['Entry Time'] == (max_entry_time)) & (current_orders['Symbol'] == instrument)]#pd.Timedelta(hours=1)
                     if count_of_times_getting_new_data < 2:
-                        volume = 0.01
+                        volume_init = 0.01
+                    else:
+                        volume_init = volume
                     # print(new_order)
                     order_type = new_order['Type'].values[0].lower()
                     order_OK = MT.Open_order(instrument=instrument,
                             ordertype = order_type,
-                            volume = volume,
+                            volume = volume_init,
                             openprice=0.0,
                             slippage = slippage,
                             magicnumber = magicnumber,

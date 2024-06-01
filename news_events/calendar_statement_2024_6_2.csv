@@ -1,0 +1,40 @@
+Date,Event,Impact,Currency
+2024-06-03 10:00:00,(Austria) Unemployment Rate,High,EUR
+2024-06-03 10:15:00,(Spain) HCOB Manufacturing PMI,High,EUR
+2024-06-03 10:45:00,(Italy) HCOB Manufacturing PMI,High,EUR
+2024-06-03 10:50:00,(France) HCOB Manufacturing PMI,High,EUR
+2024-06-03 10:55:00,(Germany) HCOB Manufacturing PMI,High,EUR
+2024-06-03 11:00:00,(Euro Area) HCOB Manufacturing PMI,High,EUR
+2024-06-03 11:00:00,(Greece) S&P Global Manufacturing PMI,High,EUR
+2024-06-03 16:45:00,(United States) S&P Global Manufacturing PMI,High,USD
+2024-06-03 17:00:00,(United States) ISM Manufacturing PMI,High,USD
+2024-06-04 10:00:00,(Spain) Unemployment Change,High,EUR
+2024-06-04 10:55:00,(Germany) Unemployment Rate,High,EUR
+2024-06-04 10:55:00,(Germany) Unemployment Change,High,EUR
+2024-06-04 17:00:00,(United States) JOLTs Job Openings,High,USD
+2024-06-05 10:15:00,(Spain) HCOB Services PMI,High,EUR
+2024-06-05 10:45:00,(Italy) HCOB Services PMI,High,EUR
+2024-06-05 10:50:00,(France) HCOB Services PMI,High,EUR
+2024-06-05 10:55:00,(Germany) HCOB Services PMI,High,EUR
+2024-06-05 11:00:00,(Euro Area) HCOB Services PMI,High,EUR
+2024-06-05 15:15:00,(United States) ADP Employment Change,High,USD
+2024-06-05 16:45:00,(United States) S&P Global Services PMI,High,USD
+2024-06-05 17:00:00,(United States) ISM Services PMI,High,USD
+2024-06-06 11:00:00,(Italy) Retail Sales YoY,High,EUR
+2024-06-06 11:00:00,(Italy) Retail Sales MoM,High,EUR
+2024-06-06 12:00:00,(Euro Area) Retail Sales YoY,High,EUR
+2024-06-06 12:00:00,(Euro Area) Retail Sales MoM,High,EUR
+2024-06-06 15:15:00,(Euro Area) Deposit Facility Rate,High,EUR
+2024-06-06 15:15:00,(Euro Area) ECB Interest Rate Decision,High,EUR
+2024-06-06 15:30:00,(United States) Continuing Jobless Claims,High,USD
+2024-06-06 15:30:00,(United States) Initial Jobless Claims,High,USD
+2024-06-06 15:30:00,(United States) Jobless Claims 4-week Average,High,USD
+2024-06-06 15:45:00,(Euro Area) ECB Press Conference,High,EUR
+2024-06-07 09:00:00,(Germany) Balance of Trade,High,EUR
+2024-06-07 12:00:00,(Euro Area) Employment Change YoY,High,EUR
+2024-06-07 12:00:00,(Euro Area) Employment Change QoQ,High,EUR
+2024-06-07 15:30:00,(United States) U-6 Unemployment Rate,High,USD
+2024-06-07 15:30:00,(United States) Nonfarm Payrolls Private,High,USD
+2024-06-07 15:30:00,(United States) Unemployment Rate,High,USD
+2024-06-07 15:30:00,(United States) Non Farm Payrolls,High,USD
+2024-06-07 17:15:00,(Euro Area) ECB President Lagarde Speech,High,EUR

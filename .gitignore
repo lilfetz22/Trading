@@ -13,6 +13,7 @@ profit_df.csv
 models_2024-05-10/
 models_2024-05-17/
 models_2024-05-24/
+models_2024-05-31/
 EURUSD/
 EURUSD/2023/00/01/00h_ticks.bi5
 EURUSD/2023/00/01/01h_ticks.bi5
@@ -20499,3 +20500,4 @@ symbols_forex_15min_2020-05-11_2024-05-08
 models_2024-05-10/model_21_2024-05-10.pkl
 models_2024-05-17/model_0_2024-05-17.pkl
 models_2024-05-24/model_15_2024-05-24.pkl
+models_2024-05-31/model_1_2024-05-31.pkl

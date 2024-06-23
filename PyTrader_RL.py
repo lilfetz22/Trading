@@ -145,7 +145,7 @@ train_env = gym_mtsim.MtEnv(
     close_threshold=0.5,
     fee=sim_training_fee,
     symbol_max_orders=2,
-    multiprocessing_processes=2
+    # multiprocessing_processes=2
 )
 # end = time.time()
 # print(f'Environment creation time: {end - start} seconds')

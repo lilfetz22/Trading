@@ -380,3 +380,9 @@
 2024-05-20 15:00:04 DEBUG    Closed trade with ticket 13967223 due to signal from model
 2024-05-20 16:00:03 DEBUG    sell with ticket number 13970021 trade opened
 2024-05-20 16:00:03 DEBUG    Stoploss set for ticket 13970021
+2024-06-10 15:31:32 DEBUG    Strategy started
+2024-06-10 15:33:25 DEBUG    Strategy started
+2024-06-10 15:38:43 DEBUG    Strategy started
+2024-06-10 15:40:08 DEBUG    Error opening trade
+2024-06-10 15:40:08 DEBUG    0
+2024-06-10 15:40:08 DEBUG    Trading not allowed, check MT terminal settings

@@ -144,8 +144,8 @@ train_env = gym_mtsim.MtEnv(
     hold_threshold=0.5,
     close_threshold=0.5,
     fee=sim_training_fee,
-    symbol_max_orders=2
-    # multiprocessing_processes=2
+    symbol_max_orders=2,
+    multiprocessing_processes=2
 )
 # end = time.time()
 # print(f'Environment creation time: {end - start} seconds')
@@ -205,7 +205,7 @@ class MyMtEnv2(gym_mtsim.MtEnv):
     _get_modified_volume = fx_rl.my_get_modified_volume
     # _get_prices = fx_rl.my_get_prices
 
-env_production = MyMtEnv2(
+env_production = gym_mtsim.MtEnv(
     original_simulator=sim_production,
     trading_symbols=[instrument],
     window_size = 10,

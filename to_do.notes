@@ -1135,6 +1135,8 @@ run all the models that I created yesterday and compare whether there is actuall
 when running them 1_000 times throug the validation
 Activity Log:
 
+
+I have a csv file that combines several weeks of my Reinforcement learning trading bot placing orders. It has the time that it was placed, price, number of lots, time that it was closed, closing price, profit of the trade. What would be a great way to go about analyzing this data to glean insights that would allow me to improve the performance of the Reinforcement learning trading bot? 
 analyzing the trades made by the bot: 
 
 That's a great question! Analyzing your trading bot's performance data is crucial for improvement. Here's a breakdown of how to analyze your CSV data and gain actionable insights:

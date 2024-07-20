@@ -2,16 +2,9 @@ import csv
 from datetime import datetime, timedelta
 import numpy as np
 import pandas as pd
-import time
 import pickle
 import pytz
 from typing import List, Tuple, Dict, Any, Optional, Union, Callable
-# import gymnasium as gym
-# import gym_mtsim
-# from gym_mtsim_forked.gym_mtsim.data import FOREX_DATA_PATH, FOREX_DATA_PATH_TRAIN
-# from gym_mtsim import OrderType, Timeframe, MtEnv, MtSimulator
-# from stable_baselines3 import A2C, PPO
-# from stable_baselines3.common.callbacks import BaseCallback, EvalCallback
 
 
 def get_news_from_csv(News_Trading_Allowed, STime):

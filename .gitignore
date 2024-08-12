@@ -20514,3 +20514,8 @@ EURUSD_6_21_to_8_11_24.csv
 EURUSD_08_01_to_11_15_16.csv
 EURUSD_11_15_16_to_11_15_17.csv
 EURUSD_full_tickstory_data_hourly.csv
+input/m5-forecasting-accuracy/calendar.csv
+input/m5-forecasting-accuracy/sales_train_evaluation.csv
+input/m5-forecasting-accuracy/sales_train_validation.csv
+input/m5-forecasting-accuracy/sample_submission.csv
+input/m5-forecasting-accuracy/sell_prices.csv

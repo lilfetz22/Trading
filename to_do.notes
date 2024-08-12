@@ -1189,3 +1189,20 @@ That's a great question! Analyzing your trading bot's performance data is crucia
 * **Risk Management:**  Implement appropriate risk management strategies, such as stop-loss orders and position sizing rules, based on the bot's performance and your risk tolerance. 
 
 Remember that thorough analysis and iterative improvement are key to developing a successful reinforcement learning trading bot. 
+
+
+
+
+[2024-08-12]
+Notes:
+Ideas:
+TODO:
+
+[ ] go through nixtla mlforecast
+[ ] understand polars
+[ ] dive into TimeGPT
+    [ ] replicate the https://nixtlaverse.nixtla.io/nixtla/docs/use-cases/bitcoin_price_prediction.html
+    
+Activity Log:
+
+[√] finished gathering all of the hourly information together

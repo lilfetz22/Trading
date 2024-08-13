@@ -1202,7 +1202,22 @@ TODO:
 [ ] understand polars
 [ ] dive into TimeGPT
     [ ] replicate the https://nixtlaverse.nixtla.io/nixtla/docs/use-cases/bitcoin_price_prediction.html
-    
+
 Activity Log:
 
 [√] finished gathering all of the hourly information together
+
+[2024-08-13]
+Notes:
+Ideas:
+TODO:
+[ ] continue exploring nixtla
+[ ] utilize polars
+
+
+later: 
+[ ] dive into TimeGPT
+    [ ] replicate the https://nixtlaverse.nixtla.io/nixtla/docs/use-cases/bitcoin_price_prediction.html
+    
+Activity Log:
+

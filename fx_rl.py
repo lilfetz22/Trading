@@ -5,7 +5,7 @@ import pandas as pd
 import pickle
 import pytz
 from typing import List, Tuple, Dict, Any, Optional, Union, Callable
-
+import polars as pl
 
 def get_news_from_csv(News_Trading_Allowed, STime):
     try:
@@ -208,3 +208,24 @@ def slices_finder(data, max_date, training_refresh='week', testing_needed=True):
         training_index_slice = data.loc[:validation_end_date, :].index
         validation_index_slice = data.loc[validation_end_date:max_friday, :].index
         return [training_index_slice, validation_index_slice]
+    
+
+def slices_finder_polars(data: pl.DataFrame, max_date: pl.Date, date_col: pl.datetime, testing_needed: bool = True):
+    max_day_of_week = max_date.weekday()
+    # subtract the day of the week from the max_date to get the previous friday
+    if max_day_of_week >= 4:
+        max_friday = max_date
+    else:
+        max_friday = max_date - timedelta(days=max_day_of_week+2)
+    training_end_date = max_friday - timedelta(days=14)
+    validation_end_date = max_friday - timedelta(days=7)
+    
+    if testing_needed:
+        training_index_slice = data.filter(pl.col(date_col) <= training_end_date)
+        validation_index_slice = data.filter((pl.col(date_col) > training_end_date) & (pl.col(date_col) <= validation_end_date))
+        testing_index_slice = data.filter((pl.col(date_col) > validation_end_date) & (pl.col(date_col) <= max_friday))
+        return training_index_slice, validation_index_slice, testing_index_slice
+    else:
+        training_index_slice = data.filter(pl.col(date_col) <= validation_end_date)
+        validation_index_slice = data.filter((pl.col(date_col) > validation_end_date) & (pl.col(date_col) <= max_friday))
+        return training_index_slice, validation_index_slice

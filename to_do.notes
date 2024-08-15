@@ -1218,6 +1218,48 @@ TODO:
 later: 
 [ ] dive into TimeGPT
     [ ] replicate the https://nixtlaverse.nixtla.io/nixtla/docs/use-cases/bitcoin_price_prediction.html
-    
+
 Activity Log:
 
+[2024-08-14]
+Notes:
+Ideas:
+TODO:
+[ ] continue exploring nixtla
+[ ] utilize polars
+
+
+later: 
+[ ] dive into TimeGPT
+    [ ] replicate the https://nixtlaverse.nixtla.io/nixtla/docs/use-cases/bitcoin_price_prediction.html
+
+Activity Log:
+1. Brought in exogenous variables with the time to next news event and time since last news event variables
+
+
+[2024-08-15]
+Notes:
+Ideas:
+TODO:
+# Nixtla MLForecast Library
+[√] Figure out how to incorporate exogenous features into the mlforecast
+    [√] Will also need to learn about transforming exogenous features
+
+[ ] Work on finding the best model (AutoMLForecast class)
+[ ] Go through the process of hyperparameter optimization
+[ ] Go through the section on Analyzing the trained models
+[ ] Go through the Probability forecasting section
+
+implementation
+[ ] determine the best signals for entering and exiting 
+[ ] see how best to join this model with the reinforcement learning model
+
+
+later: 
+[ ] dive into TimeGPT
+    [ ] replicate the https://nixtlaverse.nixtla.io/nixtla/docs/use-cases/bitcoin_price_prediction.html
+
+Activity Log:
+
+- able to determine how to work with exogenous features being added to the model. 
+- A good way to look at cross validation

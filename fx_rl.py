@@ -119,7 +119,8 @@ def find_key_by_value(dictionary, value_to_find):
             return key
     return None
 
-def my_get_prices(env, keys: List[str]=['Close', 'Open', 'High', 'Low', 'Volume']) -> Dict[str, np.ndarray]:
+def my_get_prices(env, keys: List[str]=['Close', 'Pred', 
+    'seconds_since_last_news_event','seconds_to_next_news_event']) -> Dict[str, np.ndarray]:
     prices = {}
 
     for symbol in env.trading_symbols:

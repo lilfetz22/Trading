@@ -1329,6 +1329,9 @@ implementation
 
 
 later: 
+[ ] Consider finding the best performing model for 15 min data and using those predictions to add 
+to the hourly data that the reinforcment learning model receives
+    [ ] handle the missing values in the 15 min data
 [ ] dive into TimeGPT
     [ ] replicate the https://nixtlaverse.nixtla.io/nixtla/docs/use-cases/bitcoin_price_prediction.html
 Activity Log:

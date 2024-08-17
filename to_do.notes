@@ -1263,3 +1263,72 @@ Activity Log:
 
 - able to determine how to work with exogenous features being added to the model. 
 - A good way to look at cross validation
+
+
+[2024-08-16]
+Notes:
+- The section on [Analyzing the trained models](https://nixtlaverse.nixtla.io/mlforecast/docs/how-to-guides/analyzing_models.html) is very interesting. 
+It uses `shap` to determine which features are most important in the predictions made by the model. 
+- the section on [Probability forecasting](https://nixtlaverse.nixtla.io/mlforecast/docs/how-to-guides/prediction_intervals.html) is really easy to implement. 
+[python]
+mlf.fit(
+    train,
+    prediction_intervals=PredictionIntervals(n_windows=10, h=48),
+)
+[end]
+
+just add it to the fit function.
+then tell it the levels that you want to see for the prediction PredictionIntervals
+
+[python]
+levels = [50, 80, 95]
+forecasts = mlf.predict(48, level=levels)
+forecasts.head()
+[end]
+
+
+Ideas:
+TODO:
+
+[ ] Work on finding the best model (AutoMLForecast class)
+[√] Go through the process of hyperparameter optimization
+[√] Go through the section on Analyzing the trained models
+[√] Go through the Probability forecasting section
+
+[ ] Decide on a few to do even more analysis and training to really fine tune the model
+    [ ] Try going for more weeks of validation
+
+implementation
+[ ] determine the best signals for entering and exiting 
+[ ] see how best to join this model with the reinforcement learning model
+
+
+later: 
+[ ] dive into TimeGPT
+    [ ] replicate the https://nixtlaverse.nixtla.io/nixtla/docs/use-cases/bitcoin_price_prediction.html
+
+Activity Log:
+
+- able to go through all of the sections that I wanted to explore with the nixtla library. 
+- able to start the hyperparameter search process. Completed it for 2 and looked at their performance. Which is looking really good.
+- Currently training a bunch of different models, going to save them and compare their performances. 
+
+
+[2024-08-17]
+Notes:
+Ideas:
+TODO:
+[ ] Work on finding the best model (AutoMLForecast class)
+
+[ ] Decide on a few to do even more analysis and training to really fine tune the model
+    [ ] Try going for more weeks of validation
+
+implementation
+[ ] determine the best signals for entering and exiting 
+[ ] see how best to join this model with the reinforcement learning model
+
+
+later: 
+[ ] dive into TimeGPT
+    [ ] replicate the https://nixtlaverse.nixtla.io/nixtla/docs/use-cases/bitcoin_price_prediction.html
+Activity Log:

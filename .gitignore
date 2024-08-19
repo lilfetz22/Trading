@@ -20523,3 +20523,8 @@ best_models/lgb/models.pkl
 best_models/lgb/ts.pkl
 lgb/models.pkl
 lgb/ts.pkl
+EURUSD_full_tickstory_data_hourly_filtered.csv
+crossvalidation_df_RWD.csv
+EURUSD_full_tickstory_data_15_min_ready.csv
+EURUSD_full_tickstory_data_15_min.csv
+EURUSD_full_tickstory_data_hourly_w_15min_pred.csv

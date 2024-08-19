@@ -1318,6 +1318,9 @@ Activity Log:
 Notes:
 Ideas:
 TODO:
+[√] reformat the current data in symbols[1]['EURUSD'] to include Time, OHLC/4 as close, bestmodel_pred, seconds_since_last_news, seconds_to_next_news
+[√] create the framework to be able to use all the columns in the RL model not just Close
+
 [ ] Work on finding the best model (AutoMLForecast class)
 
 [ ] Decide on a few to do even more analysis and training to really fine tune the model
@@ -1335,3 +1338,128 @@ to the hourly data that the reinforcment learning model receives
 [ ] dive into TimeGPT
     [ ] replicate the https://nixtlaverse.nixtla.io/nixtla/docs/use-cases/bitcoin_price_prediction.html
 Activity Log:
+
+- able to reformat the current data in symbols 'EURUSD' into what will be needed for the run. 
+- adjusted the function that re-defined "get_prices" to include the new columns
+
+
+[2024-08-18]
+Notes:
+Ideas:
+TODO:
+[ ] Work on finding the best model (AutoMLForecast class)
+
+[ ] Decide on a few to do even more analysis and training to really fine tune the model
+    [ ] Try going for more weeks of validation
+
+implementation
+[ ] determine the best signals for entering and exiting 
+[ ] see how best to join this model with the reinforcement learning model
+    [√] join into training data for the RL model
+    [ ] use as a separate predictor that runs alongside the RL model and use a binary classification model 
+    to determine when to use which model's predictions of whether to open or close a position
+
+
+
+[ ] Consider finding the best performing model for 15 min data and using those predictions to add 
+to the hourly data that the reinforcment learning model receives
+    [√] handle the missing values in the 15 min data
+    [ ] train a LightGBM model to predict the values for the 15 min data, use this to append to the current data
+       in symbols[1]['EURUSD']
+    [ ] start training the reinforcement learning model
+
+
+[√] Look into the strength of the random walk model
+
+[ ] Get random walk model into the reinforcement learning model and see if it performs any better
+
+later: 
+[√] dive into TimeGPT
+
+
+
+Activity Log:
+
+1. fixed the missing values in the 15 min data
+2. started running the training of the new regression model on the 15 min data.
+3. Able to dive into TimeGPT, and check out Random Walk regressor which performed fairly well 
+(see random_walk_performance.png), still waiting for the other models to finish training after 2 days, 
+and running a second set on Google Colab
+- TimeGPT would only be worth it if I was making money, then could invest with it. But I was able to get it 
+to work on a google colab notebook: https://colab.research.google.com/drive/1sPg2X-ONzklTyFJrkc8gIP_ufsMGFlpq#scrollTo=fW1lhdsaJbs5
+which is on the billy.fetzner@gmail.com account. 
+
+[2024-08-19]
+Notes:
+Random Walk Strategy:
+
+1. Significance of the RMSE:
+First, let's contextualize the RMSE of 0.00033. For EURUSD, this is quite small, representing about 3.3 pips. This suggests your model is relatively accurate in predicting the next close price.
+
+2. Entry Strategy:
+   - Direction: Use the model's prediction to determine the expected direction of the price movement.
+   - Threshold: Enter a trade only when the predicted price change exceeds a certain threshold. This threshold could be a multiple of your RMSE, say 2x or 3x (6.6 or 9.9 pips).
+   - Confirmation: Consider using additional technical indicators or price action patterns to confirm the model's prediction before entering a trade.
+
+3. Exit Strategy:
+   - Take Profit: Set a take-profit level based on a multiple of your RMSE. For instance, you might aim for 3x to 5x the RMSE (9.9 to 16.5 pips).
+   - Stop Loss: Place a stop-loss order at 1.5x to 2x the RMSE (4.95 to 6.6 pips) to limit potential losses.
+   - Time-based exit: Since your model predicts the next 15-minute close, consider closing the trade at the end of the predicted period if neither the take-profit nor stop-loss has been hit.
+
+4. Risk Management:
+   - Position Sizing: Limit each trade to a small percentage of your account, typically 1-2%.
+   - Max Open Positions: Limit the number of concurrent open positions to manage overall risk.
+
+5. Continuous Evaluation:
+   - Regularly retrain your model on recent data to ensure it remains accurate.
+   - Monitor the actual RMSE of your trades compared to the model's predicted RMSE.
+
+6. Consideration of Market Conditions:
+   - Be aware of upcoming economic events or news that could impact EURUSD.
+   - Consider implementing filters to avoid trading during highly volatile periods or when spreads are wide.
+
+7. Backtesting and Optimization:
+   - Backtest this strategy on historical data to evaluate its performance.
+   - Optimize parameters like entry/exit thresholds and position sizing based on backtesting results.
+
+Ideas:
+TODO:
+
+[ ] Work on finding the best model (AutoMLForecast class)
+
+[ ] Decide on a few to do even more analysis and training to really fine tune the model
+    [ ] Try going for more weeks of validation
+
+implementation
+[ ] determine the best signals for entering and exiting 
+[ ] see how best to join this model with the reinforcement learning model
+    [√] join into training data for the RL model
+    [ ] use as a separate predictor that runs alongside the RL model and use a binary classification model 
+    to determine when to use which model's predictions of whether to open or close a position
+
+
+
+[√] Consider finding the best performing model for 15 min data and using those predictions to add 
+[ ] to the hourly data that the reinforcment learning model receives
+    [√] handle the missing values in the 15 min data
+    [√] train a LightGBM model to predict the values for the 15 min data, use this to append to the current data
+       [ ] in symbols[1]['EURUSD']
+    [√] start training the reinforcement learning model
+
+
+[√] Look into the strength of the random walk model
+
+[√] Get random walk model into the reinforcement learning model and see if it performs any better
+
+[ ] Try the random walk strategy 
+
+
+[ ] Go through FinRL-Meta and try to implement their RL model and see if that improves the performance of the model
+
+Activity Log:
+- Stopped the training of the models in the nixtla_exploration notebook. It had been 3 days and I had no idea
+how close it was to actually stopping, plus I wanted to run the RL model with the random walk model, and the 
+news info, to see how well it performed.
+
+- I added the random walk model along with the news info to the reinforcement learning model and it did not appear to perform any better than the 
+original model without the random walk predictions

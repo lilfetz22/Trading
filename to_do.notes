@@ -1452,6 +1452,7 @@ implementation
 [√] Get random walk model into the reinforcement learning model and see if it performs any better
 
 [ ] Try the random walk strategy 
+    [ ] implement the stoploss and take profit and see how well the model performs
 
 
 [ ] Go through FinRL-Meta and try to implement their RL model and see if that improves the performance of the model
@@ -1463,3 +1464,49 @@ news info, to see how well it performed.
 
 - I added the random walk model along with the news info to the reinforcement learning model and it did not appear to perform any better than the 
 original model without the random walk predictions
+
+
+[2024-08-20]
+Notes:
+Ideas:
+TODO:
+
+[√] Work on finding the best model (AutoMLForecast class)
+    [√] Determing if any model is better than just the random walk with drift
+    TESTING MODELS:
+        [√] LightGBM
+        [√] ElasticNet
+        [√] LinearRegression - performed better! 0.36 pips RMSE better! and is better than Ridge
+        [√] Ridge - performed better! 0.36 pips RMSE better! 16 mins to train
+        [√] Lasso
+        THESE TAKE FOREVER TO TRAIN:
+        [!] XGBoost
+        [!] Catboost
+        [!] RandomForest
+
+
+[√] Decide on a few to do even more analysis and training to really fine tune the model
+    [√] Try going for more weeks of validation
+
+implementation
+[ ] determine the best signals for entering and exiting 
+[ ] see how best to join this model with the reinforcement learning model
+    [√] join into training data for the RL model - this doesn't help
+    [ ] use as a separate predictor that runs alongside the RL model and use a binary classification model 
+    to determine when to use which model's predictions of whether to open or close a position
+
+[ ] Try the random walk strategy 
+    [√] implement the stoploss and take Profit
+    [ ] figure out if the stoploss or take profit were hit during each position
+
+
+
+[ ] Go through FinRL-Meta and try to implement their RL model and see if that improves the performance of the model
+
+Activity Log:
+
+- compared the results of the LightGBM with the Random walk and the RWD model performed better and only takes seconds to train...
+- began the test of comparing the ElasticNet to RWD, we will see if it can perform any better
+- trained several models, LinearRegression performed the best. The XGBoost and Catboost took too long to train and I didn't even try 
+RandomForest because that one took longer then XGBoost on pyspark so didn't think it was worth it. 
+

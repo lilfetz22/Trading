@@ -1510,3 +1510,44 @@ Activity Log:
 - trained several models, LinearRegression performed the best. The XGBoost and Catboost took too long to train and I didn't even try 
 RandomForest because that one took longer then XGBoost on pyspark so didn't think it was worth it. 
 
+
+[2024-08-21]
+Notes:
+Ideas:
+TODO:
+
+[ ] Try the random walk strategy 
+    [√] implement the stoploss and take Profit
+    [√] figure out if the stoploss or take profit were hit during each position
+    [ ] analyze the results of the random walk model
+
+implementation
+[ ] Replace Random Walk with the LinearRegression model
+
+[ ] determine the best signals for entering and exiting 
+    [ ] optimize the threshold, take profit, and stop loss values
+
+# possibly:
+[ ] see how best to join this model with the reinforcement learning model
+    [√] join into training data for the RL model - this doesn't help
+    [ ] use as a separate predictor that runs alongside the RL model and use a binary classification model 
+    to determine when to use which model's predictions of whether to open or close a position
+
+[ ] Go through FinRL-Meta and try to implement their RL model and see if that improves the performance of the model
+
+
+Activity Log:
+
+- continuing to work through updating the python notebook for Random_walk_strategy using polars
+- created stoploss hit and take profit hit columns
+- created a column for opening and closing a position along with a cumulative position count
+- made exits to protect against the swap rate and weekend holds
+- did not allow a position to open within 10 minutes of a news event. Had to enter the row prior or after the news event
+    (i.e. the seconds until next news event could not be between 0 and 900)
+- created a visualization of a single day of data
+- created the profit dataframe to calculate the profit and loss on this strategy. 
+    - used worst case methodology (the commission for msolutions, no news trading, no weekend holds)
+- added spread to the profit calculation to account for orders not being placed right when they should be by using a random number generator 
+- found the max daily drawdown
+- found the total profit: $744,159.17 (lot size = 1)
+- found the profit in the last year: $90,751.05 (lot size = 1)

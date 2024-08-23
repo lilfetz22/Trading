@@ -20531,3 +20531,6 @@ EURUSD_full_tickstory_data_hourly_w_15min_pred.csv
 crossvalidation_df_LR.csv
 best_models2/*
 catboost_info/*
+crossvalidation_df_LR_5min.csv
+EURUSD_full_tickstory_data_5_min_ready.csv
+EURUSD_full_tickstory_data_5_min.csv

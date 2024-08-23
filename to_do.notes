@@ -1582,6 +1582,11 @@ finished analyzing the results of the random walk model and the results were not
 Notes:
 Ideas:
 TODO:
+[√] debug profit calculation
+
+[ ] figure out a way to determine when the TP and SL were hit for those positions when both were hit at the same time. 
+   - will need to consult the 5 min OHLC data, find out which comes first. figure out what to do if there is a tie there.
+
 [ ] create an optimization notebook that will find the best TP and SL values for the model
 
 [ ] determine the best signals for entering and exiting 
@@ -1596,3 +1601,5 @@ TODO:
 [ ] Go through FinRL-Meta and try to implement their RL model and see if that improves the performance of the model
 
 Activity Log:
+- found a bug in the profit calculation, so I spent my time debugging that. 
+

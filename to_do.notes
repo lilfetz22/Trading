@@ -1548,6 +1548,51 @@ Activity Log:
 - created the profit dataframe to calculate the profit and loss on this strategy. 
     - used worst case methodology (the commission for msolutions, no news trading, no weekend holds)
 - added spread to the profit calculation to account for orders not being placed right when they should be by using a random number generator 
-- found the max daily drawdown
-- found the total profit: $744,159.17 (lot size = 1)
-- found the profit in the last year: $90,751.05 (lot size = 1)
+- found the max daily Drawdown
+
+[2024-08-22]
+Notes:
+Ideas:
+TODO:
+[√] Try the random walk strategy 
+    [√] implement the stoploss and take Profit
+    [√] figure out if the stoploss or take profit were hit during each position
+    [√] analyze the results of the random walk model
+
+implementation
+[√] Replace Random Walk with the LinearRegression model
+
+[ ] determine the best signals for entering and exiting 
+    [ ] optimize the threshold, take profit, and stop loss values
+
+# possibly:
+[ ] see how best to join this model with the reinforcement learning model
+    [√] join into training data for the RL model - this doesn't help
+    [ ] use as a separate predictor that runs alongside the RL model and use a binary classification model 
+    to determine when to use which model's predictions of whether to open or close a position
+
+[ ] Go through FinRL-Meta and try to implement their RL model and see if that improves the performance of the model
+
+
+Activity Log:
+finished analyzing the results of the random walk model and the results were not good after correcting for the bug.
+- going back through and going to try the linear regression model and training it on 5 min data and then using it for predicting the 15 min 
+
+[2024-08-23]
+Notes:
+Ideas:
+TODO:
+[ ] create an optimization notebook that will find the best TP and SL values for the model
+
+[ ] determine the best signals for entering and exiting 
+    [ ] optimize the threshold, take profit, and stop loss values
+
+# possibly:
+[ ] see how best to join this model with the reinforcement learning model
+    [√] join into training data for the RL model - this doesn't help
+    [ ] use as a separate predictor that runs alongside the RL model and use a binary classification model 
+    to determine when to use which model's predictions of whether to open or close a position
+
+[ ] Go through FinRL-Meta and try to implement their RL model and see if that improves the performance of the model
+
+Activity Log:

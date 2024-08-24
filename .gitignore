@@ -20534,3 +20534,5 @@ catboost_info/*
 crossvalidation_df_LR_5min.csv
 EURUSD_full_tickstory_data_5_min_ready.csv
 EURUSD_full_tickstory_data_5_min.csv
+df_w_news_15min_pred.csv
+df_w_news_5min_pred.csv

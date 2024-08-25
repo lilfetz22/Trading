@@ -1603,3 +1603,55 @@ TODO:
 Activity Log:
 - found a bug in the profit calculation, so I spent my time debugging that. 
 
+[2024-08-24]
+Notes:
+Ideas:
+TODO:
+[√] figure out a way to determine when the TP and SL were hit for those positions when both were hit at the same time. will need to consult the 5 min OHLC data, find out which comes first. figure out what to do if there is a tie there.
+
+[√] move this down to using 5 min data instead
+    [√] 5 min for hourly
+    [√] 5 min for 15 min
+
+[√] create an optimization notebook that will find the best TP and SL values for the model
+
+[ ] find a better exit indicator rather than just using stoploss and take profit
+    [ ] SMI - smoothing momentum index
+
+# possibly:
+[ ] see how best to join this model with the reinforcement learning model
+    [√] join into training data for the RL model - this doesn't help
+    [ ] use as a separate predictor that runs alongside the RL model and use a binary classification model 
+    to determine when to use which model's predictions of whether to open or close a position
+
+[ ] Go through FinRL-Meta and try to implement their RL model and see if that improves the performance of the model
+
+Activity Log:
+- finished working out the kinks in the bug that I found yesterday. Should be working just fine now. 
+- tried it on the 5 min data using it to predict the 15 and hourly data, and I need to add this into the optimization function, and find out what time for predictions is best.
+- was able to create the optimization algorithm to optimize for the TP values, SL values, threshold, and timeframes
+
+
+[2024-08-25] - Day 13
+Notes:
+- giving myself 30 days to work on this. 
+Ideas:
+TODO:
+[√] create a better entry and exit strategy
+
+[√] find a better exit indicator rather than just using stoploss and take profit
+[ ] Go through FinRL-Meta and try to implement their RL model and see if that improves the performance of the model
+
+[ ] go through all of the technical indicators I have access to in that python module, create their entry and exit stratgies then create a dynamic function that can go through all the different combinations of possible indicators then finds the optimal combination of entry and exit indicators for EURUSD
+    [ ] SMI - smoothing momentum index
+
+# possibly:
+[ ] see how best to join this model with the reinforcement learning model
+    [√] join into training data for the RL model - this doesn't help
+    [ ] use as a separate predictor that runs alongside the RL model and use a binary classification model 
+    to determine when to use which model's predictions of whether to open or close a position
+
+
+Activity Log:
+
+- tried coming up with a better strategy, but just found that this isn't the way to go about this, need to do something different

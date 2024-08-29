@@ -1655,3 +1655,64 @@ TODO:
 Activity Log:
 
 - tried coming up with a better strategy, but just found that this isn't the way to go about this, need to do something different
+
+
+[2024-08-28]
+Notes:
+Ideas:
+I'm going to begin to have a weekly cadence, where I work on the colortext extension on the weekends, and do the trading on the weekdays. Up until I have worked on the trading for 30 days. After that we will need to abandon the trading project for good, and go look for a PT job or working on freelance projects
+
+TODO:
+
+[colortext]
+[ ] doesn't handle special characters (brackets, hyphens, etc.)
+[ ] turn off when the other conditions are applied, like for completed tasks, and other languages. 
+[ ] apply to any file, not just notesnlh files
+
+[Trading]
+[ ] Go through FinRL-Meta and try to implement their RL model and see if that improves the performance of the model
+
+[ ] go through all of the technical indicators I have access to in that python module, create their entry and exit stratgies then create a dynamic function that can go through all the different combinations of possible indicators then finds the optimal combination of entry and exit indicators for EURUSD
+    [ ] SMI - smoothing momentum index
+
+# possibly:
+[ ] see how best to join this model with the reinforcement learning model
+    [√] join into training data for the RL model - this doesn't help
+    [ ] use as a separate predictor that runs alongside the RL model and use a binary classification model 
+    to determine when to use which model's predictions of whether to open or close a position
+
+Activity Log:
+
+- got the colortext extension working, just need a few more modifications to really make it work in all conditions - then I'll be ready to publish it 
+
+
+[2024-08-29]
+Notes:
+Now I remember why that I stopped working with fin-rl. I was going to have to do all of this manipulation to it, and it was just so specific to what they had in there that it wasn't going to work the way I wanted to, so then I went to try to do it myself, and that was worse...
+Ideas:
+TODO:
+
+[colortext]
+[ ] doesn't handle special characters (brackets, hyphens, etc.)
+[ ] turn off when the other conditions are applied, like for completed tasks, and other languages. 
+[ ] apply to any file, not just notesnlh files
+
+[Trading]
+[ ] Go through FinRL-Meta and try to implement their RL model and see if that improves the performance of the model
+
+[ ] see if I can train a binary classifier on the history of the RL model's training, and then use that to determine whether the model should open or close a position
+
+[ ] go through all of the technical indicators I have access to in that python module, create their entry and exit stratgies then create a dynamic function that can go through all the different combinations of possible indicators then finds the optimal combination of entry and exit indicators for EURUSD
+    [ ] SMI - smoothing momentum index
+
+# possibly:
+[ ] see how best to join this model with the reinforcement learning model
+    [√] join into training data for the RL model - this doesn't help
+    [ ] use as a separate predictor that runs alongside the RL model and use a binary classification model 
+    to determine when to use which model's predictions of whether to open or close a position
+
+
+Activity Log:
+
+- was able to get FinRL at least training now
+

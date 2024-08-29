@@ -1714,5 +1714,6 @@ TODO:
 
 Activity Log:
 
-- was able to get FinRL at least training now
+was able to get FinRL at least training now
+worked on creating a binary classification model for how well the RL model did during training, and predicting how well it would do in the future, then using that to determine whether the model should open an order. 
 

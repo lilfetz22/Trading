@@ -1,0 +1,9 @@
+Production process
+
+1. Get the latest data
+2. tune the hyperparameters without the testing set
+3. Get all of the hyperparameters that were positive from the run
+4. run these hyperparameters on the validation set 1000 times each, choose the parameters with the best range
+5. run the Saving_tested_model notebook so that we can save the model
+6. update the model name and any new updates to the VPS versions
+7. get the code running on the VPS

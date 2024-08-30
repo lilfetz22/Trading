@@ -2,17 +2,10 @@ import csv
 from datetime import datetime, timedelta
 import numpy as np
 import pandas as pd
-import time
 import pickle
 import pytz
 from typing import List, Tuple, Dict, Any, Optional, Union, Callable
-# import gymnasium as gym
-# import gym_mtsim
-# from gym_mtsim_forked.gym_mtsim.data import FOREX_DATA_PATH, FOREX_DATA_PATH_TRAIN
-# from gym_mtsim import OrderType, Timeframe, MtEnv, MtSimulator
-# from stable_baselines3 import A2C, PPO
-# from stable_baselines3.common.callbacks import BaseCallback, EvalCallback
-
+import polars as pl
 
 def get_news_from_csv(News_Trading_Allowed, STime):
     try:
@@ -33,7 +26,7 @@ def get_news_from_csv(News_Trading_Allowed, STime):
         year_str = str(year)
         
         # Construct the filename
-        location = "./news_events/"
+        location = "C:/Users/Administrator/Documents/Trading/news_events/calendar_statement_"
         filename = f"{location}{year_str}_{month_str}_{day_str}.csv"
         
         any_news = False
@@ -126,7 +119,8 @@ def find_key_by_value(dictionary, value_to_find):
             return key
     return None
 
-def my_get_prices(env, keys: List[str]=['Close', 'Open', 'High', 'Low', 'Volume']) -> Dict[str, np.ndarray]:
+def my_get_prices(env, keys: List[str]=['Close', 'Pred', 
+    'seconds_since_last_news_event','seconds_to_next_news_event']) -> Dict[str, np.ndarray]:
     prices = {}
 
     for symbol in env.trading_symbols:
@@ -215,3 +209,24 @@ def slices_finder(data, max_date, training_refresh='week', testing_needed=True):
         training_index_slice = data.loc[:validation_end_date, :].index
         validation_index_slice = data.loc[validation_end_date:max_friday, :].index
         return [training_index_slice, validation_index_slice]
+    
+
+def slices_finder_polars(data: pl.DataFrame, max_date: pl.Date, date_col: pl.datetime, testing_needed: bool = True):
+    max_day_of_week = max_date.weekday()
+    # subtract the day of the week from the max_date to get the previous friday
+    if max_day_of_week >= 4:
+        max_friday = max_date
+    else:
+        max_friday = max_date - timedelta(days=max_day_of_week+2)
+    training_end_date = max_friday - timedelta(days=14)
+    validation_end_date = max_friday - timedelta(days=7)
+    
+    if testing_needed:
+        training_index_slice = data.filter(pl.col(date_col) <= training_end_date)
+        validation_index_slice = data.filter((pl.col(date_col) > training_end_date) & (pl.col(date_col) <= validation_end_date))
+        testing_index_slice = data.filter((pl.col(date_col) > validation_end_date) & (pl.col(date_col) <= max_friday))
+        return training_index_slice, validation_index_slice, testing_index_slice
+    else:
+        training_index_slice = data.filter(pl.col(date_col) <= validation_end_date)
+        validation_index_slice = data.filter((pl.col(date_col) > validation_end_date) & (pl.col(date_col) <= max_friday))
+        return training_index_slice, validation_index_slice

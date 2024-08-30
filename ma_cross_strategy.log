@@ -348,3 +348,41 @@
 2024-05-10 11:00:05 DEBUG    buy with ticket number 59886172 trade opened
 2024-05-10 11:00:05 DEBUG    Stoploss set for ticket 59886172
 2024-05-10 11:00:06 DEBUG    Closed trade with ticket 59884740 due to signal from model
+2024-05-13 22:47:01 DEBUG    Strategy started
+2024-05-13 23:29:19 DEBUG    Strategy started
+2024-05-13 23:30:02 DEBUG    buy with ticket number 51239727422 trade opened
+2024-05-14 13:26:50 DEBUG    Strategy started
+2024-05-14 13:34:47 DEBUG    Strategy started
+2024-05-14 13:44:52 DEBUG    Strategy started
+2024-05-14 13:52:02 DEBUG    Strategy started
+2024-05-14 16:02:41 DEBUG    Strategy started
+2024-05-14 16:10:07 DEBUG    Error opening trade
+2024-05-14 16:10:07 DEBUG    0
+2024-05-14 16:10:07 DEBUG    Error opening market order
+2024-05-14 16:15:03 DEBUG    Error opening trade
+2024-05-14 16:15:03 DEBUG    0
+2024-05-14 16:15:03 DEBUG    Error opening market order
+2024-05-20 11:22:42 DEBUG    Strategy started
+2024-05-20 11:35:03 DEBUG    buy with ticket number 145617074 trade opened
+2024-05-20 11:35:03 DEBUG    Stoploss set for ticket 145617074
+2024-05-20 11:40:04 DEBUG    buy with ticket number 145617298 trade opened
+2024-05-20 11:40:04 DEBUG    Stoploss set for ticket 145617298
+2024-05-20 11:54:17 DEBUG    Strategy started
+2024-05-20 11:55:06 DEBUG    buy with ticket number 145617735 trade opened
+2024-05-20 11:55:07 DEBUG    Stoploss set for ticket 145617735
+2024-05-20 12:15:01 DEBUG    sell with ticket number 145618312 trade opened
+2024-05-20 12:15:01 DEBUG    Stoploss set for ticket 145618312
+2024-05-20 09:47:27 DEBUG    Strategy started
+2024-05-20 11:28:12 DEBUG    Strategy started
+2024-05-20 11:32:23 DEBUG    Strategy started
+2024-05-20 13:00:06 DEBUG    buy with ticket number 13967223 trade opened
+2024-05-20 13:00:07 DEBUG    Stoploss set for ticket 13967223
+2024-05-20 15:00:04 DEBUG    Closed trade with ticket 13967223 due to signal from model
+2024-05-20 16:00:03 DEBUG    sell with ticket number 13970021 trade opened
+2024-05-20 16:00:03 DEBUG    Stoploss set for ticket 13970021
+2024-06-10 15:31:32 DEBUG    Strategy started
+2024-06-10 15:33:25 DEBUG    Strategy started
+2024-06-10 15:38:43 DEBUG    Strategy started
+2024-06-10 15:40:08 DEBUG    Error opening trade
+2024-06-10 15:40:08 DEBUG    0
+2024-06-10 15:40:08 DEBUG    Trading not allowed, check MT terminal settings

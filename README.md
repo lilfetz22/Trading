@@ -45,8 +45,9 @@ After the forays into the backtesting the indicators, I was able to find the MT4
         I did a considerable amount of work here to try to optimize the parameters using Gym-mtsim simulations and then I was able to connect it to the MT4 platform using the MT4 EA python to MT4 platform. This worked out fairly well, and I was able to run this for several weeks, as you can see in the orders folder. However, the main issue is that when you are performing an anlysis with an RL model is that with the same hyperparameters it creates a distribution, over thousands of runs, many of them are successful, but it is a distribution, and they average to be mostly profitable, but not always. I went through the process of training the model on past data up to a week prior to the current date, so I would train for 50_000 bars of hourly data, then validate the parameters on the last week of data, then use the best performing model and save it to then be used on the live environment the following week. I had some positive weeks and some negative weeks, but nothing consistent so I went searching for an additional way to improve my results. 
 
    b) GYM-MTSIM - Ensemble
-        I started looking into Ensemble methods combining the RL with something else.
-     i) GYM-MTSIM - Nixtla
+        I started looking into Ensemble methods combining the RL with something else. \n
+       
+  i) GYM-MTSIM - Nixtla
             Nixtla has a variety of amazing time-series analysis tools that I began experimenting with. I landed on the Random Walk with Drift and basic linear regression model using their AutoLinearRegression function. I then added this to the RL model, and it didn't seem to help much. I then started trying to create a strategy around the predictions provided by the RWD and LR, but couldn't land on one that was successful
 
    ii) GYM-MTSIM - XGBoostClassifier

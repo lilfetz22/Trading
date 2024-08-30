@@ -7,7 +7,7 @@ import sys
 from mlforecast import MLForecast
 sys.path.append("C:/Users/WilliamFetzner/Documents/Trading/")
 from gym_mtsim_forked.gym_mtsim.data import FOREX_DATA_PATH
-import fx_rl
+import Reinforcement_Learning.fx_rl as fx_rl
 
 def check_for_new_news():
     news_data_full = (

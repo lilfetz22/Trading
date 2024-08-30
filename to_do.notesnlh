@@ -1720,6 +1720,15 @@ worked on creating a binary classification model for how well the RL model did d
 [2024-08-30]
 Notes:
 So new development. I can no longer trade with EA's on my prop firm accounts. So I will be ending the trading project.
+
+Files that I need to describe:
+
+1. 
+
+There were 3 separate phases of the Trading project
+Phase 1: Backtesting Renko bars using minute data
+
+
 Ideas:
 TODO:
 [colortext]

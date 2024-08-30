@@ -19,10 +19,10 @@ import configparser
 from datetime import datetime
 # import pytz
 # reimport this module
-import fx_rl
+import Reinforcement_Learning.fx_rl as fx_rl
 import multiprocessing
 from Pytrader_API_V3_02a import Pytrader_API
-from LogHelper import Logger                              # for logging events
+from pytrader_ml_implementation.LogHelper import Logger                              # for logging events
 if __name__ == '__main__':
     multiprocessing.freeze_support()   # Only for Windows
     log = Logger()

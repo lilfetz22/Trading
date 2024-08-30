@@ -41,16 +41,15 @@ So I went simpler. I started going through the process of testing a double-SMA s
 
 After the forays into the backtesting the indicators, I was able to find the MT4 connector! Horray! This opened up a whole new world of possibilities. Especially given that I can backtest and have the real thing go live in the same environment. Plus, this was also the time that I found out about the gym-anytrading and gym-mtsim repos. And given that I am a data scientist, I decided to give RL a try. So I started piggy-backing off of the amazing work of first gym-anytrading, then upgraded to their gym-mtsim environment for reinforcement learning. Instead of using the GA for optimizing the parameters I used hyperopt. 
 
-    a) GYM-MTSIM - Base
+  a) GYM-MTSIM - Base
         I did a considerable amount of work here to try to optimize the parameters using Gym-mtsim simulations and then I was able to connect it to the MT4 platform using the MT4 EA python to MT4 platform. This worked out fairly well, and I was able to run this for several weeks, as you can see in the orders folder. However, the main issue is that when you are performing an anlysis with an RL model is that with the same hyperparameters it creates a distribution, over thousands of runs, many of them are successful, but it is a distribution, and they average to be mostly profitable, but not always. I went through the process of training the model on past data up to a week prior to the current date, so I would train for 50_000 bars of hourly data, then validate the parameters on the last week of data, then use the best performing model and save it to then be used on the live environment the following week. I had some positive weeks and some negative weeks, but nothing consistent so I went searching for an additional way to improve my results. 
 
-    b) GYM-MTSIM - Ensemble
+   b) GYM-MTSIM - Ensemble
         I started looking into Ensemble methods combining the RL with something else.
-
-        i) GYM-MTSIM - Nixtla
+     i) GYM-MTSIM - Nixtla
             Nixtla has a variety of amazing time-series analysis tools that I began experimenting with. I landed on the Random Walk with Drift and basic linear regression model using their AutoLinearRegression function. I then added this to the RL model, and it didn't seem to help much. I then started trying to create a strategy around the predictions provided by the RWD and LR, but couldn't land on one that was successful
 
-        ii) GYM-MTSIM - XGBoostClassifier
+   ii) GYM-MTSIM - XGBoostClassifier
             I then added an XGBoostClassifier to the RL, that would train on all of the orders that the RL model made during training and then use that information to predict how well the RL was doing at creating profitable trades, but predicting on the trade coming up whether it would be a successful or not successful trade based on how the RL model did during training. If the Classification model predicted a bad trade, it would rewrite the action to not open the trade. This did seem to perform slightly better. However, I did not get a chance to implement this, and I do not foresee sinking more time into this project, although it is a possible opportunity in the future to bring this to implementation. 
 
 ## Contributing

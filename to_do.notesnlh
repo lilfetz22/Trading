@@ -1717,3 +1717,19 @@ Activity Log:
 was able to get FinRL at least training now
 worked on creating a binary classification model for how well the RL model did during training, and predicting how well it would do in the future, then using that to determine whether the model should open an order. 
 
+[2024-08-30]
+Notes:
+So new development. I can no longer trade with EA's on my prop firm accounts. So I will be ending the trading project.
+Ideas:
+TODO:
+[colortext]
+[ ] doesn't handle special characters (brackets, hyphens, etc.)
+[ ] turn off when the other conditions are applied, like for completed tasks, and other languages. 
+[ ] apply to any file, not just notesnlh files
+
+[Trading]
+[ ] make the git repo public, and rewrite the README to explain all of the things that I learned and implemented during my search for a successful trading strategy
+
+Activity Log:
+
+

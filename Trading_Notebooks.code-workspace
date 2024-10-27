@@ -8,7 +8,11 @@
 			"path": "FinRL-Meta"
 		}
 	],
-	"settings": {},
+	"settings": {
+		"editor.rulers": [
+			80
+		]
+	},
 	"extensions": {
 		"recommendations": [
 			"canadaduane.notes"

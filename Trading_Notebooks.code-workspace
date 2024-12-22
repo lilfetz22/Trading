@@ -11,6 +11,15 @@
 	"settings": {
 		"editor.rulers": [
 			80
+		],
+		"files.associations": {
+			"*.rmd": "markdown",
+			"*.Rmd": "r",
+			"*.mq5": "cpp"
+		},
+		"C_Cpp.default.includePath": [
+			"c:\\Users\\WilliamFetzner\\AppData\\Roaming\\MetaQuotes\\Terminal\\D0E8209F77C8CF37AD8BF550E51FF075\\MQL5\\Include\\Include",
+			"c:\\Program Files\\MetaTrader 5\\MetaEditor64.exe\\Include"
 		]
 	},
 	"extensions": {
